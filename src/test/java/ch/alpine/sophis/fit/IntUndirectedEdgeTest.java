@@ -1,0 +1,28 @@
+// code by jph
+package ch.alpine.sophis.fit;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.sophis.fit.IntUndirectedEdge;
+import ch.alpine.tensor.ext.Serialization;
+
+class IntUndirectedEdgeTest {
+  @Test
+  void testSimple() {
+    IntUndirectedEdge undirectedEdge = new IntUndirectedEdge(2, 3);
+    assertEquals(undirectedEdge.i(), 2);
+    assertEquals(undirectedEdge.j(), 3);
+    assertEquals(undirectedEdge, new IntUndirectedEdge(3, 2));
+  }
+
+  @Test
+  void testCorrect() throws ClassNotFoundException, IOException {
+    IntUndirectedEdge undirectedEdge = Serialization.copy(new IntUndirectedEdge(3, 2));
+    assertEquals(undirectedEdge.i(), 2);
+    assertEquals(undirectedEdge.j(), 3);
+  }
+}

@@ -1,0 +1,23 @@
+// code by jph
+package ch.alpine.sophis.gbc.amp;
+
+import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.api.ScalarUnaryOperator;
+import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.sca.Sign;
+import ch.alpine.tensor.sca.tri.ArcTan;
+
+/**
+ * 
+ */
+public record ArcTanAmplifier(Scalar sigma) implements ScalarUnaryOperator {
+  public ArcTanAmplifier {
+    Sign.requirePositive(sigma);
+  }
+
+  @Override
+  public Scalar apply(Scalar scalar) {
+    return ArcTan.FUNCTION.apply(scalar.multiply(sigma)).divide(Pi.HALF).add(RealScalar.ONE);
+  }
+}

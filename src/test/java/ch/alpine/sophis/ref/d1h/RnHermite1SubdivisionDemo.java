@@ -1,0 +1,22 @@
+// code by jph
+package ch.alpine.sophis.ref.d1h;
+
+import java.io.IOException;
+
+import ch.alpine.sophis.ref.d1h.TensorIteration;
+import ch.alpine.sophus.math.Do;
+import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.HomeDirectory;
+import ch.alpine.tensor.io.Put;
+
+/* package */ enum RnHermite1SubdivisionDemo {
+  ;
+  static void main() throws IOException {
+    Tensor control = Tensors.fromString("{{0, 0}, {1, 0}, {0, -1}, {-1/2, 1}}");
+    TensorIteration tensorIteration = RnHermite1Subdivisions.instance().string(RealScalar.ONE, control);
+    Tensor iterate = Do.of(tensorIteration::iterate, 6);
+    Put.of(HomeDirectory.file("merrien.file"), iterate);
+  }
+}

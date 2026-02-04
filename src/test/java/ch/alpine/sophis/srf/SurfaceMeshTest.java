@@ -1,0 +1,28 @@
+// code by jph
+package ch.alpine.sophis.srf;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.sophis.srf.SurfaceMesh;
+import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.ext.Serialization;
+
+class SurfaceMeshTest {
+  @Test
+  void testEmpty() throws ClassNotFoundException, IOException {
+    SurfaceMesh surfaceMesh = Serialization.copy(new SurfaceMesh());
+    assertTrue(Tensors.isEmpty(surfaceMesh.polygons()));
+    assertTrue(surfaceMesh.vertToFace().isEmpty());
+  }
+
+  @Test
+  void testNullFail() {
+    SurfaceMesh surfaceMesh = new SurfaceMesh();
+    assertThrows(Exception.class, () -> surfaceMesh.addVert(null));
+  }
+}

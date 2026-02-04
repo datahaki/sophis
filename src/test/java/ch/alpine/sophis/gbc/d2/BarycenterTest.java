@@ -1,0 +1,50 @@
+// code by jph
+package ch.alpine.sophis.gbc.d2;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.IOException;
+
+import org.junit.jupiter.api.Test;
+
+import ch.alpine.sophis.dv.BarycentricCoordinate;
+import ch.alpine.sophis.dv.HsCoordinates;
+import ch.alpine.sophis.gbc.d2.Barycenter;
+import ch.alpine.sophis.gbc.d2.ThreePointCoordinate;
+import ch.alpine.sophus.hs.HsDesign;
+import ch.alpine.sophus.lie.rn.RGroup;
+import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.math.AveragingWeights;
+import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.chq.FiniteTensorQ;
+import ch.alpine.tensor.ext.Serialization;
+import ch.alpine.tensor.lie.rot.CirclePoints;
+import ch.alpine.tensor.sca.Chop;
+
+class BarycenterTest {
+  @Test
+  void testSimple() throws ClassNotFoundException, IOException {
+    for (Barycenter barycenter : Barycenter.values()) {
+      BarycentricCoordinate barycentricCoordinate = Serialization.copy( //
+          new HsCoordinates(new HsDesign(RGroup.INSTANCE), ThreePointCoordinate.of(barycenter)));
+      for (int n = 3; n < 10; ++n) {
+        Tensor points = CirclePoints.of(n);
+        Tensor w1 = barycentricCoordinate.weights(points, Array.zeros(2));
+        Chop._08.requireClose(w1, AveragingWeights.INSTANCE.origin(points));
+        AffineQ.require(w1, Chop._08);
+        Tensor w2 = barycentricCoordinate.weights(CirclePoints.of(n), Tensors.vector(2, 2));
+        assertEquals(w2.length(), n);
+        assertTrue(FiniteTensorQ.of(w2));
+        AffineQ.require(w2, Chop._08);
+      }
+    }
+  }
+
+  @Test
+  void test() {
+    assertEquals(Barycenter.values().length, 3);
+  }
+}
