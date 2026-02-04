@@ -27,7 +27,7 @@ class HalfWindowSamplerTest {
       for (int count = 1; count <= 10; ++count) {
         Tensor tensor = function.apply(count);
         assertEquals(tensor.length(), count);
-        AffineQ.require(tensor, Chop._08);
+        AffineQ.INSTANCE.requireMember(tensor); // , Chop._08);
       }
     }
   }

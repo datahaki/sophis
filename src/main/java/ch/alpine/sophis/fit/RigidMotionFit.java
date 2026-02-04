@@ -31,7 +31,7 @@ public record RigidMotionFit(Tensor rotation, Tensor translation) implements Ten
    * @return
    * @throws Exception if total of weights does not equal 1 */
   public static RigidMotionFit of(Tensor origin, Tensor target, Tensor weights) {
-    AffineQ.require(weights);
+    AffineQ.INSTANCE.requireMember(weights);
     return _of(origin, target, weights);
   }
 

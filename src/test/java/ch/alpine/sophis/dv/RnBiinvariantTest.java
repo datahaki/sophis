@@ -191,7 +191,7 @@ class RnBiinvariantTest {
       sequence.append(sequence.get(n - 1).multiply(RealScalar.of(5)));
       Tensor weights = barycentricCoordinate.weights(sequence, Array.zeros(d));
       assertEquals(sequence.length(), n + 1);
-      AffineQ.require(weights, Chop._08);
+      AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
     }
   }
 }

@@ -25,21 +25,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: datahaki/tensor
-          path: tensor
-  
+          path: tensor  
       - name: build and install tensor
-        run: mvn install -DskipTests
+        run: mvn -B -ntp install -DskipTests
         working-directory: ./tensor
     
       - name: checkout sophus
         uses: actions/checkout@v4
         with:
           repository: datahaki/sophus
-          path: sophus
-  
+          path: sophus  
       - name: build and install sophus
-        run: mvn install -DskipTests
+        run: mvn -B -ntp install -DskipTests
         working-directory: ./sophus
 
       - name: mvn test
-        run: mvn test -B
+        run: mvn -B -ntp test

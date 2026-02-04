@@ -122,7 +122,7 @@ class KrigingTest {
           // ---
           Tensor point = RandomVariate.of(distribution, d);
           Tensor weights = kriging.estimate(point);
-          AffineQ.require(weights, Chop._08);
+          AffineQ.INSTANCE.requireMember(weights); // Chop._08 !?
         }
       }
     }

@@ -26,7 +26,7 @@ import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class LagrangeCoordinateTest {
   private static void _check(Tensor levers, Tensor weights) {
-    AffineQ.require(weights, Chop._10);
+    AffineQ.INSTANCE.requireMember(weights); // Chop._10
     Chop._08.requireAllZero(weights.dot(levers));
   }
 

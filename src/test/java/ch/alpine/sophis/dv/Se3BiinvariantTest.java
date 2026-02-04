@@ -47,7 +47,7 @@ class Se3BiinvariantTest {
       Tensor points = RandomSample.of(RSI_Se3A, random, n);
       Tensor xya = RandomSample.of(RSI_Se3A, random);
       Tensor weights = barycentricCoordinate.weights(points, xya);
-      AffineQ.require(weights, Chop._08);
+      AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
       Tensor check1 = biinvariantMean.mean(points, weights);
       Chop._10.requireClose(check1, xya);
       Chop._10.requireClose(Total.ofVector(weights), RealScalar.ONE);
@@ -72,7 +72,7 @@ class Se3BiinvariantTest {
       Tensor point = RandomSample.of(RSI_Se3A, random);
       {
         Tensor weights = barycentricCoordinate.weights(sequence, point);
-        AffineQ.require(weights, Chop._08);
+        AffineQ.INSTANCE.requireMember(weights);
       }
       {
         Tensor weights = RandomVariate.of(TriangularDistribution.with(1, 0.3), n);

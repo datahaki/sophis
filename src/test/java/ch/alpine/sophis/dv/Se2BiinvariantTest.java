@@ -155,7 +155,7 @@ class Se2BiinvariantTest {
       Tensor points = RandomVariate.of(distributiox, n, 3);
       Tensor xya = RandomVariate.of(distribution, 3);
       Tensor weights = barycentricCoordinate.weights(points, xya);
-      AffineQ.require(weights, Chop._08);
+      AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
       Tensor check1 = biinvariantMean.mean(points, weights);
       Chop._06.requireClose(check1, xya);
       Chop._06.requireClose(Total.ofVector(weights), RealScalar.ONE);
@@ -186,7 +186,7 @@ class Se2BiinvariantTest {
     for (BarycentricCoordinate barycentricCoordinate : BII_COORDINATES) {
       for (int index = 0; index < n; ++index) {
         Tensor weights = barycentricCoordinate.weights(sequence, sequence.get(index));
-        AffineQ.require(weights, Chop._08);
+        AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
         Chop._06.requireClose(weights, UnitVector.of(n, index));
       }
     }
@@ -209,11 +209,11 @@ class Se2BiinvariantTest {
     for (BarycentricCoordinate barycentricCoordinate : QUANTITY_COORDINATES) {
       for (int index = 0; index < n; ++index) {
         Tensor weights = barycentricCoordinate.weights(sequence, sequence.get(index));
-        AffineQ.require(weights, Chop._08);
+        AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
         Chop._06.requireClose(weights, UnitVector.of(n, index));
       }
       Tensor weights = barycentricCoordinate.weights(sequence, withUnits(RandomVariate.of(distribution, 3)));
-      AffineQ.require(weights, Chop._08);
+      AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
     }
   }
 
@@ -233,7 +233,7 @@ class Se2BiinvariantTest {
       Tensor influence = matrix.dot(PseudoInverse.of(matrix));
       new SymmetricMatrixQ(Chop._10).requireMember(influence);
       Chop._10.requireClose(Symmetrize.of(influence), influence);
-      AffineQ.require(weights, Chop._08);
+      AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
       Tensor check1 = biinvariantMean.mean(points, weights);
       Chop._06.requireClose(check1, xya);
       Chop._10.requireClose(Total.ofVector(weights), RealScalar.ONE);
@@ -262,7 +262,7 @@ class Se2BiinvariantTest {
       Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(UniformDistribution.unit(), n));
       Tensor xya = biinvariantMean.mean(sequence, weights);
       Tensor weights1 = barycentricCoordinate.weights(sequence, xya); // projection
-      AffineQ.require(weights1, Chop._08);
+      AffineQ.INSTANCE.requireMember(weights1); // , Chop._08);
       Chop._08.requireClose(weights, weights);
       Tensor matrix = new HsDesign(manifold).matrix(sequence, xya);
       Tensor residualMaker = InfluenceMatrix.of(matrix).residualMaker();
@@ -332,7 +332,7 @@ class Se2BiinvariantTest {
       Tensor points = RandomVariate.of(distributiox, n, 3);
       Tensor xya = RandomVariate.of(distribution, 3);
       Tensor weights = barycentricCoordinate.weights(points, xya);
-      AffineQ.require(weights, Chop._08);
+      AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
       Tensor check1 = biinvariantMean.mean(points, weights);
       Chop._07.requireClose(check1, xya);
       Chop._10.requireClose(Total.ofVector(weights), RealScalar.ONE);

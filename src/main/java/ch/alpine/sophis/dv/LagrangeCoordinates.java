@@ -12,7 +12,6 @@ import ch.alpine.tensor.ext.Cache;
 import ch.alpine.tensor.mat.IdentityMatrix;
 import ch.alpine.tensor.mat.pi.LagrangeMultiplier;
 import ch.alpine.tensor.nrm.NormalizeTotal;
-import ch.alpine.tensor.sca.Chop;
 
 /** @see HsDesign */
 public enum LagrangeCoordinates {
@@ -31,7 +30,7 @@ public enum LagrangeCoordinates {
     /* least squares is required if eqs do not have max rank, which is the case
      * when the tangent space parameterization is not 1 to 1 */
     Tensor weights = new LagrangeMultiplier(CACHE.apply(n), eqs).solve(target, rhs);
-    AffineQ.require(weights, Chop._02); // conceptual check
+    AffineQ.INSTANCE.requireMember(weights); // Chop._02 conceptual check
     return NormalizeTotal.FUNCTION.apply(weights);
   }
 }

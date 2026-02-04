@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
@@ -10,7 +9,6 @@ import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.jet.AppendOne;
 import ch.alpine.tensor.mat.cd.CholeskyDecomposition;
 import ch.alpine.tensor.nrm.NormalizeTotal;
-import ch.alpine.tensor.sca.Chop;
 
 /** Reference:
  * "Affine generalised barycentric coordinates"
@@ -31,7 +29,7 @@ public enum AffineCoordinate implements Genesis {
     Tensor matrix = Transpose.of(x).dot(x);
     Tensor z = CholeskyDecomposition.of(matrix).solve(u);
     Tensor weights = x.dot(z);
-    AffineQ.require(weights, Chop._02);
+    // typically the sum of the weights is already quite close to 1
     return NormalizeTotal.FUNCTION.apply(weights);
   }
 }

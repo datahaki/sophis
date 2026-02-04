@@ -32,11 +32,11 @@ class BarycenterTest {
         Tensor points = CirclePoints.of(n);
         Tensor w1 = barycentricCoordinate.weights(points, Array.zeros(2));
         Chop._08.requireClose(w1, AveragingWeights.INSTANCE.origin(points));
-        AffineQ.require(w1, Chop._08);
+        AffineQ.INSTANCE.requireMember(w1); // , Chop._08);
         Tensor w2 = barycentricCoordinate.weights(CirclePoints.of(n), Tensors.vector(2, 2));
         assertEquals(w2.length(), n);
         assertTrue(FiniteTensorQ.of(w2));
-        AffineQ.require(w2, Chop._08);
+        AffineQ.INSTANCE.requireMember(w2); // , Chop._08);
       }
     }
   }

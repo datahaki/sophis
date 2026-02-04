@@ -30,7 +30,7 @@ class UniformWindowSamplerTest {
         Tensor tensor = function.apply(count);
         assertEquals(tensor.length(), count);
         SymmetricVectorQ.require(tensor);
-        AffineQ.require(tensor, Chop._08);
+        AffineQ.INSTANCE.requireMember(tensor); // , Chop._08);
       }
     }
   }

@@ -12,7 +12,7 @@ class DooSabinWeightsTest {
   void testSimple() {
     for (int n = 3; n <= 12; ++n) {
       Tensor w = DooSabinWeights.INSTANCE.apply(n);
-      AffineQ.require(w, Chop._08);
+      AffineQ.INSTANCE.requireMember(w);
       Chop._12.requireClose(w, DooSabinWeights.numeric(n));
     }
   }

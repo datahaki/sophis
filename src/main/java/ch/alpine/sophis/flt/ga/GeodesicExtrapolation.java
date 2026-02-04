@@ -56,7 +56,7 @@ public class GeodesicExtrapolation implements TensorUnaryOperator {
     @PackageTestAccess
     static Tensor of(Tensor mask) {
       // check for affinity
-      AffineQ.require(mask);
+      AffineQ.INSTANCE.requireMember(mask);
       // no extrapolation possible
       if (mask.length() == 1)
         return Tensors.vector(1);
