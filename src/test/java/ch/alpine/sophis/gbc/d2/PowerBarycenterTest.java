@@ -8,7 +8,6 @@ import java.util.function.BiFunction;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.gbc.d2.PowerBarycenter;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

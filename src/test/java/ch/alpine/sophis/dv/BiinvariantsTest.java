@@ -7,8 +7,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.Biinvariant;
-import ch.alpine.sophis.dv.Biinvariants;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;

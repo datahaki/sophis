@@ -3,8 +3,6 @@ package ch.alpine.sophis.crv.dub;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.dub.DubinsRadius;
-import ch.alpine.sophis.crv.dub.DubinsType;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;

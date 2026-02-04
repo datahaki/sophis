@@ -9,8 +9,6 @@ import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.math.win.SymmetricVectorQ;
-import ch.alpine.sophis.math.win.UniformWindowSampler;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;

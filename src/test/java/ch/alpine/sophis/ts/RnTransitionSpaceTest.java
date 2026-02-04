@@ -8,9 +8,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ts.RnTransitionSpace;
-import ch.alpine.sophis.ts.Transition;
-import ch.alpine.sophis.ts.TransitionWrap;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

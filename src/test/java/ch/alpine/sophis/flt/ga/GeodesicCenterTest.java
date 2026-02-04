@@ -11,7 +11,6 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.BSplineLimitMask;
-import ch.alpine.sophis.flt.ga.GeodesicCenter;
 import ch.alpine.sophis.flt.ga.GeodesicCenter.Splits;
 import ch.alpine.sophis.math.win.UniformWindowSampler;
 import ch.alpine.sophus.lie.rn.RGroup;

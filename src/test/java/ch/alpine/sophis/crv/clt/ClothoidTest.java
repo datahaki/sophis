@@ -9,10 +9,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.clt.Clothoid;
-import ch.alpine.sophis.crv.clt.ClothoidBuilder;
-import ch.alpine.sophis.crv.clt.ClothoidBuilders;
-import ch.alpine.sophis.crv.clt.LagrangeQuadraticD;
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.sophus.lie.so2.So2Metric;
 import ch.alpine.tensor.RationalScalar;

@@ -10,8 +10,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.fit.SpatialMedian;
-import ch.alpine.sophis.fit.WeiszfeldMethod;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;

@@ -1,9 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophis.dv.AffineCoordinate;
-import ch.alpine.sophis.dv.BarycentricCoordinate;
-import ch.alpine.sophis.dv.HsCoordinates;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 

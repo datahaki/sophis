@@ -9,8 +9,6 @@ import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1h.Hermite1Subdivisions;
-import ch.alpine.sophis.ref.d1h.HermiteLoConfig;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;

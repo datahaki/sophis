@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.srf.IntDirectedEdge;
 import ch.alpine.tensor.ext.Serialization;
 
 class IntDirectedEdgeTest {

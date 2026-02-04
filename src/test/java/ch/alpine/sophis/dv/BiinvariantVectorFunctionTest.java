@@ -9,7 +9,6 @@ import java.lang.reflect.Modifier;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.BiinvariantVectorFunction;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.api.TensorMetric;

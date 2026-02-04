@@ -10,8 +10,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1.BSpline2CurveSubdivision;
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
 import ch.alpine.sophus.hs.h.Hyperboloid;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RationalScalar;

@@ -8,8 +8,6 @@ import java.lang.reflect.Modifier;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.clt.ClothoidImpl;
-import ch.alpine.sophis.crv.clt.LagrangeQuadratic;
 import ch.alpine.sophis.crv.clt.par.ClothoidIntegral;
 import ch.alpine.sophis.crv.clt.par.ClothoidIntegration;
 import ch.alpine.sophis.crv.clt.par.ClothoidIntegrations;

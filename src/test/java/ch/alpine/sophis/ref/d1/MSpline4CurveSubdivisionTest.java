@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
-import ch.alpine.sophis.ref.d1.MSpline4CurveSubdivision;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

@@ -10,11 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.OriginEnclosureQ;
 import ch.alpine.sophis.dv.MetricCoordinate;
-import ch.alpine.sophis.gbc.d2.Barycenter;
-import ch.alpine.sophis.gbc.d2.IterativeCoordinate;
-import ch.alpine.sophis.gbc.d2.IterativeCoordinateMatrix;
-import ch.alpine.sophis.gbc.d2.ThreePointCoordinate;
-import ch.alpine.sophis.gbc.d2.ThreePointWeighting;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.rn.RGroup;

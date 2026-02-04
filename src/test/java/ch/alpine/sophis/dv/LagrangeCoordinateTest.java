@@ -7,8 +7,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.LagrangeCoordinate;
-import ch.alpine.sophis.dv.MetricBiinvariant;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.sophus.math.Genesis;

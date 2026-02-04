@@ -3,7 +3,6 @@ package ch.alpine.sophis.dv;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.MetricPointcloudDistance;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensors;

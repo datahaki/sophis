@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1h.HermiteHiConfig;
-import ch.alpine.sophis.ref.d1h.HermiteSubdivision;
-import ch.alpine.sophis.ref.d1h.TensorIteration;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

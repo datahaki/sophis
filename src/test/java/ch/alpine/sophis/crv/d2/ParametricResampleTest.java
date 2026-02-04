@@ -7,8 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.ParametricResample;
-import ch.alpine.sophis.crv.d2.ResampleResult;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

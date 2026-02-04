@@ -7,9 +7,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.CogPoints;
-import ch.alpine.sophis.crv.d2.ConvexHull2D;
-import ch.alpine.sophis.crv.d2.PolygonArea;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;

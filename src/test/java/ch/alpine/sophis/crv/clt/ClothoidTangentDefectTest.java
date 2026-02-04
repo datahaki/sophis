@@ -3,7 +3,6 @@ package ch.alpine.sophis.crv.clt;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.clt.ClothoidTangentDefect;
 import ch.alpine.sophis.crv.clt.mid.MidpointTangentOrder2;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

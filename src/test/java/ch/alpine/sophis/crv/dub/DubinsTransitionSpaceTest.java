@@ -9,8 +9,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.dub.DubinsPathComparators;
-import ch.alpine.sophis.crv.dub.DubinsTransitionSpace;
 import ch.alpine.sophis.ts.Transition;
 import ch.alpine.sophis.ts.TransitionSpace;
 import ch.alpine.sophis.ts.TransitionWrap;

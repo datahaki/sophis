@@ -8,9 +8,6 @@ import java.lang.reflect.Modifier;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.GardenBiinvariant;
-import ch.alpine.sophis.dv.GardenCoordinate;
-import ch.alpine.sophis.dv.HarborBiinvariant;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Tensor;

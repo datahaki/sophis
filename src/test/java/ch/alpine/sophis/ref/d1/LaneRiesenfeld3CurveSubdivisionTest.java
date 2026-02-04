@@ -9,8 +9,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
-import ch.alpine.sophis.ref.d1.LaneRiesenfeld3CurveSubdivision;
 import ch.alpine.sophus.hs.r3s2.R3S2Geodesic;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RealScalar;

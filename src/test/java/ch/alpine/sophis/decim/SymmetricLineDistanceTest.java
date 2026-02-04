@@ -5,9 +5,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.decim.HsLineDistance;
-import ch.alpine.sophis.decim.LineDistance;
-import ch.alpine.sophis.decim.SymmetricLineDistance;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.tensor.ext.Serialization;
 

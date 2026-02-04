@@ -2,8 +2,6 @@
 package ch.alpine.sophis.ref.d1h;
 
 import ch.alpine.sophis.ref.d1.BSpline3CurveSubdivision;
-import ch.alpine.sophis.ref.d1h.HermiteHiConfig;
-import ch.alpine.sophis.ref.d1h.HermiteSubdivision;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

@@ -3,10 +3,6 @@ package ch.alpine.sophis.dv;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.BarycentricCoordinate;
-import ch.alpine.sophis.dv.LeveragesBiinvariant;
-import ch.alpine.sophis.dv.LeveragesCoordinate;
-import ch.alpine.sophis.dv.MetricBiinvariant;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.s.SnManifold;

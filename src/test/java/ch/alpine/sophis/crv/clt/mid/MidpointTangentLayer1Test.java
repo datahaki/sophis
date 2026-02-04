@@ -3,7 +3,6 @@ package ch.alpine.sophis.crv.clt.mid;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.clt.mid.MidpointTangentLayer1;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.mat.Tolerance;

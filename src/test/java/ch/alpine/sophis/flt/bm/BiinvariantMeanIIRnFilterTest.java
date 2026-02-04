@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.MonomialExtrapolationMask;
 import ch.alpine.sophis.flt.WindowSideExtrapolation;
-import ch.alpine.sophis.flt.bm.BiinvariantMeanIIRnFilter;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RationalScalar;

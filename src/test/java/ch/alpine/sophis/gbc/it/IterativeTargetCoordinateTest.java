@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.OriginEnclosureQ;
 import ch.alpine.sophis.dv.MetricBiinvariant;
-import ch.alpine.sophis.gbc.it.IterativeTargetCoordinate;
-import ch.alpine.sophis.gbc.it.WeightsFactors;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RealScalar;

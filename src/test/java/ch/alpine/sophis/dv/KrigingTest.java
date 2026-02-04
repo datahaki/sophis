@@ -11,10 +11,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.Biinvariant;
-import ch.alpine.sophis.dv.Biinvariants;
-import ch.alpine.sophis.dv.Kriging;
-import ch.alpine.sophis.dv.Sedarim;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.math.AffineQ;

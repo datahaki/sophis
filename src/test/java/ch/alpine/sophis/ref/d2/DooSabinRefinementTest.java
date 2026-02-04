@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d2.DooSabinRefinement;
-import ch.alpine.sophis.ref.d2.SurfaceMeshRefinement;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophis.srf.io.PlyFormat;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;

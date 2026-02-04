@@ -6,10 +6,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.BarycentricCoordinate;
-import ch.alpine.sophis.dv.BchBarycentricCoordinate;
-import ch.alpine.sophis.dv.LeveragesCoordinate;
-import ch.alpine.sophis.dv.LeveragesGenesis;
 import ch.alpine.sophus.hs.HsAlgebra;
 import ch.alpine.sophus.hs.HsBiinvariantMean;
 import ch.alpine.sophus.hs.HsDesign;

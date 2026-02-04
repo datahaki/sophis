@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.gbc.d2.Barycenter;
-import ch.alpine.sophis.gbc.d2.SPatch;
-import ch.alpine.sophis.gbc.d2.ThreePointCoordinate;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

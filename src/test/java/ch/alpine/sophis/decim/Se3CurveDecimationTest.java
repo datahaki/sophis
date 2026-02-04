@@ -7,8 +7,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.decim.CurveDecimation;
-import ch.alpine.sophis.decim.Se3CurveDecimation;
 import ch.alpine.sophus.lie.se.Se3Group;
 import ch.alpine.sophus.lie.se.Se3Matrix;
 import ch.alpine.sophus.lie.so.Rodrigues;

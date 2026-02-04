@@ -5,8 +5,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.clt.par.AnalyticClothoidPartial;
-import ch.alpine.sophis.crv.clt.par.ClothoidPartial;
 import ch.alpine.tensor.ComplexScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

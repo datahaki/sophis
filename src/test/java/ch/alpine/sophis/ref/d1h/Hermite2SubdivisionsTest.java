@@ -8,9 +8,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1h.Hermite2Subdivisions;
-import ch.alpine.sophis.ref.d1h.HermiteSubdivision;
-import ch.alpine.sophis.ref.d1h.TensorIteration;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

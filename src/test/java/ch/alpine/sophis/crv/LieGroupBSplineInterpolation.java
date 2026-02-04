@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.sophis.crv;
 
-import ch.alpine.sophis.crv.AbstractBSplineInterpolation;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.itp.BSplineInterpolation;

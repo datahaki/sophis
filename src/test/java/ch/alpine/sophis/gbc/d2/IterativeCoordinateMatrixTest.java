@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.OriginEnclosureQ;
 import ch.alpine.sophis.dv.MetricCoordinate;
-import ch.alpine.sophis.gbc.d2.IterativeCoordinate;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.Genesis;

@@ -10,13 +10,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.Biinvariant;
-import ch.alpine.sophis.dv.BiinvariantVector;
-import ch.alpine.sophis.dv.BiinvariantVectorFunction;
-import ch.alpine.sophis.dv.Biinvariants;
-import ch.alpine.sophis.dv.CupolaBiinvariant;
-import ch.alpine.sophis.dv.HarborBiinvariant;
-import ch.alpine.sophis.dv.Sedarim;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.lie.rn.RGroup;

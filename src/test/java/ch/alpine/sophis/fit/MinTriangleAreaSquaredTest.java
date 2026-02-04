@@ -8,7 +8,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.fit.MinTriangleAreaSquared;
 import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

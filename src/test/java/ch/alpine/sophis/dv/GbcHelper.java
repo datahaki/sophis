@@ -1,17 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophis.dv.BarycentricCoordinate;
-import ch.alpine.sophis.dv.Biinvariant;
-import ch.alpine.sophis.dv.Biinvariants;
-import ch.alpine.sophis.dv.GardenBiinvariant;
-import ch.alpine.sophis.dv.HarborBiinvariant;
-import ch.alpine.sophis.dv.HsCoordinates;
-import ch.alpine.sophis.dv.InverseCoordinate;
-import ch.alpine.sophis.dv.KrigingCoordinate;
-import ch.alpine.sophis.dv.LeveragesBiinvariant;
-import ch.alpine.sophis.dv.LeveragesCoordinate;
-import ch.alpine.sophis.dv.MetricBiinvariant;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.lie.rn.RGroup;

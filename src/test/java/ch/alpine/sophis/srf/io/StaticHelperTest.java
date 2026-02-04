@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.srf.io.StaticHelper;
-
 class StaticHelperTest {
   @Test
   void testSingle() {

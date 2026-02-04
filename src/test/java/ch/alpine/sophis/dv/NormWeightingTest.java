@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.NormWeighting;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;

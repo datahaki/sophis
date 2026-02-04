@@ -10,11 +10,6 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.BarycentricCoordinate;
-import ch.alpine.sophis.dv.Biinvariant;
-import ch.alpine.sophis.dv.Biinvariants;
-import ch.alpine.sophis.dv.MetricBiinvariant;
-import ch.alpine.sophis.dv.Sedarim;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.gr.GrAction;

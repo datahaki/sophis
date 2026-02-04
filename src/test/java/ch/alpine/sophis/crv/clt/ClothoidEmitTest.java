@@ -5,7 +5,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.clt.ClothoidBuilders;
 import ch.alpine.tensor.ext.Serialization;
 
 class ClothoidEmitTest {

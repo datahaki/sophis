@@ -11,9 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.clt.ClothoidBuilder;
 import ch.alpine.sophis.crv.clt.ClothoidBuilders;
-import ch.alpine.sophis.ref.d1.BSpline3CurveSubdivision;
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
-import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.sophus.hs.r3s2.R3S2Geodesic;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;

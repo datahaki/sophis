@@ -3,7 +3,6 @@ package ch.alpine.sophis.crv;
 
 import java.util.function.Function;
 
-import ch.alpine.sophis.crv.GeodesicBSplineFunction;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Range;

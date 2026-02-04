@@ -9,8 +9,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.PolyclipResult;
-import ch.alpine.sophis.crv.d2.SutherlandHodgmanAlgorithm;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;

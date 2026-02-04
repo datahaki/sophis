@@ -7,9 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.MonomialExtrapolationMask;
 import ch.alpine.sophis.flt.CausalFilter;
-import ch.alpine.sophis.flt.ga.GeodesicExtrapolation;
-import ch.alpine.sophis.flt.ga.GeodesicIIR2;
-import ch.alpine.sophis.flt.ga.GeodesicIIRnFilter;
 import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2Group;

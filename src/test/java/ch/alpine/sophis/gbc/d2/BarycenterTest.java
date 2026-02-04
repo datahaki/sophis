@@ -10,8 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophis.dv.HsCoordinates;
-import ch.alpine.sophis.gbc.d2.Barycenter;
-import ch.alpine.sophis.gbc.d2.ThreePointCoordinate;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;

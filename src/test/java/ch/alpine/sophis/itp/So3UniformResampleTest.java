@@ -8,7 +8,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.itp.UniformResample;
 import ch.alpine.sophis.ref.d1.CurveSubdivision;
 import ch.alpine.sophus.lie.so.So3Group;
 import ch.alpine.tensor.RealScalar;

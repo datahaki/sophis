@@ -7,8 +7,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.decim.HsLineDistance;
-import ch.alpine.sophis.decim.HsLineDistanceLocal;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RealScalar;

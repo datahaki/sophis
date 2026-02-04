@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.MonomialExtrapolationMask;
-import ch.alpine.sophis.flt.bm.BiinvariantMeanExtrapolation;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

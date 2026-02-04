@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.sophis.flt.ga;
 
-import ch.alpine.sophis.flt.ga.GeodesicFIRn;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.api.TensorUnaryOperator;

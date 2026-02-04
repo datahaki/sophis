@@ -1,7 +1,6 @@
 // code by ureif
 package ch.alpine.sophis.crv.clt;
 
-import ch.alpine.sophis.crv.clt.LagrangeQuadratic;
 import ch.alpine.sophis.crv.clt.mid.OriginalApproximation;
 import ch.alpine.sophus.lie.so2.ArcTan2D;
 import ch.alpine.sophus.lie.so2.So2;

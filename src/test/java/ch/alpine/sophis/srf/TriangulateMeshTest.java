@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.srf.SurfaceMesh;
-import ch.alpine.sophis.srf.TriangulateMesh;
 import ch.alpine.sophis.srf.io.PlyFormat;
 import ch.alpine.tensor.ext.ResourceData;
 

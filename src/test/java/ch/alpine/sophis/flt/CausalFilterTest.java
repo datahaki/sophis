@@ -10,7 +10,6 @@ import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.flt.CausalFilter;
 import ch.alpine.sophis.flt.ga.GeodesicExtrapolation;
 import ch.alpine.sophis.flt.ga.GeodesicFIR2;
 import ch.alpine.sophis.flt.ga.GeodesicIIR1;

@@ -11,9 +11,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.srf.io.Wavefront;
-import ch.alpine.sophis.srf.io.WavefrontFormat;
-import ch.alpine.sophis.srf.io.WavefrontObject;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;

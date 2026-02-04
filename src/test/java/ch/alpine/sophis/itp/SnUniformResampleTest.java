@@ -3,8 +3,6 @@ package ch.alpine.sophis.itp;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.itp.AdjacentDistances;
-import ch.alpine.sophis.itp.UniformResample;
 import ch.alpine.sophis.ref.d1.CurveSubdivision;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.tensor.RealScalar;

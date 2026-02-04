@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.flt.CenterFilter;
 import ch.alpine.sophis.flt.ga.BinomialWeights;
 import ch.alpine.sophis.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.hs.s.SnManifold;

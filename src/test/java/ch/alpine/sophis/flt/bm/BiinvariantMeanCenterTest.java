@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.flt.bm.BiinvariantMeanCenter;
 import ch.alpine.sophis.flt.ga.BinomialWeights;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.alpine.tensor.Tensor;

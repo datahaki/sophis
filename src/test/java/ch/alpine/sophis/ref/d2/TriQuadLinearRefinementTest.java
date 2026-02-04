@@ -8,8 +8,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d2.SurfaceMeshRefinement;
-import ch.alpine.sophis.ref.d2.TriQuadLinearRefinement;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;

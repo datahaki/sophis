@@ -12,9 +12,6 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.srf.io.Wavefront;
-import ch.alpine.sophis.srf.io.WavefrontFormat;
-import ch.alpine.sophis.srf.io.WavefrontObject;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

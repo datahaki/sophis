@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.AbstractBSplineInterpolation;
-import ch.alpine.sophis.crv.GeodesicBSplineFunction;
-import ch.alpine.sophis.crv.GeodesicBSplineInterpolation;
 import ch.alpine.sophis.crv.AbstractBSplineInterpolation.Iteration;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.tensor.Tensor;

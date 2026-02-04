@@ -7,9 +7,6 @@ import java.lang.reflect.Modifier;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.Biinvariants;
-import ch.alpine.sophis.dv.GardenBiinvariant;
-import ch.alpine.sophis.dv.Sedarim;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.lie.se2.Se2RandomSample;
 import ch.alpine.tensor.Tensor;

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.clt.ClothoidSolutions;
 import ch.alpine.sophis.crv.clt.ClothoidSolutions.Search;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

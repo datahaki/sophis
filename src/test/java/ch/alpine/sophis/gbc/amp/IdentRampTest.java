@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.gbc.amp.IdentRamp;
 import ch.alpine.tensor.RealScalar;
 
 class IdentRampTest {

@@ -9,7 +9,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.fit.DistanceMatrixToPoints;
 import ch.alpine.sophus.math.api.DistanceMatrix;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.flt.ga.GeodesicCenterMidSeeded;
 import ch.alpine.sophis.flt.ga.GeodesicCenterMidSeeded.Splits;
 import ch.alpine.sophis.math.win.UniformWindowSampler;
 import ch.alpine.tensor.sca.win.GaussianWindow;

@@ -15,8 +15,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.FranklinPnpoly;
-import ch.alpine.sophis.crv.d2.OriginEnclosureQ;
 import ch.alpine.sophis.dv.AffineCoordinate;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

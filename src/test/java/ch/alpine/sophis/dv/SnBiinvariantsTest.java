@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.lie.so.Rodrigues;

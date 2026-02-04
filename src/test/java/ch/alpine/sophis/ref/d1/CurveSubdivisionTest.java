@@ -5,21 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1.BSpline1CurveSubdivision;
-import ch.alpine.sophis.ref.d1.BSpline2CurveSubdivision;
-import ch.alpine.sophis.ref.d1.BSpline3CurveSubdivision;
-import ch.alpine.sophis.ref.d1.BSpline4CurveSubdivision;
-import ch.alpine.sophis.ref.d1.BSpline5CurveSubdivision;
-import ch.alpine.sophis.ref.d1.BSpline6CurveSubdivision;
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
-import ch.alpine.sophis.ref.d1.DodgsonSabinCurveSubdivision;
-import ch.alpine.sophis.ref.d1.DualC2FourPointCurveSubdivision;
-import ch.alpine.sophis.ref.d1.EightPointCurveSubdivision;
-import ch.alpine.sophis.ref.d1.FourPointCurveSubdivision;
-import ch.alpine.sophis.ref.d1.HormannSabinCurveSubdivision;
-import ch.alpine.sophis.ref.d1.LaneRiesenfeld3CurveSubdivision;
-import ch.alpine.sophis.ref.d1.MSpline3CurveSubdivision;
-import ch.alpine.sophis.ref.d1.SixPointCurveSubdivision;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.alpine.sophus.lie.se2.Se2Group;

@@ -5,9 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1h.Hermite3Filter;
-import ch.alpine.sophis.ref.d1h.HermiteFilter;
-import ch.alpine.sophis.ref.d1h.TensorIteration;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;

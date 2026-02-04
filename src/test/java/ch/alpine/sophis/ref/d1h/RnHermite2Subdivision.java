@@ -2,8 +2,6 @@
 package ch.alpine.sophis.ref.d1h;
 
 import ch.alpine.sophis.ref.d1.BSpline2CurveSubdivision;
-import ch.alpine.sophis.ref.d1h.HermiteSubdivision;
-import ch.alpine.sophis.ref.d1h.TensorIteration;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

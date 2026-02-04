@@ -8,10 +8,6 @@ import java.lang.reflect.Modifier;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.BarycentricCoordinate;
-import ch.alpine.sophis.dv.HsCoordinates;
-import ch.alpine.sophis.dv.LeveragesBiinvariant;
-import ch.alpine.sophis.dv.Sedarim;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.s.SnManifold;

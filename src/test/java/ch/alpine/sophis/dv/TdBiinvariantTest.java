@@ -6,7 +6,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophus.lie.td.TdGroup;
 import ch.alpine.sophus.lie.td.TdRandomSample;
 import ch.alpine.sophus.math.AveragingWeights;

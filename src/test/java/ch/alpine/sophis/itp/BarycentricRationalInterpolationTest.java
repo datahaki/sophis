@@ -9,7 +9,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.itp.BarycentricRationalInterpolation;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;

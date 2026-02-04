@@ -4,12 +4,8 @@ package ch.alpine.sophis.ref.d1h;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1h.Hermite3Subdivisions;
-import ch.alpine.sophis.ref.d1h.TensorIteration;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.tensor.RealScalar;
@@ -75,7 +71,7 @@ class Hermite3SubdivisionTest {
   }
 
   @Test
-  void testQuantity() throws ClassNotFoundException, IOException {
+  void testQuantity() {
     new HermiteSubdivisionQ(Hermite3Subdivisions.of(RGroup.INSTANCE, Tolerance.CHOP)).checkQuantity();
   }
 

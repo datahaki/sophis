@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.srf.SurfaceMesh;
-import ch.alpine.sophis.srf.io.PlyFormat;
 import ch.alpine.tensor.ext.ResourceData;
 
 class PlyFormatTest {

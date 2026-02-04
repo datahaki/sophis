@@ -2,10 +2,6 @@ package ch.alpine.sophis.dv;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.dv.BarycentricCoordinate;
-import ch.alpine.sophis.dv.HsCoordinates;
-import ch.alpine.sophis.dv.MetricCoordinate;
-import ch.alpine.sophis.dv.NormWeighting;
 import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.lie.sc.ScGroup;
 import ch.alpine.tensor.Tensor;

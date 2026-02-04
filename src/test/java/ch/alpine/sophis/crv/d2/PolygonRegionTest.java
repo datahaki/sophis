@@ -11,9 +11,6 @@ import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.FranklinPnpoly;
-import ch.alpine.sophis.crv.d2.OriginEnclosureQ;
-import ch.alpine.sophis.crv.d2.PolygonRegion;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;

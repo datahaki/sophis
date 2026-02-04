@@ -3,7 +3,6 @@ package ch.alpine.sophis.ref.d2;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d2.DooSabinWeights;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Chop;

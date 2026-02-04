@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.Serializable;
 
-import ch.alpine.sophis.ref.d1h.HermiteSubdivision;
-import ch.alpine.sophis.ref.d1h.TensorIteration;
 import ch.alpine.sophus.math.Do;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;

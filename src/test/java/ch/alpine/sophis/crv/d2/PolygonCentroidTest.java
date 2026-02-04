@@ -10,10 +10,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.ConvexHull2D;
-import ch.alpine.sophis.crv.d2.PolygonArea;
-import ch.alpine.sophis.crv.d2.PolygonCentroid;
-import ch.alpine.sophis.crv.d2.PolygonClip;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.lie.rot.CirclePoints;

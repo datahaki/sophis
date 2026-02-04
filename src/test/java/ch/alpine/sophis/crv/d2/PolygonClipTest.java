@@ -10,8 +10,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.PolygonArea;
-import ch.alpine.sophis.crv.d2.PolygonClip;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

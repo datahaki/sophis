@@ -8,7 +8,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.fit.Se2RigidMotionFit;
 import ch.alpine.sophus.lie.se2.Se2ForwardAction;
 import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.RealScalar;
