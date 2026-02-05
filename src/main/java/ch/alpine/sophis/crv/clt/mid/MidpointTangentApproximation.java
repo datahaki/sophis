@@ -11,7 +11,7 @@ import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Sign;
 
-public class MidpointTangentApproximation implements ScalarBinaryOperator {
+public record MidpointTangentApproximation(ScalarBinaryOperator binaryOperator) implements ScalarBinaryOperator {
   private static final Scalar HALF = RealScalar.of(0.5);
   /** The input parameters b0, b1 are real numbers and represent angles.
    * The return value tilde f(b0, b1) is also a real number.
@@ -30,12 +30,6 @@ public class MidpointTangentApproximation implements ScalarBinaryOperator {
   }
 
   // ---
-  private final ScalarBinaryOperator binaryOperator;
-
-  private MidpointTangentApproximation(ScalarBinaryOperator binaryOperator) {
-    this.binaryOperator = binaryOperator;
-  }
-
   @Override
   public Scalar apply(Scalar b0, Scalar b1) {
     final Scalar s1 = b0.add(b1).multiply(HALF);

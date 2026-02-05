@@ -1,6 +1,6 @@
 // code by vc
 // inspired by https://rosettacode.org/wiki/Sutherland-Hodgman_polygon_clipping#Java
-package ch.alpine.sophis.crv.d2;
+package ch.alpine.sophis.crv.d2.alg;
 
 import java.io.Serializable;
 

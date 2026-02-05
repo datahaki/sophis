@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.PolygonRegion;
+import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
 import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophis.dv.HsCoordinates;
 import ch.alpine.sophus.hs.HsDesign;

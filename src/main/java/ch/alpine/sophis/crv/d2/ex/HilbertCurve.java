@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.crv.d2;
+package ch.alpine.sophis.crv.d2.ex;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -1,6 +1,6 @@
 // code by Robert Sedgewick and Kevin Wayne
 // adapted by jph
-package ch.alpine.sophis.crv.d2;
+package ch.alpine.sophis.crv.d2.alg;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -10,6 +10,7 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import ch.alpine.sophis.crv.d2.Det2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

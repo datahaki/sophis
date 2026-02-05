@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.crv.d2.ex.HilbertPolygon;
+
 class HilbertPolygonTest {
   @Test
   void testZeroClosedFail() {

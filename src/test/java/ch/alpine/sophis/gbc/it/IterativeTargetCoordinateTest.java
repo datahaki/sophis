@@ -8,7 +8,7 @@ import java.util.Deque;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.OriginEnclosureQ;
+import ch.alpine.sophis.crv.d2.alg.OriginEnclosureQ;
 import ch.alpine.sophis.dv.MetricBiinvariant;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;

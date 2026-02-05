@@ -1,9 +1,11 @@
 // code by vc
 // inspired by https://rosettacode.org/wiki/Sutherland-Hodgman_polygon_clipping#Java
-package ch.alpine.sophis.crv.d2;
+package ch.alpine.sophis.crv.d2.alg;
 
 import java.io.Serializable;
 
+import ch.alpine.sophis.crv.d2.Det2D;
+import ch.alpine.sophis.crv.d2.PolyclipResult;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

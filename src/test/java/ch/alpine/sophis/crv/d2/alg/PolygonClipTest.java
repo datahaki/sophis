@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.crv.d2;
+package ch.alpine.sophis.crv.d2.alg;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.crv.d2.PolygonArea;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

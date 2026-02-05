@@ -4,7 +4,7 @@ package ch.alpine.sophis.gbc.d2;
 import java.util.Objects;
 import java.util.OptionalInt;
 
-import ch.alpine.sophis.crv.d2.OriginEnclosureQ;
+import ch.alpine.sophis.crv.d2.alg.OriginEnclosureQ;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;

@@ -13,6 +13,7 @@ import ch.alpine.tensor.sca.exp.Exp;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
 /* package */ class ClothoidPartialDegree2 implements ClothoidPartial, Serializable {
+  // TODO SOPHIS this seems redundant to DIAG = {sqrt(1/2),sqrt(1/2)}
   private static final Scalar _N1_1_4 = ComplexScalar.of(+0.7071067811865476, 0.7071067811865475);
   private static final Scalar _N1_3_4 = ComplexScalar.of(-0.7071067811865475, 0.7071067811865476);
   private static final Scalar _1_4 = RationalScalar.of(1, 4);

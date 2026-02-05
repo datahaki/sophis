@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.d2.OriginEnclosureQ;
+import ch.alpine.sophis.crv.d2.alg.OriginEnclosureQ;
 import ch.alpine.sophis.dv.MetricCoordinate;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.rn.RGroup;
