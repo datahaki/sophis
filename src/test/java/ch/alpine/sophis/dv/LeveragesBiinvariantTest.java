@@ -8,7 +8,6 @@ import java.lang.reflect.Modifier;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.hs.s.Sphere;
@@ -68,7 +67,7 @@ class LeveragesBiinvariantTest {
     Distribution distribution = UniformDistribution.of(Clips.absolute(10));
     Manifold manifold = Se2CoveringGroup.INSTANCE;
     Genesis genesis = new LeveragesBiinvariant(manifold);
-    BarycentricCoordinate w1 = new HsCoordinates(new HsDesign(manifold), genesis);
+    BarycentricCoordinate w1 = new HsCoordinates(manifold, genesis);
     for (int length = 4; length < 10; ++length) {
       Tensor sequence = RandomVariate.of(distribution, length, 3);
       Tensor point = RandomVariate.of(distribution, 3);
@@ -84,7 +83,7 @@ class LeveragesBiinvariantTest {
     for (int length = 4; length < 10; ++length) {
       Tensor sequence = RandomVariate.of(distribution, length, 3);
       Tensor point = RandomVariate.of(distribution, 3);
-      BarycentricCoordinate barycentricCoordinate = new HsCoordinates(new HsDesign(manifold), genesis);
+      BarycentricCoordinate barycentricCoordinate = new HsCoordinates(manifold, genesis);
       barycentricCoordinate.weights(sequence, point);
     }
   }

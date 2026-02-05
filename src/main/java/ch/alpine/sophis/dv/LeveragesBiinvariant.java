@@ -38,12 +38,12 @@ public class LeveragesBiinvariant extends BiinvariantBase implements Genesis {
 
   @Override // from Biinvariant
   public Sedarim distances(Tensor sequence) {
-    return HsGenesis.wrap(hsDesign(), this, sequence);
+    return HsGenesis.wrap(manifold, this, sequence);
   }
 
   @Override // from Biinvariant
   public Sedarim coordinate(ScalarUnaryOperator variogram, Tensor sequence) {
-    return HsGenesis.wrap(hsDesign(), coordinate(variogram), sequence);
+    return HsGenesis.wrap(manifold, coordinate(variogram), sequence);
   }
 
   public Genesis coordinate(ScalarUnaryOperator variogram) {
@@ -55,7 +55,7 @@ public class LeveragesBiinvariant extends BiinvariantBase implements Genesis {
     Objects.requireNonNull(variogram);
     Objects.requireNonNull(sequence);
     return point -> {
-      Tensor levers = hsDesign().matrix(sequence, point);
+      Tensor levers = manifold.exponential(point).log().slash(sequence);
       Tensor target = NormalizeTotal.FUNCTION.apply(origin(levers).map(variogram));
       return LagrangeCoordinates.of(levers, target);
     };

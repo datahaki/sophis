@@ -5,7 +5,6 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.lie.he.HeGroup;
 import ch.alpine.sophus.lie.he.HeRandomSample;
 import ch.alpine.sophus.math.AveragingWeights;
@@ -24,7 +23,7 @@ import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class HeBiinvariantTest {
   private static final BarycentricCoordinate AFFINE = AffineWrap.of(HeGroup.INSTANCE);
-  public static final BarycentricCoordinate INSTANCE = new HsCoordinates(new HsDesign(HeGroup.INSTANCE), //
+  public static final BarycentricCoordinate INSTANCE = new HsCoordinates(HeGroup.INSTANCE, //
       new MetricCoordinate( //
           NormWeighting.of(new HeTarget(Vector2Norm::of, RealScalar.ONE), //
               InversePowerVariogram.of(1))));

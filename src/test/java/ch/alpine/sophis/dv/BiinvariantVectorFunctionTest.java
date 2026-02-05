@@ -9,7 +9,6 @@ import java.lang.reflect.Modifier;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Tensors;
@@ -20,7 +19,7 @@ class BiinvariantVectorFunctionTest {
   @Test
   void testSimple() throws ClassNotFoundException, IOException {
     BiinvariantVectorFunction influenceBiinvariantVector = new BiinvariantVectorFunction( //
-        new HsDesign(RGroup.INSTANCE), Tensors.empty(), (TensorMetric & Serializable) (x, y) -> FrobeniusNorm.of(x.subtract(y)));
+        RGroup.INSTANCE, Tensors.empty(), (TensorMetric & Serializable) (x, y) -> FrobeniusNorm.of(x.subtract(y)));
     Serialization.copy(influenceBiinvariantVector);
   }
 

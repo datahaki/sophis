@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
-import ch.alpine.sophus.hs.HsDesign;
+import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.gr.InfluenceMatrix;
@@ -18,7 +18,7 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
  * "Biinvariant Distance Vectors"
  * by Jan Hakenberg, 2020 */
 /* package */ class BiinvariantVectorFunction implements Serializable {
-  private final HsDesign hsDesign;
+  private final Manifold manifold;
   private final Tensor sequence;
   private final TensorMetric tensorMetric;
   private final Tensor[] influence;
@@ -26,12 +26,12 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
   /** @param hsDesign
    * @param sequence
    * @param tensorMetric */
-  public BiinvariantVectorFunction(HsDesign hsDesign, Tensor sequence, TensorMetric tensorMetric) {
-    this.hsDesign = hsDesign;
+  public BiinvariantVectorFunction(Manifold manifold, Tensor sequence, TensorMetric tensorMetric) {
+    this.manifold = manifold;
     this.sequence = sequence;
     this.tensorMetric = Objects.requireNonNull(tensorMetric);
     influence = sequence.stream() //
-        .map(point -> hsDesign.matrix(sequence, point)) //
+        .map(point -> manifold.exponential(point).log().slash(sequence)) //
         .map(InfluenceMatrix::of) //
         .map(InfluenceMatrix::matrix) //
         .toArray(Tensor[]::new);
@@ -40,7 +40,7 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
   /** @param point
    * @return biinvariant vector at given point of manifold */
   public BiinvariantVector biinvariantVector(Tensor point) {
-    Tensor design = hsDesign.matrix(sequence, point);
+    Tensor design = manifold.exponential(point).log().slash(sequence);
     InfluenceMatrix influenceMatrix = InfluenceMatrix.of(design);
     Tensor matrix = influenceMatrix.matrix();
     return new BiinvariantVector( //

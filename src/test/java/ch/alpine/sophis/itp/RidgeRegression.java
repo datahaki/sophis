@@ -3,7 +3,6 @@ package ch.alpine.sophis.itp;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
@@ -20,14 +19,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 /** Reference:
  * "Machine Learning - A Probabilistic Perspective"
  * by Kevin P. Murphy, p. 226 */
-/* package */ class RidgeRegression implements Serializable {
-  private final HsDesign hsDesign;
-
-  /** @param manifold non-null */
-  public RidgeRegression(Manifold manifold) {
-    hsDesign = new HsDesign(manifold);
-  }
-
+/* package */ record RidgeRegression(Manifold manifold) implements Serializable {
   /* package */ class Form2 implements Serializable {
     private final Tensor matrix;
     private final Tensor sigma_inverse;
@@ -35,7 +27,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
     /** @param sequence of n anchor points
      * @param point */
     /* package */ Form2(Tensor sequence, Tensor point) {
-      matrix = hsDesign.matrix(sequence, point);
+      matrix = manifold.exponential(point).log().slash(sequence);
       Scalar factor = RationalScalar.of(1, sequence.length());
       Tensor sigma = Transpose.of(matrix).dot(matrix).multiply(factor);
       // computation of pseudo inverse only may result in numerical deviation from true symmetric result
@@ -43,9 +35,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
       sigma_inverse = Symmetrize.of(PseudoInverse.of(sigma).multiply(factor));
     }
 
-    /** @return design matrix with n rows as log_x(p_i)
-     * 
-     * @see HsDesign */
+    /** @return design matrix with n rows as log_x(p_i) */
     public Tensor matrix() {
       return matrix;
     }

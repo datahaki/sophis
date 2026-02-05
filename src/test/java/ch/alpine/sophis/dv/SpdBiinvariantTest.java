@@ -11,7 +11,6 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.spd.Spd0RandomSample;
 import ch.alpine.sophus.hs.spd.SpdManifold;
 import ch.alpine.sophus.lie.so.SoNGroup;
@@ -32,12 +31,12 @@ class SpdBiinvariantTest {
   public static BarycentricCoordinate[] list() {
     // return GbcHelper.barycentrics(SpdManifold.INSTANCE);
     return new BarycentricCoordinate[] { //
-        new HsCoordinates(new HsDesign(SpdManifold.INSTANCE), MetricCoordinate.of(InversePowerVariogram.of(1))), //
-        new HsCoordinates(new HsDesign(SpdManifold.INSTANCE), MetricCoordinate.of(InversePowerVariogram.of(2))), //
+        new HsCoordinates(SpdManifold.INSTANCE, MetricCoordinate.of(InversePowerVariogram.of(1))), //
+        new HsCoordinates(SpdManifold.INSTANCE, MetricCoordinate.of(InversePowerVariogram.of(2))), //
         // LeveragesCoordinate.slow(SpdManifold.INSTANCE, InversePowerVariogram.of(1)), //
         // LeveragesCoordinate.slow(SpdManifold.INSTANCE, InversePowerVariogram.of(2)), //
-        LeveragesCoordinate.of(new HsDesign(SpdManifold.INSTANCE), InversePowerVariogram.of(1)), //
-        LeveragesCoordinate.of(new HsDesign(SpdManifold.INSTANCE), InversePowerVariogram.of(2)), //
+        LeveragesCoordinate.of(SpdManifold.INSTANCE, InversePowerVariogram.of(1)), //
+        LeveragesCoordinate.of(SpdManifold.INSTANCE, InversePowerVariogram.of(2)), //
     };
   }
 

@@ -3,7 +3,6 @@ package ch.alpine.sophis.dv;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
@@ -47,7 +46,7 @@ class LeveragesCoordinateTest {
     Tensor betas = RandomVariate.of(UniformDistribution.of(1, 2), 4);
     for (Tensor beta_ : betas) {
       Scalar beta = (Scalar) beta_;
-      BarycentricCoordinate bc1 = LeveragesCoordinate.of(new HsDesign(SnManifold.INSTANCE), InversePowerVariogram.of(beta));
+      BarycentricCoordinate bc1 = LeveragesCoordinate.of(SnManifold.INSTANCE, InversePowerVariogram.of(beta));
       for (int d = 3; d < 7; ++d) {
         Tensor mean = UnitVector.of(d, 0);
         for (int n = d + 1; n < d + 3; ++n) {
@@ -64,7 +63,7 @@ class LeveragesCoordinateTest {
   void testSe2() {
     Distribution distribution = UniformDistribution.of(Clips.absolute(10));
     ScalarUnaryOperator variogram = s -> s;
-    BarycentricCoordinate targetCoordinate = LeveragesCoordinate.of(new HsDesign(Se2CoveringGroup.INSTANCE), variogram);
+    BarycentricCoordinate targetCoordinate = LeveragesCoordinate.of(Se2CoveringGroup.INSTANCE, variogram);
     for (int length = 4; length < 10; ++length) {
       Tensor sequence = RandomVariate.of(distribution, length, 3);
       Tensor point = RandomVariate.of(distribution, 3);

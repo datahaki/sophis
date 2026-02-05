@@ -13,7 +13,6 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringRandomSample;
@@ -106,7 +105,7 @@ class Se2BiinvariantTest {
   private static final BarycentricCoordinate[] QUANTITY_COORDINATES = //
       GbcHelper.biinvariant_quantity(Se2CoveringGroup.INSTANCE);
   private static final BarycentricCoordinate AD_INVAR = new HsCoordinates( //
-      new HsDesign(Se2CoveringGroup.INSTANCE), //
+      Se2CoveringGroup.INSTANCE, //
       new MetricCoordinate( //
           NormWeighting.of(new Se2CoveringTarget(Vector2NormSquared::of, RealScalar.ONE), InversePowerVariogram.of(1))));
 
@@ -229,7 +228,7 @@ class Se2BiinvariantTest {
       Tensor points = RandomVariate.of(distributiox, n, 3);
       Tensor xya = RandomVariate.of(distribution, 3);
       Tensor weights = barycentricCoordinate.weights(points, xya);
-      Tensor matrix = new HsDesign(manifold).matrix(points, xya);
+      Tensor matrix = manifold.exponential(xya).log().slash(points);
       Tensor influence = matrix.dot(PseudoInverse.of(matrix));
       new SymmetricMatrixQ(Chop._10).requireMember(influence);
       Chop._10.requireClose(Symmetrize.of(influence), influence);
@@ -245,7 +244,7 @@ class Se2BiinvariantTest {
         Tensor one = tensorMapping.apply(xya);
         Chop._08.requireClose(one, biinvariantMean.mean(all, weights));
         Chop._06.requireClose(weights, barycentricCoordinate.weights(all, one));
-        Tensor design = new HsDesign(manifold).matrix(all, one);
+        Tensor design = manifold.exponential(one).log().slash(all);
         Chop._06.requireClose(influence, InfluenceMatrix.of(design).matrix());
       }
     }
@@ -264,7 +263,7 @@ class Se2BiinvariantTest {
       Tensor weights1 = barycentricCoordinate.weights(sequence, xya); // projection
       AffineQ.INSTANCE.requireMember(weights1); // , Chop._08);
       Chop._08.requireClose(weights, weights);
-      Tensor matrix = new HsDesign(manifold).matrix(sequence, xya);
+      Tensor matrix = manifold.exponential(xya).log().slash(sequence);
       Tensor residualMaker = InfluenceMatrix.of(matrix).residualMaker();
       Chop._08.requireClose(residualMaker.dot(weights), weights);
       assertEquals(Dimensions.of(residualMaker), Arrays.asList(n, n));
@@ -354,7 +353,7 @@ class Se2BiinvariantTest {
     for (Tensor _beta : betas) {
       Scalar beta = (Scalar) _beta;
       // BarycentricCoordinate bc0 = LeveragesCoordinate.slow(Se2CoveringManifold.INSTANCE, InversePowerVariogram.of(beta));
-      BarycentricCoordinate bc1 = LeveragesCoordinate.of(new HsDesign(Se2CoveringGroup.INSTANCE), InversePowerVariogram.of(beta));
+      BarycentricCoordinate bc1 = LeveragesCoordinate.of(Se2CoveringGroup.INSTANCE, InversePowerVariogram.of(beta));
       for (int n = 4; n < 10; ++n) {
         Tensor sequence = RandomSample.of(RANDOM_SAMPLE_INTERFACE, n);
         Tensor mean = RandomSample.of(RANDOM_SAMPLE_INTERFACE);
@@ -386,12 +385,11 @@ class Se2BiinvariantTest {
     for (int count = 4; count < 10; ++count) {
       Tensor sequence = RandomVariate.of(distribution, count, 3);
       Tensor point = RandomVariate.of(distribution, 3);
-      Tensor leverages_sqrt = new Mahalanobis(new HsDesign(manifold).matrix(sequence, point)).leverages_sqrt();
+      Tensor leverages_sqrt = new Mahalanobis(manifold.exponential(point).log().slash(sequence)).leverages_sqrt();
       leverages_sqrt.stream().map(Scalar.class::cast).forEach(Clips.unit()::requireInside);
       Tensor shift = RandomVariate.of(distribution, 3);
       for (TensorUnaryOperator tensorMapping : BiinvariantCheck.of(Se2CoveringGroup.INSTANCE, shift)) {
-        Tensor matrix = new HsDesign(manifold).matrix( //
-            Tensor.of(sequence.stream().map(tensorMapping)), tensorMapping.apply(point));
+        Tensor matrix = manifold.exponential(tensorMapping.apply(point)).log().slash(tensorMapping.slash(sequence));
         Chop._05.requireClose(leverages_sqrt, //
             new Mahalanobis(matrix).leverages_sqrt());
       }

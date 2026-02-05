@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -13,7 +12,6 @@ import ch.alpine.tensor.mat.IdentityMatrix;
 import ch.alpine.tensor.mat.pi.LagrangeMultiplier;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 
-/** @see HsDesign */
 public enum LagrangeCoordinates {
   ;
   private static final int CACHE_SIZE = 10;

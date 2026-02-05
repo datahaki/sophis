@@ -3,6 +3,7 @@ package ch.alpine.sophis.dv;
 
 import java.util.Objects;
 
+import ch.alpine.sophus.hs.Exponential;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.MetricManifold;
 import ch.alpine.sophus.hs.gr.GrExponential;
@@ -89,7 +90,8 @@ public class MetricBiinvariant extends BiinvariantBase {
     Objects.requireNonNull(sequence);
     return point -> {
       BilinearForm bilinearForm = metricManifold.bilinearForm(point);
-      return Tensor.of(hsDesign().stream(sequence, point).map(bilinearForm::norm));
+      Exponential exponential = manifold.exponential(point);
+      return Tensor.of(sequence.stream().map(exponential::log).map(bilinearForm::norm));
     };
   }
 
@@ -112,7 +114,7 @@ public class MetricBiinvariant extends BiinvariantBase {
   public Sedarim coordinate(ScalarUnaryOperator variogram, Tensor sequence) {
     Objects.requireNonNull(sequence);
     Objects.requireNonNull(variogram);
-    return point -> coordinate(variogram).origin(hsDesign().matrix(sequence, point));
+    return point -> coordinate(variogram).origin(manifold.exponential(point).log().slash(sequence));
   }
 
   public Genesis coordinate(ScalarUnaryOperator variogram) {
@@ -125,7 +127,7 @@ public class MetricBiinvariant extends BiinvariantBase {
     Objects.requireNonNull(variogram);
     Objects.requireNonNull(sequence);
     return point -> {
-      Tensor levers = hsDesign().matrix(sequence, point);
+      Tensor levers = manifold.exponential(point).log().slash(sequence);
       return LagrangeCoordinates.of(levers, weighting(variogram).origin(levers));
     };
   }

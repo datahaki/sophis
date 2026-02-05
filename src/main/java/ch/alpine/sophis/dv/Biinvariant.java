@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophus.hs.HsDesign;
+import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 
@@ -12,7 +12,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
  * "Biinvariant Distance Vectors"
  * by Jan Hakenberg, 2020 */
 public interface Biinvariant {
-  HsDesign hsDesign();
+  Manifold manifold();
 
   /** @param sequence
    * @return operator that maps a point to a vector of relative distances to the elements in the given sequence */

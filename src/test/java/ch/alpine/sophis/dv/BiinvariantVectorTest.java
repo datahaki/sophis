@@ -10,7 +10,6 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.hs.s.Sphere;
@@ -52,8 +51,7 @@ class BiinvariantVectorTest {
   }
 
   private static Tensor _check(Manifold manifold, Tensor sequence, Tensor point) {
-    HsDesign hsDesign = new HsDesign(manifold);
-    Tensor V = hsDesign.matrix(sequence, point);
+    Tensor V = manifold.exponential(point).log().slash(sequence);
     Tensor VT = Transpose.of(V);
     Tensor pinv = PseudoInverse.of(VT.dot(V));
     new SymmetricMatrixQ(Chop._04).requireMember(pinv);
@@ -65,7 +63,7 @@ class BiinvariantVectorTest {
     Tensor traceh = Trace.of(H);
     Chop._07.requireClose(traceh, traceh.map(Round.FUNCTION));
     // ---
-    Tensor matrix = new HsDesign(manifold).matrix(sequence, point);
+    Tensor matrix = manifold.exponential(point).log().slash(sequence);
     InfluenceMatrix influenceMatrix = InfluenceMatrix.of(matrix);
     SymmetricMatrixQ.INSTANCE.requireMember(influenceMatrix.matrix());
     Chop._08.requireClose(H, influenceMatrix.matrix());

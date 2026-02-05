@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.hs.HsAlgebra;
 import ch.alpine.sophus.hs.HsBiinvariantMean;
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.lie.MatrixAlgebra;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.lie.so.So3Group;
@@ -43,7 +42,7 @@ class BchBarycentricCoordinateTest {
       Chop._06.requireClose(mean, x);
       // ---
       Tensor seqG = Tensor.of(sequence.stream().map(Se2CoveringGroup.INSTANCE.exponential0()::exp));
-      BarycentricCoordinate bc = LeveragesCoordinate.of(new HsDesign(Se2CoveringGroup.INSTANCE), variogram);
+      BarycentricCoordinate bc = LeveragesCoordinate.of(Se2CoveringGroup.INSTANCE, variogram);
       Tensor weights2 = bc.weights(seqG, Se2CoveringGroup.INSTANCE.exponential0().exp(x));
       Chop._08.requireClose(weights, weights2);
     }

@@ -3,26 +3,27 @@ package ch.alpine.sophis.dv;
 
 import java.util.Objects;
 
-import ch.alpine.sophus.hs.HsDesign;
+import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.tensor.Tensor;
 
 public class KrigingCoordinate implements Sedarim {
-  private final HsDesign hsDesign;
+  private final Manifold manifold;
   private final Kriging kriging;
   private final Tensor sequence;
 
   /** @param sedarim
    * @param hsDesign
    * @param sequence */
-  public KrigingCoordinate(HsDesign hsDesign, Sedarim sedarim, Tensor sequence) {
-    this.hsDesign = Objects.requireNonNull(hsDesign);
+  public KrigingCoordinate(Manifold manifold, Sedarim sedarim, Tensor sequence) {
+    this.manifold = Objects.requireNonNull(manifold);
     this.kriging = Kriging.barycentric(sedarim, sequence);
     this.sequence = sequence;
   }
 
   @Override
   public Tensor sunder(Tensor point) {
-    return InfluenceKernel.of(hsDesign.matrix(sequence, point)).apply( //
+    Tensor design = manifold.exponential(point).log().slash(sequence);
+    return InfluenceKernel.of(design).apply( //
         kriging.estimate(point));
   }
 }

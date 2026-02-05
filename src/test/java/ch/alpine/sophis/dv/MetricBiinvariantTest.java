@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.RationalScalar;
@@ -34,7 +33,7 @@ class MetricBiinvariantTest {
   void testSimple() {
     // inverseDistanceWeighting
     BarycentricCoordinate barycentricCoordinate = //
-        new HsCoordinates(new HsDesign(RGroup.INSTANCE), INVERSE_DISTANCE_WEIGHTING);
+        new HsCoordinates(RGroup.INSTANCE, INVERSE_DISTANCE_WEIGHTING);
     Tensor weights = barycentricCoordinate.weights(Tensors.vector(1, 3).map(Tensors::of), RealScalar.of(2).map(Tensors::of));
     assertEquals(weights, Tensors.of(RationalScalar.HALF, RationalScalar.HALF));
   }
@@ -42,7 +41,7 @@ class MetricBiinvariantTest {
   @Test
   void testExact() {
     BarycentricCoordinate barycentricCoordinate = //
-        new HsCoordinates(new HsDesign(RGroup.INSTANCE), INVERSE_DISTANCE_WEIGHTING);
+        new HsCoordinates(RGroup.INSTANCE, INVERSE_DISTANCE_WEIGHTING);
     Tensor weights = barycentricCoordinate.weights(Tensors.fromString("{{2}, {3}}"), Tensors.vector(3));
     ExactTensorQ.require(weights);
     assertEquals(weights, UnitVector.of(2, 1));
@@ -52,7 +51,7 @@ class MetricBiinvariantTest {
   void testPoints() {
     Distribution distribution = UniformDistribution.unit();
     BarycentricCoordinate barycentricCoordinate = //
-        new HsCoordinates(new HsDesign(RGroup.INSTANCE), INVERSE_DISTANCE_WEIGHTING);
+        new HsCoordinates(RGroup.INSTANCE, INVERSE_DISTANCE_WEIGHTING);
     for (int n = 5; n < 10; ++n) {
       Tensor p1 = RandomVariate.of(distribution, n, 2);
       for (int index = 0; index < p1.length(); ++index) {
@@ -66,7 +65,7 @@ class MetricBiinvariantTest {
   void testQuantity() throws ClassNotFoundException, IOException {
     Distribution distribution = UniformDistribution.of(Quantity.of(-1, "m"), Quantity.of(+1, "m"));
     BarycentricCoordinate barycentricCoordinate = Serialization.copy( //
-        new HsCoordinates(new HsDesign(RGroup.INSTANCE), //
+        new HsCoordinates(RGroup.INSTANCE, //
             new MetricBiinvariant(RGroup.INSTANCE).weighting(InversePowerVariogram.of(1))));
     Biinvariant biinvariant = Biinvariants.METRIC.ofSafe(RGroup.INSTANCE);
     for (int d = 2; d < 6; ++d)

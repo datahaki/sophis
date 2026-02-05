@@ -2,7 +2,6 @@ package ch.alpine.sophis.dv;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.lie.sc.ScGroup;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -15,7 +14,7 @@ import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class ScBiinvariantTest {
   public static final BarycentricCoordinate INSTANCE = new HsCoordinates( //
-      new HsDesign(ScGroup.INSTANCE), //
+      ScGroup.INSTANCE, //
       new MetricCoordinate(NormWeighting.of(Vector1Norm::of, InversePowerVariogram.of(1))));
 
   @Test

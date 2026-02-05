@@ -10,7 +10,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.HsDesign;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
@@ -33,7 +32,7 @@ class HarborBiinvariantTest {
    * @param sequence
    * @return */
   public static BiinvariantVectorFunction norm2(Manifold manifold, Tensor sequence) {
-    return new BiinvariantVectorFunction(new HsDesign(manifold), sequence, (x, y) -> Matrix2Norm.of(x.subtract(y)));
+    return new BiinvariantVectorFunction(manifold, sequence, (x, y) -> Matrix2Norm.of(x.subtract(y)));
   }
 
   @Test
