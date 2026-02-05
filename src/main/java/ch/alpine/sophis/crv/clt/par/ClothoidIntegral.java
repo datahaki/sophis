@@ -1,9 +1,14 @@
 // code by jph
 package ch.alpine.sophis.crv.clt.par;
 
+import ch.alpine.sophis.crv.clt.LagrangeQuadratic;
 import ch.alpine.tensor.Scalar;
 
+/** Intgate [ Exp[ i*Polynomial({c0, c1, c2})[x] ], {x, 0, t} ] */
 public interface ClothoidIntegral {
+  /** @return at most quadratic polynomial that underlies this integral */
+  LagrangeQuadratic lagrangeQuadratic();
+
   /** interpolation of terminal points
    * t == 0 -> (0, 0)
    * t == 1 -> (1, 0)

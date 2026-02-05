@@ -25,7 +25,7 @@ import ch.alpine.tensor.sca.ply.Polynomial;
  * </pre>
  * 
  * @see InterpolatingPolynomial */
-public class LagrangeQuadratic implements ScalarUnaryOperator {
+public record LagrangeQuadratic(Polynomial polynomial) implements ScalarUnaryOperator {
   private static final Scalar _3 = RealScalar.of(+3.0);
 
   /** The Lagrange interpolating polynomial has the following coefficients
@@ -40,18 +40,10 @@ public class LagrangeQuadratic implements ScalarUnaryOperator {
   public static LagrangeQuadratic interp(Scalar b0, Scalar bm, Scalar b1) {
     Scalar bm2 = bm.add(bm);
     Scalar t2 = b0.add(b1).subtract(bm2);
-    return new LagrangeQuadratic( //
+    return new LagrangeQuadratic(Polynomial.of(Tensors.of( //
         b0, //
         bm2.add(bm2).subtract(b0.multiply(_3).add(b1)), //
-        t2.add(t2));
-  }
-
-  private final Scalar c2;
-  private final Polynomial polynomial;
-
-  public LagrangeQuadratic(Scalar c0, Scalar c1, Scalar c2) {
-    this.c2 = c2;
-    polynomial = Polynomial.of(Tensors.of(c0, c1, c2));
+        t2.add(t2))));
   }
 
   @Override
@@ -66,12 +58,5 @@ public class LagrangeQuadratic implements ScalarUnaryOperator {
     return new LagrangeQuadraticD(Scalars.isZero(length) //
         ? derivative.zero()
         : derivative.times(length.reciprocal()));
-  }
-
-  public Scalar c(int i) {
-    return switch (i) {
-    case 2 -> c2;
-    default -> polynomial.coeffs().Get(i);
-    };
   }
 }

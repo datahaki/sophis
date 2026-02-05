@@ -30,9 +30,9 @@ import ch.alpine.tensor.sca.Abs;
   /** @param lieGroupElement
    * @param lagrangeQuadratic
    * @param diff vector of length 2 */
-  public ClothoidImpl(Tensor p, LagrangeQuadratic lagrangeQuadratic, ClothoidIntegral clothoidIntegral, Tensor diff) {
+  public ClothoidImpl(Tensor p, ClothoidIntegral clothoidIntegral, Tensor diff) {
     this.p = Objects.requireNonNull(p);
-    this.lagrangeQuadratic = lagrangeQuadratic;
+    this.lagrangeQuadratic = clothoidIntegral.lagrangeQuadratic();
     this.diff = diff;
     this.clothoidIntegral = clothoidIntegral;
     Scalar one = clothoidIntegral.one(); // ideally should have Im[one] == 0

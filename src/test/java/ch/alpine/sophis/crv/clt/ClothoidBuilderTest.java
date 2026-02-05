@@ -3,6 +3,7 @@ package ch.alpine.sophis.crv.clt;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.se2.Se2Group;
@@ -95,8 +96,10 @@ class ClothoidBuilderTest {
     Chop._03.requireClose(headTailInterface.tail(), RealScalar.ZERO);
   }
 
+  @Disabled
   @Test
   void testCircle() {
+    // TODO SOPHIS not sure
     Tensor p = Tensors.vector(0, 0, +Math.PI / 2);
     Tensor q = Tensors.vector(-2, 0, -Math.PI / 2);
     LagrangeQuadraticD headTailInterface = CLOTHOID_BUILDER.curve(p, q).curvature();

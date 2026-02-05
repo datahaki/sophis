@@ -4,18 +4,58 @@ package ch.alpine.sophis.crv.clt.par;
 import java.io.Serializable;
 
 import ch.alpine.sophis.crv.clt.LagrangeQuadratic;
+import ch.alpine.tensor.ComplexScalar;
+import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.mat.Tolerance;
+import ch.alpine.tensor.num.Pi;
+import ch.alpine.tensor.red.Times;
+import ch.alpine.tensor.sca.erf.Erfi;
+import ch.alpine.tensor.sca.exp.Exp;
+import ch.alpine.tensor.sca.ply.Polynomial;
+import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** The integral of exp i*clothoidQuadratic as suggested in U. Reif slides has the
  * property, that the values of the polynomial correspond to the tangent angle. */
 /* package */ class AnalyticClothoidIntegral implements ClothoidIntegral, Serializable {
+  public static ClothoidPartial clothoidPartial(Polynomial polynomial) {
+    Tensor coeffs = polynomial.coeffs();
+    Scalar c0 = coeffs.Get(0);
+    Scalar c1 = coeffs.Get(1);
+    if (coeffs.length() < 3)
+      return Tolerance.CHOP.isZero(c1) //
+          ? new Degree0(c0)
+          : new Degree1(c0, c1);
+    return new Degree2(coeffs);
+  }
+
+  /** @param lagrangeQuadratic
+   * @return */
+  public static ClothoidPartial of(LagrangeQuadratic lagrangeQuadratic) {
+    return clothoidPartial(lagrangeQuadratic.polynomial());
+  }
+
+  static ClothoidPartial of(Number c0, Number c1, Number c2) {
+    return clothoidPartial(Polynomial.of(Tensors.vector(c0, c1, c2)));
+  }
+
+  // ---
+  private final LagrangeQuadratic lagrangeQuadratic;
   private final ClothoidPartial clothoidPartial;
   private final Scalar one;
 
   public AnalyticClothoidIntegral(LagrangeQuadratic lagrangeQuadratic) {
-    clothoidPartial = AnalyticClothoidPartial.of(lagrangeQuadratic);
+    this.lagrangeQuadratic = lagrangeQuadratic;
+    clothoidPartial = of(lagrangeQuadratic);
     one = clothoidPartial.il(RealScalar.ONE);
+  }
+
+  @Override
+  public LagrangeQuadratic lagrangeQuadratic() {
+    return lagrangeQuadratic;
   }
 
   @Override // from ClothoidIntegral
@@ -26,5 +66,70 @@ import ch.alpine.tensor.Scalar;
   @Override // from ClothoidIntegral
   public Scalar one() {
     return one;
+  }
+
+  private static class Degree0 implements ClothoidPartial, Serializable {
+    private final Scalar factor;
+
+    public Degree0(Scalar c0) {
+      factor = Exp.FUNCTION.apply(ComplexScalar.I.multiply(c0));
+    }
+
+    @Override // from Partial
+    public Scalar il(Scalar t) {
+      return t.multiply(factor);
+    }
+  }
+
+  private static class Degree1 implements ClothoidPartial, Serializable {
+    private final Scalar c0;
+    private final Scalar c1;
+    private final Scalar factor;
+    private final Scalar ofs;
+
+    public Degree1(Scalar c0, Scalar c1) {
+      this.c0 = c0;
+      this.c1 = c1;
+      factor = ComplexScalar.I.divide(c1);
+      ofs = Exp.FUNCTION.apply(ComplexScalar.I.multiply(c0));
+    }
+
+    @Override // from Partial
+    public Scalar il(Scalar t) {
+      Scalar ofs2 = Exp.FUNCTION.apply(ComplexScalar.I.multiply(c1.multiply(t).add(c0)));
+      return ofs.subtract(ofs2).multiply(factor);
+    }
+  }
+
+  private static class Degree2 implements ClothoidPartial, Serializable {
+    // TODO SOPHIS this seems redundant to DIAG = {sqrt(1/2),sqrt(1/2)}
+    private static final Scalar _N1_1_4 = ComplexScalar.of(+0.7071067811865476, 0.7071067811865475);
+    private static final Scalar _N1_3_4 = ComplexScalar.of(-0.7071067811865475, 0.7071067811865476);
+    private static final Scalar _1_4 = RationalScalar.of(1, 4);
+    // ---
+    private final Scalar c1;
+    private final Scalar c2;
+    private final Scalar f4;
+    private final Scalar factor;
+    private final Scalar ofs;
+
+    public Degree2(Tensor coeffs) {
+      Scalar c0 = coeffs.Get(0);
+      this.c1 = coeffs.Get(1);
+      this.c2 = coeffs.Get(2);
+      Scalar f1 = _N1_3_4;
+      Scalar f2 = Exp.FUNCTION.apply(c0.subtract(_1_4.multiply(c1).multiply(c1).divide(c2)).multiply(ComplexScalar.I));
+      Scalar f3 = Sqrt.FUNCTION.apply(Pi.VALUE);
+      f4 = RationalScalar.HALF.divide(Sqrt.FUNCTION.apply(c2));
+      factor = Times.of(f1, f2, f3, f4);
+      ofs = Erfi.FUNCTION.apply(_N1_1_4.multiply(c1).multiply(f4));
+    }
+
+    @Override // from ClothoidIntegral
+    public Scalar il(Scalar t) {
+      Scalar c2t = c2.multiply(t);
+      Scalar ofs2 = Erfi.FUNCTION.apply(_N1_1_4.multiply(c1.add(c2t).add(c2t)).multiply(f4));
+      return ofs.subtract(ofs2).multiply(factor);
+    }
   }
 }

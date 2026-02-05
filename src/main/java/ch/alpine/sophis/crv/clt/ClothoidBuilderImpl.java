@@ -22,7 +22,6 @@ public record ClothoidBuilderImpl( //
     ClothoidIntegral clothoidIntegral = clothoidIntegration.clothoidIntegral(lagrangeQuadratic);
     return new ClothoidImpl( //
         clothoidContext.p(), //
-        lagrangeQuadratic, //
         clothoidIntegral, //
         clothoidContext.diff());
   }
