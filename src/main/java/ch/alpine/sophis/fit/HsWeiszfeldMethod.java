@@ -2,7 +2,6 @@
 package ch.alpine.sophis.fit;
 
 import java.io.Serializable;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 
@@ -23,17 +22,12 @@ import ch.alpine.tensor.sca.Chop;
  * 
  * @param biinvariantMean
  * @param sedarim for instance InverseDistanceWeighting
- * @param chop */
+ * @param chop
+ * 
+ * @see WeiszfeldMethod */
 public record HsWeiszfeldMethod(BiinvariantMean biinvariantMean, Sedarim sedarim, Chop chop) //
     implements SpatialMedian, Serializable {
   private static final int MAX_ITERATIONS = 512;
-
-  // ---
-  public HsWeiszfeldMethod {
-    Objects.requireNonNull(biinvariantMean);
-    Objects.requireNonNull(sedarim);
-    Objects.requireNonNull(chop);
-  }
 
   @Override // from SpatialMedian
   public Optional<Tensor> uniform(Tensor sequence) {

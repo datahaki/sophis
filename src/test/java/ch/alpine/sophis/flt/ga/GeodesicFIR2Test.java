@@ -9,7 +9,6 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.flt.CausalFilter;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -54,7 +53,7 @@ class GeodesicFIR2Test {
   void testCombined() {
     Scalar alpha = RealScalar.of(0.5);
     TensorUnaryOperator causalFilter = //
-        CausalFilter.of(() -> GeodesicFIR2.of(Se2Group.INSTANCE, alpha));
+        new CausalFilter(() -> GeodesicFIR2.of(Se2Group.INSTANCE, alpha));
     Distribution distribution = NormalDistribution.standard();
     Tensor control = RandomVariate.of(distribution, 100, 3);
     Tensor result = causalFilter.apply(control);

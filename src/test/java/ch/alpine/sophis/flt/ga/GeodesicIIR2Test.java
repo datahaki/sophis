@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.MonomialExtrapolationMask;
-import ch.alpine.sophis.flt.CausalFilter;
 import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2Group;
@@ -59,7 +58,7 @@ class GeodesicIIR2Test {
   @Test
   void testId2() {
     Scalar alpha = RealScalar.ONE;
-    TensorUnaryOperator tuo1 = CausalFilter.of(() -> new GeodesicIIR2(RGroup.INSTANCE, alpha));
+    TensorUnaryOperator tuo1 = new CausalFilter(() -> new GeodesicIIR2(RGroup.INSTANCE, alpha));
     for (int k = 0; k < 10; ++k) {
       Tensor signal = UnitVector.of(10, k);
       assertEquals(signal, tuo1.apply(signal));
@@ -69,7 +68,7 @@ class GeodesicIIR2Test {
   @Test
   void testId() {
     Scalar alpha = RealScalar.ONE;
-    TensorUnaryOperator tuo1 = CausalFilter.of(() -> new GeodesicIIR2(RGroup.INSTANCE, alpha));
+    TensorUnaryOperator tuo1 = new CausalFilter(() -> new GeodesicIIR2(RGroup.INSTANCE, alpha));
     TensorUnaryOperator tuo2 = GeodesicIIRnFilter.of( //
         GeodesicExtrapolation.of(RGroup.INSTANCE, MonomialExtrapolationMask.INSTANCE), RGroup.INSTANCE, 2, alpha);
     Tensor signal = RandomVariate.of(UniformDistribution.unit(), 10);

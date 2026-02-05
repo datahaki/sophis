@@ -1,8 +1,7 @@
 // code by jph
-package ch.alpine.sophis.flt;
+package ch.alpine.sophis.flt.ga;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -10,11 +9,6 @@ import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.flt.ga.GeodesicExtrapolation;
-import ch.alpine.sophis.flt.ga.GeodesicFIR2;
-import ch.alpine.sophis.flt.ga.GeodesicIIR1;
-import ch.alpine.sophis.flt.ga.GeodesicIIR2;
-import ch.alpine.sophis.flt.ga.GeodesicIIRnFilter;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Tensor;
@@ -29,7 +23,7 @@ class CausalFilterTest {
   @Test
   void testIIR1() throws ClassNotFoundException, IOException {
     @SuppressWarnings("unchecked")
-    TensorUnaryOperator causalFilter = Serialization.copy(CausalFilter.of( //
+    TensorUnaryOperator causalFilter = Serialization.copy(new CausalFilter( //
         (Supplier<TensorUnaryOperator> & Serializable) //
         () -> new GeodesicIIR1(RGroup.INSTANCE, RationalScalar.HALF)));
     {
@@ -47,7 +41,7 @@ class CausalFilterTest {
   @Test
   void testIIR2a() throws ClassNotFoundException, IOException {
     @SuppressWarnings("unchecked")
-    TensorUnaryOperator causalFilter = Serialization.copy(CausalFilter.of(//
+    TensorUnaryOperator causalFilter = Serialization.copy(new CausalFilter(//
         (Supplier<TensorUnaryOperator> & Serializable) //
         () -> new GeodesicIIR2(RGroup.INSTANCE, RationalScalar.HALF)));
     Tensor tensor = causalFilter.apply(UnitVector.of(10, 0));
@@ -64,7 +58,7 @@ class CausalFilterTest {
 
   @Test
   void testFIR2() {
-    TensorUnaryOperator causalFilter = CausalFilter.of(() -> GeodesicFIR2.of(RGroup.INSTANCE, RationalScalar.HALF));
+    TensorUnaryOperator causalFilter = new CausalFilter(() -> GeodesicFIR2.of(RGroup.INSTANCE, RationalScalar.HALF));
     {
       Tensor tensor = causalFilter.apply(UnitVector.of(10, 0));
       assertEquals(tensor, Tensors.fromString("{1, 0, -1/2, 0, 0, 0, 0, 0, 0, 0}"));
@@ -75,10 +69,5 @@ class CausalFilterTest {
       assertEquals(tensor, Tensors.fromString("{0, 1, 1, -1/2, 0, 0, 0, 0, 0, 0}"));
       ExactTensorQ.require(tensor);
     }
-  }
-
-  @Test
-  void testFailNull() {
-    assertThrows(Exception.class, () -> CausalFilter.of(null));
   }
 }

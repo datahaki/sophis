@@ -109,6 +109,7 @@ public class Kriging implements Serializable {
   /** @param point
    * @return estimate at given point */
   public Tensor estimate(Tensor point) {
+    // TODO SOPHIS need to figure out whether weights should add up to 1
     return vs(point).dot(weights);
   }
 
