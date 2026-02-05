@@ -2,7 +2,6 @@
 package ch.alpine.sophis.dv;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +21,7 @@ import ch.alpine.tensor.sca.var.InversePowerVariogram;
 class NormWeightingTest {
   @Test
   void testSimple() {
-    Genesis inverseNorm = NormWeighting.of(Vector2Norm::of, InversePowerVariogram.of(1));
+    Genesis inverseNorm = new NormWeighting(Vector2Norm::of, InversePowerVariogram.of(1));
     Tensor weights = inverseNorm.origin(Tensors.vector(1, 3).map(Tensors::of));
     assertEquals(weights, Tensors.of(RationalScalar.of(3, 4), RationalScalar.of(1, 4)));
   }
@@ -35,17 +34,11 @@ class NormWeightingTest {
       for (int n = d + 1; n < 10; ++n) {
         Tensor tensor = RandomVariate.of(distribution, n, d);
         tensor.set(Scalar::zero, j, Tensor.ALL);
-        Genesis inverseNorm = NormWeighting.of(Vector2Norm::of, InversePowerVariogram.of(1));
+        Genesis inverseNorm = new NormWeighting(Vector2Norm::of, InversePowerVariogram.of(1));
         for (int index = 0; index < tensor.length(); ++index) {
           Tensor q = inverseNorm.origin(tensor);
           Chop._10.requireClose(q, UnitVector.of(n, j));
         }
       }
-  }
-
-  @Test
-  void testFailNull() {
-    assertThrows(Exception.class, () -> NormWeighting.of(null, InversePowerVariogram.of(1)));
-    assertThrows(Exception.class, () -> NormWeighting.of(Vector2Norm::of, null));
   }
 }

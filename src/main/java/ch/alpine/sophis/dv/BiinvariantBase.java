@@ -13,7 +13,7 @@ public abstract class BiinvariantBase implements Biinvariant, Serializable {
   protected final Manifold manifold;
 
   protected BiinvariantBase(Manifold manifold) {
-    this.manifold = manifold;
+    this.manifold = Objects.requireNonNull(manifold);
   }
 
   @Override // from Biinvariant

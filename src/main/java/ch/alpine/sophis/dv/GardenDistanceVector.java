@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ch.alpine.sophus.hs.Exponential;
@@ -19,25 +18,20 @@ import ch.alpine.tensor.mat.gr.Mahalanobis;
  * 
  * @see HarborBiinvariant */
 /* package */ class GardenDistanceVector implements Sedarim {
-  private final List<Exponential> tangentSpaces;
+  private final List<Exponential> exponentials;
   private final List<Mahalanobis> array;
 
   /** @param manifold
    * @param sequence */
   public GardenDistanceVector(Manifold manifold, Tensor sequence) {
-    tangentSpaces = new ArrayList<>(sequence.length());
-    array = new ArrayList<>(sequence.length());
-    for (Tensor point : sequence) {
-      Exponential exponential = manifold.exponential(point);
-      tangentSpaces.add(exponential);
-      array.add(new Mahalanobis(Tensor.of(sequence.stream().map(exponential::log))));
-    }
+    exponentials = sequence.stream().map(manifold::exponential).toList();
+    array = exponentials.stream().map(exponential -> exponential.log().slash(sequence)).map(Mahalanobis::new).toList();
   }
 
   @Override // from Sedarim
   public Tensor sunder(Tensor point) {
     Int i = new Int();
     return Tensor.of(array.stream() //
-        .map(mahalanobis -> mahalanobis.norm(tangentSpaces.get(i.getAndIncrement()).log(point))));
+        .map(mahalanobis -> mahalanobis.norm(exponentials.get(i.getAndIncrement()).log(point))));
   }
 }

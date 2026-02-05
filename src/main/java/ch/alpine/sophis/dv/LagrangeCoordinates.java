@@ -12,7 +12,7 @@ import ch.alpine.tensor.mat.IdentityMatrix;
 import ch.alpine.tensor.mat.pi.LagrangeMultiplier;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 
-public enum LagrangeCoordinates {
+enum LagrangeCoordinates {
   ;
   private static final int CACHE_SIZE = 10;
   private static final Cache<Integer, Tensor> CACHE = Cache.of(IdentityMatrix::of, CACHE_SIZE);

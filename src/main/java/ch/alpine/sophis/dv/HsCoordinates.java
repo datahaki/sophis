@@ -2,7 +2,6 @@
 package ch.alpine.sophis.dv;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.math.Genesis;
@@ -14,13 +13,11 @@ import ch.alpine.tensor.Tensor;
  * HsCoordinates.of(SnManifold.INSTANCE, ThreePointCoordinate.of(Barycenter.MEAN_VALUE))
  * </pre> */
 public record HsCoordinates(Manifold manifold, Genesis genesis) implements BarycentricCoordinate, Serializable {
-  public HsCoordinates {
-    Objects.requireNonNull(genesis);
-  }
-
   @Override // from BarycentricCoordinate
   public Tensor weights(Tensor sequence, Tensor point) {
-    Tensor design = manifold.exponential(point).log().slash(sequence);
-    return genesis.origin(design);
+    // if the affineQ fails then fix in genesis but not here !!!
+    // return AffineQ.INSTANCE.requireMember(genesis.origin(manifold.exponential(point).log().slash(sequence)));
+    // FIXME SOPHIS Hs Coordinates is apparently misused !!! since weights should add up to one !!!
+    return genesis.origin(manifold.exponential(point).log().slash(sequence));
   }
 }

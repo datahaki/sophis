@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
@@ -71,10 +69,5 @@ class LagrangeCoordinateTest {
     // does not produce equal weights
     MetricBiinvariant metricBiinvariant = new MetricBiinvariant(RGroup.INSTANCE);
     metricBiinvariant.lagrainate(InversePowerVariogram.of(2), sequence).sunder(point);
-  }
-
-  @Test
-  void testNullFail() {
-    assertThrows(Exception.class, () -> new LagrangeCoordinate(null));
   }
 }

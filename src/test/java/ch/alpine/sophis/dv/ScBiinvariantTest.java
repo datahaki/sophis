@@ -15,7 +15,7 @@ import ch.alpine.tensor.sca.var.InversePowerVariogram;
 class ScBiinvariantTest {
   public static final BarycentricCoordinate INSTANCE = new HsCoordinates( //
       ScGroup.INSTANCE, //
-      new MetricCoordinate(NormWeighting.of(Vector1Norm::of, InversePowerVariogram.of(1))));
+      new MetricCoordinate(new NormWeighting(Vector1Norm::of, InversePowerVariogram.of(1))));
 
   @Test
   void testSimple2() {

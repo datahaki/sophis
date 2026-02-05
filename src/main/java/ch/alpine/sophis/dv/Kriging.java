@@ -75,7 +75,7 @@ public class Kriging implements Serializable {
    * @return */
   public static Kriging of(Sedarim sedarim, Tensor sequence, Tensor values, Tensor covariance) {
     // symmetric distance matrix eq (3.7.13)
-    Tensor vardst = Tensor.of(sequence.stream().map(sedarim::sunder));
+    Tensor vardst = sedarim.sunder().slash(sequence);
     SymmetricMatrixQ.INSTANCE.requireMember(vardst);
     Tensor matrix = vardst.subtract(SymmetricMatrixQ.INSTANCE.requireMember(covariance));
     // TODO SOPHUS IMPL probably can be simplified

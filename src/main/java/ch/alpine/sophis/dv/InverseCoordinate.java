@@ -18,7 +18,7 @@ public class InverseCoordinate implements Sedarim {
   public InverseCoordinate(Manifold manifold, Sedarim sedarim, Tensor sequence) {
     this.manifold = manifold;
     this.sedarim = sedarim;
-    Tensor vardst = SymmetricMatrixQ.INSTANCE.requireMember(Tensor.of(sequence.stream().map(sedarim::sunder)));
+    Tensor vardst = SymmetricMatrixQ.INSTANCE.requireMember(sedarim.sunder().slash(sequence));
     weights = Inverse.of(vardst);
     this.sequence = sequence;
   }

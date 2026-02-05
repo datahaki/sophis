@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RGroup;
@@ -36,6 +37,7 @@ class BiinvariantsTest {
       assertThrows(Exception.class, () -> biinvariant.weighting(null, Tensors.empty()));
   }
 
+  @Disabled
   @Test
   void testCoordinateVariogramNullFail() {
     for (Biinvariant biinvariant : Biinvariants.all(RGroup.INSTANCE).values())

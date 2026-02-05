@@ -28,7 +28,7 @@ public enum GbcHelper {
   }
 
   public static BarycentricCoordinate kriginCoordinate_of(Biinvariant biinvariant) {
-    return (sequence, point) -> new KrigingCoordinate( //
+    return (sequence, point) -> KrigingCoordinate.barycentric( //
         biinvariant.manifold(), //
         biinvariant.distances(sequence), //
         sequence).sunder(point);

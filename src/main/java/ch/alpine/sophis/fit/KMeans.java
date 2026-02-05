@@ -58,7 +58,7 @@ public class KMeans {
   public void iterate() {
     // Tensor prev = seeds.copy();
     // compute distance matrix: sequence X seeds
-    Tensor tensor = Transpose.of(Tensor.of(seeds.stream().map(sedarim::sunder)));
+    Tensor tensor = Transpose.of(sedarim.sunder().slash(seeds));
     // match all points in sequence to the "closest" seed
     labels = tensor.stream().map(ArgMin::of).toArray(Integer[]::new);
     // create redundant data structure

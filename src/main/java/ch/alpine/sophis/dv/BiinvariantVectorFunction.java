@@ -2,7 +2,6 @@
 package ch.alpine.sophis.dv;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Objects;
 
 import ch.alpine.sophus.hs.Manifold;
@@ -21,7 +20,7 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
   private final Manifold manifold;
   private final Tensor sequence;
   private final TensorMetric tensorMetric;
-  private final Tensor[] influence;
+  private final Tensor influences;
 
   /** @param hsDesign
    * @param sequence
@@ -30,11 +29,10 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
     this.manifold = manifold;
     this.sequence = sequence;
     this.tensorMetric = Objects.requireNonNull(tensorMetric);
-    influence = sequence.stream() //
+    influences = Tensor.of(sequence.stream() //
         .map(point -> manifold.exponential(point).log().slash(sequence)) //
         .map(InfluenceMatrix::of) //
-        .map(InfluenceMatrix::matrix) //
-        .toArray(Tensor[]::new);
+        .map(InfluenceMatrix::matrix));
   }
 
   /** @param point
@@ -45,6 +43,6 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
     Tensor matrix = influenceMatrix.matrix();
     return new BiinvariantVector( //
         influenceMatrix, //
-        Tensor.of(Arrays.stream(influence).map(x -> tensorMetric.distance(x, matrix))));
+        Tensor.of(influences.stream().map(x -> tensorMetric.distance(x, matrix))));
   }
 }

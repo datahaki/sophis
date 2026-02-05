@@ -25,7 +25,7 @@ class HeBiinvariantTest {
   private static final BarycentricCoordinate AFFINE = AffineWrap.of(HeGroup.INSTANCE);
   public static final BarycentricCoordinate INSTANCE = new HsCoordinates(HeGroup.INSTANCE, //
       new MetricCoordinate( //
-          NormWeighting.of(new HeTarget(Vector2Norm::of, RealScalar.ONE), //
+          new NormWeighting(new HeTarget(Vector2Norm::of, RealScalar.ONE), //
               InversePowerVariogram.of(1))));
   private static final BarycentricCoordinate[] BARYCENTRIC_COORDINATES = { //
       // LeveragesCoordinate.slow(HeManifold.INSTANCE, InversePowerVariogram.of(1)), //

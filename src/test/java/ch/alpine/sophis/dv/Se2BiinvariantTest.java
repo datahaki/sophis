@@ -107,7 +107,7 @@ class Se2BiinvariantTest {
   private static final BarycentricCoordinate AD_INVAR = new HsCoordinates( //
       Se2CoveringGroup.INSTANCE, //
       new MetricCoordinate( //
-          NormWeighting.of(new Se2CoveringTarget(Vector2NormSquared::of, RealScalar.ONE), InversePowerVariogram.of(1))));
+          new NormWeighting(new Se2CoveringTarget(Vector2NormSquared::of, RealScalar.ONE), InversePowerVariogram.of(1))));
 
   @Test
   void test4Exact() {

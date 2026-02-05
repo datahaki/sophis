@@ -45,7 +45,7 @@ public class RadialBasisFunctionInterpolation implements TensorUnaryOperator {
   private RadialBasisFunctionInterpolation(Sedarim sedarim, Tensor sequence, Tensor values) {
     this.sedarim = sedarim;
     weights = LeastSquares.of( //
-        Tensor.of(sequence.stream().map(sedarim::sunder)), // distance matrix as in Kriging
+        sedarim.sunder().slash(sequence), // distance matrix as in Kriging
         values);
   }
 
