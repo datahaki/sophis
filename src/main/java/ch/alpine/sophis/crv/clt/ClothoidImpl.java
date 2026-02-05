@@ -3,12 +3,12 @@ package ch.alpine.sophis.crv.clt;
 
 import java.util.Objects;
 
-import ch.alpine.sophis.crv.clt.par.ClothoidIntegral;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.lie.so2.ArcTan2D;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.io.MathematicaFormat;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.ReIm;
 import ch.alpine.tensor.sca.Abs;
@@ -19,8 +19,8 @@ import ch.alpine.tensor.sca.Abs;
  * For parameter 1, the curve evaluates to q.
  * 
  * Reference: U. Reif slides */
-/* package */ final class ClothoidImpl implements Clothoid {
-  private final Tensor p;
+/* package */ class ClothoidImpl implements Clothoid {
+  private final Tensor xya;
   private final LagrangeQuadratic lagrangeQuadratic;
   private final Tensor diff;
   private final ClothoidIntegral clothoidIntegral;
@@ -30,8 +30,8 @@ import ch.alpine.tensor.sca.Abs;
   /** @param lieGroupElement
    * @param lagrangeQuadratic
    * @param diff vector of length 2 */
-  public ClothoidImpl(Tensor p, ClothoidIntegral clothoidIntegral, Tensor diff) {
-    this.p = Objects.requireNonNull(p);
+  public ClothoidImpl(Tensor xya, ClothoidIntegral clothoidIntegral, Tensor diff) {
+    this.xya = Objects.requireNonNull(xya);
     this.lagrangeQuadratic = clothoidIntegral.lagrangeQuadratic();
     this.diff = diff;
     this.clothoidIntegral = clothoidIntegral;
@@ -50,7 +50,8 @@ import ch.alpine.tensor.sca.Abs;
 
   @Override
   public Tensor apply(Scalar t) {
-    return Se2CoveringGroup.INSTANCE.combine(p, ReIm.of(clothoidIntegral.normalized(t)).rotate(diff).append(addAngle(t)));
+    Tensor other = ReIm.of(clothoidIntegral.normalized(t)).rotate(diff).append(addAngle(t));
+    return Se2CoveringGroup.INSTANCE.combine(xya, other);
   }
 
   @Override // from Clothoid
@@ -66,5 +67,10 @@ import ch.alpine.tensor.sca.Abs;
   @Override // from Clothoid
   public LagrangeQuadraticD curvature() {
     return lagrangeQuadratic.derivative(length);
+  }
+
+  @Override
+  public String toString() {
+    return MathematicaFormat.concise("Clothoid", xya, diff, clothoidIntegral);
   }
 }

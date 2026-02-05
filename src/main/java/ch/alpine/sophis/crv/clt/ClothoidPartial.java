@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.crv.clt.par;
+package ch.alpine.sophis.crv.clt;
 
 import ch.alpine.tensor.Scalar;
 

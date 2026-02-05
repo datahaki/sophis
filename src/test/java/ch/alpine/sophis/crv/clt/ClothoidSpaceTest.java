@@ -19,7 +19,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.sca.Chop;
 
-class ClothoidBuilderTest {
+class ClothoidSpaceTest {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
 
   @Test

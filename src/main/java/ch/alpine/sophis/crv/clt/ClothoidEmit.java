@@ -3,7 +3,6 @@ package ch.alpine.sophis.crv.clt;
 
 import java.util.stream.Stream;
 
-import ch.alpine.sophis.crv.clt.par.ClothoidIntegrations;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 

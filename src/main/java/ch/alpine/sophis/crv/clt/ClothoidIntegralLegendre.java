@@ -1,16 +1,16 @@
 // code by ureif
 // code by jph
-package ch.alpine.sophis.crv.clt.par;
+package ch.alpine.sophis.crv.clt;
 
 import java.io.Serializable;
 
-import ch.alpine.sophis.crv.clt.LagrangeQuadratic;
 import ch.alpine.tensor.ComplexScalar;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.io.MathematicaFormat;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** 3-point Gauss Legendre quadrature on interval [0, 1]
@@ -18,7 +18,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
  * @param lagrangeQuadratic typically a quadratic polynomial
  * 
  * @see LagrangeQuadratic */
-/* package */ record LegendreClothoidIntegral(LagrangeQuadratic lagrangeQuadratic) implements ClothoidPartial, ClothoidIntegral, Serializable {
+/* package */ record ClothoidIntegralLegendre(LagrangeQuadratic lagrangeQuadratic) implements ClothoidPartial, ClothoidIntegral, Serializable {
   private static final Scalar _1 = RealScalar.of(1.0);
   private static final Tensor W = Tensors.vector(5, 8, 5).divide(RealScalar.of(18.0));
   private static final Tensor X = Tensors.vector(-1, 0, 1) //
@@ -67,5 +67,10 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 
   private Scalar exp_i(Scalar s) {
     return ComplexScalar.unit(lagrangeQuadratic.apply(s));
+  }
+
+  @Override
+  public String toString() {
+    return MathematicaFormat.concise("Legendre", one());
   }
 }

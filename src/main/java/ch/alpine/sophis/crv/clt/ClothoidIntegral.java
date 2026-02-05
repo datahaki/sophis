@@ -1,7 +1,6 @@
 // code by jph
-package ch.alpine.sophis.crv.clt.par;
+package ch.alpine.sophis.crv.clt;
 
-import ch.alpine.sophis.crv.clt.LagrangeQuadratic;
 import ch.alpine.tensor.Scalar;
 
 /** Intgate [ Exp[ i*Polynomial({c0, c1, c2})[x] ], {x, 0, t} ] */

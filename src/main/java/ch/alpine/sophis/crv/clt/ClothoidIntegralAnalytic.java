@@ -1,15 +1,15 @@
 // code by ureif
-package ch.alpine.sophis.crv.clt.par;
+package ch.alpine.sophis.crv.clt;
 
 import java.io.Serializable;
 
-import ch.alpine.sophis.crv.clt.LagrangeQuadratic;
 import ch.alpine.tensor.ComplexScalar;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.io.MathematicaFormat;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.red.Times;
@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 
 /** The integral of exp i*clothoidQuadratic as suggested in U. Reif slides has the
  * property, that the values of the polynomial correspond to the tangent angle. */
-/* package */ class AnalyticClothoidIntegral implements ClothoidIntegral, Serializable {
+/* package */ class ClothoidIntegralAnalytic implements ClothoidIntegral, Serializable {
   public static ClothoidPartial clothoidPartial(Polynomial polynomial) {
     Tensor coeffs = polynomial.coeffs();
     Scalar c0 = coeffs.Get(0);
@@ -47,7 +47,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
   private final ClothoidPartial clothoidPartial;
   private final Scalar one;
 
-  public AnalyticClothoidIntegral(LagrangeQuadratic lagrangeQuadratic) {
+  public ClothoidIntegralAnalytic(LagrangeQuadratic lagrangeQuadratic) {
     this.lagrangeQuadratic = lagrangeQuadratic;
     clothoidPartial = of(lagrangeQuadratic);
     one = clothoidPartial.il(RealScalar.ONE);
@@ -68,6 +68,13 @@ import ch.alpine.tensor.sca.pow.Sqrt;
     return one;
   }
 
+  @Override
+  public String toString() {
+    return MathematicaFormat.concise("Analytic", one());
+  }
+
+  /** exact solution taken from
+   * https://www.wolframalpha.com/input?i=Integral%5BExp%5Bi+c0%5D%2C%7Bx%2C0%2Ct%7D%5D */
   private static class Degree0 implements ClothoidPartial, Serializable {
     private final Scalar factor;
 
@@ -75,12 +82,14 @@ import ch.alpine.tensor.sca.pow.Sqrt;
       factor = Exp.FUNCTION.apply(ComplexScalar.I.multiply(c0));
     }
 
-    @Override // from Partial
+    @Override // from ClothoidPartial
     public Scalar il(Scalar t) {
       return t.multiply(factor);
     }
   }
 
+  /** exact solution taken from
+   * https://www.wolframalpha.com/input?i=Integral%5BExp%5Bi+%28c0%2Bc1+x%29%5D%2C%7Bx%2C0%2Ct%7D%5D */
   private static class Degree1 implements ClothoidPartial, Serializable {
     private final Scalar c0;
     private final Scalar c1;
@@ -94,13 +103,15 @@ import ch.alpine.tensor.sca.pow.Sqrt;
       ofs = Exp.FUNCTION.apply(ComplexScalar.I.multiply(c0));
     }
 
-    @Override // from Partial
+    @Override // from ClothoidPartial
     public Scalar il(Scalar t) {
       Scalar ofs2 = Exp.FUNCTION.apply(ComplexScalar.I.multiply(c1.multiply(t).add(c0)));
       return ofs.subtract(ofs2).multiply(factor);
     }
   }
 
+  /** exact solution taken from
+   * https://www.wolframalpha.com */
   private static class Degree2 implements ClothoidPartial, Serializable {
     // TODO SOPHIS this seems redundant to DIAG = {sqrt(1/2),sqrt(1/2)}
     private static final Scalar _N1_1_4 = ComplexScalar.of(+0.7071067811865476, 0.7071067811865475);
@@ -125,7 +136,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
       ofs = Erfi.FUNCTION.apply(_N1_1_4.multiply(c1).multiply(f4));
     }
 
-    @Override // from ClothoidIntegral
+    @Override // from ClothoidPartial
     public Scalar il(Scalar t) {
       Scalar c2t = c2.multiply(t);
       Scalar ofs2 = Erfi.FUNCTION.apply(_N1_1_4.multiply(c1.add(c2t).add(c2t)).multiply(f4));

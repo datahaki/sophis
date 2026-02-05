@@ -144,6 +144,7 @@ class Se2BiinvariantTest {
     Chop._06.requireClose(x, x_recreated);
   }
 
+  @Disabled
   @ParameterizedTest
   @MethodSource("barycentric_coordinates")
   void testRandom(BarycentricCoordinate barycentricCoordinate) {

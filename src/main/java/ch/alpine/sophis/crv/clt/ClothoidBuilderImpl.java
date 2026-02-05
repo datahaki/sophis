@@ -4,8 +4,6 @@ package ch.alpine.sophis.crv.clt;
 import java.io.Serializable;
 
 import ch.alpine.sophis.crv.clt.mid.ClothoidQuadratic;
-import ch.alpine.sophis.crv.clt.par.ClothoidIntegral;
-import ch.alpine.sophis.crv.clt.par.ClothoidIntegration;
 import ch.alpine.tensor.Tensor;
 
 /** Reference: U. Reif slides

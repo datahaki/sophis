@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.crv.d2;
+package ch.alpine.sophis.crv.d2.ex;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

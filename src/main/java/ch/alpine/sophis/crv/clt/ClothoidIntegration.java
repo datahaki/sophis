@@ -1,7 +1,5 @@
 // code by jph
-package ch.alpine.sophis.crv.clt.par;
-
-import ch.alpine.sophis.crv.clt.LagrangeQuadratic;
+package ch.alpine.sophis.crv.clt;
 
 @FunctionalInterface
 public interface ClothoidIntegration {

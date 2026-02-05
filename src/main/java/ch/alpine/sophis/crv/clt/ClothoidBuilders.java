@@ -4,8 +4,6 @@ package ch.alpine.sophis.crv.clt;
 import ch.alpine.sophis.crv.clt.mid.ClothoidQuadratic;
 import ch.alpine.sophis.crv.clt.mid.Se2ClothoidQuadratic;
 import ch.alpine.sophis.crv.clt.mid.Se2CoveringClothoidQuadratic;
-import ch.alpine.sophis.crv.clt.par.ClothoidIntegration;
-import ch.alpine.sophis.crv.clt.par.ClothoidIntegrations;
 
 /** Extension of clothoids in SE(2) to clothoids in SE(2) Covering
  * that respects winding numbers */
