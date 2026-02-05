@@ -1,6 +1,7 @@
 // code by mh, jph
 package ch.alpine.sophis.flt.ga;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -24,7 +25,7 @@ import ch.alpine.tensor.ext.PackageTestAccess;
  * 
  * @param geodesicSpace
  * @param factor for instance 2/3 */
-public record Regularization2Step(GeodesicSpace geodesicSpace, Scalar factor) implements CurveSubdivision {
+public record Regularization2Step(GeodesicSpace geodesicSpace, Scalar factor) implements CurveSubdivision, Serializable {
   /** @param prev
    * @param curr
    * @param next

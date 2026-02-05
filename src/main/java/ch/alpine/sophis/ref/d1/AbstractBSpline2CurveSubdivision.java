@@ -9,7 +9,11 @@ import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.chq.ScalarQ;
 
 /** base class for B-Spline degree 2 curve subdivision
- * Chaikin 1965 */
+ * Chaikin 1965
+ * 
+ * only used by
+ * 
+ * @see BSpline2CurveSubdivision */
 public abstract class AbstractBSpline2CurveSubdivision implements CurveSubdivision {
   @Override // from CurveSubdivision
   public final Tensor cyclic(Tensor tensor) {

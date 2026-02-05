@@ -75,7 +75,7 @@ public enum Amplifiers {
         return FiniteTensorQ.of(temp) ? temp : ConstantArray.of(RealScalar.ONE, errors.length());
       };
     }
-  },;
+  };
 
   public abstract TensorUnaryOperator supply(Scalar sigma);
 

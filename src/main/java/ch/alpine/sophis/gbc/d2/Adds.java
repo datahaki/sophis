@@ -53,8 +53,8 @@ import ch.alpine.tensor.mat.IdentityMatrix;
 
   private static Tensor build(int n) {
     Tensor matrix = IdentityMatrix.sparse(n);
-    for (int index = 0; index < n; ++index)
-      matrix.set(RealScalar.ONE, index, (index + 1) % n);
+    for (int i = 0; i < n; ++i)
+      matrix.set(RealScalar.ONE, i, (i + 1) % n);
     return matrix;
   }
 }

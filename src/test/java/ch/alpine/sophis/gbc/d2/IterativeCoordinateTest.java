@@ -80,7 +80,7 @@ class IterativeCoordinateTest {
 
   @Test
   void testMV() {
-    Genesis genesis = ThreePointCoordinate.of(Barycenter.MEAN_VALUE);
+    Genesis genesis = ThreePointCoordinate.of(ThreePointScalings.MEAN_VALUE);
     _checkIterative(genesis);
     _checkCornering(genesis);
     _checkAlongedge(genesis, false);
@@ -107,14 +107,14 @@ class IterativeCoordinateTest {
     for (int n = 3; n < 10; ++n) {
       Tensor levers = RandomVariate.of(distribution, n, 2);
       if (OriginEnclosureQ.INSTANCE.isMember(levers)) {
-        Tensor weights = ThreePointCoordinate.of(Barycenter.MEAN_VALUE).origin(levers);
+        Tensor weights = ThreePointCoordinate.of(ThreePointScalings.MEAN_VALUE).origin(levers);
         Chop._07.requireClose( //
             weights, //
-            new IterativeCoordinate(new ThreePointWeighting(Barycenter.MEAN_VALUE), 0).origin(levers));
+            new IterativeCoordinate(new ThreePointWeighting(ThreePointScalings.MEAN_VALUE), 0).origin(levers));
         if (weights.stream().map(Scalar.class::cast).anyMatch(Sign::isNegative)) {
           boolean result = Chop._10.isClose( //
               weights, //
-              new IterativeCoordinate(new ThreePointWeighting(Barycenter.MEAN_VALUE), 2).origin(levers));
+              new IterativeCoordinate(new ThreePointWeighting(ThreePointScalings.MEAN_VALUE), 2).origin(levers));
           if (4 < n)
             assertFalse(result);
         }

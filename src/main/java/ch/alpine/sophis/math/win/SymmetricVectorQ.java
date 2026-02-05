@@ -2,11 +2,16 @@
 package ch.alpine.sophis.math.win;
 
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.alg.Reverse;
-import ch.alpine.tensor.alg.VectorQ;
+import ch.alpine.tensor.chq.MemberQ;
+import ch.alpine.tensor.chq.ZeroDefectArrayQ;
+import ch.alpine.tensor.io.StringScalar;
+import ch.alpine.tensor.sca.Chop;
 
-/** symmetric vectors are of the form
+/** Careful: requires Scalar substraction therefore does not work
+ * for vectors with scalars of instance {@link StringScalar}
+ * 
+ * symmetric vectors are of the form
  * <pre>
  * {a}
  * {a, a}
@@ -14,22 +19,19 @@ import ch.alpine.tensor.alg.VectorQ;
  * {a, b, b, a}
  * {a, b, c, b, a}
  * ...
- * </pre> */
-public enum SymmetricVectorQ {
-  ;
-  /** @param tensor
-   * @return true if given tensor is a vector invariant under mirroring */
-  public static boolean of(Tensor tensor) {
-    return VectorQ.of(tensor) //
-        && Reverse.of(tensor).equals(tensor);
+ * </pre>
+ * 
+ * @param tensor
+ * @return true if given tensor is a vector invariant under mirroring */
+public class SymmetricVectorQ extends ZeroDefectArrayQ {
+  public static final MemberQ INSTANCE = new SymmetricVectorQ();
+
+  private SymmetricVectorQ() {
+    super(1, Chop.NONE);
   }
 
-  /** @param vector
-   * @return given vector
-   * @throws Exception if given vector is not a symmetric vector */
-  public static Tensor require(Tensor vector) {
-    if (of(vector))
-      return vector;
-    throw new Throw(vector);
+  @Override
+  public Tensor defect(Tensor tensor) {
+    return Reverse.of(tensor).subtract(tensor);
   }
 }

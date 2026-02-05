@@ -12,7 +12,8 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 
 /** for comparison with {@link BarycentricRationalInterpolation} */
-public class BarycentricMetricInterpolation implements ScalarTensorFunction {
+// TODO SOPHUS review entire class and document
+public record BarycentricMetricInterpolation(Sedarim sedarim) implements ScalarTensorFunction {
   /** @param knots
    * @param variogram
    * @return */
@@ -26,16 +27,8 @@ public class BarycentricMetricInterpolation implements ScalarTensorFunction {
     return new BarycentricMetricInterpolation(biinvariant.lagrainate(variogram, knots.map(Tensors::of)));
   }
 
-  // ---
-  private final Sedarim sedarim;
-
-  private BarycentricMetricInterpolation(Sedarim sedarim) {
-    this.sedarim = sedarim;
-  }
-
   @Override
   public Tensor apply(Scalar scalar) {
-    // QUEST SOPHUS review entire class and document
     return sedarim.sunder(Tensors.of(scalar));
   }
 }

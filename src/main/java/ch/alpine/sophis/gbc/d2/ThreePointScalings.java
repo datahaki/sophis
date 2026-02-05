@@ -10,7 +10,7 @@ import ch.alpine.tensor.Tensor;
  * 
  * "Interpolation via Barycentric Coordinates"
  * by Pierre Alliez, 2017 */
-public enum Barycenter implements ThreePointScaling {
+public enum ThreePointScalings implements ThreePointScaling {
   /** C^infty, non-negative, for convex polygons
    * not well-defined for non-convex polygons
    * 

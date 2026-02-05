@@ -58,7 +58,7 @@ class BaseWindowSamplerTest {
       Function<Integer, Tensor> uniformWindowSampler = UniformWindowSampler.of(smoothingKernel.get());
       for (int radius = 0; radius < 5; ++radius) {
         Tensor tensor = uniformWindowSampler.apply(radius * 2 + 1);
-        SymmetricVectorQ.require(tensor);
+        SymmetricVectorQ.INSTANCE.requireMember(tensor);
         Chop._13.requireClose(Total.of(tensor), RealScalar.ONE);
         assertFalse(Scalars.isZero(tensor.Get(0)));
         assertFalse(Scalars.isZero(tensor.Get(tensor.length() - 1)));

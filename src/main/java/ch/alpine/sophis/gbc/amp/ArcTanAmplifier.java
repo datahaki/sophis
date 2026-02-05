@@ -8,9 +8,6 @@ import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.sca.Sign;
 import ch.alpine.tensor.sca.tri.ArcTan;
 
-/**
- * 
- */
 public record ArcTanAmplifier(Scalar sigma) implements ScalarUnaryOperator {
   public ArcTanAmplifier {
     Sign.requirePositive(sigma);

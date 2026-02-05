@@ -19,7 +19,7 @@ class SPatchTest {
   @Test
   void test() {
     int n = 5;
-    Genesis genesis = ThreePointCoordinate.of(Barycenter.MEAN_VALUE);
+    Genesis genesis = ThreePointCoordinate.of(ThreePointScalings.MEAN_VALUE);
     SPatch sPatch = SPatch.of(n, genesis, 2);
     Tensor ls = sPatch.getLs();
     assertEquals(ls.length(), 15);

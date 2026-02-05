@@ -21,10 +21,10 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.lie.rot.CirclePoints;
 import ch.alpine.tensor.sca.Chop;
 
-class BarycenterTest {
+class ThreePointScalingsTest {
   @Test
   void testSimple() throws ClassNotFoundException, IOException {
-    for (Barycenter barycenter : Barycenter.values()) {
+    for (ThreePointScalings barycenter : ThreePointScalings.values()) {
       BarycentricCoordinate barycentricCoordinate = Serialization.copy( //
           new HsCoordinates(RGroup.INSTANCE, ThreePointCoordinate.of(barycenter)));
       for (int n = 3; n < 10; ++n) {
@@ -42,6 +42,6 @@ class BarycenterTest {
 
   @Test
   void test() {
-    assertEquals(Barycenter.values().length, 3);
+    assertEquals(ThreePointScalings.values().length, 3);
   }
 }

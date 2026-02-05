@@ -37,7 +37,7 @@ import ch.alpine.tensor.sca.var.SphericalVariogram;
  * @see PowerVariogram
  * @see ExponentialVariogram
  * @see SphericalVariogram */
-public class Kriging implements Serializable {
+public record Kriging(Sedarim sedarim, Scalar one, Tensor weights, Tensor inverse) implements Serializable {
   /** Gaussian process regression
    * 
    * @param sedarim
@@ -87,19 +87,6 @@ public class Kriging implements Serializable {
     Tensor inverse = PseudoInverse.of(lagrangeMultiplier.matrix());
     Tensor weights = inverse.dot(lagrangeMultiplier.b(values, rhs));
     return new Kriging(sedarim, one, weights, inverse);
-  }
-
-  // ---
-  private final Sedarim sedarim;
-  private final Scalar one;
-  private final Tensor weights;
-  private final Tensor inverse;
-
-  private Kriging(Sedarim sedarim, Scalar one, Tensor weights, Tensor inverse) {
-    this.sedarim = sedarim;
-    this.one = one;
-    this.weights = weights;
-    this.inverse = inverse;
   }
 
   private Tensor vs(Tensor point) {

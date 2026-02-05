@@ -11,6 +11,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorScalarFunction;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Chop;
@@ -27,6 +28,7 @@ public record IterativeCoordinateLevel(Genesis genesis, Chop chop, int max) impl
   public IterativeCoordinateLevel {
     Objects.requireNonNull(genesis);
     Objects.requireNonNull(chop);
+    Integers.requirePositiveOrZero(max);
   }
 
   @Override
