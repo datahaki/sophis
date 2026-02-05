@@ -30,7 +30,7 @@ class LagrangeQuadraticDTest {
    * @param bm
    * @param b1 */
   public static LagrangeQuadraticD interp(Scalar b0, Scalar bm, Scalar b1) {
-    return new LagrangeQuadraticD( //
+    return LagrangeQuadraticD.of( //
         bm.multiply(_4).subtract(b1).subtract(b0.multiply(_3)), //
         b0.add(b1).subtract(bm.add(bm)).multiply(_4));
   }
@@ -49,24 +49,24 @@ class LagrangeQuadraticDTest {
 
   @Test
   void testZero() throws ClassNotFoundException, IOException {
-    LagrangeQuadraticD lagrangeQuadraticD = Serialization.copy(new LagrangeQuadraticD(1e-9, 1e-10));
+    LagrangeQuadraticD lagrangeQuadraticD = Serialization.copy(LagrangeQuadraticD.of(1e-9, 1e-10));
     assertTrue(lagrangeQuadraticD.isZero(Chop._08));
   }
 
   @Test
   void testIntegralAbs() {
-    assertEquals(new LagrangeQuadraticD(+2, +2).integralAbs(), RealScalar.of(3));
-    assertEquals(new LagrangeQuadraticD(-2, -2).integralAbs(), RealScalar.of(3));
-    assertEquals(new LagrangeQuadraticD(-1, +2).integralAbs(), RationalScalar.HALF);
-    assertEquals(new LagrangeQuadraticD(+1, -2).integralAbs(), RationalScalar.HALF);
-    assertEquals(new LagrangeQuadraticD(-1, +3).integralAbs(), RationalScalar.of(5, 6));
-    assertEquals(new LagrangeQuadraticD(+1, -3).integralAbs(), RationalScalar.of(5, 6));
-    assertEquals(new LagrangeQuadraticD(-2, +4).integralAbs(), RationalScalar.of(6, 6));
+    assertEquals(LagrangeQuadraticD.of(+2, +2).integralAbs(), RealScalar.of(3));
+    assertEquals(LagrangeQuadraticD.of(-2, -2).integralAbs(), RealScalar.of(3));
+    assertEquals(LagrangeQuadraticD.of(-1, +2).integralAbs(), RationalScalar.HALF);
+    assertEquals(LagrangeQuadraticD.of(+1, -2).integralAbs(), RationalScalar.HALF);
+    assertEquals(LagrangeQuadraticD.of(-1, +3).integralAbs(), RationalScalar.of(5, 6));
+    assertEquals(LagrangeQuadraticD.of(+1, -3).integralAbs(), RationalScalar.of(5, 6));
+    assertEquals(LagrangeQuadraticD.of(-2, +4).integralAbs(), RationalScalar.of(6, 6));
   }
 
   @Test
   void testNullFail() {
-    assertThrows(Exception.class, () -> new LagrangeQuadraticD(null, RealScalar.ONE));
-    assertThrows(Exception.class, () -> new LagrangeQuadraticD(RealScalar.ONE, null));
+    assertThrows(Exception.class, () -> LagrangeQuadraticD.of(null, RealScalar.ONE));
+    assertThrows(Exception.class, () -> LagrangeQuadraticD.of(RealScalar.ONE, null));
   }
 }

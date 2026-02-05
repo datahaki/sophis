@@ -4,7 +4,6 @@ package ch.alpine.sophis.crv.clt.par;
 import ch.alpine.sophis.crv.clt.LagrangeQuadratic;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.sca.Chop;
 
 /* package */ enum AnalyticClothoidPartial {
@@ -15,9 +14,9 @@ import ch.alpine.tensor.sca.Chop;
    * @return */
   public static ClothoidPartial of(LagrangeQuadratic lagrangeQuadratic) {
     return of( //
-        lagrangeQuadratic.c0(), //
-        lagrangeQuadratic.c1(), //
-        lagrangeQuadratic.c2());
+        lagrangeQuadratic.c(0), //
+        lagrangeQuadratic.c(1), //
+        lagrangeQuadratic.c(2));
   }
 
   /** @param c0
@@ -25,11 +24,11 @@ import ch.alpine.tensor.sca.Chop;
    * @param c2
    * @return */
   public static ClothoidPartial of(Scalar c0, Scalar c1, Scalar c2) {
-    if (Scalars.isZero(CHOP.apply(c2)))
-      return Scalars.isZero(CHOP.apply(c1)) //
-          ? new ClothoidPartialDegree0(c0)
-          : new ClothoidPartialDegree1(c0, c1);
-    return new ClothoidPartialDegree2(c0, c1, c2);
+    if (CHOP.isZero(c2))
+      return CHOP.isZero(c1) //
+          ? ClothoidPartials.INSTANCE.new Degree0(c0)
+          : ClothoidPartials.INSTANCE.new Degree1(c0, c1);
+    return ClothoidPartials.INSTANCE.new Degree2(c0, c1, c2);
   }
 
   public static ClothoidPartial of(Number c0, Number c1, Number c2) {

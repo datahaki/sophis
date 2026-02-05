@@ -4,9 +4,10 @@ package ch.alpine.sophis.crv.clt;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
-import ch.alpine.tensor.chq.FiniteScalarQ;
 import ch.alpine.tensor.sca.ply.InterpolatingPolynomial;
+import ch.alpine.tensor.sca.ply.Polynomial;
 
 /** Reference: U. Reif slide 8/32
  * 
@@ -24,7 +25,7 @@ import ch.alpine.tensor.sca.ply.InterpolatingPolynomial;
  * </pre>
  * 
  * @see InterpolatingPolynomial */
-public record LagrangeQuadratic(Scalar c0, Scalar c1, Scalar c2) implements ScalarUnaryOperator {
+public class LagrangeQuadratic implements ScalarUnaryOperator {
   private static final Scalar _3 = RealScalar.of(+3.0);
 
   /** The Lagrange interpolating polynomial has the following coefficients
@@ -45,21 +46,32 @@ public record LagrangeQuadratic(Scalar c0, Scalar c1, Scalar c2) implements Scal
         t2.add(t2));
   }
 
+  private final Scalar c2;
+  private final Polynomial polynomial;
+
+  public LagrangeQuadratic(Scalar c0, Scalar c1, Scalar c2) {
+    this.c2 = c2;
+    polynomial = Polynomial.of(Tensors.of(c0, c1, c2));
+  }
+
   @Override
   public Scalar apply(Scalar s) {
-    return c2.multiply(s).add(c1).multiply(s).add(c0);
+    return polynomial.apply(s);
   }
 
   /** @param length
    * @return linear polynomial */
   public LagrangeQuadraticD derivative(Scalar length) {
-    if (Scalars.isZero(length))
-      return new LagrangeQuadraticD(c1.zero(), c2.zero());
-    Scalar d_c0 = c1.divide(length);
-    Scalar d_c1 = c2.add(c2).divide(length);
-    return FiniteScalarQ.of(d_c0) //
-        && FiniteScalarQ.of(d_c1) //
-            ? new LagrangeQuadraticD(d_c0, d_c1)
-            : new LagrangeQuadraticD(c1.zero(), c2.zero());
+    Polynomial derivative = polynomial.derivative();
+    return new LagrangeQuadraticD(Scalars.isZero(length) //
+        ? derivative.zero()
+        : derivative.times(length.reciprocal()));
+  }
+
+  public Scalar c(int i) {
+    return switch (i) {
+    case 2 -> c2;
+    default -> polynomial.coeffs().Get(i);
+    };
   }
 }
