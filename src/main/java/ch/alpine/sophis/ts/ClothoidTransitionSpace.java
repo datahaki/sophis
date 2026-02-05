@@ -1,7 +1,8 @@
 // code by jph, gjoel
-package ch.alpine.sophis.crv.clt;
+package ch.alpine.sophis.ts;
 
-import ch.alpine.sophis.ts.TransitionSpace;
+import ch.alpine.sophis.crv.clt.ClothoidBuilder;
+import ch.alpine.sophis.crv.clt.ClothoidBuilders;
 import ch.alpine.tensor.Tensor;
 
 /** start and end points are from SE(2) or SE(2) Covering */

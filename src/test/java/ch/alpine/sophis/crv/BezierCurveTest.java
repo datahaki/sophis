@@ -24,7 +24,7 @@ import ch.alpine.tensor.itp.BezierFunction;
 import ch.alpine.tensor.itp.BinaryAverage;
 import ch.alpine.tensor.mat.Tolerance;
 
-class BezierMeanTest {
+class BezierCurveTest {
   @Test
   void testRn() {
     Tensor control = Tensors.fromString("{{0, 0}, {1, 1}, {2, 0}, {3, 1}}");
@@ -34,7 +34,7 @@ class BezierMeanTest {
     assertEquals(tensor, Tensors.fromString("{3/4, 7/16}"));
     ExactTensorQ.require(tensor);
     Tensor domain = Subdivide.of(0, 1, 7);
-    ScalarTensorFunction stf2 = BezierMean.of(LinearBiinvariantMean.INSTANCE, control);
+    ScalarTensorFunction stf2 = BezierCurve.of(LinearBiinvariantMean.INSTANCE, control);
     assertEquals(domain.map(stf1), domain.map(stf2));
     stf1.apply(RationalScalar.of(-1, 4));
     stf1.apply(RationalScalar.of(+5, 4));
@@ -73,7 +73,7 @@ class BezierMeanTest {
   @Test
   void testFailEmpty() {
     assertThrows(Exception.class, () -> new BezierFunction(Se2CoveringGroup.INSTANCE, Tensors.empty()));
-    assertThrows(Exception.class, () -> BezierMean.of(LinearBiinvariantMean.INSTANCE, Tensors.empty()));
+    assertThrows(Exception.class, () -> BezierCurve.of(LinearBiinvariantMean.INSTANCE, Tensors.empty()));
   }
 
   @Test
@@ -83,7 +83,7 @@ class BezierMeanTest {
 
   @Test
   void testFailNull() {
-    assertThrows(Exception.class, () -> BezierMean.of((BiinvariantMean) null, Tensors.vector(1, 2, 3)));
+    assertThrows(Exception.class, () -> BezierCurve.of((BiinvariantMean) null, Tensors.vector(1, 2, 3)));
     assertThrows(Exception.class, () -> new BezierFunction((BinaryAverage) null, Tensors.vector(1, 2, 3)));
   }
 }

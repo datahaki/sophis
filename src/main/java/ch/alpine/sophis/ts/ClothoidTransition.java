@@ -1,8 +1,9 @@
 // code by gjoel, jph
-package ch.alpine.sophis.crv.clt;
+package ch.alpine.sophis.ts;
 
-import ch.alpine.sophis.ts.AbstractTransition;
-import ch.alpine.sophis.ts.TransitionWrap;
+import ch.alpine.sophis.crv.clt.Clothoid;
+import ch.alpine.sophis.crv.clt.ClothoidBuilder;
+import ch.alpine.sophis.crv.clt.ClothoidSampler;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

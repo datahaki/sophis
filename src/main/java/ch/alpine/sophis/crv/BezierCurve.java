@@ -9,7 +9,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.itp.BernsteinBasis;
 
-public enum BezierMean {
+public enum BezierCurve {
   ;
   /** evaluation using biinvariantMean with weights from Bernstein polynomials
    * 

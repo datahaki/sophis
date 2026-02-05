@@ -1,9 +1,6 @@
 // code by jph
-package ch.alpine.sophis.crv;
+package ch.alpine.sophis.ts;
 
-import ch.alpine.sophis.ts.Transition;
-import ch.alpine.sophis.ts.TransitionSpace;
-import ch.alpine.sophis.ts.TransitionWrap;
 import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

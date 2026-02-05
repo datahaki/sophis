@@ -18,12 +18,12 @@ public class ClothoidTangentDefect implements ScalarUnaryOperator {
   // TODO 1/sqrt(2)
   private static final Scalar DIAG = ComplexScalar.of(0.7071067811865476, 0.7071067811865475);
 
-  public static ClothoidTangentDefect of(Number s1, Number s2) {
-    return of(RealScalar.of(s1), RealScalar.of(s2));
-  }
-
   public static ClothoidTangentDefect of(Scalar s1, Scalar s2) {
     return new ClothoidTangentDefect(s1, s2);
+  }
+
+  public static ClothoidTangentDefect of(Number s1, Number s2) {
+    return of(RealScalar.of(s1), RealScalar.of(s2));
   }
 
   // ---

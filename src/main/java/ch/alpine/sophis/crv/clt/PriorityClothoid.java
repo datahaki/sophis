@@ -9,20 +9,13 @@ import ch.alpine.sophis.crv.clt.ClothoidSolutions.Search;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Clips;
 
-public class PriorityClothoid implements ClothoidBuilder, Serializable {
+public record PriorityClothoid(Comparator<Clothoid> comparator) implements ClothoidBuilder, Serializable {
   private static final ClothoidSolutions CLOTHOID_SOLUTIONS = ClothoidSolutions.of(Clips.absolute(15.0), 101);
 
   /** @param comparator
    * @return */
   public static ClothoidBuilder of(Comparator<Clothoid> comparator) {
     return new PriorityClothoid(Objects.requireNonNull(comparator));
-  }
-
-  // ---
-  private final Comparator<Clothoid> comparator;
-
-  private PriorityClothoid(Comparator<Clothoid> comparator) {
-    this.comparator = comparator;
   }
 
   @Override

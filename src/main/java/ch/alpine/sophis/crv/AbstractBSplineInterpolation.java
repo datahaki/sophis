@@ -15,7 +15,7 @@ import ch.alpine.tensor.sca.N;
 
 public abstract class AbstractBSplineInterpolation implements Serializable {
   private static final Chop CHOP_DEFAULT = Tolerance.CHOP;
-  private static final int MAXITER = 500;
+  private static final int MAX_ITERATION = 500;
   // ---
   protected final GeodesicSpace geodesicSpace;
   private final int degree;
@@ -91,7 +91,7 @@ public abstract class AbstractBSplineInterpolation implements Serializable {
   }
 
   public final Tensor apply() {
-    return untilClose(CHOP_DEFAULT, MAXITER).control();
+    return untilClose(CHOP_DEFAULT, MAX_ITERATION).control();
   }
 
   private GeodesicBSplineFunction geodesicBSplineFunction(Tensor control) {

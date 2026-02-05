@@ -1,5 +1,5 @@
 // code by jph, gjoel
-package ch.alpine.sophis.crv.clt;
+package ch.alpine.sophis.ts;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
@@ -9,8 +9,6 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ts.Transition;
-import ch.alpine.sophis.ts.TransitionWrap;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

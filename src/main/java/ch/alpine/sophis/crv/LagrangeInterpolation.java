@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.sophis.crv;
 
+import java.io.Serializable;
+
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Range;
@@ -14,7 +16,7 @@ import ch.alpine.tensor.sca.ply.InterpolatingPolynomial;
 /** implementation uses knots 0, 1, 2, ...
  * 
  * @see InterpolatingPolynomial */
-public class LagrangeInterpolation extends AbstractInterpolation {
+public class LagrangeInterpolation extends AbstractInterpolation implements Serializable {
   /** @param binaryAverage
    * @param tensor
    * @return */

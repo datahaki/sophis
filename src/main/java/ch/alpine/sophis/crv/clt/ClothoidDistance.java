@@ -14,8 +14,7 @@ import ch.alpine.tensor.Tensor;
 public enum ClothoidDistance implements TensorMetric, TensorNorm {
   SE2_ANALYTIC(ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder()), //
   SE2_LEGENDRE(ClothoidBuilders.SE2_LEGENDRE.clothoidBuilder()), //
-  SE2_COVERING(ClothoidBuilders.SE2_COVERING.clothoidBuilder()), //
-  ;
+  SE2_COVERING(ClothoidBuilders.SE2_COVERING.clothoidBuilder());
 
   private final ClothoidBuilder clothoidBuilder;
 

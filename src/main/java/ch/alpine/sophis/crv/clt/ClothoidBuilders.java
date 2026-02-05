@@ -15,8 +15,7 @@ public enum ClothoidBuilders {
   /** reif's solution with lagrange quadrature: length is imprecise resulting in less precise curvature */
   SE2_LEGENDRE(Se2ClothoidQuadratic.INSTANCE, ClothoidIntegrations.LEGENDRE), //
   /** with windings */
-  SE2_COVERING(Se2CoveringClothoidQuadratic.INSTANCE, ClothoidIntegrations.ANALYTIC), //
-  ;
+  SE2_COVERING(Se2CoveringClothoidQuadratic.INSTANCE, ClothoidIntegrations.ANALYTIC);
 
   private final ClothoidBuilder clothoidBuilder;
 
