@@ -5,8 +5,6 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import ch.alpine.sophis.itp.ArcLengthParameterization;
-import ch.alpine.sophus.lie.BasicLieIntegrator;
-import ch.alpine.sophus.lie.LieIntegrator;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -20,10 +18,13 @@ import ch.alpine.tensor.sca.Sign;
 /** compatible with the use of Quantity:
  * radius and entries in segLength must have the same unit
  * 
- * immutable */
-public class DubinsPath implements Serializable {
-  private static final LieIntegrator lieIntegrator = new BasicLieIntegrator(Se2CoveringGroup.INSTANCE);
-
+ * immutable
+ * 
+ * @param type dubins path type non-null
+ * @param radius strictly positive
+ * @param segLength {length1, length2, length3} each non-negative
+ * @param length total length of Dubins path in Euclidean space */
+public record DubinsPath(DubinsType type, Scalar radius, Tensor segLength, Scalar length) implements Serializable {
   /** @param type non-null
    * @param radius strictly positive
    * @param segLength {length1, length2, length3} each non-negative
@@ -39,36 +40,9 @@ public class DubinsPath implements Serializable {
             .reduce(Scalar::add).orElseThrow());
   }
 
-  // ---
-  private final DubinsType type;
-  private final Scalar radius;
-  private final Tensor segLength;
-  private final Scalar length;
-
-  /** @param type non-null
-   * @param radius strictly positive
-   * @param segLength {length1, length2, length3} each non-negative
-   * @param length */
-  private DubinsPath(DubinsType type, Scalar radius, Tensor segLength, Scalar length) {
-    this.type = type;
-    this.radius = radius;
-    this.segLength = segLength;
-    this.length = length;
-  }
-
-  /** @return dubins path type */
-  public DubinsType type() {
-    return type;
-  }
-
   /** @return vector of length 3 with parameter values of transition points */
   public Tensor segments() {
     return Accumulate.of(segLength);
-  }
-
-  /** @return total length of Dubins path in Euclidean space */
-  public Scalar length() {
-    return length;
   }
 
   /** @param index is 0, 1, or 2
@@ -91,7 +65,7 @@ public class DubinsPath implements Serializable {
     Tensor tensor = Tensors.reserve(4);
     tensor.append(g);
     for (int index = 0; index < 3; ++index)
-      tensor.append(g = lieIntegrator.spin(g, type.tangent(index, radius).multiply(segLength.Get(index))));
+      tensor.append(g = Se2CoveringGroup.INSTANCE.spin(g, type.tangent(index, radius).multiply(segLength.Get(index))));
     return ArcLengthParameterization.of(segLength, Se2CoveringGroup.INSTANCE, tensor);
   }
 

@@ -1,8 +1,7 @@
 // code by gjoel, jph
-package ch.alpine.sophis.crv.dub;
+package ch.alpine.sophis.ts;
 
-import ch.alpine.sophis.ts.AbstractTransition;
-import ch.alpine.sophis.ts.TransitionWrap;
+import ch.alpine.sophis.crv.dub.DubinsPath;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -16,7 +15,6 @@ import ch.alpine.tensor.sca.Ceiling;
 import ch.alpine.tensor.sca.Sign;
 
 public class DubinsTransition extends AbstractTransition {
-  // ---
   private final DubinsPath dubinsPath;
 
   public DubinsTransition(Tensor start, Tensor end, DubinsPath dubinsPath) {

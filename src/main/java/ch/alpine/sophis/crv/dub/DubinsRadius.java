@@ -24,7 +24,9 @@ public enum DubinsRadius {
    * @param clip
    * @return may return NaN */
   public static Scalar getMax(Tensor xya, DubinsType type, Clip clip) {
-    xya = type.isFirstTurnRight() ? Se2Flip.FUNCTION.apply(xya) : xya;
+    xya = type.isFirstTurnRight() //
+        ? Se2Flip.FUNCTION.apply(xya)
+        : xya;
     Scalar hypot = Hypot.ofVector(xya.extract(0, 2));
     Scalar turn1 = ArcTan2D.of(xya.extract(0, 2));
     Scalar angle = Mod.function(Pi.TWO).apply(xya.Get(2));

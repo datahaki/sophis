@@ -56,7 +56,9 @@ public class FixedRadiusDubins implements DubinsPathGenerator, Serializable {
   private Optional<DubinsPath> create(DubinsType type) {
     Tensor center1 = Tensors.of(zero, radius, xya.Get(2).zero());
     Tensor h = Tensors.of(zero, type.isFirstEqualsLast() ? radius : radius.negate(), xya.Get(2).zero());
-    Tensor gnorm = type.isFirstTurnRight() ? Se2Flip.FUNCTION.apply(xya) : xya;
+    Tensor gnorm = type.isFirstTurnRight() //
+        ? Se2Flip.FUNCTION.apply(xya)
+        : xya;
     Tensor center3 = Se2CoveringGroup.INSTANCE.combine(gnorm, h);
     Tensor deltacenter = Se2CoveringGroup.INSTANCE.diffOp(center1).apply(center3);
     Scalar dist_tr = Vector2Norm.of(deltacenter.extract(0, 2));

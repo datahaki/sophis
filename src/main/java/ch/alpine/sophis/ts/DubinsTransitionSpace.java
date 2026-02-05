@@ -1,11 +1,13 @@
 // code by jph, gjoel
-package ch.alpine.sophis.crv.dub;
+package ch.alpine.sophis.ts;
 
 import java.io.Serializable;
 import java.util.Comparator;
 import java.util.Objects;
 
-import ch.alpine.sophis.ts.TransitionSpace;
+import ch.alpine.sophis.crv.dub.DubinsPath;
+import ch.alpine.sophis.crv.dub.DubinsPathComparators;
+import ch.alpine.sophis.crv.dub.FixedRadiusDubins;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Sign;

@@ -10,21 +10,21 @@ import ch.alpine.tensor.sca.Abs;
 import ch.alpine.tensor.sca.Sign;
 
 public enum DubinsType {
-  LSR(+1, +0, -1, Steer2TurnsDiffSide.INSTANCE), //
-  RSL(-1, +0, +1, Steer2TurnsDiffSide.INSTANCE), //
-  LSL(+1, +0, +1, Steer2TurnsSameSide.INSTANCE), //
-  RSR(-1, +0, -1, Steer2TurnsSameSide.INSTANCE), //
-  LRL(+1, -1, +1, Steer3Turns.INSTANCE), //
-  RLR(-1, +1, -1, Steer3Turns.INSTANCE);
+  LSR(+1, +0, -1, DubinsSteers.STEER_2_TURNS_DIFF_SIDE),
+  RSL(-1, +0, +1, DubinsSteers.STEER_2_TURNS_DIFF_SIDE),
+  LSL(+1, +0, +1, DubinsSteers.STEER_2_TURNS_SAME_SIDE),
+  RSR(-1, +0, -1, DubinsSteers.STEER_2_TURNS_SAME_SIDE),
+  LRL(+1, -1, +1, DubinsSteers.STEER_3_TURNS),
+  RLR(-1, +1, -1, DubinsSteers.STEER_3_TURNS);
 
   private final Tensor signature;
   private final Tensor signatureAbs;
   private final boolean isFirstTurnRight;
   private final boolean isFirstEqualsLast;
   private final boolean containsStraight;
-  private final DubinsSteer dubinsSteer;
+  private final DubinsSteers dubinsSteer;
 
-  DubinsType(int s0s, int s1s, int s2s, DubinsSteer dubinsSteer) {
+  DubinsType(int s0s, int s1s, int s2s, DubinsSteers dubinsSteer) {
     signature = Tensors.vector(s0s, s1s, s2s).unmodifiable();
     signatureAbs = signature.map(Abs.FUNCTION).unmodifiable();
     isFirstTurnRight = s0s == -1;
@@ -51,7 +51,8 @@ public enum DubinsType {
     return containsStraight;
   }
 
-  /* package */ DubinsSteer dubinsSteer() {
+  @PackageTestAccess
+  DubinsSteers dubinsSteer() {
     return dubinsSteer;
   }
 
