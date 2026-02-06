@@ -16,6 +16,6 @@ import ch.alpine.tensor.io.Put;
     Tensor control = Tensors.fromString("{{0, 0}, {1, 0}, {0, -1}, {-1/2, 1}}");
     TensorIteration tensorIteration = RnHermite1Subdivisions.instance().string(RealScalar.ONE, control);
     Tensor iterate = Do.of(tensorIteration::iterate, 6);
-    Put.of(HomeDirectory.file("merrien.file"), iterate);
+    Put.of(HomeDirectory.path("merrien.file"), iterate);
   }
 }

@@ -3,10 +3,10 @@ package ch.alpine.sophis.srf.io;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -23,8 +23,8 @@ import ch.alpine.tensor.red.Min;
 import ch.alpine.tensor.sca.Sign;
 
 class WavefrontTest {
-  private static void check3d(File file) throws IOException {
-    try (InputStream inputStream = new FileInputStream(file)) {
+  private static void check3d(Path file) throws IOException {
+    try (InputStream inputStream = Files.newInputStream(file)) {
       Wavefront wavefront = WavefrontFormat.parse(ReadLine.of(inputStream));
       Tensor normals = wavefront.normals();
       assertEquals(Dimensions.of(normals).get(1), Integer.valueOf(3));
@@ -52,10 +52,10 @@ class WavefrontTest {
 
   @Test
   void testLoad() throws IOException {
-    File directory = HomeDirectory.file("Projects", "gym-duckietown", "gym_duckietown", "meshes");
-    if (directory.isDirectory())
-      for (File file : directory.listFiles())
-        if (file.getName().endsWith(".obj"))
+    Path directory = HomeDirectory.path("Projects", "gym-duckietown", "gym_duckietown", "meshes");
+    if (Files.isDirectory(directory))
+      for (Path file : Files.list(directory).toList())
+        if (file.endsWith(".obj"))
           check3d(file);
   }
 }

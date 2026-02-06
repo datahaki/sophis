@@ -90,9 +90,9 @@ enum CatmullClarkSubdivisionExport {
   }
 
   static void main() throws IOException {
-    Put.of(HomeDirectory.file("grid.mathematica"), univariate());
-    Put.of(HomeDirectory.file("se2.mathematica"), se2());
-    Put.of(HomeDirectory.file("r3s2.mathematica"), r3s2());
-    Put.of(HomeDirectory.file("sphere.mathematica"), r3s2_sphere());
+    Put.of(HomeDirectory.path("grid.mathematica"), univariate());
+    Put.of(HomeDirectory.path("se2.mathematica"), se2());
+    Put.of(HomeDirectory.path("r3s2.mathematica"), r3s2());
+    Put.of(HomeDirectory.path("sphere.mathematica"), r3s2_sphere());
   }
 }

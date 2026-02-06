@@ -100,7 +100,7 @@ class BiinvariantTest {
     int n = 3 + random1.nextInt(2);
     ScalarUnaryOperator variogram = InversePowerVariogram.of(2);
     int k = 1 + random1.nextInt(n - 1);
-    RandomSampleInterface randomSampleInterface = Grassmannian.of(n, k);
+    RandomSampleInterface randomSampleInterface = new Grassmannian(n, k);
     int d = k * (n - k);
     RandomGenerator randomGenerator = new Random(1);
     Tensor seq_o = RandomSample.of(randomSampleInterface, randomGenerator, d + 2);

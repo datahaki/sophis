@@ -1,8 +1,9 @@
 // code by jph
 package ch.alpine.sophis.srf;
 
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import ch.alpine.tensor.Parallelize;
 import ch.alpine.tensor.Tensor;
@@ -15,13 +16,17 @@ import ch.alpine.tensor.io.Export;
 /* package */ enum DemoHelper {
   ;
   private static final int GALLERY_RES = 720; // 128 + 64;
-  private static final File DIRECTORY = HomeDirectory.file("Projects", "latex", "images", "tensor");
+  private static final Path DIRECTORY = HomeDirectory.path("Projects", "latex", "images", "tensor");
   static {
-    DIRECTORY.mkdirs();
+    try {
+      Files.createDirectories(DIRECTORY);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
-  static File image(Class<?> cls) {
-    return new File(DIRECTORY, cls.getSimpleName() + ".png");
+  static Path image(Class<?> cls) {
+    return DIRECTORY.resolve(cls.getSimpleName() + ".png");
   }
 
   public static void export(BivariateEvaluation bivariateEvaluation, Class<?> cls, ColorDataGradient colorDataGradient) throws IOException {
