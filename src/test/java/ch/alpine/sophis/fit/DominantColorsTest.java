@@ -1,3 +1,4 @@
+// code by jph
 package ch.alpine.sophis.fit;
 
 import java.awt.image.BufferedImage;
