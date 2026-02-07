@@ -20,18 +20,18 @@ import ch.alpine.tensor.sca.Sign;
  * 
  * immutable
  * 
- * @param type dubins path type non-null
+ * @param dubinsType dubins path type non-null
  * @param radius strictly positive
  * @param segLength {length1, length2, length3} each non-negative
  * @param length total length of Dubins path in Euclidean space */
-public record DubinsPath(DubinsType type, Scalar radius, Tensor segLength, Scalar length) implements Serializable {
-  /** @param type non-null
+public record DubinsPath(DubinsType dubinsType, Scalar radius, Tensor segLength, Scalar length) implements Serializable {
+  /** @param dubinsType non-null
    * @param radius strictly positive
    * @param segLength {length1, length2, length3} each non-negative
    * @return */
-  public static DubinsPath of(DubinsType type, Scalar radius, Tensor segLength) {
+  public static DubinsPath of(DubinsType dubinsType, Scalar radius, Tensor segLength) {
     return new DubinsPath( //
-        Objects.requireNonNull(type), //
+        Objects.requireNonNull(dubinsType), //
         Sign.requirePositive(radius), //
         VectorQ.requireLength(segLength, 3), //
         segLength.stream() //
@@ -53,7 +53,7 @@ public record DubinsPath(DubinsType type, Scalar radius, Tensor segLength, Scala
 
   /** @return total curvature, return value is non-negative */
   public Scalar totalCurvature() {
-    return (Scalar) segLength.dot(type.signatureAbs()).divide(radius);
+    return (Scalar) segLength.dot(dubinsType.signatureAbs()).divide(radius);
   }
 
   /** @param g start configuration
@@ -65,7 +65,7 @@ public record DubinsPath(DubinsType type, Scalar radius, Tensor segLength, Scala
     Tensor tensor = Tensors.reserve(4);
     tensor.append(g);
     for (int index = 0; index < 3; ++index)
-      tensor.append(g = Se2CoveringGroup.INSTANCE.spin(g, type.tangent(index, radius).multiply(segLength.Get(index))));
+      tensor.append(g = Se2CoveringGroup.INSTANCE.spin(g, dubinsType.tangent(index, radius).multiply(segLength.Get(index))));
     return ArcLengthParameterization.of(segLength, Se2CoveringGroup.INSTANCE, tensor);
   }
 

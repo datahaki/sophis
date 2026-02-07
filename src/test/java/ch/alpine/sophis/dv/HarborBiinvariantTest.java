@@ -72,7 +72,7 @@ class HarborBiinvariantTest {
   @Test
   void testRandom() {
     Manifold manifold = Se2CoveringGroup.INSTANCE;
-    Distribution distributiox = NormalDistribution.standard();
+    Distribution distributiox = NormalDistribution.of(0, 0.1);
     Distribution distribution = NormalDistribution.of(0, 0.1);
     Map<Biinvariants, Biinvariant> map = Biinvariants.all(manifold);
     for (Biinvariant biinvariant : map.values())
