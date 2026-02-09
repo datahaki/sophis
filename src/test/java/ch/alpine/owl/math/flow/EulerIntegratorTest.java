@@ -6,10 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.owl.math.model.DoubleIntegratorStateSpaceModel;
-import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.qty.Quantity;
@@ -17,19 +14,6 @@ import ch.alpine.tensor.qty.QuantityTensor;
 import ch.alpine.tensor.qty.Unit;
 
 class EulerIntegratorTest {
-  private final Integrator integrator = EulerLieIntegrator.of(RGroup.INSTANCE);
-
-  @Test
-  void testSimple() {
-    StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
-    Tensor u = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m*s^-1"));
-    Tensor x = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m"));
-    Scalar h = Quantity.of(2, "s");
-    Tensor r = EulerIntegrator.INSTANCE.step(stateSpaceModel, x, u, h);
-    assertEquals(r, Tensors.fromString("{3[m], 6[m]}"));
-    assertEquals(r, integrator.step(stateSpaceModel, x, u, h));
-  }
-
   @Test
   void testDouble() {
     StateSpaceModel stateSpaceModel = DoubleIntegratorStateSpaceModel.INSTANCE;

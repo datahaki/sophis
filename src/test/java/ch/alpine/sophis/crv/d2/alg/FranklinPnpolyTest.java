@@ -1,13 +1,15 @@
 // code by jph
 package ch.alpine.sophis.crv.d2.alg;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+import java.lang.reflect.Modifier;
 
 import org.junit.jupiter.api.Test;
 
 class FranklinPnpolyTest {
   @Test
   void testVisibility() {
-    assertEquals(FranklinPnpoly.class.getModifiers() & 1, 0);
+    assertFalse(Modifier.isPublic(FranklinPnpoly.class.getModifiers()));
   }
 }

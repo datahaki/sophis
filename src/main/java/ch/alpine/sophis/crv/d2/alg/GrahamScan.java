@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import ch.alpine.sophis.crv.d2.Det2D;
+import ch.alpine.sophus.lie.so2.ArcTan2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -19,7 +20,6 @@ import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.PackageTestAccess;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
-import ch.alpine.tensor.sca.tri.ArcTan;
 
 /** Quote from Wikipedia:
  * Graham's scan is a method of finding the convex hull of a finite set of points
@@ -52,9 +52,7 @@ import ch.alpine.tensor.sca.tri.ArcTan;
     list.sort((p1, p2) -> {
       Tensor d10 = p1.subtract(point0);
       Tensor d20 = p2.subtract(point0);
-      int cmp = Scalars.compare( //
-          ArcTan.of(d10.Get(0), d10.Get(1)), //
-          ArcTan.of(d20.Get(0), d20.Get(1)));
+      int cmp = Scalars.compare(ArcTan2D.of(d10), ArcTan2D.of(d20));
       return cmp != 0 ? cmp : MINY_MINX.compare(p1, p2);
     });
     // ArrayDeque::stream is reverse of Stack::stream

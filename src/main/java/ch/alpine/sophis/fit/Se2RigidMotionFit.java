@@ -1,12 +1,12 @@
 // code by jph
 package ch.alpine.sophis.fit;
 
+import ch.alpine.sophus.lie.so2.ArcTan2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.VectorQ;
-import ch.alpine.tensor.sca.tri.ArcTan;
 
 public enum Se2RigidMotionFit {
   ;
@@ -31,7 +31,7 @@ public enum Se2RigidMotionFit {
    * @return vector of length 3 */
   private static Tensor of(RigidMotionFit rigidMotionFit) {
     Tensor rotation = rigidMotionFit.rotation(); // 2 x 2
-    Scalar angle = ArcTan.of(rotation.Get(0, 0), rotation.Get(1, 0));
+    Scalar angle = ArcTan2D.of(rotation.get(Tensor.ALL, 0));
     return VectorQ.requireLength(rigidMotionFit.translation(), 2).append(angle);
   }
 }
