@@ -2,14 +2,13 @@
 // code by jph
 package ch.alpine.sophis.crv.clt;
 
-import java.io.Serializable;
-
 import ch.alpine.tensor.ComplexScalar;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.io.MathematicaFormat;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
@@ -18,7 +17,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
  * @param lagrangeQuadratic typically a quadratic polynomial
  * 
  * @see LagrangeQuadratic */
-/* package */ record ClothoidIntegralLegendre(LagrangeQuadratic lagrangeQuadratic) implements ClothoidPartial, ClothoidIntegral, Serializable {
+/* package */ record ClothoidIntegralLegendre(LagrangeQuadratic lagrangeQuadratic) implements ScalarUnaryOperator, ClothoidIntegral {
   private static final Scalar _1 = RealScalar.of(1.0);
   private static final Tensor W = Tensors.vector(5, 8, 5).divide(RealScalar.of(18.0));
   private static final Tensor X = Tensors.vector(-1, 0, 1) //
@@ -32,7 +31,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
   private static final Scalar W1 = W.Get(1);
 
   @Override // from ClothoidPartial
-  public Scalar il(Scalar t) {
+  public Scalar apply(Scalar t) {
     Scalar v0 = exp_i(X0.multiply(t));
     Scalar v1 = exp_i(X1.multiply(t));
     Scalar v2 = exp_i(X2.multiply(t));
@@ -49,7 +48,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 
   @Override // from ClothoidIntegral
   public Scalar normalized(Scalar t) {
-    Scalar il = il(t);
+    Scalar il = apply(t);
     Scalar ir = ir(t);
     /* ratio z enforces interpolation of terminal points
      * t == 0 -> (0, 0)
@@ -71,6 +70,6 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 
   @Override
   public String toString() {
-    return MathematicaFormat.concise("Legendre", one());
+    return MathematicaFormat.concise("ClothoidIntegralLegendre", one());
   }
 }
