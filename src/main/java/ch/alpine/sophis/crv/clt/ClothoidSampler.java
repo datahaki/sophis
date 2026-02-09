@@ -27,7 +27,7 @@ public enum ClothoidSampler {
    * @param minResolution for instance 0.08
    * @return */
   public static Tensor of(Clothoid clothoid, Scalar minResolution) {
-    return samples(clothoid, minResolution).map(clothoid);
+    return samples(clothoid, minResolution).maps(clothoid);
   }
 
   public static Tensor samples(Clothoid clothoid, Scalar minResolution) {
@@ -39,7 +39,7 @@ public enum ClothoidSampler {
     int intervals = Ceiling.intValueExact(scalar);
     Tensor uniform = Subdivide.of(_0, _1, Integers.clip(1, MAX_INTERVALS).applyAsInt(intervals));
     InverseCDF inverseCDF = (InverseCDF) EqualizingDistribution.fromUnscaledPDF( //
-        uniform.map(lagrangeQuadraticD).map(Abs.FUNCTION).map(Sqrt.FUNCTION));
-    return uniform.map(inverseCDF::quantile).divide(DoubleScalar.of(uniform.length()));
+        uniform.maps(lagrangeQuadraticD).maps(Abs.FUNCTION).maps(Sqrt.FUNCTION));
+    return uniform.maps(inverseCDF::quantile).divide(DoubleScalar.of(uniform.length()));
   }
 }

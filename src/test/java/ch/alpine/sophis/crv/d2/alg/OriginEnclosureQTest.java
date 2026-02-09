@@ -66,10 +66,10 @@ class OriginEnclosureQTest {
         { 1, 1 }, //
         { 0, 1 } //
     });
-    assertFalse(OriginEnclosureQ.INSTANCE.isMember(polygon.map(suo)));
+    assertFalse(OriginEnclosureQ.INSTANCE.isMember(polygon.maps(suo)));
     for (int n = 3; n < 10; ++n) {
-      assertTrue(OriginEnclosureQ.INSTANCE.isMember(CirclePoints.of(n).map(suo)));
-      assertTrue(OriginEnclosureQ.INSTANCE.isMember(Reverse.of(CirclePoints.of(n)).map(suo)));
+      assertTrue(OriginEnclosureQ.INSTANCE.isMember(CirclePoints.of(n).maps(suo)));
+      assertTrue(OriginEnclosureQ.INSTANCE.isMember(Reverse.of(CirclePoints.of(n)).maps(suo)));
     }
   }
 
@@ -118,7 +118,7 @@ class OriginEnclosureQTest {
         if (OriginEnclosureQ.INSTANCE.isMember(levers)) {
           for (int i = 0; i < 3; ++i) {
             Tensor weights = AffineCoordinate.INSTANCE.origin(levers);
-            weights = NormalizeTotal.FUNCTION.apply(weights.map(Exp.FUNCTION));
+            weights = NormalizeTotal.FUNCTION.apply(weights.maps(Exp.FUNCTION));
             levers = Times.of(weights, levers);
           }
         }

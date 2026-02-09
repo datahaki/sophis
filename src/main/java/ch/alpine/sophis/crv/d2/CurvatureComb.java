@@ -84,6 +84,6 @@ public enum CurvatureComb {
     Optional<Scalar> optional = SignedCurvature2D.of(p, q, r);
     return optional.isPresent() //
         ? NORMALIZE_UNLESS_ZERO.apply(Cross.of(tangent)).multiply(optional.orElseThrow())
-        : tangent.map(Unprotect::zero_negateUnit);
+        : tangent.maps(Unprotect::zero_negateUnit);
   }
 }

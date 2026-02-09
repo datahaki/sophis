@@ -21,7 +21,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
   private static final Tensor W = Tensors.vector(5, 8, 5).divide(RealScalar.of(18.0));
   private static final Tensor X = Tensors.vector(-1, 0, 1) //
       .multiply(Sqrt.FUNCTION.apply(RationalScalar.of(3, 5))) //
-      .map(RealScalar.ONE::add) //
+      .maps(RealScalar.ONE::add) //
       .divide(RealScalar.of(2));
   private static final Scalar _1 = RealScalar.of(1.0);
   private static final Scalar _68 = RealScalar.of(68.0);
@@ -50,9 +50,9 @@ import ch.alpine.tensor.sca.pow.Sqrt;
       Tensor wl = W.multiply(t);
       Tensor wr = W.multiply(_1_t);
       Tensor xl = X.multiply(t);
-      Tensor xr = X.multiply(_1_t).map(t::add);
-      Scalar il = (Scalar) wl.dot(xl.map(clothoidQuadraticEx));
-      Scalar ir = (Scalar) wr.dot(xr.map(clothoidQuadraticEx));
+      Tensor xr = X.multiply(_1_t).maps(t::add);
+      Scalar il = (Scalar) wl.dot(xl.maps(clothoidQuadraticEx));
+      Scalar ir = (Scalar) wr.dot(xr.maps(clothoidQuadraticEx));
       Scalar ret_p = p0.add(il.multiply(d).divide(il.add(ir)));
       Scalar ret_a = clothoidQuadraticEx.angle(t).add(da);
       return ReIm.of(ret_p).vector().append(ret_a);

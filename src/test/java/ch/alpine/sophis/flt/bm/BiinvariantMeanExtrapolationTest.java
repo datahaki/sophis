@@ -36,7 +36,7 @@ class BiinvariantMeanExtrapolationTest {
     Distribution distribution = DiscreteUniformDistribution.of(3, 12);
     for (int deg = 1; deg < 6; ++deg) {
       ScalarUnaryOperator scalarUnaryOperator = Polynomial.of(RandomVariate.of(distribution, deg + 1));
-      Tensor sequence = Range.of(0, deg + 1).map(scalarUnaryOperator);
+      Tensor sequence = Range.of(0, deg + 1).maps(scalarUnaryOperator);
       Tensor predict = tensorUnaryOperator.apply(sequence);
       Scalar actual = scalarUnaryOperator.apply(RealScalar.of(deg + 1));
       assertEquals(predict, actual);

@@ -44,7 +44,7 @@ class LagrangeQuadraticDTest {
     LagrangeQuadraticD lqd1 = LagrangeQuadratic.interp(b0, bm, b1).derivative(length);
     LagrangeQuadraticD lqd2 = interp(b0.divide(length), bm.divide(length), b1.divide(length));
     Tensor domain = RandomVariate.of(UniformDistribution.unit(), 10);
-    Tolerance.CHOP.requireClose(domain.map(lqd1), domain.map(lqd2));
+    Tolerance.CHOP.requireClose(domain.maps(lqd1), domain.maps(lqd2));
   }
 
   @Test

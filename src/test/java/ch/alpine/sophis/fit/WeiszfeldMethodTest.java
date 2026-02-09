@@ -87,7 +87,7 @@ class WeiszfeldMethodTest {
   void testQuantity() {
     int present = 0;
     for (int count = 0; count < 10; ++count) {
-      Tensor tensor = RandomVariate.of(UniformDistribution.unit(), 20, 2).map(value -> Quantity.of(value, "m"));
+      Tensor tensor = RandomVariate.of(UniformDistribution.unit(), 20, 2).maps(value -> Quantity.of(value, "m"));
       SpatialMedian spatialMedian = new WeiszfeldMethod(Chop._10);
       Optional<Tensor> optional = spatialMedian.uniform(tensor);
       if (optional.isPresent()) {

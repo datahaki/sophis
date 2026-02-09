@@ -81,7 +81,7 @@ class RamerDouglasPeuckerTest {
 
   @Test
   void testQuantity() {
-    Tensor points = CirclePoints.of(100).map(value -> Quantity.of(value, "m"));
+    Tensor points = CirclePoints.of(100).maps(value -> Quantity.of(value, "m"));
     Tensor tensor = RnCurveDecimation.of(Quantity.of(0.03, "m")).apply(points);
     assertEquals(tensor.length(), 17);
   }

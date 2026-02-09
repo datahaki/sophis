@@ -26,7 +26,7 @@ public enum DubinsType {
 
   DubinsType(int s0s, int s1s, int s2s, DubinsSteers dubinsSteer) {
     signature = Tensors.vector(s0s, s1s, s2s).unmodifiable();
-    signatureAbs = signature.map(Abs.FUNCTION).unmodifiable();
+    signatureAbs = signature.maps(Abs.FUNCTION).unmodifiable();
     isFirstTurnRight = s0s == -1;
     isFirstEqualsLast = s0s == s2s;
     containsStraight = s1s == 0;

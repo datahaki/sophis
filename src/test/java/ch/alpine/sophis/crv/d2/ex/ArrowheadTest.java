@@ -41,6 +41,6 @@ class ArrowheadTest {
   @Test
   void testMean() {
     Tensor tensor = Mean.of(Arrowhead.of(2));
-    assertEquals(tensor, tensor.map(Scalar::zero));
+    assertEquals(tensor, tensor.maps(Scalar::zero));
   }
 }

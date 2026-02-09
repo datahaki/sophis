@@ -123,7 +123,7 @@ class RigidMotionFitTest {
     Tensor points = RandomVariate.of(distribution, 6, 3);
     Tensor target = RandomVariate.of(distribution, 6, 3);
     assertThrows(Exception.class, () -> RigidMotionFit.of(points, target, Array.zeros(6)));
-    assertThrows(Exception.class, () -> RigidMotionFit.of(points, target, Array.zeros(6).map(N.DOUBLE)));
+    assertThrows(Exception.class, () -> RigidMotionFit.of(points, target, Array.zeros(6).maps(N.DOUBLE)));
   }
 
   @Test

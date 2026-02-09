@@ -41,7 +41,7 @@ public class DistanceMatrixToPoints {
     Tensor g = TensorProduct.of(ones, d0).add(TensorProduct.of(d0, ones)) //
         .subtract(matrix).multiply(RationalScalar.HALF);
     Eigensystem eigensystem = Eigensystem.ofSymmetric(g);
-    Tensor sqrt = eigensystem.values().map(chop).map(Sqrt.FUNCTION);
+    Tensor sqrt = eigensystem.values().maps(chop).maps(Sqrt.FUNCTION);
     Tensor vectors = eigensystem.vectors();
     Tensor x = Transpose.of(Tensor.of(IntStream.range(0, n) //
         .filter(i -> Scalars.nonZero(sqrt.Get(i))) //

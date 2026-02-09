@@ -28,7 +28,7 @@ class FourPointCurveSubdivisionTest {
   void testSimple() {
     CurveSubdivision curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
-    Tensor tensor = CirclePoints.of(4).map(operator);
+    Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = Nest.of(curveSubdivision::cyclic, tensor, 1);
     ExactTensorQ.require(actual);
     assertEquals(actual, Tensors.fromString("{{1, 0}, {5/8, 5/8}, {0, 1}, {-5/8, 5/8}, {-1, 0}, {-5/8, -5/8}, {0, -1}, {5/8, -5/8}}"));

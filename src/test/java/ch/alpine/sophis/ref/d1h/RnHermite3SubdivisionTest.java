@@ -72,15 +72,15 @@ class RnHermite3SubdivisionTest {
     Polynomial f0 = Polynomial.of(Tensors.vector(2, -7, 4, -3));
     Polynomial f1 = f0.derivative();
     Tensor domain = Range.of(0, 10);
-    Tensor control = Transpose.of(Tensors.of(domain.map(f0), domain.map(f1)));
+    Tensor control = Transpose.of(Tensors.of(domain.maps(f0), domain.maps(f1)));
     TensorIteration tensorIteration = hermiteSubdivision.string(RealScalar.ONE, control);
     Tensor iterate = tensorIteration.iterate();
     ExactTensorQ.require(iterate);
     Tensor idm = Range.of(0, 19).multiply(RationalScalar.HALF);
     Tensor if0 = iterate.get(Tensor.ALL, 0);
-    assertEquals(if0, idm.map(f0));
+    assertEquals(if0, idm.maps(f0));
     Tensor if1 = iterate.get(Tensor.ALL, 1);
-    assertEquals(if1, idm.map(f1));
+    assertEquals(if1, idm.maps(f1));
     Tensor id1 = Differences.of(iterate);
     Tensor id2 = Differences.of(id1);
     Tensor id3 = Differences.of(id2);

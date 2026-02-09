@@ -29,7 +29,7 @@ class Clothoid1Test {
     ScalarTensorFunction scalarTensorFunction = Clothoid1.INSTANCE.curve(beg, end);
     assertEquals(beg, scalarTensorFunction.apply(RealScalar.ZERO));
     assertEquals(end, scalarTensorFunction.apply(RealScalar.ONE));
-    Tensor curve = Subdivide.of(0.0, 1.0, 50).map(scalarTensorFunction);
+    Tensor curve = Subdivide.of(0.0, 1.0, 50).maps(scalarTensorFunction);
     assertTrue(FiniteTensorQ.of(curve));
   }
 }

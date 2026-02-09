@@ -48,7 +48,7 @@ class BiinvariantTest {
     Sedarim weightingInterface = Serialization.copy(biinvariant.distances(sequence));
     Tensor point = RandomVariate.of(distribution, 3);
     Tensor weights = weightingInterface.sunder(point);
-    weights.map(QuantityMagnitude.singleton("m"));
+    weights.maps(QuantityMagnitude.singleton("m"));
   }
 
   @Test

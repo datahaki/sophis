@@ -21,7 +21,7 @@ class LagrangeInterpolationTest {
     Tensor control = RandomVariate.of(DiscreteUniformDistribution.of(-3, 7), 4, 7).unmodifiable();
     Interpolation interpolation = LagrangeInterpolation.of(RGroup.INSTANCE, control);
     Tensor domain = Range.of(0, control.length());
-    Tensor polynom = domain.map(interpolation::at);
+    Tensor polynom = domain.maps(interpolation::at);
     assertEquals(control, polynom);
     ExactTensorQ.require(polynom);
   }

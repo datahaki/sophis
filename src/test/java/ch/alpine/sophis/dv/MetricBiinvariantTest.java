@@ -34,7 +34,7 @@ class MetricBiinvariantTest {
     // inverseDistanceWeighting
     BarycentricCoordinate barycentricCoordinate = //
         new HsCoordinates(RGroup.INSTANCE, INVERSE_DISTANCE_WEIGHTING);
-    Tensor weights = barycentricCoordinate.weights(Tensors.vector(1, 3).map(Tensors::of), RealScalar.of(2).map(Tensors::of));
+    Tensor weights = barycentricCoordinate.weights(Tensors.vector(1, 3).maps(Tensors::of), RealScalar.of(2).maps(Tensors::of));
     assertEquals(weights, Tensors.of(RationalScalar.HALF, RationalScalar.HALF));
   }
 

@@ -33,6 +33,6 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
     // exist only at sequence points
     Tensor design = manifold.exponential(point).log().slash(sequence);
     return InfluenceKernel.of(design).apply( //
-        NormalizeTotal.FUNCTION.apply(sedarim.sunder(point).map(variogram))); // point as input to target
+        NormalizeTotal.FUNCTION.apply(sedarim.sunder(point).maps(variogram))); // point as input to target
   }
 }

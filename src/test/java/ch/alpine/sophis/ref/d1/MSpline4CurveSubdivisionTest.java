@@ -20,7 +20,7 @@ class MSpline4CurveSubdivisionTest {
   void testBivariate() {
     CurveSubdivision curveSubdivision = MSpline4CurveSubdivision.of(LinearBiinvariantMean.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
-    Tensor tensor = CirclePoints.of(4).map(operator);
+    Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = Nest.of(curveSubdivision::cyclic, tensor, 1);
     ExactTensorQ.require(actual);
     assertEquals(actual.extract(0, 3), Tensors.fromString("{{5/8, -1/4}, {5/8, 1/4}, {1/4, 5/8}}"));

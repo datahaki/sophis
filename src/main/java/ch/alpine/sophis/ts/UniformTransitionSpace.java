@@ -48,13 +48,13 @@ public class UniformTransitionSpace implements TransitionSpace {
     @Override
     public Tensor sampled(Scalar minResolution) {
       ScalarTensorFunction curve = geodesicSpace.curve(head, tail);
-      return DOMAIN.map(curve);
+      return DOMAIN.maps(curve);
     }
 
     @Override
     public Tensor linearized(Scalar minResolution) {
       ScalarTensorFunction curve = geodesicSpace.curve(head, tail);
-      return DOMAIN.map(curve);
+      return DOMAIN.maps(curve);
     }
 
     @Override

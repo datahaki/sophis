@@ -72,9 +72,9 @@ public class GeodesicBSplineFunction extends BSplineFunction {
           ? (Scalar) RGroup.INSTANCE.midpoint(knots.Get(index - 1), knots.Get(index))
           : knots.Get(index), index);
     samples = Range.of(-degree + 1, sequence.length() + degree) //
-        .map(index -> index.subtract(shift)) //
-        .map(Clips.interval(0, last)) //
-        .map(LinearInterpolation.of(knots)::at);
+        .maps(index -> index.subtract(shift)) //
+        .maps(Clips.interval(0, last)) //
+        .maps(LinearInterpolation.of(knots)::at);
   }
 
   /** @param scalar inside interval [0, control.length() - 1]

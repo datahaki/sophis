@@ -14,7 +14,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
 /* package */ record BiinvariantVector(InfluenceMatrix influenceMatrix, Tensor vector) implements Serializable {
   /** @return vector of affine weights */
   public Tensor weighting(ScalarUnaryOperator variogram) {
-    return NormalizeTotal.FUNCTION.apply(vector.map(variogram));
+    return NormalizeTotal.FUNCTION.apply(vector.maps(variogram));
   }
 
   /** @return generalized barycentric coordinate */

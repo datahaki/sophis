@@ -41,13 +41,13 @@ public record WeiszfeldMethod(Chop chop) implements SpatialMedian, Serializable 
   @Override // from SpatialMedian
   public Optional<Tensor> weighted(Tensor sequence, Tensor weights) {
     AffineQ.INSTANCE.requireMember(weights);
-    Tensor point = weights.dot(sequence).map(N.DOUBLE); // initial value
+    Tensor point = weights.dot(sequence).maps(N.DOUBLE); // initial value
     for (int iteration = 0; iteration < MAX_ITERATIONS; ++iteration) {
       Tensor dist = Tensor.of(sequence.stream().map(point.negate()::add).map(Vector2Norm::of));
       int index = ArgMin.of(dist);
       if (Scalars.isZero(dist.Get(index)))
         return Optional.of(point);
-      Tensor invdist = dist.map(Scalar::reciprocal);
+      Tensor invdist = dist.maps(Scalar::reciprocal);
       if (chop.isClose(point, point = NormalizeTotal.FUNCTION.apply(Times.of(weights, invdist)).dot(sequence)))
         return Optional.of(point);
     }

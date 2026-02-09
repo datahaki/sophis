@@ -29,7 +29,7 @@ public record LeveragesGenesis(ScalarUnaryOperator variogram) implements Genesis
   @Override // from Genesis
   public Tensor origin(Tensor levers) {
     InfluenceMatrix influenceMatrix = new Mahalanobis(levers);
-    Tensor vector = NormalizeTotal.FUNCTION.apply(influenceMatrix.leverages_sqrt().map(variogram));
+    Tensor vector = NormalizeTotal.FUNCTION.apply(influenceMatrix.leverages_sqrt().maps(variogram));
     return new InfluenceKernel(influenceMatrix).apply(vector);
   }
 }

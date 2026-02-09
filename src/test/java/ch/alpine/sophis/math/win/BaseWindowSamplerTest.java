@@ -72,8 +72,8 @@ class BaseWindowSamplerTest {
     for (int size = 0; size < 5; ++size) {
       Tensor tensor = RandomVariate.of(NormalDistribution.standard(), 2, 3, 4);
       for (WindowFunctions smoothingKernel : WindowFunctions.values()) {
-        Tensor v1 = tensor.map(smoothingKernel.get());
-        Tensor v2 = tensor.negate().map(smoothingKernel.get());
+        Tensor v1 = tensor.maps(smoothingKernel.get());
+        Tensor v2 = tensor.negate().maps(smoothingKernel.get());
         assertEquals(v1, v2);
       }
     }

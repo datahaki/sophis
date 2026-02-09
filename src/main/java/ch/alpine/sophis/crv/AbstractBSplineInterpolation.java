@@ -58,7 +58,7 @@ public abstract class AbstractBSplineInterpolation implements Serializable {
      * @return */
     public Iteration stepJacobi() {
       // evaluate curve at all parameter values
-      Tensor refine = Range.of(0, target.length()).map(geodesicBSplineFunction(control));
+      Tensor refine = Range.of(0, target.length()).maps(geodesicBSplineFunction(control));
       return new Iteration(Tensor.of(IntStream.range(0, control.length()) //
           .mapToObj(index -> move(control.get(index), refine.get(index), target.get(index)))), steps + 1);
     }
@@ -83,7 +83,7 @@ public abstract class AbstractBSplineInterpolation implements Serializable {
     for (int count = 0; count < maxiter; ++count) {
       iteration = iteration.stepGaussSeidel();
       Tensor q = iteration.control();
-      if (chop.isClose(p.map(N.DOUBLE), q))
+      if (chop.isClose(p.maps(N.DOUBLE), q))
         break;
       p = q;
     }

@@ -44,8 +44,8 @@ class DubinsPathGeneratorTest {
     DubinsPath dubinsPath = DubinsPath.of(DubinsType.LSR, Quantity.of(1, "m"), Tensors.fromString("{0[m], 0[m], 0[m]}"));
     Tensor g0 = Tensors.fromString("{1[m], 2[m], 3}").unmodifiable();
     assertTrue(Scalars.isZero(dubinsPath.length()));
-    Subdivide.of(0, 1, 10).map(dubinsPath.sampler(g0));
-    Subdivide.of(0, 1, 10).map(dubinsPath.unit(g0));
+    Subdivide.of(0, 1, 10).maps(dubinsPath.sampler(g0));
+    Subdivide.of(0, 1, 10).maps(dubinsPath.unit(g0));
   }
 
   @Test

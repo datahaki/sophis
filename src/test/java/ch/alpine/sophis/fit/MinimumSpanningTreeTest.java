@@ -32,7 +32,7 @@ class MinimumSpanningTreeTest {
 
   @Test
   void testHilbertQuantity() {
-    List<IntUndirectedEdge> list = MinimumSpanningTree.of(HilbertMatrix.of(10).map(s -> Quantity.of(s, "m")));
+    List<IntUndirectedEdge> list = MinimumSpanningTree.of(HilbertMatrix.of(10).maps(s -> Quantity.of(s, "m")));
     assertEquals(list.size(), 9);
   }
 }

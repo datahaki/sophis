@@ -183,7 +183,7 @@ class ClothoidTest {
   void testAngles() {
     Tensor pxy = Tensors.vector(0, 0);
     Tensor qxy = Tensors.vector(1, 0);
-    Tensor angles = Range.of(-3, 4).map(Pi.TWO::multiply);
+    Tensor angles = Range.of(-3, 4).maps(Pi.TWO::multiply);
     for (Tensor angle : angles) {
       Clothoid clothoid = CLOTHOID_BUILDER.curve(pxy.append(angle), qxy.append(angle));
       Tensor r = clothoid.apply(RationalScalar.HALF);

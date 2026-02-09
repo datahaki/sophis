@@ -59,7 +59,7 @@ public enum RnAffineCoordinate implements BarycentricCoordinate {
 
     @Override
     public Tensor apply(Tensor x) {
-      return x.add(negm).dot(pinv).map(_1_n::add);
+      return x.add(negm).dot(pinv).maps(_1_n::add);
     }
   }
 }

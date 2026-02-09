@@ -29,6 +29,6 @@ public enum ClothoidDistance implements TensorMetric, TensorNorm {
 
   @Override // from TensorNorm
   public Scalar norm(Tensor xya) {
-    return distance(xya.map(Scalar::zero), xya);
+    return distance(xya.maps(Scalar::zero), xya);
   }
 }

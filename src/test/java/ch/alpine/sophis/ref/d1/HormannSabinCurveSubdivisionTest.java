@@ -24,7 +24,7 @@ class HormannSabinCurveSubdivisionTest {
   void testSimple() {
     CurveSubdivision curveSubdivision = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
-    Tensor tensor = CirclePoints.of(4).map(operator);
+    Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = Nest.of(curveSubdivision::cyclic, tensor, 1);
     ExactTensorQ.require(actual);
     Tensor p = tensor.get(3);

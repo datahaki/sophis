@@ -58,10 +58,10 @@ public class DubinsTransition extends AbstractTransition {
       Tensor segments = dubinsPath.segments().divide(length());
       Tensor p0 = s0 == 0 ? Tensors.empty() : Subdivide.of(segments.Get(0).zero(), segments.Get(0), s0);
       Tensor p2 = s2 == 0 ? Tensors.empty() : Subdivide.of(segments.Get(1), segments.Get(2), s2);
-      return Join.of(p0, p2).map(scalarTensorFunction);
+      return Join.of(p0, p2).maps(scalarTensorFunction);
     }
     int n = Math.max(1, steps(minResolution));
     return Subdivide.of(0.0, 1.0, n) //
-        .map(dubinsPath.unit(start()));
+        .maps(dubinsPath.unit(start()));
   }
 }

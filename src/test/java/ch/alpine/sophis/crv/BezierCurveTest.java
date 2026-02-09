@@ -35,7 +35,7 @@ class BezierCurveTest {
     ExactTensorQ.require(tensor);
     Tensor domain = Subdivide.of(0, 1, 7);
     ScalarTensorFunction stf2 = BezierCurve.of(LinearBiinvariantMean.INSTANCE, control);
-    assertEquals(domain.map(stf1), domain.map(stf2));
+    assertEquals(domain.maps(stf1), domain.maps(stf2));
     stf1.apply(RationalScalar.of(-1, 4));
     stf1.apply(RationalScalar.of(+5, 4));
   }

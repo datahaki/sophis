@@ -58,7 +58,7 @@ public class EtaRaster implements StateTimeRaster, Serializable {
 
   @Override // from StateTimeRasterization
   public Tensor convertToKey(StateTime stateTime) {
-    return Times.of(eta, represent.apply(stateTime)).map(Floor.FUNCTION);
+    return Times.of(eta, represent.apply(stateTime)).maps(Floor.FUNCTION);
   }
 
   /** @return unmodifiable */

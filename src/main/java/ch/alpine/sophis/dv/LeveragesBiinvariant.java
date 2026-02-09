@@ -56,7 +56,7 @@ public class LeveragesBiinvariant extends BiinvariantBase implements Genesis {
     Objects.requireNonNull(sequence);
     return point -> {
       Tensor levers = manifold.exponential(point).log().slash(sequence);
-      Tensor target = NormalizeTotal.FUNCTION.apply(origin(levers).map(variogram));
+      Tensor target = NormalizeTotal.FUNCTION.apply(origin(levers).maps(variogram));
       return LagrangeCoordinates.of(levers, target);
     };
   }

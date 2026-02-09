@@ -14,9 +14,9 @@ enum ParametricResampleDemo {
     Tensor points = Tensors.fromString("{{100, 0}, {100, 2}, {100, 3}, {10, 10}, {10, 10.2}, {10, 10.4}, {20, 40}}");
     ResampleResult resampleResult = pr.apply(points);
     for (Tensor ret : resampleResult.getParameters()) {
-      System.out.println(ret.map(Round._2));
+      System.out.println(ret.maps(Round._2));
     }
     for (Tensor ret : resampleResult.getPoints())
-      System.out.println(Pretty.of(ret.map(Round._1)));
+      System.out.println(Pretty.of(ret.maps(Round._1)));
   }
 }

@@ -35,16 +35,16 @@ class WavefrontTest {
         Tensor faces = wavefrontObject.faces();
         if (0 < faces.length()) {
           CoordinateBoundingBox minMax = CoordinateBounds.of(faces);
-          assertEquals(minMax.min().map(Sign::requirePositiveOrZero), minMax.min());
+          assertEquals(minMax.min().maps(Sign::requirePositiveOrZero), minMax.min());
           ScalarUnaryOperator hi_bound = Min.function(RealScalar.of(vertices.length() - 1));
-          assertEquals(minMax.max().map(hi_bound), minMax.max());
+          assertEquals(minMax.max().maps(hi_bound), minMax.max());
         }
         Tensor nrmls = wavefrontObject.normals();
         if (0 < nrmls.length()) {
           CoordinateBoundingBox minMax = CoordinateBounds.of(nrmls);
-          assertEquals(minMax.min().map(Sign::requirePositiveOrZero), minMax.min());
+          assertEquals(minMax.min().maps(Sign::requirePositiveOrZero), minMax.min());
           ScalarUnaryOperator hi_bound = Min.function(RealScalar.of(normals.length() - 1));
-          assertEquals(minMax.max().map(hi_bound), minMax.max());
+          assertEquals(minMax.max().maps(hi_bound), minMax.max());
         }
       }
     }

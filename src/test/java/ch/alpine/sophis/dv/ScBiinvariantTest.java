@@ -20,7 +20,7 @@ class ScBiinvariantTest {
 
   @Test
   void testSimple2() {
-    Tensor sequence = Tensors.vector(2, 4).map(Tensors::of);
+    Tensor sequence = Tensors.vector(2, 4).maps(Tensors::of);
     Tensor target = Tensors.vector(1);
     Tensor weights = INSTANCE.weights(sequence, target);
     Tensor mean = ScGroup.INSTANCE.biinvariantMean().mean(sequence, weights);

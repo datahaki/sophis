@@ -61,7 +61,7 @@ class BiinvariantVectorTest {
     new InfluenceMatrixQ(Chop._09).requireMember(H);
     // ---
     Tensor traceh = Trace.of(H);
-    Chop._07.requireClose(traceh, traceh.map(Round.FUNCTION));
+    Chop._07.requireClose(traceh, traceh.maps(Round.FUNCTION));
     // ---
     Tensor matrix = manifold.exponential(point).log().slash(sequence);
     InfluenceMatrix influenceMatrix = InfluenceMatrix.of(matrix);

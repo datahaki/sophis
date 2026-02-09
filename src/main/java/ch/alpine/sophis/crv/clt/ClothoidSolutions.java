@@ -53,10 +53,10 @@ public class ClothoidSolutions implements Serializable {
       ClothoidTangentDefect clothoidTangentDefect = ClothoidTangentDefect.of(s1, s2);
       ScalarUnaryOperator function = s -> Re.FUNCTION.apply(clothoidTangentDefect.apply(s));
       FindRoot findRoot = FindRoot.of(function, CHOP);
-      Tensor defects = probes.map(clothoidTangentDefect);
+      Tensor defects = probes.maps(clothoidTangentDefect);
       // System.out.println("defects=");
       // defects.stream().forEach(System.out::println);
-      defects_real = defects.map(Re.FUNCTION);
+      defects_real = defects.maps(Re.FUNCTION);
       // Tensor defects_imag = defects.map(Imag.FUNCTION);
       boolean prev = Sign.isPositive(defects_real.Get(0));
       for (int index = 1; index < probes.length(); ++index) {

@@ -29,7 +29,7 @@ class LineDistancesTest {
     for (LineDistances lineDistances : LineDistances.values()) {
       CurveDecimation curveDecimation = CurveDecimation.of( //
           lineDistances.supply(RGroup.INSTANCE), Quantity.of(0.7, "m"));
-      Tensor tensor = curveDecimation.apply(RandomVariate.of(UniformDistribution.unit(), 100, 3).map(s -> Quantity.of(s, "m")));
+      Tensor tensor = curveDecimation.apply(RandomVariate.of(UniformDistribution.unit(), 100, 3).maps(s -> Quantity.of(s, "m")));
       assertTrue(tensor.length() < 90);
     }
   }

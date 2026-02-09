@@ -37,8 +37,8 @@ class IterativeTargetCoordinateTest {
         if (1 < deque.size() && deque.size() < 100) {
           Tensor w0 = deque.peekFirst().weights();
           Tensor w1 = deque.peekLast().weights();
-          assertFalse(Chop._10.allZero(w0.negate().map(Ramp.FUNCTION)));
-          assertTrue(Chop._10.allZero(w1.negate().map(Ramp.FUNCTION)));
+          assertFalse(Chop._10.allZero(w0.negate().maps(Ramp.FUNCTION)));
+          assertTrue(Chop._10.allZero(w1.negate().maps(Ramp.FUNCTION)));
         }
         ++count;
       }

@@ -20,7 +20,7 @@ class MSpline3CurveSubdivisionTest {
   void testSimple() {
     CurveSubdivision curveSubdivision = new MSpline3CurveSubdivision(LinearBiinvariantMean.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
-    Tensor tensor = CirclePoints.of(4).map(operator);
+    Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = Nest.of(curveSubdivision::cyclic, tensor, 1);
     ExactTensorQ.require(actual);
     Tensor expected = Tensors.fromString("{{3/4, 0}, {1/2, 1/2}, {0, 3/4}, {-1/2, 1/2}, {-3/4, 0}, {-1/2, -1/2}, {0, -3/4}, {1/2, -1/2}}");

@@ -22,7 +22,7 @@ class NormWeightingTest {
   @Test
   void testSimple() {
     Genesis inverseNorm = new NormWeighting(Vector2Norm::of, InversePowerVariogram.of(1));
-    Tensor weights = inverseNorm.origin(Tensors.vector(1, 3).map(Tensors::of));
+    Tensor weights = inverseNorm.origin(Tensors.vector(1, 3).maps(Tensors::of));
     assertEquals(weights, Tensors.of(RationalScalar.of(3, 4), RationalScalar.of(1, 4)));
   }
 

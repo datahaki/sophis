@@ -40,7 +40,7 @@ class DistanceMatrixToPointsTest {
     RandomGenerator randomGenerator = new Random(1);
     Distribution distribution = UniformDistribution.of(Clips.absolute(2));
     for (int d = 0; d < 4; ++d) {
-      Tensor sequence = RandomVariate.of(distribution, randomGenerator, 8 + d, 1 + d).map(s -> Quantity.of(s, "m"));
+      Tensor sequence = RandomVariate.of(distribution, randomGenerator, 8 + d, 1 + d).maps(s -> Quantity.of(s, "m"));
       Tensor D = DistanceMatrix.of(sequence, Vector2NormSquared::between);
       Tensor points = DistanceMatrixToPoints.of(D);
       assertEquals(Dimensions.of(points), Arrays.asList(8 + d, 1 + d));

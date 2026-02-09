@@ -22,7 +22,7 @@ class GeodesicBSplineInterpolationTest {
 
   @Test
   void testApplyRn() {
-    Tensor target = Tensors.vector(1, 2, 0, 2, 1, 3).map(N.DOUBLE);
+    Tensor target = Tensors.vector(1, 2, 0, 2, 1, 3).maps(N.DOUBLE);
     AbstractBSplineInterpolation geodesicBSplineInterpolation = //
         new GeodesicBSplineInterpolation(RGroup.INSTANCE, 2, target);
     Tensor control = geodesicBSplineInterpolation.apply();

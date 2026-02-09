@@ -52,6 +52,6 @@ class LagrangeQuadraticTest {
         LagrangeQuadratic.interp(RealScalar.of(5), RealScalar.of(7), RealScalar.of(13));
     Distribution distribution = UniformDistribution.of(-1, 2);
     Tensor domain = RandomVariate.of(distribution, 10);
-    Tolerance.CHOP.requireClose(domain.map(clothoidQuadratic), domain.map(scalarUnaryOperator));
+    Tolerance.CHOP.requireClose(domain.maps(clothoidQuadratic), domain.maps(scalarUnaryOperator));
   }
 }

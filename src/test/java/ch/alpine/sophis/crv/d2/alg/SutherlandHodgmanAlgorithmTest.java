@@ -46,7 +46,7 @@ class SutherlandHodgmanAlgorithmTest {
     for (int count = 0; count < 10; ++count) {
       Tensor tensor = RandomVariate.of(distribution, randomGenerator, 6, 2);
       PolyclipResult polyclipResult = //
-          SutherlandHodgmanAlgorithm.of(CirclePoints.of(3 + count).map(s -> Quantity.of(s, "m"))) //
+          SutherlandHodgmanAlgorithm.of(CirclePoints.of(3 + count).maps(s -> Quantity.of(s, "m"))) //
               .apply(tensor);
       Tensor tensor2 = polyclipResult.tensor();
       EqualsReduce.zero(tensor2);

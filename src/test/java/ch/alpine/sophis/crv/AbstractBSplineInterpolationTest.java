@@ -26,7 +26,7 @@ class AbstractBSplineInterpolationTest {
     Tolerance.CHOP.requireClose(control.get(3), target.get(3));
     GeodesicBSplineFunction geodesicBSplineFunction = //
         GeodesicBSplineFunction.of(SnManifold.INSTANCE, 2, control);
-    Chop._06.requireClose(target, Range.of(0, 4).map(geodesicBSplineFunction));
+    Chop._06.requireClose(target, Range.of(0, 4).maps(geodesicBSplineFunction));
   }
 
   @Test
@@ -43,6 +43,6 @@ class AbstractBSplineInterpolationTest {
     Tolerance.CHOP.requireClose(control.get(3), target.get(3));
     GeodesicBSplineFunction geodesicBSplineFunction = //
         GeodesicBSplineFunction.of(SnManifold.INSTANCE, 2, control);
-    Chop._06.requireClose(target, Range.of(0, 4).map(geodesicBSplineFunction));
+    Chop._06.requireClose(target, Range.of(0, 4).maps(geodesicBSplineFunction));
   }
 }

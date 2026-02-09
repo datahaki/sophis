@@ -13,7 +13,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
   private static final Scalar HALF = RealScalar.of(0.5);
   private static final Tensor X = Tensors.vector(-1, 1) //
       .multiply(Sqrt.FUNCTION.apply(RationalScalar.of(1, 3))) //
-      .map(RealScalar.ONE::add) //
+      .maps(RealScalar.ONE::add) //
       .divide(RealScalar.of(2));
   private static final Scalar X0 = X.Get(0);
   private static final Scalar X1 = X.Get(1);

@@ -12,6 +12,6 @@ public enum LanczosCurve {
    * @param number strictly positive
    * @return */
   public static Tensor refine(Tensor points, int number) {
-    return Subdivide.of(0, points.length() - 1, number).map(LanczosInterpolation.of(points)::at);
+    return Subdivide.of(0, points.length() - 1, number).maps(LanczosInterpolation.of(points)::at);
   }
 }

@@ -35,8 +35,8 @@ class BiinvariantMeanInterpolationTest {
     Interpolation li = LinearInterpolation.of(vector);
     Distribution distribution = UniformDistribution.of(0, vector.length() - 1);
     Tensor domain = RandomVariate.of(distribution, 100);
-    Tensor bv = domain.map(bi::at);
-    Tensor lv = domain.map(li::at);
+    Tensor bv = domain.maps(bi::at);
+    Tensor lv = domain.maps(li::at);
     Chop._12.requireClose(bv, lv);
   }
 
@@ -44,7 +44,7 @@ class BiinvariantMeanInterpolationTest {
   void testExact() {
     Tensor vector = RandomVariate.of(DiscreteUniformDistribution.of(10, 20), 12);
     Interpolation interpolation = BiinvariantMeanInterpolation.of(LinearBiinvariantMean.INSTANCE, vector);
-    Tensor result = Range.of(0, 12).map(interpolation::at);
+    Tensor result = Range.of(0, 12).maps(interpolation::at);
     assertEquals(result, vector);
     ExactTensorQ.require(result);
   }

@@ -31,7 +31,7 @@ class LaneRiesenfeld3CurveSubdivisionTest {
   void testSimple() {
     CurveSubdivision curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
-    Tensor tensor = CirclePoints.of(4).map(operator);
+    Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = Nest.of(curveSubdivision::cyclic, tensor, 1);
     ExactTensorQ.require(actual);
     Tensor expected = Tensors.fromString("{{3/4, 0}, {1/2, 1/2}, {0, 3/4}, {-1/2, 1/2}, {-3/4, 0}, {-1/2, -1/2}, {0, -3/4}, {1/2, -1/2}}");
@@ -83,7 +83,7 @@ class LaneRiesenfeld3CurveSubdivisionTest {
   @Test
   void testR3S2() {
     Tensor tensor = Subdivide.of(-0.5, 0.8, 6) //
-        .map(scalar -> Tensors.of(scalar, RealScalar.of(0.3), RealScalar.ONE));
+        .maps(scalar -> Tensors.of(scalar, RealScalar.of(0.3), RealScalar.ONE));
     tensor = Tensor.of(tensor.stream() //
         .map(Normalize.with(Vector2Norm::of)) //
         .map(row -> Tensors.of(row, row)));

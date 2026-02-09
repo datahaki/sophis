@@ -54,7 +54,7 @@ class BSpline2CurveSubdivisionTest {
   @Test
   void testSimple() {
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
-    Tensor tensor = CirclePoints.of(4).map(operator);
+    Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = CURVE_SUBDIVISION.cyclic(tensor);
     ExactTensorQ.require(actual);
     Tensor expected = Tensors.fromString("{{3/4, 1/4}, {1/4, 3/4}, {-1/4, 3/4}, {-3/4, 1/4}, {-3/4, -1/4}, {-1/4, -3/4}, {1/4, -3/4}, {3/4, -1/4}}");
@@ -105,7 +105,7 @@ class BSpline2CurveSubdivisionTest {
     int length = 9;
     Tensor curve = Range.of(0, length + 1);
     Tensor refined = CURVE_SUBDIVISION.string(curve);
-    Tensor tensor = Subdivide.of(0, length, length * 2).map(scalar -> scalar.add(RationalScalar.of(1, 4)));
+    Tensor tensor = Subdivide.of(0, length, length * 2).maps(scalar -> scalar.add(RationalScalar.of(1, 4)));
     assertEquals(refined, tensor.extract(0, tensor.length() - 1));
     ExactTensorQ.require(refined);
   }

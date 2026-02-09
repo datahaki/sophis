@@ -19,12 +19,12 @@ public record BarycentricMetricInterpolation(Sedarim sedarim) implements ScalarT
    * @return */
   public static ScalarTensorFunction of(Tensor knots, ScalarUnaryOperator variogram) {
     Biinvariant biinvariant = Biinvariants.METRIC.ofSafe(RGroup.INSTANCE);
-    return new BarycentricMetricInterpolation(biinvariant.coordinate(variogram, knots.map(Tensors::of)));
+    return new BarycentricMetricInterpolation(biinvariant.coordinate(variogram, knots.maps(Tensors::of)));
   }
 
   public static ScalarTensorFunction la(Tensor knots, ScalarUnaryOperator variogram) {
     Biinvariant biinvariant = Biinvariants.METRIC.ofSafe(RGroup.INSTANCE);
-    return new BarycentricMetricInterpolation(biinvariant.lagrainate(variogram, knots.map(Tensors::of)));
+    return new BarycentricMetricInterpolation(biinvariant.lagrainate(variogram, knots.maps(Tensors::of)));
   }
 
   @Override

@@ -49,7 +49,7 @@ class RnHermite2SubdivisionTest {
     Polynomial f0 = Polynomial.of(Tensors.vector(5, -3));
     Polynomial f1 = f0.derivative();
     Tensor domain = Range.of(0, 10);
-    Tensor control = Transpose.of(Tensors.of(domain.map(f0), domain.map(f1)));
+    Tensor control = Transpose.of(Tensors.of(domain.maps(f0), domain.maps(f1)));
     for (HermiteSubdivision hermiteSubdivision : LIST) {
       TensorIteration tensorIteration = hermiteSubdivision.string(RealScalar.ONE, control);
       Tensor iterate = Do.of(tensorIteration::iterate, 3);

@@ -61,8 +61,8 @@ class ThreePointCoordinateTest {
   @Test
   void testQuantity() throws ClassNotFoundException, IOException {
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(r2(ThreePointScalings.DISCRETE_HARMONIC));
-    Tensor P = Tensors.fromString("{{1, 1}, {5, 1}, {3, 5}, {2, 5}}").map(s -> Quantity.of(s, "m"));
-    Tensor x = Tensors.vector(4, 2).map(s -> Quantity.of(s, "m"));
+    Tensor P = Tensors.fromString("{{1, 1}, {5, 1}, {3, 5}, {2, 5}}").maps(s -> Quantity.of(s, "m"));
+    Tensor x = Tensors.vector(4, 2).maps(s -> Quantity.of(s, "m"));
     Tensor weights = barycentricCoordinate.weights(P, x);
     Tensor exp = Tensors.vector(0.120229008, 0.629770992, 0.230916031, 0.019083969);
     Chop._08.requireClose(weights, exp);
@@ -73,8 +73,8 @@ class ThreePointCoordinateTest {
   void testQuantity2() throws ClassNotFoundException, IOException {
     for (ThreePointScalings barycentric : ThreePointScalings.values()) {
       BarycentricCoordinate barycentricCoordinate = Serialization.copy(r2(barycentric));
-      Tensor P = Tensors.fromString("{{1, 1}, {5, 1}, {3, 5}, {2, 5}}").map(s -> Quantity.of(s, "m"));
-      Tensor x = Tensors.vector(4, 2).map(s -> Quantity.of(s, "m"));
+      Tensor P = Tensors.fromString("{{1, 1}, {5, 1}, {3, 5}, {2, 5}}").maps(s -> Quantity.of(s, "m"));
+      Tensor x = Tensors.vector(4, 2).maps(s -> Quantity.of(s, "m"));
       Tensor weights = barycentricCoordinate.weights(P, x);
       Chop._10.requireClose(weights.dot(P), x);
     }

@@ -43,14 +43,14 @@ class Curvature2DTest {
 
   @Test
   void testQuantity() {
-    Tensor points = Join.of(CirclePoints.of(10), Array.zeros(10, 2)).map(s -> Quantity.of(s, "m"));
+    Tensor points = Join.of(CirclePoints.of(10), Array.zeros(10, 2)).maps(s -> Quantity.of(s, "m"));
     Tensor string = Curvature2D.string(points);
     assertEquals(string.stream().map(Scalar.class::cast).map(QuantityUnit::of).distinct().count(), 1);
   }
 
   @Test
   void testQuantity3() {
-    Tensor points = CirclePoints.of(3).map(s -> Quantity.of(s, "m"));
+    Tensor points = CirclePoints.of(3).maps(s -> Quantity.of(s, "m"));
     Tensor string = Curvature2D.string(points);
     VectorQ.requireLength(string, 3);
     assertEquals(string.stream().map(Scalar.class::cast).map(QuantityUnit::of).distinct().count(), 1);
@@ -58,7 +58,7 @@ class Curvature2DTest {
 
   @Test
   void testQuantity4() {
-    Tensor points = CirclePoints.of(4).map(s -> Quantity.of(s, "m"));
+    Tensor points = CirclePoints.of(4).maps(s -> Quantity.of(s, "m"));
     Tensor string = Curvature2D.string(points);
     VectorQ.requireLength(string, 4);
     assertEquals(string.stream().map(Scalar.class::cast).map(QuantityUnit::of).distinct().count(), 1);
@@ -72,7 +72,7 @@ class Curvature2DTest {
 
   @Test
   void testQuantityFail() {
-    Tensor points = Join.of(Array.zeros(10, 2).map(s -> Quantity.of(s, "m")), Array.zeros(10, 2));
+    Tensor points = Join.of(Array.zeros(10, 2).maps(s -> Quantity.of(s, "m")), Array.zeros(10, 2));
     assertThrows(Exception.class, () -> Curvature2D.string(points));
   }
 

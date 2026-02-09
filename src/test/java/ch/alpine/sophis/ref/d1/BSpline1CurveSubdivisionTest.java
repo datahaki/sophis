@@ -31,7 +31,7 @@ class BSpline1CurveSubdivisionTest {
   void testCyclic() {
     CurveSubdivision curveSubdivision = new BSpline1CurveSubdivision(RGroup.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
-    Tensor tensor = CirclePoints.of(4).map(operator);
+    Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = curveSubdivision.cyclic(tensor);
     ExactTensorQ.require(actual);
     Tensor expected = Tensors.fromString("{{1, 0}, {1/2, 1/2}, {0, 1}, {-1/2, 1/2}, {-1, 0}, {-1/2, -1/2}, {0, -1}, {1/2, -1/2}}");

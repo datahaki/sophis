@@ -37,9 +37,9 @@ public record IterativeTargetCoordinate(Genesis genesis, Scalar beta, int k) imp
     Tensor w = genesis.origin(levers); // weighting
     Tensor m = InfluenceMatrix.of(levers).residualMaker();
     Tensor n = NormalizeTotal.FUNCTION.apply(m.dot(w)); // coordinates
-    deque.add(new WeightsFactors(n, n.map(Scalar::zero)));
+    deque.add(new WeightsFactors(n, n.maps(Scalar::zero)));
     // TODO SOPHUS ALG also target values above 1
-    Tensor b = n.map(IdentRamp.FUNCTION);
+    Tensor b = n.maps(IdentRamp.FUNCTION);
     // Tensor b = n.map(Abs.FUNCTION);
     if (!CHOP.allZero(b))
     // if (!n.stream().map(Scalar.class::cast).allMatch(Sign::isPositiveOrZero))
@@ -49,8 +49,8 @@ public record IterativeTargetCoordinate(Genesis genesis, Scalar beta, int k) imp
         Tensor sol = tuo.apply(b);
         w = w.add(sol);
         n = NormalizeTotal.FUNCTION.apply(m.dot(w));
-        deque.add(new WeightsFactors(n, n.map(Scalar::zero)));
-        b = n.map(IdentRamp.FUNCTION);
+        deque.add(new WeightsFactors(n, n.maps(Scalar::zero)));
+        b = n.maps(IdentRamp.FUNCTION);
         // b = n.map(Abs.FUNCTION);
         if (CHOP.allZero(b))
           // if (n.stream().map(Scalar.class::cast).allMatch(Sign::isPositiveOrZero))

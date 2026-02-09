@@ -81,7 +81,7 @@ public record Kriging(Sedarim sedarim, Scalar one, Tensor weights, Tensor invers
     // TODO SOPHUS IMPL probably can be simplified
     Scalar one = Quantity.of(RealScalar.ONE, QuantityUnit.of(EqualsReduce.zero(matrix)));
     int n = matrix.length();
-    Tensor rhs = Tensors.of(values.get(0).map(Scalar::zero));
+    Tensor rhs = Tensors.of(values.get(0).maps(Scalar::zero));
     LagrangeMultiplier lagrangeMultiplier = //
         new LagrangeMultiplier(matrix, ConstantArray.of(one, 1, n));
     Tensor inverse = PseudoInverse.of(lagrangeMultiplier.matrix());

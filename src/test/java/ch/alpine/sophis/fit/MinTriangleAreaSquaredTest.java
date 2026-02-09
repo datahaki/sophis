@@ -37,7 +37,7 @@ class MinTriangleAreaSquaredTest {
     for (int n = 3; n <= 6; ++n) {
       Tensor polygon = CirclePoints.of(n);
       polygon.forEach(row -> row.append(RealScalar.of(3)));
-      polygon = polygon.map(s -> Quantity.of(s, "s"));
+      polygon = polygon.maps(s -> Quantity.of(s, "s"));
       Tensor weights = MinTriangleAreaSquared.INSTANCE.origin(polygon);
       Tolerance.CHOP.requireClose(weights, AveragingWeights.INSTANCE.origin(polygon));
     }

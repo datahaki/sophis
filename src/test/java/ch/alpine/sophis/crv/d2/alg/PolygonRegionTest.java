@@ -60,12 +60,12 @@ class PolygonRegionTest {
         { 1, 0 }, //
         { 1, 1 }, //
         { 0, 1 } //
-    }).map(suo).unmodifiable();
-    assertTrue(FranklinPnpoly.isInside(polygon, Tensors.vector(0.5, .5).map(suo)));
-    assertTrue(FranklinPnpoly.isInside(polygon, Tensors.vector(0.9, .9).map(suo)));
-    assertTrue(FranklinPnpoly.isInside(polygon, Tensors.vector(0.1, .1).map(suo)));
-    assertFalse(FranklinPnpoly.isInside(polygon, Tensors.vector(0.1, -0.1).map(suo)));
-    assertFalse(FranklinPnpoly.isInside(polygon, Tensors.vector(1, 1.1).map(suo)));
+    }).maps(suo).unmodifiable();
+    assertTrue(FranklinPnpoly.isInside(polygon, Tensors.vector(0.5, .5).maps(suo)));
+    assertTrue(FranklinPnpoly.isInside(polygon, Tensors.vector(0.9, .9).maps(suo)));
+    assertTrue(FranklinPnpoly.isInside(polygon, Tensors.vector(0.1, .1).maps(suo)));
+    assertFalse(FranklinPnpoly.isInside(polygon, Tensors.vector(0.1, -0.1).maps(suo)));
+    assertFalse(FranklinPnpoly.isInside(polygon, Tensors.vector(1, 1.1).maps(suo)));
   }
 
   @Test
