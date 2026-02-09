@@ -8,7 +8,8 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.ext.Timing;
+import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.qty.Timing;
 
 public class Expand<T extends StateCostNode> {
   protected final ExpandInterface<T> expandInterface;
@@ -48,10 +49,8 @@ public class Expand<T extends StateCostNode> {
    * @param timeLimit */
   public void maxTime(Scalar timeLimit) {
     final Timing timing = Timing.started();
-    final double time = timeLimit.number().doubleValue();
     expand(Integer.MAX_VALUE, () -> {
-      double t = timing.seconds();
-      boolean bool = t >= time;
+      boolean bool = Scalars.lessEquals(timeLimit, timing.seconds());
       if (bool && expandInterface.getBest().isEmpty())
         System.out.println("*** TimeLimit reached -- No Goal was found ***");
       return bool;
@@ -62,7 +61,7 @@ public class Expand<T extends StateCostNode> {
     // TODO OWL API probably should be implemented in separate Expand
     if (expandInterface instanceof ObservingExpandInterface<T> observingExpandInterface) {
       if (observingExpandInterface.isObserving()) {
-        final Map<Double, Scalar> observations = new LinkedHashMap<>();
+        final Map<Scalar, Scalar> observations = new LinkedHashMap<>();
         Timing timing = Timing.started();
         Supplier<Boolean> isFinished_ = () -> {
           expandInterface.getBest().ifPresent(node -> {

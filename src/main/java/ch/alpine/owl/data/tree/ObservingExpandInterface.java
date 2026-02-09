@@ -18,7 +18,7 @@ public interface ObservingExpandInterface<T extends StateCostNode> extends Expan
    * 
    * @param observations (current time, current best node's {@link StateCostNode#costFromRoot()})
    * DEFAULT: print short summary */
-  default void process(Map<Double, Scalar> observations) {
+  default void process(Map<Scalar, Scalar> observations) {
     if (!observations.isEmpty()) {
       System.out.print("time until first solution:\t");
       observations.keySet().stream().findFirst().ifPresent(System.out::println);

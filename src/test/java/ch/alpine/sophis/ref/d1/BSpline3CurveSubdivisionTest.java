@@ -23,7 +23,6 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.ext.Serialization;
-import ch.alpine.tensor.ext.Timing;
 import ch.alpine.tensor.lie.rot.CirclePoints;
 import ch.alpine.tensor.nrm.Normalize;
 import ch.alpine.tensor.nrm.Vector2Norm;
@@ -31,6 +30,7 @@ import ch.alpine.tensor.num.Rationalize;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
+import ch.alpine.tensor.qty.Timing;
 import ch.alpine.tensor.red.Nest;
 import ch.alpine.tensor.sca.Chop;
 
