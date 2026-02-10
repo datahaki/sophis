@@ -3,7 +3,6 @@ package ch.alpine.sophis.gbc.d2;
 
 import java.io.Serializable;
 
-import ch.alpine.sophis.dv.HsCoordinates;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 
@@ -16,7 +15,6 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
  * "Power Coordinates: A Geometric Construction of Barycentric Coordinates on Convex Polytopes"
  * by Max Budninskiy, Beibei Liu, Yiying Tong, Mathieu Desbrun, 2016
  * 
- * @see HsCoordinates
  * @see InsidePolygonCoordinate */
 public enum ThreePointCoordinate {
   ;

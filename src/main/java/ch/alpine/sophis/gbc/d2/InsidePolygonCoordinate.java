@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.sophis.gbc.d2;
 
-import java.util.Objects;
-
 import ch.alpine.sophis.crv.d2.alg.OriginEnclosureQ;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.DoubleScalar;
@@ -13,10 +11,6 @@ import ch.alpine.tensor.alg.ConstantArray;
  * 
  * @param genesis that evaluates polygon coordinates at zero (0, 0) */
 public record InsidePolygonCoordinate(Genesis genesis) implements Genesis {
-  public InsidePolygonCoordinate {
-    Objects.requireNonNull(genesis);
-  }
-
   @Override // from BarycentricCoordinate
   public Tensor origin(Tensor levers) {
     return OriginEnclosureQ.INSTANCE.isMember(levers) //

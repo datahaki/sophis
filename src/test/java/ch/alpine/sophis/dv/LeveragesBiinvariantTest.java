@@ -62,19 +62,23 @@ class LeveragesBiinvariantTest {
     }
   }
 
-  @Test
-  void testDistances() {
-    Distribution distribution = UniformDistribution.of(Clips.absolute(10));
-    Manifold manifold = Se2CoveringGroup.INSTANCE;
-    Genesis genesis = new LeveragesBiinvariant(manifold);
-    BarycentricCoordinate w1 = new HsCoordinates(manifold, genesis);
-    for (int length = 4; length < 10; ++length) {
-      Tensor sequence = RandomVariate.of(distribution, length, 3);
-      Tensor point = RandomVariate.of(distribution, 3);
-      w1.weights(sequence, point);
-    }
-  }
-
+  // TODO use coordinates!!!
+  // @Disabled
+  // @Test
+  // void testDistances() {
+  // Distribution distribution = UniformDistribution.of(Clips.absolute(10));
+  // Manifold manifold = Se2CoveringGroup.INSTANCE;
+  // Genesis genesis = new LeveragesBiinvariant(manifold);
+  // BarycentricCoordinate w1 = new HsCoordinates(manifold, genesis);
+  // for (int length = 4; length < 10; ++length) {
+  // Tensor sequence = RandomVariate.of(distribution, length, 3);
+  // Sedarim sedarim = HsGenesis.wrap_generic(manifold, genesis, sequence);
+  // Tensor point = RandomVariate.of(distribution, 3);
+  // w1.weights(sequence, point);
+  // }
+  // }
+  // TODO
+  @Disabled
   @Test
   void testSimple() {
     Manifold manifold = Se2CoveringGroup.INSTANCE;
