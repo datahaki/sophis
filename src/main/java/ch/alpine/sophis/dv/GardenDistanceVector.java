@@ -25,7 +25,10 @@ import ch.alpine.tensor.mat.gr.Mahalanobis;
    * @param sequence */
   public GardenDistanceVector(Manifold manifold, Tensor sequence) {
     exponentials = sequence.stream().map(manifold::exponential).toList();
-    array = exponentials.stream().map(exponential -> exponential.log().slash(sequence)).map(Mahalanobis::new).toList();
+    array = exponentials.stream() //
+        .map(exponential -> exponential.log().slash(sequence)) //
+        .map(Mahalanobis::new) //
+        .toList();
   }
 
   @Override // from Sedarim

@@ -249,8 +249,8 @@ class Se2BiinvariantTest {
       Tensor one = tensorMapping.apply(xya);
       Chop._08.requireClose(one, biinvariantMean.mean(all, weights));
       Chop._06.requireClose(weights, barycentricCoordinate.weights(all, one));
-      Tensor design = manifold.exponential(one).log().slash(all);
-      Chop._06.requireClose(influence, InfluenceMatrix.of(design).matrix());
+      Tensor levers = manifold.exponential(one).log().slash(all);
+      Chop._06.requireClose(influence, InfluenceMatrix.of(levers).matrix());
     }
   }
 

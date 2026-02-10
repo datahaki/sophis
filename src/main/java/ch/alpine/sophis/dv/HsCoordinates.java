@@ -4,6 +4,7 @@ package ch.alpine.sophis.dv;
 import java.io.Serializable;
 
 import ch.alpine.sophus.hs.Manifold;
+import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.Tensor;
 
@@ -15,9 +16,7 @@ import ch.alpine.tensor.Tensor;
 public record HsCoordinates(Manifold manifold, Genesis genesis) implements BarycentricCoordinate, Serializable {
   @Override // from BarycentricCoordinate
   public Tensor weights(Tensor sequence, Tensor point) {
-    // if the affineQ fails then fix in genesis but not here !!!
-    // return AffineQ.INSTANCE.requireMember(genesis.origin(manifold.exponential(point).log().slash(sequence)));
-    // FIXME SOPHIS Hs Coordinates is apparently misused !!! since weights should add up to one !!!
-    return genesis.origin(manifold.exponential(point).log().slash(sequence));
+    Tensor weights = genesis.origin(manifold.exponential(point).log().slash(sequence));
+    return AffineQ.INSTANCE.requireMember(weights);
   }
 }

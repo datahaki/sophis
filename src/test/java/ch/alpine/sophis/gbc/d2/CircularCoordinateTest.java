@@ -29,7 +29,7 @@ class CircularCoordinateTest {
     for (int n = 3; n < 10; ++n) {
       Tensor sequence = RandomVariate.of(distribution, n, 2);
       Tensor weights = CircularCoordinate.INSTANCE.origin(sequence);
-      MeanDefect meanDefect = new MeanDefect(sequence, weights, RGroup.INSTANCE.exponential0());
+      MeanDefect meanDefect = MeanDefect.of(sequence, weights, RGroup.INSTANCE.exponential0());
       Tensor tangent = meanDefect.tangent();
       Chop._07.requireAllZero(tangent);
     }

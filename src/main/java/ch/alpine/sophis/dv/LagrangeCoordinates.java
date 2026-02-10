@@ -10,7 +10,7 @@ import ch.alpine.tensor.mat.pi.LagrangeMultiplier;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.sca.Chop;
 
-enum LagrangeCoordinates {
+/* package */ enum LagrangeCoordinates {
   ;
   private static final AffineQ AFFINE_Q_APPROX = new AffineQ(Chop._08);
 

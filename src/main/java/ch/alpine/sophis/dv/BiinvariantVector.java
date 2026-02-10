@@ -19,6 +19,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
 
   /** @return generalized barycentric coordinate */
   public Tensor coordinate(ScalarUnaryOperator variogram) {
-    return NormalizeTotal.FUNCTION.apply(influenceMatrix.kernel(weighting(variogram)));
+    // NormalizeTotal of weights is obsolete
+    return new WeightingToCoordinate(influenceMatrix).apply(vector.maps(variogram));
   }
 }

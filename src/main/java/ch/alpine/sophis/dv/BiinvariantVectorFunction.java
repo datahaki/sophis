@@ -38,8 +38,8 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
   /** @param point
    * @return biinvariant vector at given point of manifold */
   public BiinvariantVector biinvariantVector(Tensor point) {
-    Tensor design = manifold.exponential(point).log().slash(sequence);
-    InfluenceMatrix influenceMatrix = InfluenceMatrix.of(design);
+    Tensor levers = manifold.exponential(point).log().slash(sequence);
+    InfluenceMatrix influenceMatrix = InfluenceMatrix.of(levers);
     Tensor matrix = influenceMatrix.matrix();
     return new BiinvariantVector( //
         influenceMatrix, //

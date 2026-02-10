@@ -42,7 +42,7 @@ class IterativeCoordinateTest {
           Tensor wn = NormalizeTotal.FUNCTION.apply(genesis.origin(circum).dot(matrix));
           Chop._10.requireClose(wn, weights);
         }
-        MeanDefect meanDefect = new MeanDefect(levers, weights, RGroup.INSTANCE.exponential0());
+        MeanDefect meanDefect = MeanDefect.of(levers, weights, RGroup.INSTANCE.exponential0());
         Tensor tangent = meanDefect.tangent();
         Chop._07.requireAllZero(tangent);
       }
@@ -132,7 +132,7 @@ class IterativeCoordinateTest {
         for (int k = 0; k < 3; ++k) {
           Genesis ic = new IterativeCoordinate(genesis, k);
           Tensor weights = ic.origin(levers);
-          MeanDefect meanDefect = new MeanDefect(levers, weights, RGroup.INSTANCE.exponential0());
+          MeanDefect meanDefect = MeanDefect.of(levers, weights, RGroup.INSTANCE.exponential0());
           Tensor tangent = meanDefect.tangent();
           Chop._07.requireAllZero(tangent);
         }
@@ -149,7 +149,7 @@ class IterativeCoordinateTest {
       for (int k = 0; k < 5; ++k) {
         Tensor weights = new IterativeCoordinate(genesis, k).origin(levers);
         Chop._10.requireAllZero(weights.dot(levers));
-        MeanDefect meanDefect = new MeanDefect(levers, weights, RGroup.INSTANCE.exponential0());
+        MeanDefect meanDefect = MeanDefect.of(levers, weights, RGroup.INSTANCE.exponential0());
         Tensor tangent = meanDefect.tangent();
         Chop._07.requireAllZero(tangent);
       }

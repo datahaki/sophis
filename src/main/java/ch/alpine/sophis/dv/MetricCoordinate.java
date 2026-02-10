@@ -44,6 +44,6 @@ public record MetricCoordinate(Genesis genesis) implements Genesis {
 
   @Override // from Genesis
   public Tensor origin(Tensor levers) {
-    return InfluenceKernel.of(levers).apply(genesis.origin(levers));
+    return WeightingToCoordinate.of(levers).apply(genesis.origin(levers));
   }
 }

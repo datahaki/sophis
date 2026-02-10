@@ -127,10 +127,10 @@ class BiinvariantTest {
         Tensor sequence = Tensor.of(IdentityMatrix.of(3).stream().map(rotation::dot));
         Tensor weights = barycentricCoordinate.weights(sequence, mean);
         Chop._12.requireClose(weights, NormalizeTotal.FUNCTION.apply(Tensors.vector(1, 1, 1)));
-        Chop._12.requireAllZero(new MeanDefect(sequence, weights, RpnManifold.INSTANCE.exponential(mean)).tangent());
+        Chop._12.requireAllZero(MeanDefect.of(sequence, weights, RpnManifold.INSTANCE.exponential(mean)).tangent());
         {
           Tensor point = RpnManifold.INSTANCE.biinvariantMean().mean(sequence, weights);
-          Chop._05.requireAllZero(new MeanDefect(sequence, weights, RpnManifold.INSTANCE.exponential(point)).tangent());
+          Chop._05.requireAllZero(MeanDefect.of(sequence, weights, RpnManifold.INSTANCE.exponential(point)).tangent());
         }
       }
   }

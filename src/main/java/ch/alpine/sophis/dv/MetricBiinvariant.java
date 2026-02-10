@@ -119,7 +119,7 @@ public class MetricBiinvariant extends BiinvariantBase {
 
   public Genesis coordinate(ScalarUnaryOperator variogram) {
     Objects.requireNonNull(variogram);
-    return levers -> InfluenceKernel.of(levers).apply(weighting(variogram).origin(levers));
+    return levers -> WeightingToCoordinate.of(levers).apply(weighting(variogram).origin(levers));
   }
 
   @Override // from Biinvariant

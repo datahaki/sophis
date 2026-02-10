@@ -7,18 +7,16 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
 import ch.alpine.tensor.mat.gr.Mahalanobis;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 
-// TODO class name is not ideal since normalization happens -> weights?, or even coordinates
 /** Reference:
  * https://vixra.org/abs/2007.0043 */
-/* package */ record InfluenceKernel(InfluenceMatrix influenceMatrix) implements TensorUnaryOperator {
+/* package */ record WeightingToCoordinate(InfluenceMatrix influenceMatrix) implements TensorUnaryOperator {
   /** function returns a vector vnull that satisfies
-   * vnull . design == 0
+   * vnull . levers == 0
    * 
-   * @param design matrix
-   * @param vector
+   * @param levers matrix
    * @return mapping of vector to solution of barycentric equation */
-  public static TensorUnaryOperator of(Tensor design) {
-    return new InfluenceKernel(new Mahalanobis(design));
+  public static TensorUnaryOperator of(Tensor levers) {
+    return new WeightingToCoordinate(new Mahalanobis(levers));
   }
 
   @Override

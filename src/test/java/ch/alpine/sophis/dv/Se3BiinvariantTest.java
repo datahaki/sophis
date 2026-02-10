@@ -80,7 +80,7 @@ class Se3BiinvariantTest {
         weights = NormalizeTotal.FUNCTION.apply(weights);
         Tensor mean = ITERATIVE_BIINVARIANT_MEAN.mean(sequence, weights);
         assertEquals(Dimensions.of(mean), Arrays.asList(4, 4));
-        Tensor defect = new MeanDefect(sequence, weights, Se3Group.INSTANCE.exponential(mean)).tangent();
+        Tensor defect = MeanDefect.of(sequence, weights, Se3Group.INSTANCE.exponential(mean)).tangent();
         Chop._08.requireAllZero(defect);
       }
     }

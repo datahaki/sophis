@@ -11,7 +11,7 @@ public record KrigingCoordinate(Manifold manifold, Kriging kriging, Tensor seque
 
   @Override
   public Tensor sunder(Tensor point) {
-    Tensor design = manifold.exponential(point).log().slash(sequence);
-    return InfluenceKernel.of(design).apply(kriging.estimate(point));
+    Tensor levers = manifold.exponential(point).log().slash(sequence);
+    return WeightingToCoordinate.of(levers).apply(kriging.estimate(point));
   }
 }

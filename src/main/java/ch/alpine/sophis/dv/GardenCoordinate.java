@@ -30,7 +30,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
   public Tensor sunder(Tensor point) {
     // building influence matrix at point is warranted since the mahalanobis forms
     // exist only at sequence points
-    Tensor design = manifold.exponential(point).log().slash(sequence);
-    return InfluenceKernel.of(design).apply(sedarim.sunder(point).maps(variogram)); // point as input to target
+    Tensor levers = manifold.exponential(point).log().slash(sequence);
+    return WeightingToCoordinate.of(levers).apply(sedarim.sunder(point).maps(variogram)); // point as input to target
   }
 }
