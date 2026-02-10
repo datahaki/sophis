@@ -14,6 +14,6 @@ public interface Sedarim extends Serializable {
   Tensor sunder(Tensor point);
 
   default TensorUnaryOperator sunder() {
-    return p -> sunder(p);
+    return this::sunder;
   }
 }

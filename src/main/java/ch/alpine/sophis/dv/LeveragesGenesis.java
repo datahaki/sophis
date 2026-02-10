@@ -6,7 +6,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.mat.gr.InfluenceMatrix;
 import ch.alpine.tensor.mat.gr.Mahalanobis;
-import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 /** target coordinate is the preferred way to evaluate
@@ -29,7 +28,6 @@ public record LeveragesGenesis(ScalarUnaryOperator variogram) implements Genesis
   @Override // from Genesis
   public Tensor origin(Tensor levers) {
     InfluenceMatrix influenceMatrix = new Mahalanobis(levers);
-    Tensor vector = NormalizeTotal.FUNCTION.apply(influenceMatrix.leverages_sqrt().maps(variogram));
-    return new InfluenceKernel(influenceMatrix).apply(vector);
+    return new InfluenceKernel(influenceMatrix).apply(influenceMatrix.leverages_sqrt().maps(variogram));
   }
 }

@@ -4,12 +4,11 @@ package ch.alpine.sophis.gbc.d2;
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Objects;
-import java.util.OptionalInt;
 
 import ch.alpine.sophis.dv.AffineCoordinate;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.UnitVector;
+import ch.alpine.tensor.chq.FiniteTensorQ;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.red.Times;
@@ -31,10 +30,9 @@ public record IterativeCoordinate(Genesis genesis, int k) implements Genesis {
   @Override // from Genesis
   public Tensor origin(Tensor levers) {
     Tensor scaling = InverseNorm.INSTANCE.origin(levers);
-    OptionalInt optionalInt = NormalizeTotal.indeterminate(scaling);
-    return optionalInt.isPresent() //
-        ? UnitVector.of(levers.length(), optionalInt.orElseThrow())
-        : NormalizeTotal.FUNCTION.apply(Times.of(scaling, iterate(Times.of(scaling, levers))));
+    return NormalizeTotal.FUNCTION.apply(FiniteTensorQ.of(scaling) //
+        ? Times.of(scaling, iterate(Times.of(scaling, levers)))
+        : scaling);
   }
 
   /** @param normalized points on circle

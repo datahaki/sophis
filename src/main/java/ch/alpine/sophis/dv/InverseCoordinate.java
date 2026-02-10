@@ -26,7 +26,6 @@ public class InverseCoordinate implements Sedarim {
   @Override
   public Tensor sunder(Tensor point) {
     Tensor design = manifold.exponential(point).log().slash(sequence);
-    return InfluenceKernel.of(design).apply( //
-        sedarim.sunder(point).dot(weights));
+    return InfluenceKernel.of(design).apply(sedarim.sunder(point).dot(weights));
   }
 }

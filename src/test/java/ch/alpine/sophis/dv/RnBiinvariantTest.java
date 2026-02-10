@@ -10,6 +10,8 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
@@ -33,6 +35,10 @@ import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class RnBiinvariantTest {
+  static BarycentricCoordinate[] barycentrics() {
+    return GbcHelper.barycentrics(RGroup.INSTANCE);
+  }
+
   @Test
   void testSymmetric() {
     int d = 2;
@@ -54,14 +60,13 @@ class RnBiinvariantTest {
     }
   }
 
-  @Test
-  void testLinearPrecision() {
+  @ParameterizedTest
+  @MethodSource("barycentrics")
+  void testLinearPrecision(BarycentricCoordinate barycentricCoordinate) {
     Tensor sequence = RandomVariate.of(NormalDistribution.standard(), 10, 3);
     Tensor point = RandomVariate.of(NormalDistribution.standard(), 3);
-    for (BarycentricCoordinate barycentricCoordinates : GbcHelper.barycentrics(RGroup.INSTANCE)) {
-      Tensor weights = barycentricCoordinates.weights(sequence, point);
-      Chop._10.requireClose(weights.dot(sequence), point);
-    }
+    Tensor weights = barycentricCoordinate.weights(sequence, point);
+    Chop._10.requireClose(weights.dot(sequence), point);
   }
 
   @Test
@@ -81,40 +86,39 @@ class RnBiinvariantTest {
       }
   }
 
-  @Test
-  void testSimple() {
+  @ParameterizedTest
+  @MethodSource("barycentrics")
+  void testSimple(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = NormalDistribution.standard();
     for (int n = 2; n < 5; ++n) {
       int length = n + 1 + ThreadLocalRandom.current().nextInt(3);
       Tensor points = RandomVariate.of(distribution, length, n);
       Tensor mean = RandomVariate.of(distribution, n);
-      for (BarycentricCoordinate barycentricCoordinate : GbcHelper.barycentrics(RGroup.INSTANCE)) {
-        Tensor weights = barycentricCoordinate.weights(points, mean);
-        Tensor result = LinearBiinvariantMean.INSTANCE.mean(points, weights);
-        Chop._08.requireClose(mean, result);
-      }
+      // FIXME wights don't always add up to 1
+      Tensor weights = barycentricCoordinate.weights(points, mean);
+      Tensor result = LinearBiinvariantMean.INSTANCE.mean(points, weights);
+      Chop._08.requireClose(mean, result);
     }
   }
 
-  @Test
-  void testRandom() {
+  @ParameterizedTest
+  @MethodSource("barycentrics")
+  void testRandom(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = UniformDistribution.unit();
     BiinvariantMean biinvariantMean = LinearBiinvariantMean.INSTANCE;
     for (int n = 2; n < 4; ++n) {
       int length = n + 1 + ThreadLocalRandom.current().nextInt(3);
       Tensor points = RandomVariate.of(distribution, length, n);
       Tensor xya = RandomVariate.of(distribution, n);
-      for (BarycentricCoordinate barycentricCoordinate : GbcHelper.barycentrics(RGroup.INSTANCE)) {
-        Tensor weights = barycentricCoordinate.weights(points, xya);
-        Chop._10.requireClose(Total.ofVector(weights), RealScalar.ONE);
-        Tensor x_recreated = biinvariantMean.mean(points, weights);
-        Chop._06.requireClose(xya, x_recreated);
-        Tensor shift = RandomVariate.of(distribution, n);
-        for (TensorUnaryOperator tensorMapping : BiinvariantCheck.of(RGroup.INSTANCE, shift))
-          Chop._04.requireClose(weights, //
-              barycentricCoordinate.weights( //
-                  Tensor.of(points.stream().map(tensorMapping)), tensorMapping.apply(xya)));
-      }
+      Tensor weights = barycentricCoordinate.weights(points, xya);
+      Chop._10.requireClose(Total.ofVector(weights), RealScalar.ONE);
+      Tensor x_recreated = biinvariantMean.mean(points, weights);
+      Chop._06.requireClose(xya, x_recreated);
+      Tensor shift = RandomVariate.of(distribution, n);
+      for (TensorUnaryOperator tensorMapping : BiinvariantCheck.of(RGroup.INSTANCE, shift))
+        Chop._04.requireClose(weights, //
+            barycentricCoordinate.weights( //
+                Tensor.of(points.stream().map(tensorMapping)), tensorMapping.apply(xya)));
     }
   }
 
@@ -177,22 +181,21 @@ class RnBiinvariantTest {
       }
   }
 
-  @Test
-  void testNullFail() {
-    for (BarycentricCoordinate barycentricCoordinate : GbcHelper.barycentrics(RGroup.INSTANCE))
-      assertThrows(Exception.class, () -> barycentricCoordinate.weights(null, null));
+  @ParameterizedTest
+  @MethodSource("barycentrics")
+  void testNullFail(BarycentricCoordinate barycentricCoordinate) {
+    assertThrows(Exception.class, () -> barycentricCoordinate.weights(null, null));
   }
 
-  @Test
-  void testColinear() {
+  @ParameterizedTest
+  @MethodSource("barycentrics")
+  void testColinear(BarycentricCoordinate barycentricCoordinate) {
     int d = 2;
     int n = 5;
-    for (BarycentricCoordinate barycentricCoordinate : GbcHelper.barycentrics(RGroup.INSTANCE)) {
-      Tensor sequence = RandomVariate.of(NormalDistribution.standard(), n, d);
-      sequence.append(sequence.get(n - 1).multiply(RealScalar.of(5)));
-      Tensor weights = barycentricCoordinate.weights(sequence, Array.zeros(d));
-      assertEquals(sequence.length(), n + 1);
-      AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
-    }
+    Tensor sequence = RandomVariate.of(NormalDistribution.standard(), n, d);
+    sequence.append(sequence.get(n - 1).multiply(RealScalar.of(5)));
+    Tensor weights = barycentricCoordinate.weights(sequence, Array.zeros(d));
+    assertEquals(sequence.length(), n + 1);
+    AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
   }
 }

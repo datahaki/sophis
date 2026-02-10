@@ -2,7 +2,6 @@
 package ch.alpine.sophis.gbc.d2;
 
 import java.util.Objects;
-import java.util.OptionalInt;
 
 import ch.alpine.sophis.crv.d2.alg.OriginEnclosureQ;
 import ch.alpine.sophus.math.Genesis;
@@ -11,8 +10,8 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorScalarFunction;
+import ch.alpine.tensor.chq.FiniteTensorQ;
 import ch.alpine.tensor.ext.Integers;
-import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
@@ -35,8 +34,7 @@ public record IterativeCoordinateLevel(Genesis genesis, Chop chop, int max) impl
   public Scalar apply(Tensor levers) {
     if (OriginEnclosureQ.INSTANCE.isMember(levers)) {
       Tensor scaling = InverseNorm.INSTANCE.origin(levers);
-      OptionalInt optionalInt = NormalizeTotal.indeterminate(scaling);
-      if (optionalInt.isEmpty()) {
+      if (FiniteTensorQ.of(scaling)) {
         Tensor normalized = Times.of(scaling, levers);
         int depth = 0;
         while (depth < max) {

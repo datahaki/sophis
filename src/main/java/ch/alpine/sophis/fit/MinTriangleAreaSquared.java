@@ -53,7 +53,7 @@ public enum MinTriangleAreaSquared implements Genesis {
     Tensor Aeqs = ConstantArray.of(RealScalar.ONE, 1, n);
     Tensor brhs = Tensors.of(RealScalar.ONE);
     /* LeastSquares.usingSvd is required, i.e. linear solve does not work */
-    Tensor sol = new LagrangeMultiplier(Aeye, Aeqs).usingSvd(btar, brhs);
+    Tensor sol = LagrangeMultiplier.of(Aeye, Aeqs).usingSvd(btar, brhs);
     /* normalize total for improved numerics */
     return NormalizeTotal.FUNCTION.apply(sol);
   }

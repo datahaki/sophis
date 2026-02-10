@@ -6,7 +6,6 @@ import java.util.Objects;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
-import ch.alpine.tensor.nrm.NormalizeTotal;
 
 /** Reference:
  * "Biinvariant Distance Vectors"
@@ -32,7 +31,6 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
     // building influence matrix at point is warranted since the mahalanobis forms
     // exist only at sequence points
     Tensor design = manifold.exponential(point).log().slash(sequence);
-    return InfluenceKernel.of(design).apply( //
-        NormalizeTotal.FUNCTION.apply(sedarim.sunder(point).maps(variogram))); // point as input to target
+    return InfluenceKernel.of(design).apply(sedarim.sunder(point).maps(variogram)); // point as input to target
   }
 }

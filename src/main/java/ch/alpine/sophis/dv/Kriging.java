@@ -83,7 +83,7 @@ public record Kriging(Sedarim sedarim, Scalar one, Tensor weights, Tensor invers
     int n = matrix.length();
     Tensor rhs = Tensors.of(values.get(0).maps(Scalar::zero));
     LagrangeMultiplier lagrangeMultiplier = //
-        new LagrangeMultiplier(matrix, ConstantArray.of(one, 1, n));
+        LagrangeMultiplier.of(matrix, ConstantArray.of(one, 1, n));
     Tensor inverse = PseudoInverse.of(lagrangeMultiplier.matrix());
     Tensor weights = inverse.dot(lagrangeMultiplier.b(values, rhs));
     return new Kriging(sedarim, one, weights, inverse);
