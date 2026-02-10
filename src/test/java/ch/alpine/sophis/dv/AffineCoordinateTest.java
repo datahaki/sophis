@@ -6,6 +6,8 @@ import java.util.Random;
 import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import ch.alpine.sophus.bm.IterativeBiinvariantMean;
 import ch.alpine.sophus.hs.s.Sphere;
@@ -22,6 +24,10 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
 
 class AffineCoordinateTest {
+  static BarycentricCoordinate[] barycentrics() {
+    return GbcHelper.barycentrics(RGroup.INSTANCE);
+  }
+
   @Test
   void testS1() {
     Genesis genesis = MetricCoordinate.affine();
@@ -53,11 +59,11 @@ class AffineCoordinateTest {
   private static final IterativeBiinvariantMean ITERATIVE_BIINVARIANT_MEAN = //
       IterativeBiinvariantMean.argmax(RGroup.INSTANCE);
 
-  @Test
-  void testConvergence() {
+  @ParameterizedTest
+  @MethodSource("barycentrics")
+  void testConvergence(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = NormalDistribution.of(0.0, 0.3);
-    final int d = 3;
-    for (BarycentricCoordinate barycentricCoordinate : GbcHelper.barycentrics(RGroup.INSTANCE))
+    for (int d = 3; d <= 5; ++d)
       for (int n = d + 1; n < 10; ++n) {
         Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, d).stream().map(RGroup.INSTANCE.exponential0()::exp));
         Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(UniformDistribution.unit(), n));
@@ -69,20 +75,19 @@ class AffineCoordinateTest {
       }
   }
 
-  @Test
-  void testConvergenceExact() {
+  @ParameterizedTest
+  @MethodSource("barycentrics")
+  void testConvergenceExact(BarycentricCoordinate barycentricCoordinate) {
     Random random = new Random(3);
     Distribution distribution = NormalDistribution.of(0.0, 0.3);
     int n = 4;
-    for (BarycentricCoordinate barycentricCoordinate : GbcHelper.barycentrics(RGroup.INSTANCE)) {
-      Tensor sequence = Tensor.of(RandomVariate.of(distribution, random, n, 3).stream().map(RGroup.INSTANCE.exponential0()::exp));
-      Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(UniformDistribution.unit(), random, n));
-      Optional<Tensor> optional = ITERATIVE_BIINVARIANT_MEAN.apply(sequence, weights);
-      Tensor mean = optional.orElseThrow();
-      Tensor w2 = barycentricCoordinate.weights(sequence, mean);
-      Optional<Tensor> o2 = ITERATIVE_BIINVARIANT_MEAN.apply(sequence, w2);
-      Chop._08.requireClose(mean, o2.orElseThrow());
-      Chop._08.requireClose(weights, w2);
-    }
+    Tensor sequence = Tensor.of(RandomVariate.of(distribution, random, n, 3).stream().map(RGroup.INSTANCE.exponential0()::exp));
+    Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(UniformDistribution.unit(), random, n));
+    Optional<Tensor> optional = ITERATIVE_BIINVARIANT_MEAN.apply(sequence, weights);
+    Tensor mean = optional.orElseThrow();
+    Tensor w2 = barycentricCoordinate.weights(sequence, mean);
+    Optional<Tensor> o2 = ITERATIVE_BIINVARIANT_MEAN.apply(sequence, w2);
+    Chop._08.requireClose(mean, o2.orElseThrow());
+    Chop._08.requireClose(weights, w2);
   }
 }

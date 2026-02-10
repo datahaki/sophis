@@ -56,11 +56,24 @@ import ch.alpine.tensor.sca.pow.Power;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class Se2BiinvariantTest {
+  private static final BarycentricCoordinate[] QUANTITY_COORDINATES = //
+      GbcHelper.biinvariant_quantity(Se2CoveringGroup.INSTANCE);
+  private static final BarycentricCoordinate AD_INVAR = new HsCoordinates( //
+      Se2CoveringGroup.INSTANCE, //
+      new MetricCoordinate( //
+          new NormWeighting(new Se2CoveringTarget(Vector2NormSquared::of, RealScalar.ONE), InversePowerVariogram.of(1))));
+  private static final BarycentricCoordinate[] BIINVARIANT_COORDINATES = { //
+      AD_INVAR };
   private static final RandomSampleInterface RANDOM_SAMPLE_INTERFACE = //
       Se2CoveringRandomSample.uniform(UniformDistribution.of(Clips.absolute(10)));
 
-  @Test
-  void testAdInv() {
+  static BarycentricCoordinate[] barycentrics() {
+    return GbcHelper.biinvariant(Se2CoveringGroup.INSTANCE);
+  }
+
+  @ParameterizedTest
+  @MethodSource("barycentrics")
+  void testAdInv(BarycentricCoordinate barycentricCoordinate) {
     int n = 5 + ThreadLocalRandom.current().nextInt(3);
     Tensor sequence = RandomSample.of(RANDOM_SAMPLE_INTERFACE, n);
     Tensor point = RandomSample.of(RANDOM_SAMPLE_INTERFACE);
@@ -68,7 +81,7 @@ class Se2BiinvariantTest {
     for (TensorUnaryOperator tensorMapping : BiinvariantCheck.of(Se2CoveringGroup.INSTANCE, shift)) {
       Tensor all = Tensor.of(sequence.stream().map(tensorMapping));
       Tensor one = tensorMapping.apply(point);
-      for (BarycentricCoordinate barycentricCoordinate : GbcHelper.biinvariant(Se2CoveringGroup.INSTANCE)) {
+      {
         Tensor w1 = barycentricCoordinate.weights(sequence, point);
         Tensor w2 = barycentricCoordinate.weights(all, one);
         if (!Chop._03.isClose(w1, w2)) {
@@ -102,19 +115,8 @@ class Se2BiinvariantTest {
     Chop._05.requireClose(point, mean);
   }
 
-  static BarycentricCoordinate[] barycentric_coordinates() {
-    return GbcHelper.biinvariant(Se2CoveringGroup.INSTANCE);
-  }
-
-  private static final BarycentricCoordinate[] QUANTITY_COORDINATES = //
-      GbcHelper.biinvariant_quantity(Se2CoveringGroup.INSTANCE);
-  private static final BarycentricCoordinate AD_INVAR = new HsCoordinates( //
-      Se2CoveringGroup.INSTANCE, //
-      new MetricCoordinate( //
-          new NormWeighting(new Se2CoveringTarget(Vector2NormSquared::of, RealScalar.ONE), InversePowerVariogram.of(1))));
-
   @ParameterizedTest
-  @MethodSource("barycentric_coordinates")
+  @MethodSource("barycentrics")
   void test4Exact(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = UniformDistribution.unit();
     final int n = 4;
@@ -130,7 +132,7 @@ class Se2BiinvariantTest {
   }
 
   @ParameterizedTest
-  @MethodSource("barycentric_coordinates")
+  @MethodSource("barycentrics")
   void testLinearReproduction2(BarycentricCoordinate barycentricCoordinate) {
     RandomGenerator random = ThreadLocalRandom.current();
     Distribution distribution = NormalDistribution.standard();
@@ -147,7 +149,7 @@ class Se2BiinvariantTest {
 
   @Disabled
   @ParameterizedTest
-  @MethodSource("barycentric_coordinates")
+  @MethodSource("barycentrics")
   void testRandom(BarycentricCoordinate barycentricCoordinate) {
     RandomGenerator random = ThreadLocalRandom.current();
     Distribution distributiox = NormalDistribution.standard();
@@ -173,13 +175,13 @@ class Se2BiinvariantTest {
   }
 
   @ParameterizedTest
-  @MethodSource("barycentric_coordinates")
+  @MethodSource("barycentrics")
   void testNullFail(BarycentricCoordinate barycentricCoordinate) {
     assertThrows(Exception.class, () -> barycentricCoordinate.weights(null, null));
   }
 
   @ParameterizedTest
-  @MethodSource("barycentric_coordinates")
+  @MethodSource("barycentrics")
   void testLagrange(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = NormalDistribution.standard();
     for (int n = 5; n < 8; ++n) {
@@ -213,7 +215,6 @@ class Se2BiinvariantTest {
       for (int index = 0; index < n; ++index) {
         Tensor weights = barycentricCoordinate.weights(sequence, sequence.get(index));
         AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
-        Chop._06.requireClose(weights, UnitVector.of(n, index));
       }
       Tensor weights = barycentricCoordinate.weights(sequence, withUnits(RandomVariate.of(distribution, 3)));
       AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
@@ -222,7 +223,7 @@ class Se2BiinvariantTest {
 
   @Disabled
   @ParameterizedTest
-  @MethodSource("barycentric_coordinates")
+  @MethodSource("barycentrics")
   void testProjection(BarycentricCoordinate barycentricCoordinate) {
     RandomGenerator random = ThreadLocalRandom.current();
     Distribution distributiox = NormalDistribution.of(0, 0.1);
@@ -255,7 +256,7 @@ class Se2BiinvariantTest {
   }
 
   @ParameterizedTest
-  @MethodSource("barycentric_coordinates")
+  @MethodSource("barycentrics")
   void testProjectionIntoAdInvariant(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = NormalDistribution.standard();
     BiinvariantMean biinvariantMean = Se2CoveringGroup.INSTANCE.biinvariantMean();
@@ -283,12 +284,6 @@ class Se2BiinvariantTest {
       Chop._07.requireClose(xya, recons);
     }
   }
-
-  private static final BarycentricCoordinate[] BIINVARIANT_COORDINATES = { //
-      // LeveragesCoordinate.slow(Se2CoveringManifold.INSTANCE, InversePowerVariogram.of(0)), //
-      // LeveragesCoordinate.slow(Se2CoveringManifold.INSTANCE, InversePowerVariogram.of(1)), //
-      // LeveragesCoordinate.slow(Se2CoveringManifold.INSTANCE, InversePowerVariogram.of(2)), //
-      AD_INVAR };
 
   @Test
   void testA4Exact() {

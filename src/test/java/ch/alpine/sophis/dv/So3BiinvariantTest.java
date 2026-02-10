@@ -27,11 +27,9 @@ import ch.alpine.tensor.sca.Chop;
 
 class So3BiinvariantTest {
   private static final LieGroup LIE_GROUP = new VectorizedGroup(So3Group.INSTANCE);
-  private static final BarycentricCoordinate[] BARYCENTRIC_COORDINATES = //
-      GbcHelper.barycentrics(LIE_GROUP);
 
   static BarycentricCoordinate[] barycentrics() {
-    return BARYCENTRIC_COORDINATES;
+    return GbcHelper.barycentrics(LIE_GROUP);
   }
 
   @Test

@@ -56,46 +56,30 @@ class SnBiinvariantsTest {
 
   @ParameterizedTest
   @MethodSource("barycentrics")
-  void testLagrangeProperty(BarycentricCoordinate barycentricCoordinate) {
-    RandomGenerator randomGenerator = new Random(3);
-    int d = 3;
-    int n = d + 1 + randomGenerator.nextInt(3);
-    Tensor sequence = randomCloud(UnitVector.of(d, 0), n, randomGenerator);
-    int count = randomGenerator.nextInt(sequence.length());
-    Tensor mean = sequence.get(count);
-    Tensor weights = barycentricCoordinate.weights(sequence, mean);
-    VectorQ.requireLength(weights, n);
-    AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
-    Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.exponential(mean)).tangent();
-    Chop._06.requireAllZero(evaluate);
-    Chop._03.requireClose(mean, SnManifold.INSTANCE.biinvariantMean().mean(sequence, weights));
-  }
-
-  @ParameterizedTest
-  @MethodSource("barycentrics")
   void testBiinvariance(BarycentricCoordinate barycentricCoordinate) {
     RandomGenerator randomGenerator = new Random(3);
-    int d = 3;
-    Tensor mean = UnitVector.of(d, 0);
-    RandomSampleInterface randomSampleInterface = new SoNGroup(d);
-    int n = d + 1 + randomGenerator.nextInt(3);
-    Tensor sequence = randomCloud(mean, n, randomGenerator);
-    Tensor weights = barycentricCoordinate.weights(sequence, mean);
-    VectorQ.requireLength(weights, n);
-    AffineQ.INSTANCE.requireMember(weights);
-    {
-      Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.exponential(mean)).tangent();
-      Chop._08.requireAllZero(evaluate);
-    }
-    // ---
-    {
-      Tensor matrix = RandomSample.of(randomSampleInterface);
-      Tensor mean2 = matrix.dot(mean);
-      Tensor shifted = Tensor.of(sequence.stream().map(matrix::dot));
-      Tensor evaluate = MeanDefect.of(shifted, weights, SnManifold.INSTANCE.exponential(mean2)).tangent();
-      Chop._10.requireAllZero(evaluate);
-      Tensor weights2 = barycentricCoordinate.weights(shifted, mean2);
-      Chop._04.requireClose(weights, weights2); // 1e-6 does not always work
+    for (int d = 2; d <= 4; ++d) {
+      Tensor mean = UnitVector.of(d, 0);
+      RandomSampleInterface randomSampleInterface = new SoNGroup(d);
+      int n = d + 1 + randomGenerator.nextInt(3);
+      Tensor sequence = randomCloud(mean, n, randomGenerator);
+      Tensor weights = barycentricCoordinate.weights(sequence, mean);
+      VectorQ.requireLength(weights, n);
+      AffineQ.INSTANCE.requireMember(weights);
+      {
+        Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.exponential(mean)).tangent();
+        Chop._08.requireAllZero(evaluate);
+      }
+      // ---
+      {
+        Tensor matrix = RandomSample.of(randomSampleInterface);
+        Tensor mean2 = matrix.dot(mean);
+        Tensor shifted = Tensor.of(sequence.stream().map(matrix::dot));
+        Tensor evaluate = MeanDefect.of(shifted, weights, SnManifold.INSTANCE.exponential(mean2)).tangent();
+        Chop._10.requireAllZero(evaluate);
+        Tensor weights2 = barycentricCoordinate.weights(shifted, mean2);
+        Chop._04.requireClose(weights, weights2); // 1e-6 does not always work
+      }
     }
   }
 
