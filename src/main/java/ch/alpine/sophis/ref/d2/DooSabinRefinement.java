@@ -17,7 +17,7 @@ import ch.alpine.sophis.srf.MeshStructure;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.RotateRight;
+import ch.alpine.tensor.alg.Rotate;
 
 /** Reference:
  * "Behaviour of recursive division surfaces near extraordinary points"
@@ -39,7 +39,7 @@ public record DooSabinRefinement(BiinvariantMean biinvariantMean) //
       Tensor weights = DooSabinWeights.CACHE.apply(n);
       int ofs = out.vrt.length();
       for (int index = 0; index < n; ++index) {
-        out.addVert(biinvariantMean.mean(sequence, RotateRight.of(weights, index)));
+        out.addVert(biinvariantMean.mean(sequence, Rotate.PUSH.of(weights, index)));
         IntDirectedEdge directedEdge = new IntDirectedEdge(face[index], face[(index + 1) % n]);
         edge_outVrt.put(directedEdge, new IntDirectedEdge(ofs + index, ofs + ((index + 1) % n)));
       }

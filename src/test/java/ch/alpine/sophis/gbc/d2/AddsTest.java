@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.RotateLeft;
+import ch.alpine.tensor.alg.Rotate;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.d.DiscreteUniformDistribution;
@@ -25,7 +25,7 @@ class AddsTest {
     Distribution distribution = DiscreteUniformDistribution.of(-10, 10);
     for (int n = 1; n < 10; ++n) {
       Tensor tensor = RandomVariate.of(distribution, n);
-      assertEquals(RotateLeft.of(Adds.forward(tensor), -1), Adds.reverse(tensor));
+      assertEquals(Rotate.PULL.of(Adds.forward(tensor), -1), Adds.reverse(tensor));
     }
   }
 

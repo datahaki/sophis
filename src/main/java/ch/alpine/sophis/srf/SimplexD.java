@@ -8,7 +8,7 @@ import java.util.Set;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Reverse;
-import ch.alpine.tensor.alg.RotateLeft;
+import ch.alpine.tensor.alg.Rotate;
 
 public class SimplexD {
   public static Set<Tensor> of(List<int[]> faces) {
@@ -26,7 +26,7 @@ public class SimplexD {
   public void feedFace(int[] face) {
     Tensor v = Tensors.vectorInt(face);
     for (int i = 0; i < face.length; ++i) {
-      Tensor edge = RotateLeft.of(v, i).extract(0, 2);
+      Tensor edge = Rotate.PULL.of(v, i).extract(0, 2);
       if (!set.remove(edge))
         set.add(Reverse.of(edge));
     }

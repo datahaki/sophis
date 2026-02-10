@@ -8,6 +8,8 @@ import ch.alpine.tensor.mat.gr.Mahalanobis;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 
 // TODO class name is not ideal since normalization happens -> weights?, or even coordinates
+/** Reference:
+ * https://vixra.org/abs/2007.0043 */
 /* package */ record InfluenceKernel(InfluenceMatrix influenceMatrix) implements TensorUnaryOperator {
   /** function returns a vector vnull that satisfies
    * vnull . design == 0

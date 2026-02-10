@@ -17,7 +17,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
-import ch.alpine.tensor.alg.RotateLeft;
+import ch.alpine.tensor.alg.Rotate;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.chq.ExactScalarQ;
 import ch.alpine.tensor.ext.Serialization;
@@ -33,7 +33,7 @@ class PolygonClipTest {
     if (cycle1.length() == cycle2.length())
       for (int index = 0; index < cycle2.length(); ++index)
         if (cycle1.get(0).equals(cycle2.get(index)))
-          return cycle1.equals(RotateLeft.of(cycle2, index));
+          return cycle1.equals(Rotate.PULL.of(cycle2, index));
     return false;
   }
 

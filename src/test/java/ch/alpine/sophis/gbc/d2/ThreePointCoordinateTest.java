@@ -16,7 +16,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.RotateLeft;
+import ch.alpine.tensor.alg.Rotate;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.nrm.NormalizeTotal;
@@ -127,7 +127,7 @@ class ThreePointCoordinateTest {
       BarycentricCoordinate barycentricCoordinate = r2(barycenter);
       for (int index = 0; index < P.length(); ++index) {
         // Tensor weights =
-        barycentricCoordinate.weights(P, Mean.of(RotateLeft.of(P, index).extract(0, 2)));
+        barycentricCoordinate.weights(P, Mean.of(Rotate.PULL.of(P, index).extract(0, 2)));
         // System.out.println(weights);
         // weights.stream().map(Scalar.class::cast).forEach(Sign::requirePositiveOrZero);
       }
@@ -140,7 +140,7 @@ class ThreePointCoordinateTest {
     for (ThreePointScalings barycenter : ThreePointScalings.values()) {
       BarycentricCoordinate barycentricCoordinate = r2(barycenter);
       for (int index = 0; index < P.length(); ++index) {
-        Tensor x = Mean.of(RotateLeft.of(P, index).extract(0, 2));
+        Tensor x = Mean.of(Rotate.PULL.of(P, index).extract(0, 2));
         Tensor weights = barycentricCoordinate.weights(P, x);
         weights.stream().map(Scalar.class::cast).forEach(Sign::requirePositiveOrZero);
         // Chop._10.requireClose(weights.dot(P), x);

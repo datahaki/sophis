@@ -30,7 +30,7 @@ public class SymmetricVectorQ extends ZeroDefectArrayQ {
     super(1, Chop.NONE);
   }
 
-  @Override
+  @Override // from ZeroDefectArrayQ
   public Tensor defect(Tensor tensor) {
     return Reverse.of(tensor).subtract(tensor);
   }
