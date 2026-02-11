@@ -4,23 +4,23 @@ package ch.alpine.sophis.ref.d1;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.chq.ScalarQ;
 import ch.alpine.tensor.ext.Integers;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 public class EightPointCurveSubdivision extends BSpline1CurveSubdivision {
   private static final Scalar PQ = RationalScalar.of(49, 44);
   private static final Scalar _R = RationalScalar.of(245, 201);
   private static final Scalar _S = RationalScalar.of(1225, 1024);
   // ---
-  private final GeodesicSpace geodesicSpace;
+  private final BinaryAverage geodesicSpace;
 
   /** @param geodesicSpace */
-  public EightPointCurveSubdivision(GeodesicSpace geodesicSpace) {
+  public EightPointCurveSubdivision(BinaryAverage geodesicSpace) {
     super(geodesicSpace);
     this.geodesicSpace = geodesicSpace;
   }

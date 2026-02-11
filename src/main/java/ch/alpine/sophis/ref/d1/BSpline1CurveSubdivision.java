@@ -4,8 +4,8 @@ package ch.alpine.sophis.ref.d1;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 /** linear B-spline
  * 
@@ -13,11 +13,11 @@ import ch.alpine.tensor.Tensor;
  * 
  * Dyn/Sharon 2014 p.14 show that the contractivity factor is mu = 1/2 */
 public class BSpline1CurveSubdivision extends AbstractBSpline1CurveSubdivision implements Serializable {
-  private final GeodesicSpace geodesicSpace;
+  private final BinaryAverage geodesicSpace;
 
   /** @param geodesicSpace non-null
    * @throws Exception if given geodesicSpace is null */
-  public BSpline1CurveSubdivision(GeodesicSpace geodesicSpace) {
+  public BSpline1CurveSubdivision(BinaryAverage geodesicSpace) {
     this.geodesicSpace = Objects.requireNonNull(geodesicSpace);
   }
 

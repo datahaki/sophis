@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import ch.alpine.sophis.ref.d1.CurveSubdivision;
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
@@ -15,6 +14,7 @@ import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.chq.ScalarQ;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.ext.PackageTestAccess;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 /** geodesic average between 3 points for symmetric weight mask
  * {factor/2, 1-factor, factor/2}
@@ -25,7 +25,7 @@ import ch.alpine.tensor.ext.PackageTestAccess;
  * 
  * @param geodesicSpace
  * @param factor for instance 2/3 */
-public record Regularization2Step(GeodesicSpace geodesicSpace, Scalar factor) implements CurveSubdivision, Serializable {
+public record Regularization2Step(BinaryAverage geodesicSpace, Scalar factor) implements CurveSubdivision, Serializable {
   /** @param prev
    * @param curr
    * @param next

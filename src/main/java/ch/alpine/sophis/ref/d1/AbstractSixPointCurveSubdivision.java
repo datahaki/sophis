@@ -1,13 +1,13 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.ScalarQ;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 public abstract class AbstractSixPointCurveSubdivision extends FourPointCurveSubdivision {
-  public AbstractSixPointCurveSubdivision(GeodesicSpace geodesicSpace) {
+  public AbstractSixPointCurveSubdivision(BinaryAverage geodesicSpace) {
     super(geodesicSpace);
   }
 

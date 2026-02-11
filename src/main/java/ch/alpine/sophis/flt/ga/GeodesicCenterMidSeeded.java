@@ -7,7 +7,6 @@ import java.util.function.Function;
 
 import ch.alpine.sophis.math.win.SymmetricVectorQ;
 import ch.alpine.sophis.math.win.UniformWindowSampler;
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -18,6 +17,7 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.ext.Cache;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.ext.PackageTestAccess;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 /** GeodesicCenterMidSeeded projects a sequence of points to their geodesic center
  * Difference to GeodesicCenter: starting to average in the center of the tree going outwards
@@ -30,7 +30,7 @@ public class GeodesicCenterMidSeeded implements TensorUnaryOperator {
    * @param function that maps an extent to a weight mask of length == 2 * extent + 1
    * @return operator that maps a sequence of odd number of points to their geodesic center
    * @throws Exception if either input parameter is null */
-  public static TensorUnaryOperator of(GeodesicSpace geodesicSpace, Function<Integer, Tensor> function) {
+  public static TensorUnaryOperator of(BinaryAverage geodesicSpace, Function<Integer, Tensor> function) {
     return new GeodesicCenterMidSeeded(geodesicSpace, function);
   }
 
@@ -38,7 +38,7 @@ public class GeodesicCenterMidSeeded implements TensorUnaryOperator {
    * @param windowFunction
    * @return
    * @throws Exception if either input parameter is null */
-  public static TensorUnaryOperator of(GeodesicSpace geodesicSpace, ScalarUnaryOperator windowFunction) {
+  public static TensorUnaryOperator of(BinaryAverage geodesicSpace, ScalarUnaryOperator windowFunction) {
     return new GeodesicCenterMidSeeded(geodesicSpace, UniformWindowSampler.of(windowFunction));
   }
 
@@ -80,10 +80,10 @@ public class GeodesicCenterMidSeeded implements TensorUnaryOperator {
   }
 
   // ---
-  private final GeodesicSpace geodesicSpace;
+  private final BinaryAverage geodesicSpace;
   private final Function<Integer, Tensor> function;
 
-  private GeodesicCenterMidSeeded(GeodesicSpace geodesicSpace, Function<Integer, Tensor> function) {
+  private GeodesicCenterMidSeeded(BinaryAverage geodesicSpace, Function<Integer, Tensor> function) {
     this.geodesicSpace = Objects.requireNonNull(geodesicSpace);
     this.function = Cache.of(new Splits(function), 32);
   }

@@ -1,10 +1,10 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 /** Gilles Deslauriers and Serge Dubuc: Symmetric iterative interpolation processes
  * 
@@ -21,7 +21,7 @@ public class SixPointCurveSubdivision extends AbstractSixPointCurveSubdivision {
   private static final Scalar _R = RationalScalar.of(75, 64);
 
   /** @param geodesicSpace */
-  public SixPointCurveSubdivision(GeodesicSpace geodesicSpace) {
+  public SixPointCurveSubdivision(BinaryAverage geodesicSpace) {
     super(geodesicSpace);
   }
 

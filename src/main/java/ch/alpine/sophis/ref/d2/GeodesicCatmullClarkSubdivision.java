@@ -6,19 +6,19 @@ import java.util.Objects;
 
 import ch.alpine.sophis.ref.d1.BSpline3CurveSubdivision;
 import ch.alpine.sophis.ref.d1.CurveSubdivision;
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 /** Reference:
  * "Recursively generated B-spline surfaces on arbitrary topological meshes"
  * by Catmull, Clark; Computer-Aided Design 16(6), 1978 */
 public class GeodesicCatmullClarkSubdivision {
-  private final GeodesicSpace geodesicSpace;
+  private final BinaryAverage geodesicSpace;
   private final CurveSubdivision curveSubdivision;
 
-  public GeodesicCatmullClarkSubdivision(GeodesicSpace geodesicSpace) {
+  public GeodesicCatmullClarkSubdivision(BinaryAverage geodesicSpace) {
     this.geodesicSpace = Objects.requireNonNull(geodesicSpace);
     curveSubdivision = new BSpline3CurveSubdivision(geodesicSpace);
   }

@@ -1,16 +1,16 @@
 // code by jph
 package ch.alpine.sophis.crv;
 
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 /* ONLY FOR TESTING */
 public class GeodesicBSplineInterpolation extends AbstractBSplineInterpolation {
   /** @param geodesicSpace
    * @param degree
    * @param target */
-  public GeodesicBSplineInterpolation(GeodesicSpace geodesicSpace, int degree, Tensor target) {
+  public GeodesicBSplineInterpolation(BinaryAverage geodesicSpace, int degree, Tensor target) {
     super(geodesicSpace, degree, target);
   }
 

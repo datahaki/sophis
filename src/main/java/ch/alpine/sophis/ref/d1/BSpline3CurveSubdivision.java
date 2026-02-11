@@ -4,10 +4,10 @@ package ch.alpine.sophis.ref.d1;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 /** cubic B-spline
  * 
@@ -16,10 +16,10 @@ public class BSpline3CurveSubdivision extends RefiningBSpline3CurveSubdivision i
   private static final Scalar _1_4 = RationalScalar.of(1, 4);
   private static final Scalar _3_4 = RationalScalar.of(3, 4);
   // ---
-  protected final GeodesicSpace geodesicSpace;
+  protected final BinaryAverage geodesicSpace;
 
   /** @param geodesicSpace */
-  public BSpline3CurveSubdivision(GeodesicSpace geodesicSpace) {
+  public BSpline3CurveSubdivision(BinaryAverage geodesicSpace) {
     this.geodesicSpace = Objects.requireNonNull(geodesicSpace);
   }
 

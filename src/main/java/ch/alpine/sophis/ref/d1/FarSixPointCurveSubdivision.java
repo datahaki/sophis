@@ -1,10 +1,10 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.itp.BinaryAverage;
 
 /** Important: the use of this variant of the six point scheme is not recommended
  * Instead, use {@link SixPointCurveSubdivision}
@@ -22,7 +22,7 @@ public class FarSixPointCurveSubdivision extends AbstractSixPointCurveSubdivisio
   private static final Scalar Q_ = RationalScalar.of(153, 128);
 
   /** @param geodesicSpace */
-  public FarSixPointCurveSubdivision(GeodesicSpace geodesicSpace) {
+  public FarSixPointCurveSubdivision(BinaryAverage geodesicSpace) {
     super(geodesicSpace);
   }
 

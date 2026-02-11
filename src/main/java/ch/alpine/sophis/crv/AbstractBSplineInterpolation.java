@@ -4,11 +4,11 @@ package ch.alpine.sophis.crv;
 import java.io.Serializable;
 import java.util.stream.IntStream;
 
-import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.ext.Integers;
+import ch.alpine.tensor.itp.BinaryAverage;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.N;
@@ -17,14 +17,14 @@ public abstract class AbstractBSplineInterpolation implements Serializable {
   private static final Chop CHOP_DEFAULT = Tolerance.CHOP;
   private static final int MAX_ITERATION = 500;
   // ---
-  protected final GeodesicSpace geodesicSpace;
+  protected final BinaryAverage geodesicSpace;
   private final int degree;
   private final Tensor target;
 
   /** @param geodesicSpace corresponding to lie group
    * @param degree of underlying b-spline
    * @param target points to interpolate */
-  public AbstractBSplineInterpolation(GeodesicSpace geodesicSpace, int degree, Tensor target) {
+  public AbstractBSplineInterpolation(BinaryAverage geodesicSpace, int degree, Tensor target) {
     this.geodesicSpace = geodesicSpace;
     this.degree = Integers.requirePositiveOrZero(degree);
     this.target = target;
