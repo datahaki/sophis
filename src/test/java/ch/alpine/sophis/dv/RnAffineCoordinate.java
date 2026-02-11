@@ -30,7 +30,7 @@ import ch.alpine.tensor.red.Mean;
  * location does not generalize to non-linear spaces.
  * 
  * @see AffineCoordinate */
-public enum RnAffineCoordinate implements BarycentricCoordinate {
+enum RnAffineCoordinate implements BarycentricCoordinate {
   INSTANCE;
 
   @Override // from BarycentricCoordinate

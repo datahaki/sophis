@@ -8,12 +8,14 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import ch.alpine.sophus.bm.IterativeBiinvariantMean;
 import ch.alpine.sophus.hs.s.Sphere;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomSample;
@@ -28,16 +30,18 @@ class AffineCoordinateTest {
     return GbcHelper.barycentrics(RGroup.INSTANCE);
   }
 
-  @Test
-  void testS1() {
+  @ParameterizedTest
+  @ValueSource(ints = { 1, 2, 3, 4 })
+  void testSn(int d) {
     Genesis genesis = MetricCoordinate.affine();
     RandomSampleInterface randomSampleInterface = new Sphere(1);
     RandomGenerator randomGenerator = new Random(3);
-    for (int n = 3; n < 10; ++n) {
+    for (int n = d + 2; n < 10 + d; ++n) {
       Tensor levers = RandomSample.of(randomSampleInterface, randomGenerator, n);
       Tensor w1 = genesis.origin(levers.unmodifiable());
       Tensor w2 = AffineCoordinate.INSTANCE.origin(levers);
       Chop._07.requireClose(w1, w2);
+      Tolerance.CHOP.requireAllZero(w2.dot(levers));
     }
   }
 
@@ -53,6 +57,7 @@ class AffineCoordinateTest {
         Tensor w1 = genesis.origin(levers);
         Tensor w2 = AffineCoordinate.INSTANCE.origin(levers);
         Chop._04.requireClose(w1, w2);
+        Tolerance.CHOP.requireAllZero(w2.dot(levers));
       }
   }
 

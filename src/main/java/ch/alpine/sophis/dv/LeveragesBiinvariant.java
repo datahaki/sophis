@@ -30,8 +30,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
  * 
  * "Biinvariant Distance Vectors"
  * by Jan Hakenberg, 2020 */
-// TODO SOPHUS ideally class should be package visible
-public class LeveragesBiinvariant extends BiinvariantBase implements Genesis {
+/* package */ class LeveragesBiinvariant extends BiinvariantBase implements Genesis {
   public LeveragesBiinvariant(Manifold manifold) {
     super(manifold);
   }

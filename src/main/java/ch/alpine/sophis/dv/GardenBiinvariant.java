@@ -15,7 +15,7 @@ import ch.alpine.tensor.io.MathematicaFormat;
 
   @Override // from Biinvariant
   public Sedarim distances(Tensor sequence) {
-    return new GardenDistanceVector(manifold, sequence);
+    return GardenDistanceVector.of(manifold, sequence);
   }
 
   @Override // from Biinvariant

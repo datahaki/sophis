@@ -8,7 +8,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 
 /** ONLY FOR TESTING */
-public record NormWeighting(TensorNorm tensorNorm, ScalarUnaryOperator variogram) implements Genesis {
+record NormWeighting(TensorNorm tensorNorm, ScalarUnaryOperator variogram) implements Genesis {
   @Override
   public Tensor origin(Tensor tensor) {
     return NormalizeTotal.FUNCTION.apply(Tensor.of(tensor.stream() //

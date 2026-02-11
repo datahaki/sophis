@@ -22,7 +22,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
   public GardenCoordinate(Manifold manifold, ScalarUnaryOperator variogram, Tensor sequence) {
     this.manifold = manifold;
     this.variogram = Objects.requireNonNull(variogram);
-    sedarim = new GardenDistanceVector(manifold, sequence);
+    sedarim = GardenDistanceVector.of(manifold, sequence);
     this.sequence = sequence;
   }
 

@@ -17,18 +17,15 @@ import ch.alpine.tensor.mat.gr.Mahalanobis;
  * by Jan Hakenberg, 2020
  * 
  * @see HarborBiinvariant */
-/* package */ class GardenDistanceVector implements Sedarim {
-  private final List<Exponential> exponentials;
-  private final List<Mahalanobis> array;
-
+/* package */ record GardenDistanceVector(List<Exponential> exponentials, List<Mahalanobis> array) implements Sedarim {
   /** @param manifold
    * @param sequence */
-  public GardenDistanceVector(Manifold manifold, Tensor sequence) {
-    exponentials = sequence.stream().map(manifold::exponential).toList();
-    array = exponentials.stream() //
+  public static GardenDistanceVector of(Manifold manifold, Tensor sequence) {
+    List<Exponential> exponentials = sequence.stream().map(manifold::exponential).toList();
+    return new GardenDistanceVector(exponentials, exponentials.stream() //
         .map(exponential -> exponential.log().slash(sequence)) //
         .map(Mahalanobis::new) //
-        .toList();
+        .toList());
   }
 
   @Override // from Sedarim

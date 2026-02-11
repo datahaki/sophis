@@ -33,7 +33,7 @@ class GardenDistanceVectorTest {
     Manifold manifold = RGroup.INSTANCE;
     for (int length = 5; length < 10; ++length) {
       Tensor sequence = RandomVariate.of(distribution, length, 3);
-      Sedarim tensorUnaryOperator = Serialization.copy(new GardenDistanceVector(manifold, sequence));
+      Sedarim tensorUnaryOperator = Serialization.copy(GardenDistanceVector.of(manifold, sequence));
       Tensor matrix = Tensor.of(sequence.stream().map(tensorUnaryOperator::sunder));
       Chop._10.requireAllZero(Diagonal.of(matrix));
     }
@@ -45,7 +45,7 @@ class GardenDistanceVectorTest {
     Manifold manifold = SnManifold.INSTANCE;
     for (int length = 4; length < 10; ++length) {
       Tensor sequence = RandomSample.of(randomSampleInterface, length);
-      Sedarim tensorUnaryOperator = new GardenDistanceVector(manifold, sequence);
+      Sedarim tensorUnaryOperator = GardenDistanceVector.of(manifold, sequence);
       Tensor matrix = Tensor.of(sequence.stream().map(tensorUnaryOperator::sunder));
       Chop._10.requireAllZero(Diagonal.of(matrix));
     }
@@ -57,7 +57,7 @@ class GardenDistanceVectorTest {
     Manifold manifold = Se2CoveringGroup.INSTANCE;
     for (int length = 5; length < 10; ++length) {
       Tensor sequence = RandomVariate.of(distribution, length, 3);
-      Sedarim tensorUnaryOperator = new GardenDistanceVector(manifold, sequence);
+      Sedarim tensorUnaryOperator = GardenDistanceVector.of(manifold, sequence);
       Tensor matrix = Tensor.of(sequence.stream().map(tensorUnaryOperator::sunder));
       Chop._10.requireAllZero(Diagonal.of(matrix));
     }
@@ -66,7 +66,7 @@ class GardenDistanceVectorTest {
   @Test
   void testEmpty() {
     Manifold manifold = Se2CoveringGroup.INSTANCE;
-    Sedarim tensorUnaryOperator = new GardenDistanceVector(manifold, Tensors.empty());
+    Sedarim tensorUnaryOperator = GardenDistanceVector.of(manifold, Tensors.empty());
     Tensor result = tensorUnaryOperator.sunder(Tensors.vector(1, 2, 3));
     assertEquals(result, Tensors.empty());
   }
@@ -74,7 +74,7 @@ class GardenDistanceVectorTest {
   @Test
   void testSingleton() {
     Manifold manifold = Se2CoveringGroup.INSTANCE;
-    Sedarim tensorUnaryOperator = new GardenDistanceVector(manifold, Tensors.fromString("{{2,3,4}}"));
+    Sedarim tensorUnaryOperator = GardenDistanceVector.of(manifold, Tensors.fromString("{{2,3,4}}"));
     Tensor result = tensorUnaryOperator.sunder(Tensors.vector(1, 2, 3));
     assertEquals(result, Tensors.vector(0));
   }
