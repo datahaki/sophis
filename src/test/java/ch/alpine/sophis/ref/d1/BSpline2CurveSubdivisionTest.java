@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.h.Hyperboloid;
+import ch.alpine.sophus.hs.h.HManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.Tensor;
@@ -34,7 +34,7 @@ class BSpline2CurveSubdivisionTest {
 
   @Test
   void testSubdiv() {
-    BSpline2CurveSubdivision bSpline2CurveSubdivision = new BSpline2CurveSubdivision(Hyperboloid.INSTANCE);
+    BSpline2CurveSubdivision bSpline2CurveSubdivision = new BSpline2CurveSubdivision(HManifold.INSTANCE);
     Distribution distribution = NormalDistribution.of(0, 10);
     for (int d = 1; d < 4; ++d) {
       Tensor p = RandomVariate.of(distribution, d);
