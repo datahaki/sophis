@@ -32,7 +32,7 @@ public record IterativeCoordinateLevel(Genesis genesis, Chop chop, int max) impl
 
   @Override
   public Scalar apply(Tensor levers) {
-    if (OriginEnclosureQ.INSTANCE.isMember(levers)) {
+    if (OriginEnclosureQ.INSTANCE.test(levers)) {
       Tensor scaling = InverseNorm.INSTANCE.origin(levers);
       if (FiniteTensorQ.of(scaling)) {
         Tensor normalized = Times.of(scaling, levers);

@@ -105,7 +105,7 @@ class So3BiinvariantTest {
       int index = 0;
       for (Tensor point : sequence) {
         Tensor weights = barycentricCoordinate.weights(sequence, point);
-        AffineQ.INSTANCE.requireMember(weights);
+        AffineQ.INSTANCE.require(weights);
         if (!Chop._06.isClose(weights, UnitVector.of(n, index))) {
           IO.println(barycentricCoordinate);
           IO.println(weights);

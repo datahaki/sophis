@@ -41,10 +41,10 @@ class OriginEnclosureQTest {
         { 1, 1 }, //
         { 0, 1 } //
     });
-    assertFalse(OriginEnclosureQ.INSTANCE.isMember(polygon));
+    assertFalse(OriginEnclosureQ.INSTANCE.test(polygon));
     for (int n = 3; n < 10; ++n) {
-      assertTrue(OriginEnclosureQ.INSTANCE.isMember(CirclePoints.of(n)));
-      assertTrue(OriginEnclosureQ.INSTANCE.isMember(Reverse.of(CirclePoints.of(n))));
+      assertTrue(OriginEnclosureQ.INSTANCE.test(CirclePoints.of(n)));
+      assertTrue(OriginEnclosureQ.INSTANCE.test(Reverse.of(CirclePoints.of(n))));
     }
   }
 
@@ -66,10 +66,10 @@ class OriginEnclosureQTest {
         { 1, 1 }, //
         { 0, 1 } //
     });
-    assertFalse(OriginEnclosureQ.INSTANCE.isMember(polygon.maps(suo)));
+    assertFalse(OriginEnclosureQ.INSTANCE.test(polygon.maps(suo)));
     for (int n = 3; n < 10; ++n) {
-      assertTrue(OriginEnclosureQ.INSTANCE.isMember(CirclePoints.of(n).maps(suo)));
-      assertTrue(OriginEnclosureQ.INSTANCE.isMember(Reverse.of(CirclePoints.of(n)).maps(suo)));
+      assertTrue(OriginEnclosureQ.INSTANCE.test(CirclePoints.of(n).maps(suo)));
+      assertTrue(OriginEnclosureQ.INSTANCE.test(Reverse.of(CirclePoints.of(n)).maps(suo)));
     }
   }
 
@@ -88,7 +88,7 @@ class OriginEnclosureQTest {
 
   @Test
   void testFail() {
-    assertThrows(Exception.class, () -> OriginEnclosureQ.INSTANCE.isMember(IdentityMatrix.of(4)));
+    assertThrows(Exception.class, () -> OriginEnclosureQ.INSTANCE.test(IdentityMatrix.of(4)));
   }
 
   @Test
@@ -115,7 +115,7 @@ class OriginEnclosureQTest {
     for (int n = 4; n < 10; ++n)
       for (int count = 0; count < 10; ++count) {
         Tensor levers = RandomVariate.of(distribution, randomGenerator, n, d);
-        if (OriginEnclosureQ.INSTANCE.isMember(levers)) {
+        if (OriginEnclosureQ.INSTANCE.test(levers)) {
           for (int i = 0; i < 3; ++i) {
             Tensor weights = AffineCoordinate.INSTANCE.origin(levers);
             weights = NormalizeTotal.FUNCTION.apply(weights.maps(Exp.FUNCTION));

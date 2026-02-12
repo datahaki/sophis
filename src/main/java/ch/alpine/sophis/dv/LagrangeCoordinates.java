@@ -24,7 +24,7 @@ import ch.alpine.tensor.sca.Chop;
     /* least squares is required if eqs do not have max rank, which is the case
      * when the tangent space parameterization is not 1 to 1 */
     Tensor weights = LagrangeMultiplier.id_t(eqs).solve(target, rhs);
-    AFFINE_Q_APPROX.requireMember(weights); // conceptual check
+    AFFINE_Q_APPROX.require(weights); // conceptual check
     return NormalizeTotal.FUNCTION.apply(weights); // improve accuracy
   }
 }

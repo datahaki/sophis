@@ -35,7 +35,7 @@ class RigidMotionFitTest {
   void testExact() throws ClassNotFoundException, IOException {
     Distribution distribution = NormalDistribution.standard();
     Tensor skew3 = Cross.skew3(Tensors.vector(-.1, .2, .3));
-    Tensor rotation = OrthogonalMatrixQ.INSTANCE.requireMember(MatrixExp.of(skew3));
+    Tensor rotation = OrthogonalMatrixQ.INSTANCE.require(MatrixExp.of(skew3));
     for (int n = 5; n < 11; ++n) {
       Tensor points = RandomVariate.of(distribution, n, 3);
       Tensor translation = RandomVariate.of(distribution, 3);
@@ -52,7 +52,7 @@ class RigidMotionFitTest {
     RandomGenerator random = new Random(3);
     Distribution distribution = NormalDistribution.standard();
     Tensor skew3 = Cross.skew3(Tensors.vector(-.1, .2, .3));
-    Tensor rotation = OrthogonalMatrixQ.INSTANCE.requireMember(MatrixExp.of(skew3));
+    Tensor rotation = OrthogonalMatrixQ.INSTANCE.require(MatrixExp.of(skew3));
     for (int n = 5; n < 11; ++n) {
       Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(UniformDistribution.of(-0.1, 1), random, 10));
       Tensor points = RandomVariate.of(distribution, random, 10, 3);

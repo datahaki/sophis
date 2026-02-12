@@ -95,8 +95,8 @@ class HarborBiinvariantTest {
     for (Biinvariant biinvariant : map.values()) {
       Sedarim sedarim = biinvariant.distances(sequence);
       Tensor matrix = Tensor.of(sequence.stream().map(sedarim::sunder));
-      SquareMatrixQ.INSTANCE.requireMember(matrix);
-      SymmetricMatrixQ.INSTANCE.requireMember(matrix);
+      SquareMatrixQ.INSTANCE.require(matrix);
+      SymmetricMatrixQ.INSTANCE.require(matrix);
     }
   }
 

@@ -18,8 +18,8 @@ class BSplineLimitMatrixTest {
       for (int n = 1; n < 10; ++n) {
         Tensor tensor = BSplineInterpolation.matrix(degree, n);
         ExactTensorQ.require(tensor);
-        StochasticMatrixQ.INSTANCE.requireMember(tensor);
-        StochasticMatrixQ.INSTANCE.requireMember(Inverse.of(tensor));
+        StochasticMatrixQ.INSTANCE.require(tensor);
+        StochasticMatrixQ.INSTANCE.require(Inverse.of(tensor));
         // System.out.println("n=" + n + " degree=" + degree);
         // System.out.println(Pretty.of(tensor));
       }

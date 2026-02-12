@@ -47,7 +47,7 @@ class SnBiinvariantsTest {
       Tensor sequence = randomCloud(mean, n, randomGenerator);
       Tensor weights = barycentricCoordinate.weights(sequence, mean);
       VectorQ.requireLength(weights, n);
-      AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
+      AffineQ.INSTANCE.require(weights); // , Chop._08);
       Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.exponential(mean)).tangent();
       Chop._06.requireAllZero(evaluate);
       Chop._06.requireClose(mean, SnManifold.INSTANCE.biinvariantMean().mean(sequence, weights));
@@ -65,7 +65,7 @@ class SnBiinvariantsTest {
       Tensor sequence = randomCloud(mean, n, randomGenerator);
       Tensor weights = barycentricCoordinate.weights(sequence, mean);
       VectorQ.requireLength(weights, n);
-      AffineQ.INSTANCE.requireMember(weights);
+      AffineQ.INSTANCE.require(weights);
       {
         Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.exponential(mean)).tangent();
         Chop._08.requireAllZero(evaluate);

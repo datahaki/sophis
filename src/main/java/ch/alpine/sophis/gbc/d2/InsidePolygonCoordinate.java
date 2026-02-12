@@ -13,7 +13,7 @@ import ch.alpine.tensor.alg.ConstantArray;
 public record InsidePolygonCoordinate(Genesis genesis) implements Genesis {
   @Override // from BarycentricCoordinate
   public Tensor origin(Tensor levers) {
-    return OriginEnclosureQ.INSTANCE.isMember(levers) //
+    return OriginEnclosureQ.INSTANCE.test(levers) //
         ? genesis.origin(levers)
         : ConstantArray.of(DoubleScalar.INDETERMINATE, levers.length());
   }

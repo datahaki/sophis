@@ -46,7 +46,7 @@ class BiinvariantVectorTest {
     Manifold manifold = RGroup.INSTANCE;
     Tensor matrix = Tensor.of(sequence.stream().map(manifold.exponential(point)::log));
     Tensor nullsp = NullSpace.of(Transpose.of(matrix));
-    OrthogonalMatrixQ.INSTANCE.requireMember(nullsp);
+    OrthogonalMatrixQ.INSTANCE.require(nullsp);
     Chop._08.requireClose(PseudoInverse.of(nullsp), Transpose.of(nullsp));
   }
 
@@ -54,22 +54,22 @@ class BiinvariantVectorTest {
     Tensor V = manifold.exponential(point).log().slash(sequence);
     Tensor VT = Transpose.of(V);
     Tensor pinv = PseudoInverse.of(VT.dot(V));
-    new SymmetricMatrixQ(Chop._04).requireMember(pinv);
+    new SymmetricMatrixQ(Chop._04).require(pinv);
     Tensor sigma_inverse = Symmetrize.of(pinv);
     // ---
     Tensor H = V.dot(sigma_inverse.dot(VT)); // "hat matrix"
-    new InfluenceMatrixQ(Chop._09).requireMember(H);
+    new InfluenceMatrixQ(Chop._09).require(H);
     // ---
     Tensor traceh = Trace.of(H);
     Chop._07.requireClose(traceh, traceh.maps(Round.FUNCTION));
     // ---
     Tensor matrix = manifold.exponential(point).log().slash(sequence);
     InfluenceMatrix influenceMatrix = InfluenceMatrix.of(matrix);
-    SymmetricMatrixQ.INSTANCE.requireMember(influenceMatrix.matrix());
+    SymmetricMatrixQ.INSTANCE.require(influenceMatrix.matrix());
     Chop._08.requireClose(H, influenceMatrix.matrix());
     Tensor n = NullSpace.of(Transpose.of(V));
     Tensor M = influenceMatrix.residualMaker();
-    new InfluenceMatrixQ(Chop._09).requireMember(M);
+    new InfluenceMatrixQ(Chop._09).require(M);
     Chop._08.requireClose(M, Transpose.of(n).dot(n));
     // ---
     Tensor Xinv = PseudoInverse.of(V);

@@ -17,7 +17,7 @@ public enum OriginEnclosureQ implements MemberQ {
   /** @param levers matrix of dimension n x 2
    * @return true if origin (0, 0) is inside polygon spanned by levers */
   @Override
-  public boolean isMember(Tensor levers) {
+  public boolean test(Tensor levers) {
     if (Tensors.isEmpty(levers))
       return false;
     boolean c = false;
@@ -42,6 +42,6 @@ public enum OriginEnclosureQ implements MemberQ {
   /** @param levers
    * @return whether origin is inside convex span of given levers */
   public static boolean isInsideConvexHull(Tensor levers) {
-    return INSTANCE.isMember(ConvexHull2D.of(levers));
+    return INSTANCE.test(ConvexHull2D.of(levers));
   }
 }

@@ -30,7 +30,7 @@ public class Tsp2OptHeuristic {
    * edge (i, j) in the path
    * @param randomGenerator */
   public Tsp2OptHeuristic(Tensor matrix, RandomGenerator randomGenerator) {
-    this.matrix = SymmetricMatrixQ.INSTANCE.requireMember(matrix);
+    this.matrix = SymmetricMatrixQ.INSTANCE.require(matrix);
     n = matrix.length();
     this.randomGenerator = randomGenerator;
     index = RandomPermutation.of(matrix.length(), randomGenerator);

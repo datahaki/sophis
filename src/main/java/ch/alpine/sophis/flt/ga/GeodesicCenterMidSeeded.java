@@ -62,7 +62,7 @@ public class GeodesicCenterMidSeeded implements TensorUnaryOperator {
     @PackageTestAccess
     static Tensor of(Tensor mask) {
       Integers.requireOdd(mask.length());
-      SymmetricVectorQ.INSTANCE.requireMember(mask);
+      SymmetricVectorQ.INSTANCE.require(mask);
       int radius = (mask.length() - 1) / 2;
       Tensor halfmask = Tensors.vector(i -> i.equals(radius) //
           ? mask.Get(i).multiply(RationalScalar.HALF)

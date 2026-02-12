@@ -50,13 +50,13 @@ class RnBiinvariantTest {
     for (Biinvariant biinvariant : new Biinvariant[] { metricBiinvariant, harborBiinvariant }) {
       Sedarim tensorUnaryOperator = biinvariant.distances(sequence);
       Tensor vardst = Tensor.of(sequence.stream().map(tensorUnaryOperator::sunder));
-      SymmetricMatrixQ.INSTANCE.requireMember(vardst);
+      SymmetricMatrixQ.INSTANCE.require(vardst);
     }
     Biinvariant leveragesBiinvariant = Biinvariants.LEVERAGES.ofSafe(manifold);
     {
       Sedarim tensorUnaryOperator = leveragesBiinvariant.distances(sequence);
       Tensor vardst = Tensor.of(sequence.stream().map(tensorUnaryOperator::sunder));
-      assertFalse(SymmetricMatrixQ.INSTANCE.isMember(vardst));
+      assertFalse(SymmetricMatrixQ.INSTANCE.test(vardst));
     }
   }
 
@@ -89,13 +89,15 @@ class RnBiinvariantTest {
   @ParameterizedTest
   @MethodSource("barycentrics")
   void testSimple(BarycentricCoordinate barycentricCoordinate) {
+    RandomGenerator randomGenerator = new Random(13);
     Distribution distribution = NormalDistribution.standard();
-    for (int n = 2; n < 5; ++n) {
-      int length = n + 1 + ThreadLocalRandom.current().nextInt(3);
-      Tensor points = RandomVariate.of(distribution, length, n);
-      Tensor mean = RandomVariate.of(distribution, n);
+    for (int d = 2; d < 5; ++d) {
+      int length = d + 3 + randomGenerator.nextInt(3);
+      Tensor points = RandomVariate.of(distribution, randomGenerator, length, d);
+      Tensor mean = RandomVariate.of(distribution, randomGenerator, d);
       // FIXME wights don't always add up to 1
       Tensor weights = barycentricCoordinate.weights(points, mean);
+      AffineQ.INSTANCE.require(weights);
       Tensor result = LinearBiinvariantMean.INSTANCE.mean(points, weights);
       Chop._08.requireClose(mean, result);
     }
@@ -196,6 +198,6 @@ class RnBiinvariantTest {
     sequence.append(sequence.get(n - 1).multiply(RealScalar.of(5)));
     Tensor weights = barycentricCoordinate.weights(sequence, Array.zeros(d));
     assertEquals(sequence.length(), n + 1);
-    AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
+    AffineQ.INSTANCE.require(weights); // , Chop._08);
   }
 }

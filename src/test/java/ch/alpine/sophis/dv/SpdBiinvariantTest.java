@@ -55,7 +55,7 @@ class SpdBiinvariantTest {
       try {
         Tensor point = RandomSample.of(rsi, randomGenerator);
         Tensor weights = barycentricCoordinate.weights(sequence, point);
-        AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
+        AffineQ.INSTANCE.require(weights); // , Chop._08);
         Tensor spd = SpdManifold.INSTANCE.biinvariantMean().mean(sequence, weights);
         Chop._08.requireClose(spd, point);
       } catch (Exception exception) {
@@ -77,7 +77,7 @@ class SpdBiinvariantTest {
       int index = random.nextInt(sequence.length());
       Tensor point = sequence.get(index);
       Tensor weights = barycentricCoordinate.weights(sequence, point);
-      AffineQ.INSTANCE.requireMember(weights); // , Chop._08);
+      AffineQ.INSTANCE.require(weights); // , Chop._08);
       Tolerance.CHOP.requireClose(weights, UnitVector.of(len, index));
       Tensor spd = SpdManifold.INSTANCE.biinvariantMean().mean(sequence, weights);
       Tolerance.CHOP.requireClose(spd, point);

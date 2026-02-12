@@ -32,7 +32,7 @@ public enum AffineCoordinate implements Genesis {
     Tensor z = CholeskyDecomposition.of(matrix).solve(u); // TODO this can fail !
     Tensor weights = x.dot(z);
     // typically the sum of the weights is already quite close to 1
-    new AffineQ(Chop._08).requireMember(weights);
+    new AffineQ(Chop._08).require(weights);
     return NormalizeTotal.FUNCTION.apply(weights);
   }
 }

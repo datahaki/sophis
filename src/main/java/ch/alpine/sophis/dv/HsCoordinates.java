@@ -30,7 +30,7 @@ public record HsCoordinates(Manifold manifold, Genesis genesis) implements Baryc
   public Tensor weights(Tensor sequence, Tensor point) {
     Tensor weights = genesis.origin(manifold.exponential(point).log().slash(sequence));
     return DeterminateTensorQ.of(weights) //
-        ? AffineQ.INSTANCE.requireMember(weights)
+        ? AffineQ.INSTANCE.require(weights)
         : weights;
   }
 }

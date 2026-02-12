@@ -12,27 +12,27 @@ import ch.alpine.tensor.Tensors;
 class SymmetricVectorQTest {
   @Test
   void testSimple() {
-    assertTrue(SymmetricVectorQ.INSTANCE.isMember(Tensors.empty()));
-    assertTrue(SymmetricVectorQ.INSTANCE.isMember(Tensors.vector(1, 2, 2, 1)));
-    assertTrue(SymmetricVectorQ.INSTANCE.isMember(Tensors.vector(1, 2, 1)));
-    assertFalse(SymmetricVectorQ.INSTANCE.isMember(Tensors.vector(1, 2, 3)));
+    assertTrue(SymmetricVectorQ.INSTANCE.test(Tensors.empty()));
+    assertTrue(SymmetricVectorQ.INSTANCE.test(Tensors.vector(1, 2, 2, 1)));
+    assertTrue(SymmetricVectorQ.INSTANCE.test(Tensors.vector(1, 2, 1)));
+    assertFalse(SymmetricVectorQ.INSTANCE.test(Tensors.vector(1, 2, 3)));
   }
 
   @Test
   void testRequire() {
-    SymmetricVectorQ.INSTANCE.requireMember(Tensors.vector(1, 2, 1));
-    SymmetricVectorQ.INSTANCE.requireMember(Tensors.vector(1, 1, 3, 3, 1, 1));
+    SymmetricVectorQ.INSTANCE.require(Tensors.vector(1, 2, 1));
+    SymmetricVectorQ.INSTANCE.require(Tensors.vector(1, 1, 3, 3, 1, 1));
   }
 
   @Test
   void testNonVector() {
-    assertTrue(SymmetricVectorQ.INSTANCE.isMember(Tensors.empty()));
-    assertFalse(SymmetricVectorQ.INSTANCE.isMember(Tensors.fromString("{{1}}")));
-    assertFalse(SymmetricVectorQ.INSTANCE.isMember(Tensors.fromString("{1, {2}, 1}")));
+    assertTrue(SymmetricVectorQ.INSTANCE.test(Tensors.empty()));
+    assertFalse(SymmetricVectorQ.INSTANCE.test(Tensors.fromString("{{1}}")));
+    assertFalse(SymmetricVectorQ.INSTANCE.test(Tensors.fromString("{1, {2}, 1}")));
   }
 
   @Test
   void testThrow() {
-    assertThrows(Exception.class, () -> SymmetricVectorQ.INSTANCE.requireMember(Tensors.vector(1, 1, 3, 1, 1, 1)));
+    assertThrows(Exception.class, () -> SymmetricVectorQ.INSTANCE.require(Tensors.vector(1, 1, 3, 1, 1, 1)));
   }
 }

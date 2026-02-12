@@ -71,7 +71,7 @@ class IterativeCoordinateTest {
           polygon.get(index + 1), //
           RealScalar.of(randomGenerator.nextDouble()));
       Tensor levers = Tensor.of(polygon.stream().map(x::subtract));
-      if (OriginEnclosureQ.INSTANCE.isMember(levers) && strict) {
+      if (OriginEnclosureQ.INSTANCE.test(levers) && strict) {
         Tensor weights = genesis.origin(levers);
         Chop._10.requireClose(LinearBiinvariantMean.INSTANCE.mean(polygon, weights), x);
       }
@@ -106,7 +106,7 @@ class IterativeCoordinateTest {
     Distribution distribution = UniformDistribution.of(-10, 10);
     for (int n = 3; n < 10; ++n) {
       Tensor levers = RandomVariate.of(distribution, n, 2);
-      if (OriginEnclosureQ.INSTANCE.isMember(levers)) {
+      if (OriginEnclosureQ.INSTANCE.test(levers)) {
         Tensor weights = ThreePointCoordinate.of(ThreePointScalings.MEAN_VALUE).origin(levers);
         Chop._07.requireClose( //
             weights, //
@@ -128,7 +128,7 @@ class IterativeCoordinateTest {
     Genesis genesis = MetricCoordinate.of(InversePowerVariogram.of(2));
     for (int n = 3; n < 10; ++n) {
       Tensor levers = RandomVariate.of(distribution, n, 2);
-      if (OriginEnclosureQ.INSTANCE.isMember(levers)) {
+      if (OriginEnclosureQ.INSTANCE.test(levers)) {
         for (int k = 0; k < 3; ++k) {
           Genesis ic = new IterativeCoordinate(genesis, k);
           Tensor weights = ic.origin(levers);

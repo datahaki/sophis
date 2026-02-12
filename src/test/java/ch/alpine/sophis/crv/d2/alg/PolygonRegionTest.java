@@ -71,7 +71,7 @@ class PolygonRegionTest {
   @Test
   void testInsideEmpty() {
     Tensor polygon = Tensors.empty();
-    assertFalse(OriginEnclosureQ.INSTANCE.isMember(polygon));
+    assertFalse(OriginEnclosureQ.INSTANCE.test(polygon));
     assertFalse(FranklinPnpoly.isInside(polygon, Tensors.vector(0.5, .5)));
     assertFalse(FranklinPnpoly.isInside(polygon, Tensors.vector(0.9, .9)));
     assertFalse(FranklinPnpoly.isInside(polygon, Tensors.vector(0.1, .1)));

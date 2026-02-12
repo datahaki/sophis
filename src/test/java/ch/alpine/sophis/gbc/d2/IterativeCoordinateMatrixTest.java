@@ -41,7 +41,7 @@ class IterativeCoordinateMatrixTest {
       Genesis genesis = new IterativeCoordinate(MetricCoordinate.affine(), k);
       for (int n = 3; n < 10; ++n) {
         Tensor levers = RandomVariate.of(distribution, n, 2);
-        if (OriginEnclosureQ.INSTANCE.isMember(levers)) {
+        if (OriginEnclosureQ.INSTANCE.test(levers)) {
           Tensor weights = genesis.origin(levers);
           MeanDefect meanDefect = MeanDefect.of(levers, weights, RGroup.INSTANCE.exponential0());
           Tensor tangent = meanDefect.tangent();

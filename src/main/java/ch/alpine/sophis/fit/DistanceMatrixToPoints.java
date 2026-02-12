@@ -34,7 +34,7 @@ public class DistanceMatrixToPoints {
    * @return list of n points of minimal dimension centered around origin
    * @see SymmetricMatrixQ */
   public static Tensor of(Tensor matrix, Chop chop) {
-    new SymmetricMatrixQ(chop).requireMember(matrix);
+    new SymmetricMatrixQ(chop).require(matrix);
     int n = matrix.length();
     Tensor d0 = matrix.get(0);
     Tensor ones = ConstantArray.of(RealScalar.ONE, n);

@@ -22,7 +22,7 @@ public enum MinimumSpanningTree {
    * @return list of undirected edges unordered
    * @throws Exception if given matrix is not symmetric */
   public static List<IntUndirectedEdge> of(Tensor matrix) {
-    SymmetricMatrixQ.INSTANCE.requireMember(matrix);
+    SymmetricMatrixQ.INSTANCE.require(matrix);
     int n = matrix.length();
     if (n == 0)
       return new ArrayList<>();

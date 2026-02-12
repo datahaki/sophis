@@ -76,8 +76,8 @@ public record Kriging(Sedarim sedarim, Scalar one, Tensor weights, Tensor invers
   public static Kriging of(Sedarim sedarim, Tensor sequence, Tensor values, Tensor covariance) {
     // symmetric distance matrix eq (3.7.13)
     Tensor vardst = sedarim.sunder().slash(sequence);
-    SymmetricMatrixQ.INSTANCE.requireMember(vardst);
-    Tensor matrix = vardst.subtract(SymmetricMatrixQ.INSTANCE.requireMember(covariance));
+    SymmetricMatrixQ.INSTANCE.require(vardst);
+    Tensor matrix = vardst.subtract(SymmetricMatrixQ.INSTANCE.require(covariance));
     // TODO SOPHUS IMPL probably can be simplified
     Scalar one = Quantity.of(RealScalar.ONE, QuantityUnit.of(EqualsReduce.zero(matrix)));
     int n = matrix.length();
