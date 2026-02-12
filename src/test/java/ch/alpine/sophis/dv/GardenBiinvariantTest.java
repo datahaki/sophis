@@ -20,7 +20,7 @@ class GardenBiinvariantTest {
   @Test
   void testSymmetric() {
     Tensor sequence = RandomSample.of(Se2RandomSample.of(NormalDistribution.standard()), 20);
-    Sedarim sedarim = Biinvariants.GARDEN.ofSafe(Se2CoveringGroup.INSTANCE).distances(sequence);
+    Sedarim sedarim = Biinvariants.GARDEN.ofSafe(Se2CoveringGroup.INSTANCE).relative_distances(sequence);
     Tensor matrix = Tensor.of(sequence.stream().map(sedarim::sunder));
     SquareMatrixQ.INSTANCE.require(matrix);
     Tensor diff = Transpose.of(matrix).subtract(matrix);

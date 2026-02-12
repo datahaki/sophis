@@ -22,7 +22,7 @@ class BiinvariantsTest {
   @Test
   void testDistanceSequenceNullFail() {
     for (Biinvariant biinvariant : Biinvariants.all(RGroup.INSTANCE).values())
-      assertThrows(Exception.class, () -> biinvariant.distances(null));
+      assertThrows(Exception.class, () -> biinvariant.relative_distances(null));
   }
 
   @Test

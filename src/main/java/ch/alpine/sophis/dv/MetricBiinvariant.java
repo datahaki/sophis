@@ -86,7 +86,7 @@ public class MetricBiinvariant extends BiinvariantBase {
   }
 
   @Override // from Biinvariant
-  public Sedarim distances(Tensor sequence) {
+  public Sedarim relative_distances(Tensor sequence) {
     Objects.requireNonNull(sequence);
     return point -> {
       BilinearForm bilinearForm = metricManifold.bilinearForm(point);

@@ -16,7 +16,7 @@ public interface Biinvariant {
 
   /** @param sequence
    * @return operator that maps a point to a vector of relative distances to the elements in the given sequence */
-  Sedarim distances(Tensor sequence);
+  Sedarim relative_distances(Tensor sequence);
 
   /** @param variogram
    * @param sequence

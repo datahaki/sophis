@@ -23,7 +23,7 @@ public abstract class BiinvariantBase implements Biinvariant, Serializable {
 
   @Override // from Biinvariant
   public final Sedarim var_dist(ScalarUnaryOperator variogram, Tensor sequence) {
-    Sedarim sedarim = distances(sequence);
+    Sedarim sedarim = relative_distances(sequence);
     Objects.requireNonNull(variogram);
     return point -> sedarim.sunder(point).maps(variogram);
   }

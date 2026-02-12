@@ -48,13 +48,13 @@ class RnBiinvariantTest {
     Biinvariant metricBiinvariant = Biinvariants.METRIC.ofSafe(manifold);
     Biinvariant harborBiinvariant = Biinvariants.HARBOR.ofSafe(manifold);
     for (Biinvariant biinvariant : new Biinvariant[] { metricBiinvariant, harborBiinvariant }) {
-      Sedarim tensorUnaryOperator = biinvariant.distances(sequence);
+      Sedarim tensorUnaryOperator = biinvariant.relative_distances(sequence);
       Tensor vardst = Tensor.of(sequence.stream().map(tensorUnaryOperator::sunder));
       SymmetricMatrixQ.INSTANCE.require(vardst);
     }
     Biinvariant leveragesBiinvariant = Biinvariants.LEVERAGES.ofSafe(manifold);
     {
-      Sedarim tensorUnaryOperator = leveragesBiinvariant.distances(sequence);
+      Sedarim tensorUnaryOperator = leveragesBiinvariant.relative_distances(sequence);
       Tensor vardst = Tensor.of(sequence.stream().map(tensorUnaryOperator::sunder));
       assertFalse(SymmetricMatrixQ.INSTANCE.test(vardst));
     }

@@ -16,7 +16,7 @@ import ch.alpine.tensor.ext.PackageTestAccess;
   }
 
   @Override // from Biinvariant
-  public final Sedarim distances(Tensor sequence) {
+  public final Sedarim relative_distances(Tensor sequence) {
     BiinvariantVectorFunction biinvariantVectorFunction = biinvariantVectorFunction(sequence);
     return point -> biinvariantVectorFunction.biinvariantVector(point).vector();
   }

@@ -23,14 +23,14 @@ public enum GbcHelper {
   public static BarycentricCoordinate inversCoordinate_of(Biinvariant biinvariant) {
     return (sequence, point) -> new InverseCoordinate( //
         biinvariant.manifold(), //
-        biinvariant.distances(sequence), //
+        biinvariant.relative_distances(sequence), //
         sequence).sunder(point);
   }
 
   public static BarycentricCoordinate kriginCoordinate_of(Biinvariant biinvariant) {
     return (sequence, point) -> KrigingCoordinate.barycentric( //
         biinvariant.manifold(), //
-        biinvariant.distances(sequence), //
+        biinvariant.relative_distances(sequence), //
         sequence).sunder(point);
   }
 

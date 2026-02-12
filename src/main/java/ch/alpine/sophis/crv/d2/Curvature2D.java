@@ -23,8 +23,10 @@ public enum Curvature2D {
       };
 
   /** @param points of the form {{p1x, p1y}, {p2x, p2y}, ..., {pNx, pNy}}
-   * @return vector with same length as points */
+   * @return vector with same length as points and entries containing
+   * values of {@link SignedCurvature2D} */
   public static Tensor string(Tensor points) {
     return TRIPLE_REDUCE_EXTRAPOLATION.apply(points);
   }
+  // TODO cyclic
 }

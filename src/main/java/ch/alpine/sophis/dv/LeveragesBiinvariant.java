@@ -36,7 +36,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
   }
 
   @Override // from Biinvariant
-  public Sedarim distances(Tensor sequence) {
+  public Sedarim relative_distances(Tensor sequence) {
     Objects.requireNonNull(sequence);
     return point -> origin(manifold.exponential(point).log().slash(sequence));
   }

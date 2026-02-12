@@ -79,11 +79,11 @@ class HarborBiinvariantTest {
       for (int n = 4; n < 10; ++n) {
         Tensor points = RandomVariate.of(distributiox, n, 3);
         Tensor xya = RandomVariate.of(distribution, 3);
-        Tensor distances = biinvariant.distances(points).sunder(xya);
+        Tensor distances = biinvariant.relative_distances(points).sunder(xya);
         Tensor shift = RandomVariate.of(distribution, 3);
         for (TensorUnaryOperator tensorMapping : BiinvariantCheck.of(Se2CoveringGroup.INSTANCE, shift))
           Chop._05.requireClose(distances, //
-              biinvariant.distances( //
+              biinvariant.relative_distances( //
                   Tensor.of(points.stream().map(tensorMapping))).sunder(tensorMapping.apply(xya)));
       }
   }
@@ -93,7 +93,7 @@ class HarborBiinvariantTest {
     Tensor sequence = RandomSample.of(Se2RandomSample.of(NormalDistribution.standard()), 15);
     Map<Biinvariants, Biinvariant> map = Biinvariants.kriging(Se2CoveringGroup.INSTANCE);
     for (Biinvariant biinvariant : map.values()) {
-      Sedarim sedarim = biinvariant.distances(sequence);
+      Sedarim sedarim = biinvariant.relative_distances(sequence);
       Tensor matrix = Tensor.of(sequence.stream().map(sedarim::sunder));
       SquareMatrixQ.INSTANCE.require(matrix);
       SymmetricMatrixQ.INSTANCE.require(matrix);

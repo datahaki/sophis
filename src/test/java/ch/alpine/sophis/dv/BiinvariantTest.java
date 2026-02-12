@@ -45,7 +45,7 @@ class BiinvariantTest {
     Distribution distribution = NormalDistribution.of(Quantity.of(1, "m"), Quantity.of(2, "m"));
     Biinvariant biinvariant = new MetricBiinvariant(RGroup.INSTANCE);
     Tensor sequence = RandomVariate.of(distribution, 10, 3);
-    Sedarim weightingInterface = Serialization.copy(biinvariant.distances(sequence));
+    Sedarim weightingInterface = Serialization.copy(biinvariant.relative_distances(sequence));
     Tensor point = RandomVariate.of(distribution, 3);
     Tensor weights = weightingInterface.sunder(point);
     weights.maps(QuantityMagnitude.singleton("m"));
@@ -57,7 +57,7 @@ class BiinvariantTest {
     Map<Biinvariants, Biinvariant> map = Biinvariants.all(RGroup.INSTANCE);
     for (Biinvariant biinvariant : map.values()) {
       Tensor sequence = RandomVariate.of(distribution, 10, 3);
-      Sedarim weightingInterface = biinvariant.distances(sequence);
+      Sedarim weightingInterface = biinvariant.relative_distances(sequence);
       weightingInterface.sunder(RandomVariate.of(distribution, 3));
     }
   }

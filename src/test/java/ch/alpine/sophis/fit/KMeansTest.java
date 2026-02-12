@@ -30,7 +30,7 @@ class KMeansTest {
     Biinvariant biinvariant = Biinvariants.METRIC.ofSafe(RGroup.INSTANCE);
     Tensor sequence = RandomVariate.of(NormalDistribution.standard(), 20, 2);
     KMeans kMeans = new KMeans( //
-        biinvariant.distances(sequence), //
+        biinvariant.relative_distances(sequence), //
         Mean::of, //
         sequence);
     kMeans.setSeeds(RandomVariate.of(NormalDistribution.standard(), n, 2));
@@ -48,7 +48,7 @@ class KMeansTest {
     Biinvariant biinvariant = Biinvariants.METRIC.ofSafe(RGroup.INSTANCE);
     Tensor sequence = RandomVariate.of(NormalDistribution.standard(), 20, 2);
     KMeans kMeans = new KMeans( //
-        biinvariant.distances(sequence), //
+        biinvariant.relative_distances(sequence), //
         Mean::of, //
         sequence);
     kMeans.setSeeds(5);
@@ -66,7 +66,7 @@ class KMeansTest {
     RandomSampleInterface randomSampleInterface = HemisphereRandomSample.of(2);
     Tensor sequence = RandomSample.of(randomSampleInterface, 40);
     KMeans kMeans = new KMeans( //
-        biinvariant.distances(sequence), //
+        biinvariant.relative_distances(sequence), //
         new CenterMean(SnManifold.INSTANCE.biinvariantMean()), //
         sequence);
     kMeans.setSeeds(RandomSample.of(randomSampleInterface, n));
@@ -87,7 +87,7 @@ class KMeansTest {
     RandomSampleInterface randomSampleInterface = HemisphereRandomSample.of(d);
     Tensor sequence = RandomSample.of(randomSampleInterface, 40);
     KMeans kMeans = new KMeans( //
-        biinvariant.distances(sequence), //
+        biinvariant.relative_distances(sequence), //
         new CenterMean(SnManifold.INSTANCE.biinvariantMean()), //
         sequence);
     kMeans.setSeeds(RandomSample.of(randomSampleInterface, 3));
@@ -107,7 +107,7 @@ class KMeansTest {
     Biinvariant biinvariant = Biinvariants.LEVERAGES.ofSafe(lieGroup);
     Tensor sequence = RandomVariate.of(NormalDistribution.standard(), 40, 3);
     KMeans kMeans = new KMeans( //
-        biinvariant.distances(sequence), //
+        biinvariant.relative_distances(sequence), //
         new CenterMean(lieGroup.biinvariantMean()), //
         sequence);
     kMeans.setSeeds(2);

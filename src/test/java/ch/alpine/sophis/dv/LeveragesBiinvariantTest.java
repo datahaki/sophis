@@ -29,7 +29,7 @@ class LeveragesBiinvariantTest {
     Tensor sequence = RandomVariate.of(UniformDistribution.unit(), 10, 3);
     Manifold manifold = RGroup.INSTANCE;
     LeveragesBiinvariant leveragesBiinvariant = new LeveragesBiinvariant(manifold);
-    Sedarim w2 = leveragesBiinvariant.distances(sequence);
+    Sedarim w2 = leveragesBiinvariant.relative_distances(sequence);
     for (int count = 0; count < 10; ++count) {
       Tensor point = RandomVariate.of(UniformDistribution.unit(), 3);
       w2.sunder(point);
@@ -42,7 +42,7 @@ class LeveragesBiinvariantTest {
     Tensor sequence = RandomSample.of(randomSampleInterface, 10);
     Manifold manifold = SnManifold.INSTANCE;
     LeveragesBiinvariant leveragesBiinvariant = new LeveragesBiinvariant(manifold);
-    Sedarim w2 = leveragesBiinvariant.distances(sequence);
+    Sedarim w2 = leveragesBiinvariant.relative_distances(sequence);
     for (int count = 0; count < 10; ++count) {
       Tensor point = RandomSample.of(randomSampleInterface);
       w2.sunder(point);
@@ -55,7 +55,7 @@ class LeveragesBiinvariantTest {
     Tensor sequence = RandomVariate.of(distribution, 10, 3);
     Manifold manifold = Se2Group.INSTANCE;
     LeveragesBiinvariant leveragesBiinvariant = new LeveragesBiinvariant(manifold);
-    Sedarim w2 = leveragesBiinvariant.distances(sequence);
+    Sedarim w2 = leveragesBiinvariant.relative_distances(sequence);
     for (int count = 0; count < 10; ++count) {
       Tensor point = RandomVariate.of(distribution, 3);
       w2.sunder(point);

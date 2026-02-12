@@ -29,7 +29,8 @@ public enum SignedCurvature2D {
    * @param b vector of length 2
    * @param c vector of length 2
    * @return inverse of radius of circle that interpolates the given points a, b, c,
-   * or Optional.empty() if any two of the three points are identical */
+   * or Optional.empty() if any two of the three points are identical
+   * @throws Exception if input are not vectors of length 2 */
   public static Optional<Scalar> of(Tensor a, Tensor b, Tensor c) {
     Tensor d_ab = b.subtract(a);
     Scalar v = Det2D.of(d_ab, c.subtract(b));
