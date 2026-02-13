@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -106,7 +107,7 @@ class KrigingTest {
 
   @Test
   void testBarycentric() throws ClassNotFoundException, IOException {
-    Random random = ThreadLocalRandom.current();
+    RandomGenerator random = new Random(13);
     Distribution distribution = NormalDistribution.standard();
     ScalarUnaryOperator variogram = PowerVariogram.of(RealScalar.ONE, RealScalar.of(1.5));
     int n = 5 + random.nextInt(5);

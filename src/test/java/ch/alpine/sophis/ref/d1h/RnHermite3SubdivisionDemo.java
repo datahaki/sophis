@@ -17,6 +17,6 @@ import ch.alpine.tensor.io.Put;
     for (int count = 1; count <= 5; ++count)
       tensorIteration.iterate();
     Tensor tensor = tensorIteration.iterate();
-    Put.of(HomeDirectory.path("conti.file"), tensor);
+    Put.of(HomeDirectory.Ephemeral.resolve("conti.file"), tensor);
   }
 }

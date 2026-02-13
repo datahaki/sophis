@@ -17,6 +17,6 @@ import ch.alpine.tensor.io.Put;
     for (int count = 1; count <= 6; ++count)
       tensorIteration.iterate();
     Tensor iterate = tensorIteration.iterate();
-    Put.of(HomeDirectory.path("hermite2.file"), iterate);
+    Put.of(HomeDirectory.Ephemeral.resolve("hermite2.file"), iterate);
   }
 }

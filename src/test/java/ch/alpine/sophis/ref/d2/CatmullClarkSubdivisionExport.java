@@ -2,6 +2,7 @@
 package ch.alpine.sophis.ref.d2;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
@@ -90,9 +91,10 @@ enum CatmullClarkSubdivisionExport {
   }
 
   static void main() throws IOException {
-    Put.of(HomeDirectory.path("grid.mathematica"), univariate());
-    Put.of(HomeDirectory.path("se2.mathematica"), se2());
-    Put.of(HomeDirectory.path("r3s2.mathematica"), r3s2());
-    Put.of(HomeDirectory.path("sphere.mathematica"), r3s2_sphere());
+    Path path = HomeDirectory.Ephemeral.createDirectories(CatmullClarkSubdivisionExport.class.getSimpleName());
+    Put.of(path.resolve("grid.mathematica"), univariate());
+    Put.of(path.resolve("se2.mathematica"), se2());
+    Put.of(path.resolve("r3s2.mathematica"), r3s2());
+    Put.of(path.resolve("sphere.mathematica"), r3s2_sphere());
   }
 }
