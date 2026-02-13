@@ -119,9 +119,8 @@ public class ClothoidIntegralAnalytic implements ClothoidIntegral, Serializable 
   /** exact solution taken from
    * https://www.wolframalpha.com */
   private static class Degree2 implements ScalarUnaryOperator {
-    // TODO SOPHIS this seems redundant to DIAG = {sqrt(1/2),sqrt(1/2)}
-    private static final Scalar _N1_1_4 = ComplexScalar.of(+0.7071067811865476, 0.7071067811865475);
-    private static final Scalar _N1_3_4 = ComplexScalar.of(-0.7071067811865475, 0.7071067811865476);
+    private static final Scalar _N1_1_4 = ComplexScalar.unit(Pi.QUARTER);
+    private static final Scalar _N1_3_4 = ComplexScalar.unit(Pi._3_4);
     private static final Scalar _1_4 = RationalScalar.of(1, 4);
     // ---
     private final Scalar c1;

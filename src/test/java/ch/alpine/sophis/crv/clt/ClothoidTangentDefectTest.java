@@ -4,9 +4,11 @@ package ch.alpine.sophis.crv.clt;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.clt.mid.MidpointTangentOrder2;
+import ch.alpine.tensor.ComplexScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.mat.Tolerance;
+import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
@@ -37,6 +39,12 @@ class ClothoidTangentDefectTest {
       Chop._02.requireZero(ClothoidTangentDefect.of(s1, s2).defect(lam));
       Sign.requirePositive(ClothoidTangentDefect.of(s1, s2).signum(lam));
     }
+  }
+
+  @Test
+  void testUnit() {
+    Scalar DIAG = ComplexScalar.of(0.7071067811865476, 0.7071067811865475);
+    Tolerance.CHOP.requireClose(DIAG, ComplexScalar.unit(Pi.QUARTER));
   }
 
   @Test

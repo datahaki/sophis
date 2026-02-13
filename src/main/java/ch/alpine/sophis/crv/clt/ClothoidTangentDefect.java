@@ -6,6 +6,7 @@ import ch.alpine.tensor.RationalScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
+import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.sca.Im;
 import ch.alpine.tensor.sca.Re;
 import ch.alpine.tensor.sca.erf.Erf;
@@ -15,8 +16,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 /** for matching end point tangents the real part of the defect should be 0
  * and the imaginary part should be positive */
 public class ClothoidTangentDefect implements ScalarUnaryOperator {
-  // TODO 1/sqrt(2)
-  private static final Scalar DIAG = ComplexScalar.of(0.7071067811865476, 0.7071067811865475);
+  private static final Scalar DIAG = ComplexScalar.unit(Pi.QUARTER);
 
   public static ClothoidTangentDefect of(Scalar s1, Scalar s2) {
     return new ClothoidTangentDefect(s1, s2);
