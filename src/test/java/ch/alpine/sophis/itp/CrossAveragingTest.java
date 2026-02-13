@@ -36,8 +36,8 @@ class CrossAveragingTest {
       RandomSampleInterface randomSampleInterface = new Sphere(4);
       Tensor values = RandomSample.of(randomSampleInterface, n);
       Tensor point = RandomVariate.of(distribution, 3);
-      // the use of snphong mean is not a mistake
-      Tensor evaluate = new CrossAveraging(tensorUnaryOperator, SnPhongMean.INSTANCE, values).apply(point);
+      // the use of snphong mean is not a mistake but an abuse
+      Tensor evaluate = new CrossAveraging(tensorUnaryOperator, SnPhongMean.INSTANCE::estimate, values).apply(point);
       VectorQ.requireLength(evaluate, 5);
     }
   }
