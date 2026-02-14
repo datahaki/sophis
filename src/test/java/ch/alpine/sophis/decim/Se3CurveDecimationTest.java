@@ -7,8 +7,8 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.lie.se.Se3Group;
-import ch.alpine.sophus.lie.se.Se3Matrix;
+import ch.alpine.sophus.lie.se3.Se3Group;
+import ch.alpine.sophus.lie.se3.Se3Matrix;
 import ch.alpine.sophus.lie.so.Rodrigues;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;

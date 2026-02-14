@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.decim;
 
-import ch.alpine.sophus.lie.se.Se3Group;
+import ch.alpine.sophus.lie.se3.Se3Group;
 import ch.alpine.tensor.Scalar;
 
 public enum Se3CurveDecimation {
