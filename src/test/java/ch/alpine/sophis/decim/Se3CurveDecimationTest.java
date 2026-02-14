@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.se.SeNGroup;
 import ch.alpine.sophus.lie.se3.Se3Matrix;
-import ch.alpine.sophus.lie.so.Rodrigues;
+import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -26,9 +26,9 @@ class Se3CurveDecimationTest {
   @Test
   void testSimple() throws ClassNotFoundException, IOException {
     CurveDecimation curveDecimation = Serialization.copy(Se3CurveDecimation.of(RealScalar.of(0.3)));
-    Tensor p = Se3Matrix.of(Rodrigues.vectorExp(Tensors.vector(0.1, -.2, -.3)), Tensors.vector(4, 3, 7));
+    Tensor p = Se3Matrix.of(So3Exponential.vectorExp(Tensors.vector(0.1, -.2, -.3)), Tensors.vector(4, 3, 7));
     // Se3GroupElement pe = new Se3GroupElement(p);
-    Tensor q = Se3Matrix.of(Rodrigues.vectorExp(Tensors.vector(0.2, .3, -.1)), Tensors.vector(1, 2, 5));
+    Tensor q = Se3Matrix.of(So3Exponential.vectorExp(Tensors.vector(0.2, .3, -.1)), Tensors.vector(1, 2, 5));
     // Se3GroupElement qe = new Se3GroupElement(q);
     ScalarTensorFunction scalarTensorFunction = LIE_GROUP.curve(p, q);
     Tensor m1 = scalarTensorFunction.apply(RealScalar.of(0.3));

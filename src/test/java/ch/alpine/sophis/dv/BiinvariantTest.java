@@ -17,7 +17,7 @@ import ch.alpine.sophus.hs.gr.GrManifold;
 import ch.alpine.sophus.hs.gr.Grassmannian;
 import ch.alpine.sophus.hs.rpn.RpnManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.lie.so.Rodrigues;
+import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.sophus.lie.so.SoNGroup;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -122,7 +122,7 @@ class BiinvariantTest {
     Distribution distribution = NormalDistribution.of(0, 0.2);
     for (BarycentricCoordinate barycentricCoordinate : BARYCENTRIC_COORDINATES)
       for (int count = 0; count < 10; ++count) {
-        Tensor rotation = Rodrigues.vectorExp(RandomVariate.of(distribution, 3));
+        Tensor rotation = So3Exponential.vectorExp(RandomVariate.of(distribution, 3));
         Tensor mean = rotation.dot(Vector2Norm.NORMALIZE.apply(Tensors.vector(1, 1, 1)));
         Tensor sequence = Tensor.of(IdentityMatrix.of(3).stream().map(rotation::dot));
         Tensor weights = barycentricCoordinate.weights(sequence, mean);

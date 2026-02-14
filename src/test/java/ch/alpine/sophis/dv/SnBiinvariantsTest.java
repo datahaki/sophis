@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.hs.s.SnManifold;
-import ch.alpine.sophus.lie.so.Rodrigues;
+import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.sophus.lie.so.SoNGroup;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
@@ -87,7 +87,7 @@ class SnBiinvariantsTest {
   @MethodSource("barycentrics")
   void testSpecific(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = NormalDistribution.of(0, 0.2);
-    Tensor rotation = Rodrigues.vectorExp(RandomVariate.of(distribution, 3));
+    Tensor rotation = So3Exponential.vectorExp(RandomVariate.of(distribution, 3));
     Tensor mean = rotation.dot(Vector2Norm.NORMALIZE.apply(Tensors.vector(1, 1, 1)));
     Tensor sequence = Tensor.of(IdentityMatrix.of(3).stream().map(rotation::dot));
     Chop._08.requireClose(sequence, Transpose.of(rotation));

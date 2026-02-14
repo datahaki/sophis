@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.VectorizedGroup;
-import ch.alpine.sophus.lie.so.Rodrigues;
+import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.sophus.lie.so.So3Group;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
@@ -39,8 +39,8 @@ class So3BiinvariantTest {
     Distribution d2 = NormalDistribution.of(0.0, 0.1);
     BarycentricCoordinate AFFINE = AffineWrap.of(LIE_GROUP);
     int n = 4 + random.nextInt(2);
-    Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, 3).stream().map(Rodrigues::vectorExp));
-    Tensor mean = Rodrigues.vectorExp(RandomVariate.of(d2, 3));
+    Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, 3).stream().map(So3Exponential::vectorExp));
+    Tensor mean = So3Exponential.vectorExp(RandomVariate.of(d2, 3));
     Tensor weights1 = AFFINE.weights(sequence, mean);
     Tensor o2 = LIE_GROUP.biinvariantMean().mean(sequence, weights1);
     Chop._08.requireClose(mean, o2);
@@ -57,12 +57,12 @@ class So3BiinvariantTest {
   @ParameterizedTest
   @MethodSource("barycentrics")
   void testSimple3(BarycentricCoordinate barycentricCoordinate) {
-    Tensor g1 = Rodrigues.vectorExp(Tensors.vector(0.2, 0.3, 0.4));
-    Tensor g2 = Rodrigues.vectorExp(Tensors.vector(0.1, 0.0, 0.5));
-    Tensor g3 = Rodrigues.vectorExp(Tensors.vector(0.3, 0.5, 0.2));
-    Tensor g4 = Rodrigues.vectorExp(Tensors.vector(0.5, 0.2, 0.1));
+    Tensor g1 = So3Exponential.vectorExp(Tensors.vector(0.2, 0.3, 0.4));
+    Tensor g2 = So3Exponential.vectorExp(Tensors.vector(0.1, 0.0, 0.5));
+    Tensor g3 = So3Exponential.vectorExp(Tensors.vector(0.3, 0.5, 0.2));
+    Tensor g4 = So3Exponential.vectorExp(Tensors.vector(0.5, 0.2, 0.1));
     Tensor sequence = Tensors.of(g1, g2, g3, g4);
-    Tensor mean = Rodrigues.vectorExp(Tensors.vector(0.4, 0.2, 0.3));
+    Tensor mean = So3Exponential.vectorExp(Tensors.vector(0.4, 0.2, 0.3));
     Tensor weights = barycentricCoordinate.weights(sequence, mean);
     Tensor defect = MeanDefect.of(sequence, weights, LIE_GROUP.exponential(mean)).tangent();
     Chop._10.requireAllZero(defect);
@@ -76,8 +76,8 @@ class So3BiinvariantTest {
     Distribution d2 = NormalDistribution.of(0.0, 0.1);
     int n = 4 + random.nextInt(2);
     {
-      Tensor sequence = Tensor.of(RandomVariate.of(distribution, random, n, 3).stream().map(Rodrigues::vectorExp));
-      Tensor mean = Rodrigues.vectorExp(RandomVariate.of(d2, random, 3));
+      Tensor sequence = Tensor.of(RandomVariate.of(distribution, random, n, 3).stream().map(So3Exponential::vectorExp));
+      Tensor mean = So3Exponential.vectorExp(RandomVariate.of(d2, random, 3));
       Tensor weights1 = barycentricCoordinate.weights(sequence, mean);
       Tensor o2 = LIE_GROUP.biinvariantMean().mean(sequence, weights1);
       Chop._08.requireClose(mean, o2);
@@ -101,7 +101,7 @@ class So3BiinvariantTest {
   void testLagrange(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = NormalDistribution.of(0.0, 0.1);
     for (int n = 4; n < 8; ++n) {
-      Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, 3).stream().map(Rodrigues::vectorExp));
+      Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, 3).stream().map(So3Exponential::vectorExp));
       int index = 0;
       for (Tensor point : sequence) {
         Tensor weights = barycentricCoordinate.weights(sequence, point);
@@ -124,7 +124,7 @@ class So3BiinvariantTest {
   void testConvergence(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = NormalDistribution.of(0.0, 0.3);
     int n = 4 + ThreadLocalRandom.current().nextInt(6);
-    Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, 3).stream().map(Rodrigues::vectorExp));
+    Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, 3).stream().map(So3Exponential::vectorExp));
     Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(UniformDistribution.unit(), n));
     Tensor mean = So3Group.INSTANCE.biinvariantMean().mean(sequence, weights);
     Tensor w2 = barycentricCoordinate.weights(sequence, mean);
@@ -137,7 +137,7 @@ class So3BiinvariantTest {
   void testConvergenceExact(BarycentricCoordinate barycentricCoordinate) {
     Distribution distribution = NormalDistribution.of(0.0, 0.3);
     int n = 4;
-    Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, 3).stream().map(Rodrigues::vectorExp));
+    Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, 3).stream().map(So3Exponential::vectorExp));
     Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(UniformDistribution.unit(), n));
     Tensor mean = So3Group.INSTANCE.biinvariantMean().mean(sequence, weights);
     Tensor w2 = barycentricCoordinate.weights(sequence, mean);

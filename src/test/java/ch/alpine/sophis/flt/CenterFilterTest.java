@@ -10,7 +10,7 @@ import ch.alpine.sophis.flt.ga.BinomialWeights;
 import ch.alpine.sophis.flt.ga.GeodesicCenter;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.lie.so.Rodrigues;
+import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.sophus.lie.so.So3Group;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -73,7 +73,7 @@ class CenterFilterTest {
     TensorUnaryOperator geodesicCenter = GeodesicCenter.of(So3Group.INSTANCE, HammingWindow.FUNCTION);
     TensorUnaryOperator geodesicCenterFilter = new CenterFilter(geodesicCenter, 1);
     Distribution distribution = UniformDistribution.unit();
-    Tensor tensor = Tensor.of(RandomVariate.of(distribution, 10, 3).stream().map(Rodrigues::vectorExp));
+    Tensor tensor = Tensor.of(RandomVariate.of(distribution, 10, 3).stream().map(So3Exponential::vectorExp));
     Tensor result = geodesicCenterFilter.apply(tensor);
     assertEquals(Dimensions.of(tensor), Dimensions.of(result));
   }
