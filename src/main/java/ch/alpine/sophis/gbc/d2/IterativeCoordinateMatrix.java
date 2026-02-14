@@ -25,7 +25,7 @@ public record IterativeCoordinateMatrix(int k) implements Genesis {
   @Override // from Genesis
   public Tensor origin(Tensor levers) {
     Tensor scaling = InverseNorm.INSTANCE.origin(levers);
-    Tensor matrix = DiagonalMatrix.with(scaling);
+    Tensor matrix = DiagonalMatrix.sparse(scaling);
     Tensor normalized = Times.of(scaling, levers);
     Tensor midmat = Adds.matrix(levers.length());
     for (int depth = 0; depth < k; ++depth) {

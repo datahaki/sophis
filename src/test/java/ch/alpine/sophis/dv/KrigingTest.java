@@ -19,7 +19,6 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.api.TensorUnaryOperator;
@@ -50,7 +49,7 @@ class KrigingTest {
       Tensor points = RandomVariate.of(distributiox, n, 3);
       Tensor xya = RandomVariate.of(distribution, 3);
       Tensor values = RandomVariate.of(distributiox, n);
-      Tensor covariance = DiagonalMatrix.with(ConstantArray.of(RealScalar.of(0.02), n));
+      Tensor covariance = DiagonalMatrix.of(n, RealScalar.of(0.02));
       Sedarim tensorUnaryOperator1 = //
           biinvariant.var_dist(powerVariogram, points);
       Kriging kriging1 = Kriging.regression(tensorUnaryOperator1, points, values, covariance);
