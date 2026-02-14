@@ -7,7 +7,6 @@ import java.util.Objects;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.mat.gr.InfluenceMatrix;
 
 /** for Rn and Sn the frobenius distance results in identical coordinates as the 2-norm distance
