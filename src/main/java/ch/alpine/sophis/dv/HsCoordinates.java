@@ -28,7 +28,7 @@ public record HsCoordinates(Manifold manifold, Genesis genesis) implements Baryc
 
   @Override // from BarycentricCoordinate
   public Tensor weights(Tensor sequence, Tensor point) {
-    Tensor weights = genesis.origin(manifold.exponential(point).log().slash(sequence));
+    Tensor weights = genesis.origin(manifold.exponential(point).vectorLog().slash(sequence));
     return DeterminateTensorQ.of(weights) //
         ? AffineQ.INSTANCE.require(weights)
         : weights;

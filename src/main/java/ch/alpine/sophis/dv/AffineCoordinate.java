@@ -8,6 +8,7 @@ import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.jet.AppendOne;
+import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.mat.cd.CholeskyDecomposition;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.sca.Chop;
@@ -25,7 +26,8 @@ public enum AffineCoordinate implements Genesis {
 
   @Override // from Genesis
   public Tensor origin(Tensor levers) {
-    Tensor x = Tensor.of(levers.stream().map(AppendOne.FUNCTION));
+    MatrixQ.require(levers);
+    Tensor x = AppendOne.FUNCTION.slash(levers);
     int d = Unprotect.dimension1Hint(levers);
     Tensor u = UnitVector.of(d + 1, d);
     Tensor matrix = Transpose.of(x).dot(x);

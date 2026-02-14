@@ -25,7 +25,7 @@ public class InverseCoordinate implements Sedarim {
 
   @Override
   public Tensor sunder(Tensor point) {
-    Tensor levers = manifold.exponential(point).log().slash(sequence);
+    Tensor levers = manifold.exponential(point).vectorLog().slash(sequence);
     return WeightingToCoordinate.of(levers).apply(sedarim.sunder(point).dot(weights));
   }
 }

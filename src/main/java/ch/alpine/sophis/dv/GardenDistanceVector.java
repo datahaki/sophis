@@ -23,7 +23,7 @@ import ch.alpine.tensor.mat.gr.Mahalanobis;
   public static GardenDistanceVector of(Manifold manifold, Tensor sequence) {
     List<Exponential> exponentials = sequence.stream().map(manifold::exponential).toList();
     return new GardenDistanceVector(exponentials, exponentials.stream() //
-        .map(exponential -> exponential.log().slash(sequence)) //
+        .map(exponential -> exponential.vectorLog().slash(sequence)) //
         .map(Mahalanobis::new) //
         .toList());
   }
@@ -32,6 +32,6 @@ import ch.alpine.tensor.mat.gr.Mahalanobis;
   public Tensor sunder(Tensor point) {
     Int i = new Int();
     return Tensor.of(array.stream() //
-        .map(mahalanobis -> mahalanobis.norm(exponentials.get(i.getAndIncrement()).log(point))));
+        .map(mahalanobis -> mahalanobis.norm(exponentials.get(i.getAndIncrement()).vectorLog().apply(point))));
   }
 }

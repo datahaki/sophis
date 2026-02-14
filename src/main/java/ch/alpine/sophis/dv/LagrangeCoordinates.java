@@ -6,6 +6,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.jet.AppendOne;
+import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.mat.pi.LagrangeMultiplier;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.sca.Chop;
@@ -18,6 +19,7 @@ import ch.alpine.tensor.sca.Chop;
    * @param target
    * @return */
   public static Tensor of(Tensor levers, Tensor target) {
+    MatrixQ.require(levers);
     Tensor eqs = AppendOne.FUNCTION.slash(levers);
     int d = Unprotect.dimension1Hint(levers) + 1;
     Tensor rhs = UnitVector.of(d, d - 1);

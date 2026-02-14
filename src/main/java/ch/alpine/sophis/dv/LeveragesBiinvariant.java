@@ -38,7 +38,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
   @Override // from Biinvariant
   public Sedarim relative_distances(Tensor sequence) {
     Objects.requireNonNull(sequence);
-    return point -> origin(manifold.exponential(point).log().slash(sequence));
+    return point -> origin(manifold.exponential(point).vectorLog().slash(sequence));
   }
 
   @Override // from Biinvariant
@@ -55,7 +55,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
     Objects.requireNonNull(variogram);
     Objects.requireNonNull(sequence);
     return point -> {
-      Tensor levers = manifold.exponential(point).log().slash(sequence);
+      Tensor levers = manifold.exponential(point).vectorLog().slash(sequence);
       Tensor target = NormalizeTotal.FUNCTION.apply(origin(levers).maps(variogram));
       return LagrangeCoordinates.of(levers, target);
     };
