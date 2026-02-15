@@ -15,7 +15,7 @@ import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.gr.GrAction;
 import ch.alpine.sophus.hs.gr.GrManifold;
 import ch.alpine.sophus.hs.gr.Grassmannian;
-import ch.alpine.sophus.hs.rpn.RpnManifold;
+import ch.alpine.sophus.hs.rpn.RpManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.sophus.lie.so.SoNGroup;
@@ -115,7 +115,7 @@ class BiinvariantTest {
     }
   }
 
-  private static final BarycentricCoordinate[] BARYCENTRIC_COORDINATES = GbcHelper.barycentrics(RpnManifold.INSTANCE);
+  private static final BarycentricCoordinate[] BARYCENTRIC_COORDINATES = GbcHelper.barycentrics(RpManifold.INSTANCE);
 
   @Test
   void testSpecific() {
@@ -127,10 +127,10 @@ class BiinvariantTest {
         Tensor sequence = Tensor.of(IdentityMatrix.of(3).stream().map(rotation::dot));
         Tensor weights = barycentricCoordinate.weights(sequence, mean);
         Chop._12.requireClose(weights, NormalizeTotal.FUNCTION.apply(Tensors.vector(1, 1, 1)));
-        Chop._12.requireAllZero(MeanDefect.of(sequence, weights, RpnManifold.INSTANCE.exponential(mean)).tangent());
+        Chop._12.requireAllZero(MeanDefect.of(sequence, weights, RpManifold.INSTANCE.exponential(mean)).tangent());
         {
-          Tensor point = RpnManifold.INSTANCE.biinvariantMean().mean(sequence, weights);
-          Chop._05.requireAllZero(MeanDefect.of(sequence, weights, RpnManifold.INSTANCE.exponential(point)).tangent());
+          Tensor point = RpManifold.INSTANCE.biinvariantMean().mean(sequence, weights);
+          Chop._05.requireAllZero(MeanDefect.of(sequence, weights, RpManifold.INSTANCE.exponential(point)).tangent());
         }
       }
   }

@@ -62,6 +62,8 @@ public class NegTransitiveMinTracker<T> implements MinTracker<T>, Serializable {
       case STRICTLY_SUCCEEDS:
         // <- ignore given x
         break;
+      default:
+        throw new RuntimeException();
       }
   }
 
