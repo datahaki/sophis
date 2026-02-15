@@ -16,7 +16,7 @@ import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.hs.Exponential;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.se.SeNGroup;
-import ch.alpine.sophus.lie.se3.Se3Exponential0;
+import ch.alpine.sophus.lie.se3.Se3Exponential;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
@@ -46,9 +46,10 @@ class Se3BiinvariantTest {
   @ParameterizedTest
   @MethodSource("barycentrics")
   void testRelativeRandom(BarycentricCoordinate barycentricCoordinate) {
-    BiinvariantMean biinvariantMean = LIE_GROUP.biinvariantMean();
+    // BiinvariantMean biinvariantMean =
+    LIE_GROUP.biinvariantMean();
     int n = 10;
-    Exponential exponential = Se3Exponential0.INSTANCE;
+    Exponential exponential = Se3Exponential.INSTANCE;
     ZeroDefectArrayQ zeroDefectArrayQ = exponential.isTangentQ();
     LinearSubspace linearSubspace = LinearSubspace.of(zeroDefectArrayQ::defect, 4, 4);
     assertEquals(linearSubspace.dimensions(), 6);

@@ -30,6 +30,7 @@ import ch.alpine.tensor.sca.Ceiling;
 import ch.alpine.tensor.sca.Sign;
 
 /* package */ class RrtsFlowTrajectoryGenerator {
+  @SuppressWarnings("unused")
   private final StateSpaceModel stateSpaceModel;
   private final BiFunction<StateTime, StateTime, Tensor> uBetween;
   private CurveSubdivision curveSubdivision = null;

@@ -15,6 +15,7 @@ public enum GeodesicIIRnFilter {
    * @param radius
    * @param alpha
    * @return */
+  @SuppressWarnings("unchecked")
   public static TensorUnaryOperator of(TensorUnaryOperator extrapolation, BinaryAverage binaryAverage, int radius, Scalar alpha) {
     return new CausalFilter( //
         (Supplier<TensorUnaryOperator> & Serializable) //
