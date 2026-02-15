@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import ch.alpine.sophis.dv.Biinvariant;
 import ch.alpine.sophis.dv.Biinvariants;
 import ch.alpine.sophus.bm.CenterMean;
-import ch.alpine.sophus.hs.s.HemisphereRandomSample;
+import ch.alpine.sophus.hs.rpn.HemisphereRandomSample;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.rn.RGroup;

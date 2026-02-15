@@ -7,7 +7,7 @@ import java.util.Random;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.he.HeGroup;
-import ch.alpine.sophus.lie.he.HeRandomSample;
+import ch.alpine.sophus.lie.he.HeNGroup;
 import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -17,9 +17,7 @@ import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
-import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
-import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class HeBiinvariantTest {
@@ -40,7 +38,7 @@ class HeBiinvariantTest {
     for (BarycentricCoordinate barycentricCoordinate : BARYCENTRIC_COORDINATES)
       for (int n = 1; n < 3; ++n)
         for (int length = 2 * n + 2; length < 2 * n + 10; ++length) {
-          RandomSampleInterface rsi = new HeRandomSample(n, UniformDistribution.of(Clips.absolute(2)));
+          RandomSampleInterface rsi = new HeNGroup(n);
           Tensor sequence = RandomSample.of(rsi, length);
           Tensor mean1 = RandomSample.of(rsi);
           Tensor weights = barycentricCoordinate.weights(sequence, mean1);
@@ -60,7 +58,7 @@ class HeBiinvariantTest {
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(AFFINE);
     for (int n = 1; n < 3; ++n)
       for (int length = 2 * n + 2; length < 2 * n + 10; ++length) {
-        RandomSampleInterface rsi = new HeRandomSample(n, UniformDistribution.of(Clips.absolute(10)));
+        RandomSampleInterface rsi = new HeNGroup(n);
         Tensor sequence = RandomSample.of(rsi, random, length);
         Tensor mean1 = RandomSample.of(rsi, random);
         Tensor weights = barycentricCoordinate.weights(sequence, mean1);
@@ -80,7 +78,7 @@ class HeBiinvariantTest {
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(AFFINE);
     for (int n = 1; n < 3; ++n)
       for (int length = 2 * n + 2; length < 2 * n + 10; ++length) {
-        RandomSampleInterface rsi = new HeRandomSample(n, UniformDistribution.of(Clips.absolute(10)));
+        RandomSampleInterface rsi = new HeNGroup(n);
         Tensor sequence = RandomSample.of(rsi, length);
         Tensor constant = AveragingWeights.INSTANCE.origin(sequence);
         Tensor center = HeGroup.INSTANCE.biinvariantMean().mean(sequence, constant);

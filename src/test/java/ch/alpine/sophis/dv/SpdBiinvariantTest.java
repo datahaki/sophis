@@ -12,8 +12,8 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.spd.Spd0RandomSample;
 import ch.alpine.sophus.hs.spd.SpdManifold;
+import ch.alpine.sophus.hs.spd.SpdNManifold;
 import ch.alpine.sophus.lie.so.SoNGroup;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
@@ -24,7 +24,6 @@ import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
-import ch.alpine.tensor.pdf.c.TriangularDistribution;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
@@ -48,7 +47,8 @@ class SpdBiinvariantTest {
     int d = 2;
     int fail = 0;
     int len = 5 + random1.nextInt(3);
-    RandomSampleInterface rsi = new Spd0RandomSample(d, NormalDistribution.standard());
+    SpdNManifold spdNManifold = new SpdNManifold(d);
+    RandomSampleInterface rsi = spdNManifold;
     Random randomGenerator = random1;
     Tensor sequence = RandomSample.of(rsi, randomGenerator, len);
     for (BarycentricCoordinate barycentricCoordinate : list())
@@ -71,7 +71,8 @@ class SpdBiinvariantTest {
     Random random = ThreadLocalRandom.current();
     int d = 2;
     int len = 5 + random.nextInt(3);
-    RandomSampleInterface rsi = new Spd0RandomSample(d, NormalDistribution.standard());
+    SpdNManifold spdNManifold = new SpdNManifold(d);
+    RandomSampleInterface rsi = spdNManifold;
     Tensor sequence = RandomSample.of(rsi, len);
     for (BarycentricCoordinate barycentricCoordinate : list()) {
       int index = random.nextInt(sequence.length());
@@ -95,7 +96,8 @@ class SpdBiinvariantTest {
         Biinvariant biinvariant = entry.getValue();
         int count = 1 + randomGenerator.nextInt(3);
         int len = n * (n + 1) / 2 + count;
-        RandomSampleInterface rsi = new Spd0RandomSample(n, TriangularDistribution.with(0, 1));
+        SpdNManifold spdNManifold = new SpdNManifold(n);
+        RandomSampleInterface rsi = spdNManifold;
         Tensor sequence = RandomSample.of(rsi, len);
         Tensor mL = RandomSample.of(rsi);
         Tensor weights1 = biinvariant.coordinate(InversePowerVariogram.of(2), sequence).sunder(mL);
@@ -117,7 +119,8 @@ class SpdBiinvariantTest {
     for (Biinvariant biinvariant : map.values()) {
       int count = 1 + randomGenerator.nextInt(3);
       int len = n * (n + 1) / 2 + count;
-      RandomSampleInterface rsi = new Spd0RandomSample(n, TriangularDistribution.with(0, 1));
+      SpdNManifold spdNManifold = new SpdNManifold(n);
+      RandomSampleInterface rsi = spdNManifold;
       Tensor sequence = RandomSample.of(rsi, randomGenerator, len);
       Tensor mL = RandomSample.of(rsi, randomGenerator);
       Tensor weights1 = biinvariant.coordinate(InversePowerVariogram.of(2), sequence).sunder(mL);
