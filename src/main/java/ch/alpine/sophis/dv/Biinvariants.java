@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import ch.alpine.sophus.hs.Manifold;
-import ch.alpine.sophus.hs.MetricManifold;
+import ch.alpine.sophus.math.api.Manifold;
+import ch.alpine.sophus.math.api.MetricManifold;
 
 public enum Biinvariants {
   METRIC(MetricBiinvariant::new),

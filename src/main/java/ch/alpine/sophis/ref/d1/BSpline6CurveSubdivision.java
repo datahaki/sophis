@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
-import ch.alpine.sophus.hs.GeodesicSpace;
+import ch.alpine.sophus.math.api.GeodesicSpace;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 

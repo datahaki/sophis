@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophus.hs.Manifold;
+import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.Tensor;
 
 public record KrigingCoordinate(Manifold manifold, Kriging kriging, Tensor sequence) implements Sedarim {

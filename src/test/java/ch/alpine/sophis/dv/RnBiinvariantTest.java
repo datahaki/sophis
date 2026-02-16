@@ -15,9 +15,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
-import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;

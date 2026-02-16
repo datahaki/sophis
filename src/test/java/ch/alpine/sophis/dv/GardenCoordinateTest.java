@@ -8,8 +8,8 @@ import java.lang.reflect.Modifier;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.lie.rn.RGroup;
+import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.mat.HilbertMatrix;

@@ -4,7 +4,7 @@ package ch.alpine.sophis.dv;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophus.hs.Manifold;
+import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.gr.InfluenceMatrix;

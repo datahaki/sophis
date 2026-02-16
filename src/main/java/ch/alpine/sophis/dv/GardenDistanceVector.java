@@ -3,8 +3,8 @@ package ch.alpine.sophis.dv;
 
 import java.util.List;
 
-import ch.alpine.sophus.hs.Exponential;
-import ch.alpine.sophus.hs.Manifold;
+import ch.alpine.sophus.math.api.Exponential;
+import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Int;
 import ch.alpine.tensor.mat.gr.Mahalanobis;

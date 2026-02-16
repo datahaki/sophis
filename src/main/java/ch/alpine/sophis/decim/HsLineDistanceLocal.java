@@ -4,7 +4,7 @@ package ch.alpine.sophis.decim;
 import java.io.Serializable;
 
 import ch.alpine.sophis.math.TensorNorm;
-import ch.alpine.sophus.hs.Exponential;
+import ch.alpine.sophus.math.api.Exponential;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;

@@ -3,10 +3,10 @@ package ch.alpine.sophis.dv;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
+import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.UnitVector;

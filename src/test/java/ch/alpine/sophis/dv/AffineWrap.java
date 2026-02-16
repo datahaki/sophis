@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophus.hs.Manifold;
+import ch.alpine.sophus.math.api.Manifold;
 
 /** biinvariant generalized barycentric coordinates that do not satisfy the Lagrange property
  * 
