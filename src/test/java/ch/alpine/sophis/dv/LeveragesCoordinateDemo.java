@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophis.math.Genesis;
+import ch.alpine.sophis.math.api.Genesis;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.Tensor;

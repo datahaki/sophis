@@ -2,16 +2,17 @@
 package ch.alpine.owl.math.state;
 
 import java.io.Serializable;
+import java.util.function.Predicate;
 
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.tensor.Tensor;
 
 /** StateTimeRegion that depends on time */
 public final class TimeDependentRegion implements Region<StateTime>, Serializable {
-  private final Region<Tensor> region;
+  private final Predicate<Tensor> region;
 
   /** @param region */
-  public TimeDependentRegion(Region<Tensor> region) {
+  public TimeDependentRegion(Predicate<Tensor> region) {
     this.region = region;
   }
 

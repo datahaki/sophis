@@ -3,17 +3,18 @@ package ch.alpine.owl.math.state;
 
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.function.Predicate;
 
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.tensor.Tensor;
 
 /** StateTimeRegion, which is independent of time.
  * membership is determined in state space regardless of time.
  * membership is extended indefinitely along the time-axis */
 public final class TimeInvariantRegion implements Region<StateTime>, Serializable {
-  private final Region<Tensor> region;
+  private final Predicate<Tensor> region;
 
-  public TimeInvariantRegion(Region<Tensor> region) {
+  public TimeInvariantRegion(Predicate<Tensor> region) {
     this.region = Objects.requireNonNull(region);
   }
 

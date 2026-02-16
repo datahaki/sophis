@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophis.math.Genesis;
+import ch.alpine.sophis.math.api.Genesis;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;

@@ -1,12 +1,14 @@
 // code by jph
 package ch.alpine.owl.glc.adapter;
 
+import java.util.function.Predicate;
+
 import ch.alpine.owl.glc.core.PlannerConstraint;
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
 import ch.alpine.owl.math.state.TimeDependentRegion;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.tensor.Tensor;
 
 /** members in the given regions are considered obstacles */
@@ -14,14 +16,14 @@ public enum RegionConstraints {
   ;
   /** @param region that is queried with tensor = StateTime::state
    * @return planner constraint that threats members in the region as obstacles */
-  public static PlannerConstraint timeInvariant(Region<Tensor> region) {
+  public static PlannerConstraint timeInvariant(Predicate<Tensor> region) {
     return new TrajectoryObstacleConstraint( //
         new SimpleTrajectoryRegionQuery(new TimeInvariantRegion(region)));
   }
 
   /** @param region that is queried with tensor = StateTime::joined
    * @return planner constraint that threats members in the region as obstacles */
-  public static PlannerConstraint timeDependent(Region<Tensor> region) {
+  public static PlannerConstraint timeDependent(Predicate<Tensor> region) {
     return new TrajectoryObstacleConstraint( //
         new SimpleTrajectoryRegionQuery(new TimeDependentRegion(region)));
   }

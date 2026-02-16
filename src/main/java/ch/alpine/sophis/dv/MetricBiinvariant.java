@@ -3,8 +3,8 @@ package ch.alpine.sophis.dv;
 
 import java.util.Objects;
 
-import ch.alpine.sophis.math.Genesis;
-import ch.alpine.sophis.math.TensorNorm;
+import ch.alpine.sophis.math.api.Genesis;
+import ch.alpine.sophis.math.api.TensorNorm;
 import ch.alpine.sophus.hs.gr.GrExponential;
 import ch.alpine.sophus.hs.spd.SpdExponential;
 import ch.alpine.sophus.math.FrobeniusForm;

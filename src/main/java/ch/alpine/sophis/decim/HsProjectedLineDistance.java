@@ -4,7 +4,7 @@ package ch.alpine.sophis.decim;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophis.math.TensorNorm;
+import ch.alpine.sophis.math.api.TensorNorm;
 import ch.alpine.sophus.hs.HomogeneousSpace;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

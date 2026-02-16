@@ -1,17 +1,15 @@
 // code by jph
 package ch.alpine.sophis.crv.d2.alg;
 
-import java.io.Serializable;
-
-import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
+import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
 import ch.alpine.tensor.opt.nd.CoordinateBounds;
 
 /** check if input tensor is inside a polygon in R^2 */
-public class PolygonRegion implements Region<Tensor>, Serializable {
+public class PolygonRegion implements MemberQ {
   private final CoordinateBoundingBox coordinateBoundingBox;
   private final Tensor polygon;
 
@@ -26,7 +24,7 @@ public class PolygonRegion implements Region<Tensor>, Serializable {
   public boolean test(Tensor tensor) {
     // TODO SOPHUS ALG design strict: only valid input
     Tensor point = tensor.extract(0, 2);
-    return coordinateBoundingBox.isInside(point) //
+    return coordinateBoundingBox.test(point) //
         && FranklinPnpoly.isInside(polygon, point);
   }
 

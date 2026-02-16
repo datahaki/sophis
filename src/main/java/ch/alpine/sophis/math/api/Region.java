@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.math;
+package ch.alpine.sophis.math.api;
 
 import java.util.function.Predicate;
 

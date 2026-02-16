@@ -5,8 +5,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.function.Predicate;
 
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.tensor.Tensor;
 
 /** simple wrapper for obstacle and goal queries
@@ -15,7 +16,7 @@ public class SimpleTrajectoryRegionQuery implements TrajectoryRegionQuery, Seria
   /** @param region that is queried with tensor = StateTime::state
    * @return
    * @throws Exception if given region is null */
-  public static TrajectoryRegionQuery timeInvariant(Region<Tensor> region) {
+  public static TrajectoryRegionQuery timeInvariant(Predicate<Tensor> region) {
     return new SimpleTrajectoryRegionQuery(new TimeInvariantRegion(region));
   }
 

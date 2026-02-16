@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.fit;
 
-import ch.alpine.sophis.math.Genesis;
+import ch.alpine.sophis.math.api.Genesis;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

@@ -2,6 +2,7 @@
 package ch.alpine.owl.glc.adapter;
 
 import java.util.Collection;
+import java.util.function.Predicate;
 
 import ch.alpine.owl.math.state.SimpleTrajectoryRegionQuery;
 import ch.alpine.owl.math.state.StateTime;
@@ -10,7 +11,7 @@ import ch.alpine.owl.math.state.StateTimeRegionCallback;
 import ch.alpine.owl.math.state.TimeDependentRegion;
 import ch.alpine.owl.math.state.TimeInvariantRegion;
 import ch.alpine.owl.math.state.TrajectoryRegionQuery;
-import ch.alpine.sophis.math.Region;
+import ch.alpine.sophis.math.api.Region;
 import ch.alpine.tensor.Tensor;
 
 /** wrapper for obstacle and goal queries */
@@ -23,7 +24,7 @@ public class CatchyTrajectoryRegionQuery extends SimpleTrajectoryRegionQuery imp
 
   /** @param region that is queried with tensor = StateTime::joined
    * @return */
-  public static TrajectoryRegionQuery timeDependent(Region<Tensor> region) {
+  public static TrajectoryRegionQuery timeDependent(Predicate<Tensor> region) {
     return new CatchyTrajectoryRegionQuery(new TimeDependentRegion(region));
   }
 

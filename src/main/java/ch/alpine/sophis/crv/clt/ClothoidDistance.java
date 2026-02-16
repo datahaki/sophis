@@ -1,7 +1,7 @@
 // code by gjoel
 package ch.alpine.sophis.crv.clt;
 
-import ch.alpine.sophis.math.TensorNorm;
+import ch.alpine.sophis.math.api.TensorNorm;
 import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
