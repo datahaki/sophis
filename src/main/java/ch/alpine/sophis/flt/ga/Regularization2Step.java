@@ -31,7 +31,7 @@ public record Regularization2Step(BinaryAverage geodesicSpace, Scalar factor) im
    * @param next
    * @return [curr, [prev, next]_1/2]_factor */
   @PackageTestAccess
-  final Tensor average(Tensor prev, Tensor curr, Tensor next) {
+  Tensor average(Tensor prev, Tensor curr, Tensor next) {
     return geodesicSpace.split(curr, geodesicSpace.midpoint(prev, next), factor);
   }
 

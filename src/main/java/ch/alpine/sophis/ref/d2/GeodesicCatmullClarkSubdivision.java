@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import ch.alpine.sophis.ref.d1.BSpline3CurveSubdivision;
 import ch.alpine.sophis.ref.d1.CurveSubdivision;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.itp.BinaryAverage;
@@ -78,8 +78,8 @@ public class GeodesicCatmullClarkSubdivision {
             array[pix + 0][piy + 1]);
         Tensor cen = array[pix][piy];
         array[pix][piy] = geodesicSpace.split(mds, //
-            geodesicSpace.split(eds, cen, RationalScalar.of(1, 5)), //
-            RationalScalar.of(5, 4));
+            geodesicSpace.split(eds, cen, Rational.of(1, 5)), //
+            Rational.of(5, 4));
       }
     Tensor tensor = Tensor.of(Arrays.stream(array).map(Unprotect::byRef));
     /* assign border top bottom */

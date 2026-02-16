@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.crv;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.itp.BezierFunction;
@@ -13,6 +13,6 @@ public record BezierExtrapolation(BinaryAverage binaryAverage) implements Tensor
   @Override // from TensorUnaryOperator
   public Tensor apply(Tensor tensor) {
     int n = tensor.length();
-    return new BezierFunction(binaryAverage, tensor).apply(RationalScalar.of(n, n - 1));
+    return new BezierFunction(binaryAverage, tensor).apply(Rational.of(n, n - 1));
   }
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
@@ -19,8 +19,8 @@ import ch.alpine.tensor.itp.BinaryAverage;
  * 
  * Chaikin's rule is used for the generation of the first and last point */
 public abstract class Dual3PointCurveSubdivision implements CurveSubdivision, Serializable {
-  private static final Scalar _1_4 = RationalScalar.of(1, 4);
-  private static final Scalar _3_4 = RationalScalar.of(3, 4);
+  private static final Scalar _1_4 = Rational.of(1, 4);
+  private static final Scalar _3_4 = Rational.of(3, 4);
   // ---
   protected final BinaryAverage binaryAverage;
 

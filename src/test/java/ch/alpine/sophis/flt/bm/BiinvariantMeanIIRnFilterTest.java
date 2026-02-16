@@ -11,7 +11,7 @@ import ch.alpine.sophis.crv.MonomialExtrapolationMask;
 import ch.alpine.sophis.flt.WindowSideExtrapolation;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.api.TensorUnaryOperator;
@@ -24,7 +24,7 @@ class BiinvariantMeanIIRnFilterTest {
   void testSimple() {
     for (int radius = 0; radius < 6; ++radius) {
       TensorUnaryOperator tensorUnaryOperator = BiinvariantMeanIIRnFilter.of( //
-          LinearBiinvariantMean.INSTANCE, MonomialExtrapolationMask.INSTANCE, RGroup.INSTANCE, radius, RationalScalar.HALF);
+          LinearBiinvariantMean.INSTANCE, MonomialExtrapolationMask.INSTANCE, RGroup.INSTANCE, radius, Rational.HALF);
       Tensor signal = Range.of(0, 10);
       Tensor tensor = tensorUnaryOperator.apply(signal);
       assertEquals(signal, tensor);
@@ -38,7 +38,7 @@ class BiinvariantMeanIIRnFilterTest {
       for (int radius = 0; radius < 6; ++radius) {
         Function<Integer, Tensor> function = WindowSideExtrapolation.of(smoothingKernel.get());
         TensorUnaryOperator tensorUnaryOperator = BiinvariantMeanIIRnFilter.of( //
-            LinearBiinvariantMean.INSTANCE, function, RGroup.INSTANCE, radius, RationalScalar.HALF);
+            LinearBiinvariantMean.INSTANCE, function, RGroup.INSTANCE, radius, Rational.HALF);
         Tensor signal = Range.of(0, 10);
         Tensor tensor = tensorUnaryOperator.apply(signal);
         Chop._10.requireClose(tensor, signal);

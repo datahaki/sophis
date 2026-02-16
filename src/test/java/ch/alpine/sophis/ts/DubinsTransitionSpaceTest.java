@@ -10,7 +10,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.dub.DubinsPathComparators;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -48,7 +48,7 @@ class DubinsTransitionSpaceTest {
     TransitionSpace transitionSpace = DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH);
     Transition transition = transitionSpace.connect(start, end);
     {
-      Scalar res = RationalScalar.HALF;
+      Scalar res = Rational.HALF;
       Tensor samples = transition.sampled(res);
       assertEquals(8, samples.length());
       assertNotSame(start, samples.get(0));
@@ -69,7 +69,7 @@ class DubinsTransitionSpaceTest {
     TransitionSpace transitionSpace = DubinsTransitionSpace.of(RealScalar.ONE, DubinsPathComparators.LENGTH);
     Transition transition = transitionSpace.connect(start, end);
     {
-      Scalar res = RationalScalar.HALF;
+      Scalar res = Rational.HALF;
       TransitionWrap wrap = transition.wrapped(res);
       assertEquals(8, wrap.samples().length());
       assertNotSame(start, wrap.samples().get(0));

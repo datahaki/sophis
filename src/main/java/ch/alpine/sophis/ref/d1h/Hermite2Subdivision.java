@@ -8,7 +8,7 @@ import java.util.Objects;
 import ch.alpine.sophus.hs.Exponential;
 import ch.alpine.sophus.hs.HomogeneousSpace;
 import ch.alpine.sophus.hs.HsTransport;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -133,8 +133,8 @@ public class Hermite2Subdivision implements HermiteSubdivision, Serializable {
       @Override // from HermiteSubdivision
       public Tensor iterate() {
         Tensor curve = protected_string(control);
-        rgp = rgp.multiply(RationalScalar.HALF);
-        rgq = rgq.multiply(RationalScalar.HALF);
+        rgp = rgp.multiply(Rational.HALF);
+        rgq = rgq.multiply(Rational.HALF);
         rvk = rvk.add(rvk);
         return control = curve;
       }
@@ -145,8 +145,8 @@ public class Hermite2Subdivision implements HermiteSubdivision, Serializable {
       public Tensor iterate() {
         Tensor curve = protected_string(control);
         refine(curve, Last.of(control), control.get(0));
-        rgp = rgp.multiply(RationalScalar.HALF);
-        rgq = rgq.multiply(RationalScalar.HALF);
+        rgp = rgp.multiply(Rational.HALF);
+        rgq = rgq.multiply(Rational.HALF);
         rvk = rvk.add(rvk);
         return control = curve;
       }

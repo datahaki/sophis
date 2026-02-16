@@ -12,7 +12,7 @@ import ch.alpine.sophis.crv.MonomialExtrapolationMask;
 import ch.alpine.sophis.math.win.HalfWindowSampler;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2Group;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -54,7 +54,7 @@ class GeodesicExtrapolationTest {
     }
     {
       Tensor tensor = tensorUnaryOperator.apply(Tensors.vector(1, 2, 1));
-      assertEquals(tensor, RationalScalar.of(2, 3));
+      assertEquals(tensor, Rational.of(2, 3));
       ExactTensorQ.require(tensor);
     }
   }
@@ -79,7 +79,7 @@ class GeodesicExtrapolationTest {
     }
     {
       Tensor tensor = tensorUnaryOperator.apply(Tensors.vector(1, 2, 1));
-      assertEquals(tensor, RationalScalar.of(-2, 1));
+      assertEquals(tensor, Rational.of(-2, 1));
       ExactTensorQ.require(tensor);
     }
   }

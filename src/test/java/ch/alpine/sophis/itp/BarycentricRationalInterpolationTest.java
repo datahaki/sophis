@@ -10,7 +10,7 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -32,7 +32,7 @@ class BarycentricRationalInterpolationTest {
         BarycentricRationalInterpolation.of(Tensors.vector(1, 2, 4), 1);
     assertEquals(scalarTensorFunction.apply(RealScalar.of(1)), UnitVector.of(3, 0));
     assertEquals(scalarTensorFunction.apply(RealScalar.of(4)), UnitVector.of(3, 2));
-    Tensor w1 = scalarTensorFunction.apply(RationalScalar.of(3, 2));
+    Tensor w1 = scalarTensorFunction.apply(Rational.of(3, 2));
     ExactTensorQ.require(w1);
     assertEquals(w1, Tensors.fromString("{5/12, 5/8, -1/24}"));
     Tensor w2 = scalarTensorFunction.apply(RealScalar.of(2.0001));
@@ -46,7 +46,7 @@ class BarycentricRationalInterpolationTest {
           BarycentricRationalInterpolation.of(Tensors.vector(1, 2, 4), d);
       assertEquals(scalarTensorFunction.apply(RealScalar.of(1)), UnitVector.of(3, 0));
       assertEquals(scalarTensorFunction.apply(RealScalar.of(4)), UnitVector.of(3, 2));
-      Tensor w1 = scalarTensorFunction.apply(RationalScalar.of(3, 2));
+      Tensor w1 = scalarTensorFunction.apply(Rational.of(3, 2));
       ExactTensorQ.require(w1);
       Tensor w2 = scalarTensorFunction.apply(RealScalar.of(2.0001));
       Chop._03.requireClose(w2, UnitVector.of(3, 1));
@@ -59,7 +59,7 @@ class BarycentricRationalInterpolationTest {
         BarycentricRationalInterpolation.of(Tensors.fromString("{1[m], 2[m], 4[m]}"), 1);
     assertEquals(scalarTensorFunction.apply(Quantity.of(1, "m")), UnitVector.of(3, 0));
     assertEquals(scalarTensorFunction.apply(Quantity.of(4, "m")), UnitVector.of(3, 2));
-    Tensor w1 = scalarTensorFunction.apply(Quantity.of(RationalScalar.of(3, 2), "m"));
+    Tensor w1 = scalarTensorFunction.apply(Quantity.of(Rational.of(3, 2), "m"));
     ExactTensorQ.require(w1);
     assertEquals(w1, Tensors.fromString("{5/12, 5/8, -1/24}"));
     Tensor w2 = scalarTensorFunction.apply(Quantity.of(2.0001, "m"));

@@ -3,7 +3,7 @@ package ch.alpine.sophis.ref.d1;
 
 import ch.alpine.sophis.crv.d2.SignedCurvature2D;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -19,7 +19,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
   ;
   static final CurveSubdivision BSPLINE3_EUCLIDEAN = new BSpline3CurveSubdivision(RGroup.INSTANCE);
   private static final Scalar HALF = RealScalar.of(0.5);
-  private static final Scalar _1_4 = RationalScalar.of(1, 4);
+  private static final Scalar _1_4 = Rational.of(1, 4);
 
   /** @param b
    * @param c

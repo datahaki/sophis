@@ -2,7 +2,7 @@
 // inspired by https://www.mathopenref.com/coordpolygonarea.html
 package ch.alpine.sophis.crv.d2;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -24,6 +24,6 @@ public enum PolygonArea {
     Scalar sum = Det2D.of(prev, prev);
     for (Tensor tensor : polygon)
       sum = sum.add(Det2D.of(prev, prev = tensor));
-    return sum.multiply(RationalScalar.HALF);
+    return sum.multiply(Rational.HALF);
   }
 }

@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.itp.BinaryAverage;
@@ -17,8 +17,8 @@ import ch.alpine.tensor.itp.BinaryAverage;
  * Another reference by Johannes Wallner:
  * "On convergent interpolatory subdivision schemes in Riemannian Geometry", p.2 */
 public class SixPointCurveSubdivision extends AbstractSixPointCurveSubdivision {
-  private static final Scalar PQ = RationalScalar.of(25, 22);
-  private static final Scalar _R = RationalScalar.of(75, 64);
+  private static final Scalar PQ = Rational.of(25, 22);
+  private static final Scalar _R = Rational.of(75, 64);
 
   /** @param geodesicSpace */
   public SixPointCurveSubdivision(BinaryAverage geodesicSpace) {

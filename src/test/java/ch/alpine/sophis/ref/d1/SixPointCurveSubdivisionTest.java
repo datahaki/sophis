@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -20,42 +20,42 @@ class SixPointCurveSubdivisionTest {
   void testP1() {
     SixPointCurveSubdivision spcs = new SixPointCurveSubdivision(RGroup.INSTANCE);
     Tensor p1 = spcs.center(RealScalar.ONE, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO);
-    assertEquals(p1, RationalScalar.of(3, 256));
+    assertEquals(p1, Rational.of(3, 256));
   }
 
   @Test
   void testP2() {
     SixPointCurveSubdivision spcs = new SixPointCurveSubdivision(RGroup.INSTANCE);
     Tensor p1 = spcs.center(RealScalar.ZERO, RealScalar.ONE, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO);
-    assertEquals(p1, RationalScalar.of(-25, 256));
+    assertEquals(p1, Rational.of(-25, 256));
   }
 
   @Test
   void testP3() {
     SixPointCurveSubdivision spcs = new SixPointCurveSubdivision(RGroup.INSTANCE);
     Tensor p1 = spcs.center(RealScalar.ZERO, RealScalar.ZERO, RealScalar.ONE, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO);
-    assertEquals(p1, RationalScalar.of(150, 256));
+    assertEquals(p1, Rational.of(150, 256));
   }
 
   @Test
   void testP4() {
     SixPointCurveSubdivision spcs = new SixPointCurveSubdivision(RGroup.INSTANCE);
     Tensor p1 = spcs.center(RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ONE, RealScalar.ZERO, RealScalar.ZERO);
-    assertEquals(p1, RationalScalar.of(150, 256));
+    assertEquals(p1, Rational.of(150, 256));
   }
 
   @Test
   void testP5() {
     SixPointCurveSubdivision spcs = new SixPointCurveSubdivision(RGroup.INSTANCE);
     Tensor p1 = spcs.center(RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ONE, RealScalar.ZERO);
-    assertEquals(p1, RationalScalar.of(-25, 256));
+    assertEquals(p1, Rational.of(-25, 256));
   }
 
   @Test
   void testP6() {
     SixPointCurveSubdivision spcs = new SixPointCurveSubdivision(RGroup.INSTANCE);
     Tensor p1 = spcs.center(RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ZERO, RealScalar.ONE);
-    assertEquals(p1, RationalScalar.of(3, 256));
+    assertEquals(p1, Rational.of(3, 256));
   }
 
   @Test

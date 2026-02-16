@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.math.Genesis;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -23,7 +23,7 @@ class NormWeightingTest {
   void testSimple() {
     Genesis inverseNorm = new NormWeighting(Vector2Norm::of, InversePowerVariogram.of(1));
     Tensor weights = inverseNorm.origin(Tensors.vector(1, 3).maps(Tensors::of));
-    assertEquals(weights, Tensors.of(RationalScalar.of(3, 4), RationalScalar.of(1, 4)));
+    assertEquals(weights, Tensors.of(Rational.of(3, 4), Rational.of(1, 4)));
   }
 
   @Test

@@ -2,7 +2,7 @@
 package ch.alpine.sophis.ref.d1;
 
 import ch.alpine.sophis.crv.clt.Clothoid;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.itp.BinaryAverage;
@@ -14,8 +14,8 @@ import ch.alpine.tensor.itp.BinaryAverage;
  * of three splits. */
 public enum BSpline4CurveSubdivision {
   ;
-  private static final Scalar P2_3 = RationalScalar.of(2, 3);
-  private static final Scalar P1_16 = RationalScalar.of(1, 16);
+  private static final Scalar P2_3 = Rational.of(2, 3);
+  private static final Scalar P1_16 = Rational.of(1, 16);
 
   /** geodesic split suggested by Dyn/Sharon 2014 p.16 who show that the scheme
    * with this split has a contractivity factor of mu = 5/6. "The contractivity
@@ -38,8 +38,8 @@ public enum BSpline4CurveSubdivision {
   }
 
   // ---
-  private static final Scalar P11_16 = RationalScalar.of(11, 16);
-  private static final Scalar P1_11 = RationalScalar.of(1, 11);
+  private static final Scalar P11_16 = Rational.of(11, 16);
+  private static final Scalar P1_11 = Rational.of(1, 11);
 
   /** @param geodesicSpace
    * @return */
@@ -57,7 +57,7 @@ public enum BSpline4CurveSubdivision {
    * @param geodesicSpace
    * @return */
   public static CurveSubdivision split3(BinaryAverage geodesicSpace) {
-    return split3(geodesicSpace, RationalScalar.HALF);
+    return split3(geodesicSpace, Rational.HALF);
   }
 
   /** function generalizes all variants above with {1/16, 1/2, 11/16}

@@ -2,7 +2,7 @@
 package ch.alpine.sophis.ref.d1h;
 
 import ch.alpine.sophus.hs.HomogeneousSpace;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -12,7 +12,7 @@ import ch.alpine.tensor.sca.ply.Polynomial;
 
 public enum Hermite2Subdivisions {
   ;
-  private static final Scalar _1_8 = RationalScalar.of(1, 8);
+  private static final Scalar _1_8 = Rational.of(1, 8);
 
   /** References:
    * "de Rham Transform of a Hermite Subdivision Scheme"

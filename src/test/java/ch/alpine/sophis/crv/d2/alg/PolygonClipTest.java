@@ -11,7 +11,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.PolygonArea;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -87,7 +87,7 @@ class PolygonClipTest {
     Tensor subject = Tensors.fromString("{{0, 0}, {1, 0}, {1/2, 1/2}}");
     Tensor result = PolygonClip.of(clipper).apply(subject);
     Scalar area = PolygonArea.of(result);
-    assertEquals(area, RationalScalar.of(1, 4));
+    assertEquals(area, Rational.of(1, 4));
     assertTrue(ExactScalarQ.of(area));
   }
 
@@ -99,7 +99,7 @@ class PolygonClipTest {
     assertTrue(equalsCycle(result, Tensors.fromString("{{0, 0}, {1, 0}, {1, 1/3}, {1/2, 1/2}}")));
     Scalar area = PolygonArea.of(result);
     assertTrue(ExactScalarQ.of(area));
-    assertEquals(area, RationalScalar.of(1, 3));
+    assertEquals(area, Rational.of(1, 3));
   }
 
   @Test
@@ -110,7 +110,7 @@ class PolygonClipTest {
     assertTrue(equalsCycle(result, Tensors.fromString("{{1/2, 1/2}, {0, 0}, {1, 0}, {1, 1/3}}")));
     Scalar area = PolygonArea.of(result);
     assertTrue(ExactScalarQ.of(area));
-    assertEquals(area, RationalScalar.of(1, 3));
+    assertEquals(area, Rational.of(1, 3));
   }
 
   @Test

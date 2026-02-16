@@ -10,7 +10,7 @@ import java.util.function.Supplier;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.UnitVector;
@@ -25,7 +25,7 @@ class CausalFilterTest {
     @SuppressWarnings("unchecked")
     TensorUnaryOperator causalFilter = Serialization.copy(new CausalFilter( //
         (Supplier<TensorUnaryOperator> & Serializable) //
-        () -> new GeodesicIIR1(RGroup.INSTANCE, RationalScalar.HALF)));
+        () -> new GeodesicIIR1(RGroup.INSTANCE, Rational.HALF)));
     {
       Tensor tensor = causalFilter.apply(UnitVector.of(10, 0));
       assertEquals(tensor, Tensors.fromString("{1, 1/2, 1/4, 1/8, 1/16, 1/32, 1/64, 1/128, 1/256, 1/512}"));
@@ -43,7 +43,7 @@ class CausalFilterTest {
     @SuppressWarnings("unchecked")
     TensorUnaryOperator causalFilter = Serialization.copy(new CausalFilter(//
         (Supplier<TensorUnaryOperator> & Serializable) //
-        () -> new GeodesicIIR2(RGroup.INSTANCE, RationalScalar.HALF)));
+        () -> new GeodesicIIR2(RGroup.INSTANCE, Rational.HALF)));
     Tensor tensor = causalFilter.apply(UnitVector.of(10, 0));
     ExactTensorQ.require(tensor);
   }
@@ -51,14 +51,14 @@ class CausalFilterTest {
   @Test
   void testIIR2b() {
     TensorUnaryOperator geodesicExtrapolation = GeodesicExtrapolation.of(RGroup.INSTANCE, DirichletWindow.FUNCTION);
-    TensorUnaryOperator causalFilter = GeodesicIIRnFilter.of(geodesicExtrapolation, RGroup.INSTANCE, 2, RationalScalar.HALF);
+    TensorUnaryOperator causalFilter = GeodesicIIRnFilter.of(geodesicExtrapolation, RGroup.INSTANCE, 2, Rational.HALF);
     Tensor tensor = causalFilter.apply(UnitVector.of(10, 0));
     ExactTensorQ.require(tensor);
   }
 
   @Test
   void testFIR2() {
-    TensorUnaryOperator causalFilter = new CausalFilter(() -> GeodesicFIR2.of(RGroup.INSTANCE, RationalScalar.HALF));
+    TensorUnaryOperator causalFilter = new CausalFilter(() -> GeodesicFIR2.of(RGroup.INSTANCE, Rational.HALF));
     {
       Tensor tensor = causalFilter.apply(UnitVector.of(10, 0));
       assertEquals(tensor, Tensors.fromString("{1, 0, -1/2, 0, 0, 0, 0, 0, 0, 0}"));

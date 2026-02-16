@@ -22,7 +22,7 @@ public class ClothoidSolutions implements Serializable {
   /** @param clip
    * @return */
   public static ClothoidSolutions of(Clip clip) {
-    return of(clip, 101);
+    return of(clip, 101); // TODO justify magic const
   }
 
   /** @param clip

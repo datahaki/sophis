@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.Serializable;
 
 import ch.alpine.sophus.math.Do;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -64,7 +64,7 @@ public record HermiteSubdivisionQ(HermiteSubdivision hermiteSubdivision) impleme
     TensorIteration tensorIteration = hermiteSubdivision.string(RealScalar.ONE, control);
     Tensor iterate = tensorIteration.iterate();
     ExactTensorQ.require(iterate);
-    Tensor idm = Range.of(0, 19).multiply(RationalScalar.HALF);
+    Tensor idm = Range.of(0, 19).multiply(Rational.HALF);
     Tensor if0 = iterate.get(Tensor.ALL, 0);
     assertEquals(if0, idm.maps(f0));
     Tensor if1 = iterate.get(Tensor.ALL, 1);

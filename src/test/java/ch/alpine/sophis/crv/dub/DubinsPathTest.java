@@ -10,7 +10,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -57,7 +57,7 @@ class DubinsPathTest {
     Tensor tensor = DubinsType.LSR.tangent(2, Quantity.of(10, "m"));
     assertEquals(tensor.get(0), RealScalar.ONE);
     assertEquals(tensor.get(1), RealScalar.ZERO);
-    assertEquals(tensor.get(2), Quantity.of(RationalScalar.of(-1, 10), "m^-1"));
+    assertEquals(tensor.get(2), Quantity.of(Rational.of(-1, 10), "m^-1"));
   }
 
   @Test
@@ -65,7 +65,7 @@ class DubinsPathTest {
     Tensor tensor = DubinsType.LSR.tangent(2, RealScalar.of(10));
     assertEquals(tensor.get(0), RealScalar.ONE);
     assertEquals(tensor.get(1), RealScalar.ZERO);
-    assertEquals(tensor.get(2), RationalScalar.of(-1, 10));
+    assertEquals(tensor.get(2), Rational.of(-1, 10));
   }
 
   @Test

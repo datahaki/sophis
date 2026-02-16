@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.itp.BinaryAverage;
@@ -17,29 +17,29 @@ import ch.alpine.tensor.itp.BinaryAverage;
  * therefore has quadratic precision by construction." */
 public enum HormannSabinCurveSubdivision {
   ;
-  private static final Scalar P6_7 = RationalScalar.of(6, 7);
-  private static final Scalar N3_32 = RationalScalar.of(-3, 32);
+  private static final Scalar P6_7 = Rational.of(6, 7);
+  private static final Scalar N3_32 = Rational.of(-3, 32);
 
   public static CurveSubdivision of(BinaryAverage binaryAverage) {
     return Split2LoDual3PointCurveSubdivision.of(binaryAverage, P6_7, N3_32);
   }
 
   // ---
-  private static final Scalar OMEGA = RationalScalar.of(1, 32);
+  private static final Scalar OMEGA = Rational.of(1, 32);
 
   /** @param binaryAverage
    * @return three-point scheme */
   public static CurveSubdivision split3(BinaryAverage binaryAverage) {
     Scalar omega = OMEGA;
-    Scalar pq_f = RationalScalar.HALF.add(RealScalar.of(6).multiply(omega));
+    Scalar pq_f = Rational.HALF.add(RealScalar.of(6).multiply(omega));
     Scalar qr_f = RealScalar.of(6).multiply(omega).negate();
-    Scalar pqqf = RationalScalar.HALF;
+    Scalar pqqf = Rational.HALF;
     return Split3Dual3PointCurveSubdivision.of(binaryAverage, pq_f, qr_f, pqqf);
   }
 
   // ---
-  private static final Scalar P27_32 = RationalScalar.of(27, 32);
-  private static final Scalar N1_9 = RationalScalar.of(-1, 9);
+  private static final Scalar P27_32 = Rational.of(27, 32);
+  private static final Scalar N1_9 = Rational.of(-1, 9);
 
   public static CurveSubdivision split2(BinaryAverage binaryAverage) {
     return Split2HiDual3PointCurveSubdivision.of(binaryAverage, P27_32, N1_9);

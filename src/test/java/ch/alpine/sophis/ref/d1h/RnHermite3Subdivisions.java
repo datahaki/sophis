@@ -2,7 +2,7 @@
 package ch.alpine.sophis.ref.d1h;
 
 import ch.alpine.sophis.ref.d1.BSpline3CurveSubdivision;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -43,14 +43,14 @@ import ch.alpine.tensor.mat.DiagonalMatrix;
     Scalar theta = hermiteHiParam.theta();
     Scalar omega = hermiteHiParam.omega();
     Tensor ARP = Tensors.of( //
-        Tensors.of(theta, theta.multiply(RationalScalar.HALF)), //
-        Tensors.of(omega.multiply(RationalScalar.of(+3, 2)), omega.multiply(RationalScalar.HALF)));
+        Tensors.of(theta, theta.multiply(Rational.HALF)), //
+        Tensors.of(omega.multiply(Rational.of(+3, 2)), omega.multiply(Rational.HALF)));
     Tensor ARQ = DiagonalMatrix.of( //
         RealScalar.ONE.subtract(theta.add(theta)), //
-        RationalScalar.HALF.add(omega.add(omega)));
+        Rational.HALF.add(omega.add(omega)));
     Tensor ARR = Tensors.of( //
-        Tensors.of(theta, theta.multiply(RationalScalar.HALF).negate()), //
-        Tensors.of(omega.multiply(RationalScalar.of(-3, 2)), omega.multiply(RationalScalar.HALF)));
+        Tensors.of(theta, theta.multiply(Rational.HALF).negate()), //
+        Tensors.of(omega.multiply(Rational.of(-3, 2)), omega.multiply(Rational.HALF)));
     return new RnHermite3Subdivision(AMP, AMQ, ARP, ARQ, ARR);
   }
 

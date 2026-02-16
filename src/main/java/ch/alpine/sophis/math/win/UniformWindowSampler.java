@@ -3,7 +3,7 @@ package ch.alpine.sophis.math.win;
 
 import java.util.function.Function;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
@@ -14,7 +14,7 @@ import ch.alpine.tensor.sca.Clips;
 /** samples a given window function uniformly in the interval [-1/2, +1/2] */
 public class UniformWindowSampler extends BaseWindowSampler {
   private static final int CACHE_SIZE = 32;
-  private static final Clip CLIP = Clips.absolute(RationalScalar.HALF);
+  private static final Clip CLIP = Clips.absolute(Rational.HALF);
 
   /** @param windowFunction for evaluation in the interval [-1/2, +1/2]
    * @return */

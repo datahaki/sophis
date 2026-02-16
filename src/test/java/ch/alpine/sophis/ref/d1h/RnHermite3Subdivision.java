@@ -2,7 +2,7 @@
 package ch.alpine.sophis.ref.d1h;
 
 import ch.alpine.sophis.ref.d1.BSpline3CurveSubdivision;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -29,7 +29,7 @@ import ch.alpine.tensor.sca.Chop;
  * 
  * @see BSpline3CurveSubdivision */
 /* package */ class RnHermite3Subdivision implements HermiteSubdivision {
-  private static final Tensor DIAG = DiagonalMatrix.of(RealScalar.ONE, RationalScalar.HALF);
+  private static final Tensor DIAG = DiagonalMatrix.of(RealScalar.ONE, Rational.HALF);
   // ---
   private final Tensor AMP;
   private final Tensor AMQ;

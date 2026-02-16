@@ -2,7 +2,7 @@
 package ch.alpine.sophis.crv.dub;
 
 import ch.alpine.sophus.lie.so2.ArcTan2D;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -39,7 +39,7 @@ public enum DubinsRadius {
 
   private static Scalar getMax2turnsDiffSide(Scalar hypot, Scalar turn1, Scalar angle, Scalar rMax) {
     Scalar turn2 = turn1.subtract(angle);
-    Scalar sbeta = Cos.FUNCTION.apply(turn1).add(Cos.FUNCTION.apply(turn2)).multiply(RationalScalar.HALF);
+    Scalar sbeta = Cos.FUNCTION.apply(turn1).add(Cos.FUNCTION.apply(turn2)).multiply(Rational.HALF);
     Scalar val = Sqrt.FUNCTION.apply(RealScalar.ONE.subtract(sbeta.multiply(sbeta)));
     Scalar aux = Sin.FUNCTION.apply(turn1).add(val.add(val)).add(Sin.FUNCTION.apply(turn2));
     return Scalars.lessThan(rMax.multiply(aux), hypot) //
@@ -51,7 +51,7 @@ public enum DubinsRadius {
     Scalar turn2 = angle.subtract(turn1);
     Scalar sturn1 = Abs.FUNCTION.apply(Sin.FUNCTION.apply(turn1));
     Scalar sturn2 = Abs.FUNCTION.apply(Sin.FUNCTION.apply(turn2));
-    Scalar sturn = Sin.FUNCTION.apply(angle.multiply(RationalScalar.HALF));
+    Scalar sturn = Sin.FUNCTION.apply(angle.multiply(Rational.HALF));
     Scalar aux = sturn.multiply(sturn).multiply(RealScalar.TWO);
     Scalar ds = Min.of(sturn1, sturn2).multiply(hypot);
     return Scalars.lessThan(rMax.multiply(aux), ds) //

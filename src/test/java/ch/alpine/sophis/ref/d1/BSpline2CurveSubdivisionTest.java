@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.hs.h.HManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
@@ -105,7 +105,7 @@ class BSpline2CurveSubdivisionTest {
     int length = 9;
     Tensor curve = Range.of(0, length + 1);
     Tensor refined = CURVE_SUBDIVISION.string(curve);
-    Tensor tensor = Subdivide.of(0, length, length * 2).maps(scalar -> scalar.add(RationalScalar.of(1, 4)));
+    Tensor tensor = Subdivide.of(0, length, length * 2).maps(scalar -> scalar.add(Rational.of(1, 4)));
     assertEquals(refined, tensor.extract(0, tensor.length() - 1));
     ExactTensorQ.require(refined);
   }

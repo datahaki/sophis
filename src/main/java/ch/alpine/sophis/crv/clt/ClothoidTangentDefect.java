@@ -2,7 +2,7 @@
 package ch.alpine.sophis.crv.clt;
 
 import ch.alpine.tensor.ComplexScalar;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
@@ -33,7 +33,7 @@ public class ClothoidTangentDefect implements ScalarUnaryOperator {
 
   private ClothoidTangentDefect(Scalar s1, Scalar s2) {
     this.s1 = s1;
-    s2_half = s2.multiply(RationalScalar.HALF);
+    s2_half = s2.multiply(Rational.HALF);
     s2_half_sqr = s2_half.multiply(s2_half);
   }
 

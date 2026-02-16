@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.sophis.ref.d1.CurveSubdivision;
 import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.sophus.lie.so2.So2;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -60,9 +60,9 @@ class ClothoidBuilderImplTest {
       Chop._02.requireClose(mLA, mLL);
       // System.out.println(mLL);
       // {-1.7030138036773317, 0.2166473557662918, 2.430899623066361}
-      Tensor mLO = ComplexClothoidCurve.INSTANCE.curve(pL, q).apply(RationalScalar.HALF);
+      Tensor mLO = ComplexClothoidCurve.INSTANCE.curve(pL, q).apply(Rational.HALF);
       // System.out.println(mLO);
-      Tensor mL3 = new ClothoidCurve3(pL, q).apply(RationalScalar.HALF);
+      Tensor mL3 = new ClothoidCurve3(pL, q).apply(Rational.HALF);
       // System.out.println(mL3);
       // System.out.println("---");
     }

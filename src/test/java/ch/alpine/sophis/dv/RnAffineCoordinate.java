@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
@@ -52,7 +52,7 @@ enum RnAffineCoordinate implements BarycentricCoordinate {
     private final Tensor pinv;
 
     private Inner(Tensor sequence) {
-      _1_n = RationalScalar.of(1, sequence.length());
+      _1_n = Rational.of(1, sequence.length());
       negm = Mean.of(sequence).negate();
       pinv = PseudoInverse.of(Tensor.of(sequence.stream().map(negm::add)));
     }

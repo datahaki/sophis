@@ -9,7 +9,7 @@ import java.util.Objects;
 import ch.alpine.sophus.hs.Exponential;
 import ch.alpine.sophus.hs.HomogeneousSpace;
 import ch.alpine.sophus.hs.HsTransport;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -156,9 +156,9 @@ public class Hermite3Subdivision implements HermiteSubdivision, Serializable {
           list.add(midpoint(p, q));
         }
         list.add(q);
-        rgk = rgk.multiply(RationalScalar.HALF);
+        rgk = rgk.multiply(Rational.HALF);
         rvk = rvk.add(rvk);
-        cgk = cgk.multiply(RationalScalar.HALF);
+        cgk = cgk.multiply(Rational.HALF);
         cvk = cvk.add(cvk);
         Integers.requireEquals(list.size(), 2 * length - 1);
         return control = Unprotect.using(list);
@@ -179,9 +179,9 @@ public class Hermite3Subdivision implements HermiteSubdivision, Serializable {
           q = r;
           list.add(midpoint(p, q));
         }
-        rgk = rgk.multiply(RationalScalar.HALF);
+        rgk = rgk.multiply(Rational.HALF);
         rvk = rvk.add(rvk);
-        cgk = cgk.multiply(RationalScalar.HALF);
+        cgk = cgk.multiply(Rational.HALF);
         cvk = cvk.add(cvk);
         Integers.requireEquals(list.size(), 2 * length);
         return control = Unprotect.using(list);

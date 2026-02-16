@@ -2,7 +2,7 @@
 package ch.alpine.sophis.ref.d1;
 
 import ch.alpine.sophus.hs.GeodesicSpace;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
@@ -20,7 +20,7 @@ public enum DualC2FourPointCurveSubdivision {
    * @param geodesicSpace
    * @return */
   public static CurveSubdivision cubic(GeodesicSpace geodesicSpace) {
-    return of(geodesicSpace, RationalScalar.of(1, 128));
+    return of(geodesicSpace, Rational.of(1, 128));
   }
 
   /** "The global minimum of T(w) is obtained for w=0.013723..., giving a C2

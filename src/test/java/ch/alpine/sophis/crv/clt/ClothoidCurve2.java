@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.crv.clt;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -12,7 +12,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 /* package */ class ClothoidCurve2 extends ClothoidCurve {
   private static final Scalar HALF = RealScalar.of(0.5);
   private static final Tensor X = Tensors.vector(-1, 1) //
-      .multiply(Sqrt.FUNCTION.apply(RationalScalar.of(1, 3))) //
+      .multiply(Sqrt.FUNCTION.apply(Rational.of(1, 3))) //
       .maps(RealScalar.ONE::add) //
       .divide(RealScalar.of(2));
   private static final Scalar X0 = X.Get(0);

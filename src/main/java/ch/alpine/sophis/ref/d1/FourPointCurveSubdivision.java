@@ -4,7 +4,7 @@ package ch.alpine.sophis.ref.d1;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -36,11 +36,11 @@ import ch.alpine.tensor.itp.BinaryAverage;
  * "The approximation order of four-point interpolatory curve subdivision"
  * by Michael S. Floater */
 public class FourPointCurveSubdivision extends BSpline1CurveSubdivision {
-  private final static Scalar P1_16 = RationalScalar.of(1, 16);
-  private final static Scalar N1_4 = RationalScalar.of(-1, 4);
-  private final static Scalar P1_4 = RationalScalar.of(+1, 4);
-  private final static Scalar P5_4 = RationalScalar.of(+5, 4);
-  private final static Scalar P3_4 = RationalScalar.of(+3, 4);
+  private final static Scalar P1_16 = Rational.of(1, 16);
+  private final static Scalar N1_4 = Rational.of(-1, 4);
+  private final static Scalar P1_4 = Rational.of(+1, 4);
+  private final static Scalar P5_4 = Rational.of(+5, 4);
+  private final static Scalar P3_4 = Rational.of(+3, 4);
   // ---
   protected final BinaryAverage geodesicSpace;
   private final Scalar lambda;

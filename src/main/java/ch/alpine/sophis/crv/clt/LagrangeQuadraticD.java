@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.crv.clt;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -61,13 +61,13 @@ public record LagrangeQuadraticD(Polynomial polynomial) implements ScalarUnaryOp
     Scalar sign_head = Sign.FUNCTION.apply(head());
     Scalar sign_tail = Sign.FUNCTION.apply(tail());
     if (sign_head.equals(sign_tail))
-      return Abs.FUNCTION.apply(head().add(tail()).multiply(RationalScalar.HALF));
+      return Abs.FUNCTION.apply(head().add(tail()).multiply(Rational.HALF));
     Scalar abs_head = Abs.FUNCTION.apply(head());
     Scalar abs_tail = Abs.FUNCTION.apply(tail());
     Scalar sum = abs_head.add(abs_tail);
     return Scalars.isZero(sum) //
         ? sum
         : (Scalar) LinearBinaryAverage.INSTANCE.split(abs_head, abs_tail, abs_tail.divide(sum)) //
-            .multiply(RationalScalar.HALF);
+            .multiply(Rational.HALF);
   }
 }

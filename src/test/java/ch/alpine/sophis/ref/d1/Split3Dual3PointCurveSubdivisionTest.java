@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Sort;
@@ -14,7 +14,7 @@ import ch.alpine.tensor.chq.ExactTensorQ;
 
 class Split3Dual3PointCurveSubdivisionTest {
   private static final CurveSubdivision CURVE_SUBDIVISION = //
-      Split3Dual3PointCurveSubdivision.of(RGroup.INSTANCE, RationalScalar.of(1, 3), RationalScalar.of(1, 5), RationalScalar.of(1, 4));
+      Split3Dual3PointCurveSubdivision.of(RGroup.INSTANCE, Rational.of(1, 3), Rational.of(1, 5), Rational.of(1, 4));
 
   @Test
   void testCyclic() {

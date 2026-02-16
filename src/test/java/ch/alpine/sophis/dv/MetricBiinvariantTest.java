@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.Genesis;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -35,7 +35,7 @@ class MetricBiinvariantTest {
     BarycentricCoordinate barycentricCoordinate = //
         new HsCoordinates(RGroup.INSTANCE, INVERSE_DISTANCE_WEIGHTING);
     Tensor weights = barycentricCoordinate.weights(Tensors.vector(1, 3).maps(Tensors::of), RealScalar.of(2).maps(Tensors::of));
-    assertEquals(weights, Tensors.of(RationalScalar.HALF, RationalScalar.HALF));
+    assertEquals(weights, Tensors.of(Rational.HALF, Rational.HALF));
   }
 
   @Test

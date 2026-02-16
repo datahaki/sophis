@@ -8,7 +8,7 @@ import java.util.Set;
 import ch.alpine.sophis.srf.IntDirectedEdge;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -39,9 +39,9 @@ public record CatmullClarkRefinement(BiinvariantMean biinvariantMean) //
         Tensor sequence = Tensors.reserve(2 * n + 1);
         Tensor weights = Tensors.reserve(2 * n + 1);
         // weights are from "Figure 7" in Warren/Schaefer
-        Scalar ga = RationalScalar.of(1, 4);
-        Scalar al = RationalScalar.of(1, 4L * n);
-        Scalar be = RationalScalar.of(1, 2L * n);
+        Scalar ga = Rational.of(1, 4);
+        Scalar al = Rational.of(1, 4L * n);
+        Scalar be = Rational.of(1, 2L * n);
         for (IntDirectedEdge intDirectedEdge : list) {
           sequence.append(out.vrt.get(out.face(intDirectedEdge.i())[(intDirectedEdge.j() + 1) % 4]));
           sequence.append(out.vrt.get(out.face(intDirectedEdge.i())[(intDirectedEdge.j() + 2) % 4]));

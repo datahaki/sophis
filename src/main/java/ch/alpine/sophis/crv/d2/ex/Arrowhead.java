@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.crv.d2.ex;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -14,11 +14,11 @@ import ch.alpine.tensor.Tensors;
  * <a href="https://reference.wolfram.com/language/ref/Arrowheads.html">Arrowheads</a> */
 public enum Arrowhead {
   ;
-  private static final Scalar THIRD = RationalScalar.THIRD;
+  private static final Scalar THIRD = Rational.THIRD;
   private static final Tensor POLYGON = Tensors.matrix(new Scalar[][] { //
       { RealScalar.ONE, RealScalar.ZERO }, //
-      { RationalScalar.HALF.negate(), THIRD }, //
-      { RationalScalar.HALF.negate(), THIRD.negate() } //
+      { Rational.HALF.negate(), THIRD }, //
+      { Rational.HALF.negate(), THIRD.negate() } //
   });
 
   /** @param scalar

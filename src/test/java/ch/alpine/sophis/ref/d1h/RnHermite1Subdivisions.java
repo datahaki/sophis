@@ -2,7 +2,7 @@
 package ch.alpine.sophis.ref.d1h;
 
 import ch.alpine.sophis.ref.d1.BSpline1CurveSubdivision;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -29,11 +29,11 @@ import ch.alpine.tensor.Tensors;
    * @return */
   public static RnHermite1Subdivision of(Scalar lambda, Scalar mu) {
     Tensor AMP = Tensors.of( //
-        Tensors.of(RationalScalar.HALF, lambda.negate()), //
-        Tensors.of(mu.subtract(RealScalar.ONE).multiply(RationalScalar.HALF), mu.multiply(RationalScalar.of(1, 4))));
+        Tensors.of(Rational.HALF, lambda.negate()), //
+        Tensors.of(mu.subtract(RealScalar.ONE).multiply(Rational.HALF), mu.multiply(Rational.of(1, 4))));
     Tensor AMQ = Tensors.of( //
-        Tensors.of(RationalScalar.HALF, lambda), //
-        Tensors.of(RealScalar.ONE.subtract(mu).multiply(RationalScalar.HALF), mu.multiply(RationalScalar.of(1, 4))));
+        Tensors.of(Rational.HALF, lambda), //
+        Tensors.of(RealScalar.ONE.subtract(mu).multiply(Rational.HALF), mu.multiply(Rational.of(1, 4))));
     return new RnHermite1Subdivision(AMP, AMQ);
   }
 
@@ -42,7 +42,7 @@ import ch.alpine.tensor.Tensors;
    * "Construction of Hermite subdivision schemes reproducing polynomials", 2017
    * by Byeongseon Jeong, Jungho Yoon
    * lambda == -1/8, mu == -1/2 */
-  private static final RnHermite1Subdivision INSTANCE = of(RationalScalar.of(-1, 8), RationalScalar.of(-1, 2));
+  private static final RnHermite1Subdivision INSTANCE = of(Rational.of(-1, 8), Rational.of(-1, 2));
 
   public static RnHermite1Subdivision instance() {
     return INSTANCE;

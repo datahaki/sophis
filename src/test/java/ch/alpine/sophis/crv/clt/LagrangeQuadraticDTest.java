@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -57,11 +57,11 @@ class LagrangeQuadraticDTest {
   void testIntegralAbs() {
     assertEquals(LagrangeQuadraticD.of(+2, +2).integralAbs(), RealScalar.of(3));
     assertEquals(LagrangeQuadraticD.of(-2, -2).integralAbs(), RealScalar.of(3));
-    assertEquals(LagrangeQuadraticD.of(-1, +2).integralAbs(), RationalScalar.HALF);
-    assertEquals(LagrangeQuadraticD.of(+1, -2).integralAbs(), RationalScalar.HALF);
-    assertEquals(LagrangeQuadraticD.of(-1, +3).integralAbs(), RationalScalar.of(5, 6));
-    assertEquals(LagrangeQuadraticD.of(+1, -3).integralAbs(), RationalScalar.of(5, 6));
-    assertEquals(LagrangeQuadraticD.of(-2, +4).integralAbs(), RationalScalar.of(6, 6));
+    assertEquals(LagrangeQuadraticD.of(-1, +2).integralAbs(), Rational.HALF);
+    assertEquals(LagrangeQuadraticD.of(+1, -2).integralAbs(), Rational.HALF);
+    assertEquals(LagrangeQuadraticD.of(-1, +3).integralAbs(), Rational.of(5, 6));
+    assertEquals(LagrangeQuadraticD.of(+1, -3).integralAbs(), Rational.of(5, 6));
+    assertEquals(LagrangeQuadraticD.of(-2, +4).integralAbs(), Rational.of(6, 6));
   }
 
   @Test

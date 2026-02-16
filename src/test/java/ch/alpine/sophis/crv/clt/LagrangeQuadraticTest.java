@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -23,7 +23,7 @@ class LagrangeQuadraticTest {
     LagrangeQuadratic lagrangeQuadratic = //
         LagrangeQuadratic.interp(RealScalar.of(2), RealScalar.of(-3), RealScalar.of(7));
     Scalar p0 = lagrangeQuadratic.apply(RealScalar.ZERO);
-    Scalar pm = lagrangeQuadratic.apply(RationalScalar.HALF);
+    Scalar pm = lagrangeQuadratic.apply(Rational.HALF);
     Scalar p1 = lagrangeQuadratic.apply(RealScalar.ONE);
     assertEquals(p0, RealScalar.of(2));
     assertEquals(pm, RealScalar.of(-3));
@@ -37,7 +37,7 @@ class LagrangeQuadraticTest {
     Scalar angle = lagrangeQuadratic.apply(RealScalar.of(11));
     assertEquals(angle, RealScalar.of(973));
     Scalar p0 = lagrangeQuadratic.apply(RealScalar.ZERO);
-    Scalar pm = lagrangeQuadratic.apply(RationalScalar.HALF);
+    Scalar pm = lagrangeQuadratic.apply(Rational.HALF);
     Scalar p1 = lagrangeQuadratic.apply(RealScalar.ONE);
     assertEquals(p0, RealScalar.of(5));
     assertEquals(pm, RealScalar.of(7));

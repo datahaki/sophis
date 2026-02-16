@@ -10,7 +10,7 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.math.AffineQ;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -63,7 +63,7 @@ class UniformWindowSamplerTest {
   @Test
   void testDirichlet() {
     Function<Integer, Tensor> function = UniformWindowSampler.of(DirichletWindow.FUNCTION);
-    Tensor MIDPOINT = Tensors.of(RationalScalar.HALF, RationalScalar.HALF);
+    Tensor MIDPOINT = Tensors.of(Rational.HALF, Rational.HALF);
     assertEquals(function.apply(2), MIDPOINT);
     ExactTensorQ.require(function.apply(2));
   }

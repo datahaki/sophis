@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.PolygonArea;
 import ch.alpine.sophis.crv.d2.PolygonCentroid;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -21,7 +21,7 @@ class ArrowheadTest {
   void testOriented() {
     Tensor polygon = Arrowhead.of(1);
     Scalar scalar = PolygonArea.of(polygon);
-    assertEquals(scalar, RationalScalar.HALF);
+    assertEquals(scalar, Rational.HALF);
     Sign.requirePositive(scalar);
     Tensor centroid = PolygonCentroid.of(polygon);
     ExactTensorQ.require(centroid);

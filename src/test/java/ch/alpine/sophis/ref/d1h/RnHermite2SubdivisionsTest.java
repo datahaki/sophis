@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
@@ -14,7 +14,7 @@ class RnHermite2SubdivisionsTest {
   void testA1() {
     RnHermite2Subdivision a1 = RnHermite2Subdivisions.standard();
     // lambda == -1/8, mu == -1/2
-    RnHermite2Subdivision hs = RnHermite2Subdivisions.of(RationalScalar.of(-1, 8), RationalScalar.of(-1, 2));
+    RnHermite2Subdivision hs = RnHermite2Subdivisions.of(Rational.of(-1, 8), Rational.of(-1, 2));
     assertEquals(a1.ALP(), hs.ALP());
     assertEquals(a1.ALQ(), hs.ALQ());
     assertEquals(a1.AHP(), hs.AHP());
@@ -38,7 +38,7 @@ class RnHermite2SubdivisionsTest {
   void testA2() {
     RnHermite2Subdivision a2 = RnHermite2Subdivisions.manifold();
     // lambda == -1/5, mu == 9/10
-    RnHermite2Subdivision hs = RnHermite2Subdivisions.of(RationalScalar.of(-1, 5), RationalScalar.of(9, 10));
+    RnHermite2Subdivision hs = RnHermite2Subdivisions.of(Rational.of(-1, 5), Rational.of(9, 10));
     assertEquals(a2.ALP(), hs.ALP());
     assertEquals(a2.ALQ(), hs.ALQ());
     assertEquals(a2.AHP(), hs.AHP());

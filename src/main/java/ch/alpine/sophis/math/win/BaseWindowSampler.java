@@ -4,7 +4,7 @@ package ch.alpine.sophis.math.win;
 import java.io.Serializable;
 import java.util.function.Function;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.Chop;
   /** @param windowFunction for evaluation in the interval [-1/2, +1/2] */
   protected BaseWindowSampler(ScalarUnaryOperator windowFunction) {
     this.windowFunction = windowFunction;
-    isContinuous = Chop._03.isZero(windowFunction.apply(RationalScalar.HALF));
+    isContinuous = Chop._03.isZero(windowFunction.apply(Rational.HALF));
   }
 
   @Override // from IntegerTensorFunction

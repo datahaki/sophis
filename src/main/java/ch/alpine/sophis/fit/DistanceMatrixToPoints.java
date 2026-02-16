@@ -3,7 +3,7 @@ package ch.alpine.sophis.fit;
 
 import java.util.stream.IntStream;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -39,7 +39,7 @@ public class DistanceMatrixToPoints {
     Tensor d0 = matrix.get(0);
     Tensor ones = ConstantArray.of(RealScalar.ONE, n);
     Tensor g = TensorProduct.of(ones, d0).add(TensorProduct.of(d0, ones)) //
-        .subtract(matrix).multiply(RationalScalar.HALF);
+        .subtract(matrix).multiply(Rational.HALF);
     Eigensystem eigensystem = Eigensystem.ofSymmetric(g);
     Tensor sqrt = eigensystem.values().maps(chop).maps(Sqrt.FUNCTION);
     Tensor vectors = eigensystem.vectors();

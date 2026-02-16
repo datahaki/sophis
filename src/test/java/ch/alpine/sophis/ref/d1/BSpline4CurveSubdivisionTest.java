@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.clt.ClothoidBuilders;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -36,7 +36,7 @@ class BSpline4CurveSubdivisionTest {
 
   @Test
   void test2Lo() {
-    CurveSubdivision curveSubdivision = BSpline4CurveSubdivision.split3(RGroup.INSTANCE, RationalScalar.of(1, 6));
+    CurveSubdivision curveSubdivision = BSpline4CurveSubdivision.split3(RGroup.INSTANCE, Rational.of(1, 6));
     Tensor tensor = curveSubdivision.string(UnitVector.of(5, 2));
     assertEquals(tensor, Tensors.fromString("{0, 1/16, 5/16, 5/8, 5/8, 5/16, 1/16, 0}"));
   }

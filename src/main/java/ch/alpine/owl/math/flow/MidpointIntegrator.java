@@ -2,7 +2,7 @@
 package ch.alpine.owl.math.flow;
 
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
@@ -17,7 +17,7 @@ public enum MidpointIntegrator implements Integrator {
   public Tensor step(StateSpaceModel stateSpaceModel, Tensor x0, Tensor u, Scalar _2h
   // Flow flow, Tensor x0, Scalar _2h
   ) {
-    Scalar h = _2h.multiply(RationalScalar.HALF);
+    Scalar h = _2h.multiply(Rational.HALF);
     Tensor xm = x0.add(stateSpaceModel.f(x0, u).multiply(h)); // h
     return /**/ x0.add(stateSpaceModel.f(xm, u).multiply(_2h)); // 2h
   }

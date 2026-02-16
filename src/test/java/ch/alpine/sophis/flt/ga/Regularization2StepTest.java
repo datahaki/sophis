@@ -9,7 +9,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -19,7 +19,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class Regularization2StepTest {
   private static final TensorUnaryOperator STRING = //
-      new Regularization2Step(RGroup.INSTANCE, RationalScalar.of(1, 4))::string;
+      new Regularization2Step(RGroup.INSTANCE, Rational.of(1, 4))::string;
 
   @Test
   void testLo() throws ClassNotFoundException, IOException {
@@ -59,7 +59,7 @@ class Regularization2StepTest {
   @Test
   void testSimple() {
     TensorUnaryOperator STRING = //
-        new Regularization2Step(RGroup.INSTANCE, RationalScalar.of(1, 2))::string;
+        new Regularization2Step(RGroup.INSTANCE, Rational.of(1, 2))::string;
     Tensor signal = Tensors.vector(1, 1, 1, 2, 1, 1, 1, 1, 1, 1);
     Tensor tensor = STRING.apply(signal);
     ExactTensorQ.require(tensor);
@@ -69,7 +69,7 @@ class Regularization2StepTest {
   @Test
   void testMatrix() {
     TensorUnaryOperator STRING = //
-        new Regularization2Step(RGroup.INSTANCE, RationalScalar.of(1, 2))::string;
+        new Regularization2Step(RGroup.INSTANCE, Rational.of(1, 2))::string;
     Tensor signal = Tensors.fromString("{{1, 2}, {2, 2}, {3, 2}, {4, 2}, {3, 3}}");
     Tensor tensor = STRING.apply(signal);
     ExactTensorQ.require(tensor);
@@ -86,12 +86,12 @@ class Regularization2StepTest {
 
   @Test
   void testCScalarFail() {
-    TensorUnaryOperator tensorUnaryOperator = new Regularization2Step(RGroup.INSTANCE, RationalScalar.HALF)::string;
+    TensorUnaryOperator tensorUnaryOperator = new Regularization2Step(RGroup.INSTANCE, Rational.HALF)::string;
     assertThrows(Exception.class, () -> tensorUnaryOperator.apply(RealScalar.ZERO));
   }
 
   private static final TensorUnaryOperator CYCLIC = //
-      new Regularization2Step(RGroup.INSTANCE, RationalScalar.of(1, 4))::cyclic;
+      new Regularization2Step(RGroup.INSTANCE, Rational.of(1, 4))::cyclic;
 
   @Test
   void testCLo() {
@@ -138,7 +138,7 @@ class Regularization2StepTest {
 
   @Test
   void testScalarFail() {
-    TensorUnaryOperator tensorUnaryOperator = new Regularization2Step(RGroup.INSTANCE, RationalScalar.HALF)::cyclic;
+    TensorUnaryOperator tensorUnaryOperator = new Regularization2Step(RGroup.INSTANCE, Rational.HALF)::cyclic;
     assertThrows(Exception.class, () -> tensorUnaryOperator.apply(RealScalar.ZERO));
   }
 }

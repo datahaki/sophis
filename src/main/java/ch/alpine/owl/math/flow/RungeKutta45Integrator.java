@@ -2,7 +2,7 @@
 package ch.alpine.owl.math.flow;
 
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
@@ -13,12 +13,12 @@ import ch.alpine.tensor.Tensor;
 public enum RungeKutta45Integrator implements Integrator {
   INSTANCE;
 
-  private static final Scalar HALF = RationalScalar.HALF;
-  private static final Scalar THIRD = RationalScalar.THIRD;
-  private static final Scalar SIXTH = RationalScalar.of(1, 6);
+  private static final Scalar HALF = Rational.HALF;
+  private static final Scalar THIRD = Rational.THIRD;
+  private static final Scalar SIXTH = Rational.of(1, 6);
   // ---
-  private static final Scalar W1 = RationalScalar.of(-1, 15);
-  private static final Scalar W2 = RationalScalar.of(16, 15);
+  private static final Scalar W1 = Rational.of(-1, 15);
+  private static final Scalar W2 = Rational.of(16, 15);
 
   @Override // from Integrator
   public Tensor step(StateSpaceModel stateSpaceModel, Tensor x, Tensor u, Scalar h) {

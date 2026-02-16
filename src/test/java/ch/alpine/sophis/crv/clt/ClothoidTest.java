@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.sophus.lie.so2.So2Metric;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -110,7 +110,7 @@ class ClothoidTest {
       Tensor p = RandomVariate.of(distribution, 3);
       Tensor q = RandomVariate.of(distribution, 3);
       Clothoid clothoid = CLOTHOID_BUILDER.curve(p, q);
-      Tensor m = clothoid.apply(RationalScalar.HALF);
+      Tensor m = clothoid.apply(Rational.HALF);
       Scalar l1 = CLOTHOID_BUILDER.curve(p, m).length();
       Scalar l2 = CLOTHOID_BUILDER.curve(m, q).length();
       Chop._01.requireClose(l1, l2);
@@ -186,7 +186,7 @@ class ClothoidTest {
     Tensor angles = Range.of(-3, 4).maps(Pi.TWO::multiply);
     for (Tensor angle : angles) {
       Clothoid clothoid = CLOTHOID_BUILDER.curve(pxy.append(angle), qxy.append(angle));
-      Tensor r = clothoid.apply(RationalScalar.HALF);
+      Tensor r = clothoid.apply(Rational.HALF);
       Chop._08.requireClose(r.extract(0, 2), Tensors.vector(0.5, 0));
       Chop._08.requireZero(So2.MOD.apply(r.Get(2)));
     }

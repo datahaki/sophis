@@ -10,7 +10,7 @@ import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
@@ -30,7 +30,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
 class BaseWindowSamplerTest {
   private static Tensor constant(int i) {
     int width = 2 * i + 1;
-    Scalar weight = RationalScalar.of(1, width);
+    Scalar weight = Rational.of(1, width);
     return Tensors.vector(_ -> weight, width);
   }
 
@@ -82,7 +82,7 @@ class BaseWindowSamplerTest {
   @Test
   void testContinuity() {
     for (WindowFunctions smoothingKernel : WindowFunctions.values()) {
-      Scalar scalar = smoothingKernel.get().apply(RationalScalar.HALF);
+      Scalar scalar = smoothingKernel.get().apply(Rational.HALF);
       String string = smoothingKernel.get() + "[1/2]=" + scalar;
       string.length();
       Function<Integer, Tensor> uniformWindowSampler = UniformWindowSampler.of(smoothingKernel.get());

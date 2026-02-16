@@ -6,7 +6,7 @@ import java.io.Serializable;
 import ch.alpine.sophis.srf.MeshStructure;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.ext.Integers;
 
@@ -29,7 +29,7 @@ public record LoopRefinement(BiinvariantMean biinvariantMean) //
 
   public static Scalar weight(int n) {
     return n == 3 //
-        ? RationalScalar.of(3, 16)
-        : RationalScalar.of(3, 8 * n);
+        ? Rational.of(3, 16)
+        : Rational.of(3, 8 * n);
   }
 }

@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 import ch.alpine.sophis.math.win.SymmetricVectorQ;
 import ch.alpine.sophis.math.win.UniformWindowSampler;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -65,7 +65,7 @@ public class GeodesicCenterMidSeeded implements TensorUnaryOperator {
       SymmetricVectorQ.INSTANCE.require(mask);
       int radius = (mask.length() - 1) / 2;
       Tensor halfmask = Tensors.vector(i -> i.equals(radius) //
-          ? mask.Get(i).multiply(RationalScalar.HALF)
+          ? mask.Get(i).multiply(Rational.HALF)
           : mask.Get(i), radius + 1);
       Scalar factor = halfmask.Get(radius);
       Tensor splits = Tensors.reserve(radius);

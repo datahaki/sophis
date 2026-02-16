@@ -4,7 +4,7 @@ package ch.alpine.sophis.crv.clt;
 import java.io.Serializable;
 
 import ch.alpine.tensor.ComplexScalar;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -121,7 +121,7 @@ public class ClothoidIntegralAnalytic implements ClothoidIntegral, Serializable 
   private static class Degree2 implements ScalarUnaryOperator {
     private static final Scalar _N1_1_4 = ComplexScalar.unit(Pi.QUARTER);
     private static final Scalar _N1_3_4 = ComplexScalar.unit(Pi._3_4);
-    private static final Scalar _1_4 = RationalScalar.of(1, 4);
+    private static final Scalar _1_4 = Rational.of(1, 4);
     // ---
     private final Scalar c1;
     private final Scalar c2;
@@ -137,7 +137,7 @@ public class ClothoidIntegralAnalytic implements ClothoidIntegral, Serializable 
       Scalar f1 = _N1_3_4;
       Scalar f2 = Exp.FUNCTION.apply(c0.subtract(_1_4.multiply(c1).multiply(c1).divide(c2)).multiply(ComplexScalar.I));
       Scalar f3 = Sqrt.FUNCTION.apply(Pi.VALUE);
-      f4 = RationalScalar.HALF.divide(Sqrt.FUNCTION.apply(c2));
+      f4 = Rational.HALF.divide(Sqrt.FUNCTION.apply(c2));
       factor = Times.of(f1, f2, f3, f4);
       ofs = Erfi.FUNCTION.apply(_N1_1_4.multiply(c1).multiply(f4));
     }

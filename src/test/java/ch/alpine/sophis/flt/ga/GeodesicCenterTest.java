@@ -15,7 +15,7 @@ import ch.alpine.sophis.flt.ga.GeodesicCenter.Splits;
 import ch.alpine.sophis.math.win.UniformWindowSampler;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2Group;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -34,7 +34,7 @@ import ch.alpine.tensor.sca.win.WindowFunctions;
 class GeodesicCenterTest {
   @SuppressWarnings("unchecked")
   private static final Function<Integer, Tensor> CONSTANT = (Function<Integer, Tensor> & Serializable) //
-  i -> Array.of(_ -> RationalScalar.of(1, i), i);
+  i -> Array.of(_ -> Rational.of(1, i), i);
 
   @Test
   void testSimple() {
@@ -42,7 +42,7 @@ class GeodesicCenterTest {
     TensorUnaryOperator tensorUnaryOperator = GeodesicCenter.of(RGroup.INSTANCE, CONSTANT);
     for (int index = 0; index < 9; ++index) {
       Tensor apply = tensorUnaryOperator.apply(UnitVector.of(9, index));
-      assertEquals(apply, RationalScalar.of(1, 9));
+      assertEquals(apply, Rational.of(1, 9));
     }
   }
 
@@ -52,7 +52,7 @@ class GeodesicCenterTest {
     TensorUnaryOperator tensorUnaryOperator = GeodesicCenter.of(RGroup.INSTANCE, DirichletWindow.FUNCTION);
     for (int index = 0; index < 9; ++index) {
       Tensor apply = tensorUnaryOperator.apply(UnitVector.of(9, index));
-      assertEquals(apply, RationalScalar.of(1, 9));
+      assertEquals(apply, Rational.of(1, 9));
     }
   }
 
@@ -134,7 +134,7 @@ class GeodesicCenterTest {
   @Test
   void testAdvanced5() {
     Tensor tensor = TENSOR_UNARY_OPERATOR.apply(Tensors.vector(3, 2, 3, 4, 5));
-    assertEquals(tensor, RationalScalar.of(181, 60));
+    assertEquals(tensor, Rational.of(181, 60));
   }
 
   @Test

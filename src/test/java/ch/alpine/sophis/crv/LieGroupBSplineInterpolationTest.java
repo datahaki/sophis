@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.AbstractBSplineInterpolation.Iteration;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -51,7 +51,7 @@ class LieGroupBSplineInterpolationTest {
 
   @Test
   void testExactRnConvergence() {
-    Tensor target = RandomVariate.of(BernoulliDistribution.of(RationalScalar.HALF), 10, 3);
+    Tensor target = RandomVariate.of(BernoulliDistribution.of(Rational.HALF), 10, 3);
     LieGroupBSplineInterpolation lieGroupBSplineInterpolation = //
         new LieGroupBSplineInterpolation(RGroup.INSTANCE, 3, target);
     lieGroupBSplineInterpolation.apply();

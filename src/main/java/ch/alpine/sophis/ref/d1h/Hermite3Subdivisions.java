@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.hs.HomogeneousSpace;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -71,10 +71,10 @@ public enum Hermite3Subdivisions {
     Scalar omega = hermiteHiParam.omega();
     return _create(homogeneousSpace, chop, //
         Tensors.of(theta, RealScalar.ONE.subtract(theta.add(theta)), theta), //
-        RationalScalar.of(-1, 8), RationalScalar.of(3, 4), RationalScalar.of(-1, 8), //
-        RationalScalar.of(-1, 2).multiply(theta), //
-        RationalScalar.of(-3, 2).multiply(omega), //
-        Tensors.of(RationalScalar.HALF.multiply(omega), RationalScalar.HALF.add(omega.add(omega)), RationalScalar.HALF.multiply(omega)));
+        Rational.of(-1, 8), Rational.of(3, 4), Rational.of(-1, 8), //
+        Rational.of(-1, 2).multiply(theta), //
+        Rational.of(-3, 2).multiply(omega), //
+        Tensors.of(Rational.HALF.multiply(omega), Rational.HALF.add(omega.add(omega)), Rational.HALF.multiply(omega)));
   }
 
   // ---
@@ -108,8 +108,8 @@ public enum Hermite3Subdivisions {
   public static Hermite3Subdivision a1(HomogeneousSpace homogeneousSpace, Chop chop) {
     return _create(homogeneousSpace, chop, //
         Tensors.fromString("{1/128, 63/64, 1/128}"), //
-        RationalScalar.of(-1, 16), RationalScalar.of(15, 16), RationalScalar.of(-7, 32), //
-        RationalScalar.of(+7, 256), //
+        Rational.of(-1, 16), Rational.of(15, 16), Rational.of(-7, 32), //
+        Rational.of(+7, 256), //
         RealScalar.ZERO, //
         Tensors.fromString("{1/16, 3/8, 1/16}"));
   }
@@ -136,9 +136,9 @@ public enum Hermite3Subdivisions {
   public static Hermite3Subdivision a2(HomogeneousSpace homogeneousSpace, Chop chop) {
     return _create(homogeneousSpace, chop, //
         Tensors.fromString("{7/96, 41/48, 7/96}"), //
-        RationalScalar.of(-5, 56), RationalScalar.of(7, 12), RationalScalar.of(-1, 24), //
-        RationalScalar.of(-25, 1344), //
-        RationalScalar.of(77, 384), //
+        Rational.of(-5, 56), Rational.of(7, 12), Rational.of(-1, 24), //
+        Rational.of(-25, 1344), //
+        Rational.of(77, 384), //
         Tensors.fromString("{-19/384, 19/96, -19/384}"));
   }
 

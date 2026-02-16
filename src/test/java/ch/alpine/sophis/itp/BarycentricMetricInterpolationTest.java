@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -22,7 +22,7 @@ class BarycentricMetricInterpolationTest {
         BarycentricMetricInterpolation.of(Tensors.vector(1, 2, 4), InversePowerVariogram.of(2));
     assertEquals(scalarTensorFunction.apply(RealScalar.of(1)), UnitVector.of(3, 0));
     assertEquals(scalarTensorFunction.apply(RealScalar.of(4)), UnitVector.of(3, 2));
-    Tensor w1 = scalarTensorFunction.apply(RationalScalar.of(3, 2));
+    Tensor w1 = scalarTensorFunction.apply(Rational.of(3, 2));
     ExactTensorQ.require(w1);
     assertEquals(w1, Tensors.fromString("{85/169, 335/676, 1/676}"));
     Tensor w2 = scalarTensorFunction.apply(RealScalar.of(2.0001));
@@ -35,7 +35,7 @@ class BarycentricMetricInterpolationTest {
         BarycentricMetricInterpolation.la(Tensors.vector(1, 2, 4), InversePowerVariogram.of(2));
     assertEquals(scalarTensorFunction.apply(RealScalar.of(1)), UnitVector.of(3, 0));
     assertEquals(scalarTensorFunction.apply(RealScalar.of(4)), UnitVector.of(3, 2));
-    Tensor w1 = scalarTensorFunction.apply(RationalScalar.of(3, 2));
+    Tensor w1 = scalarTensorFunction.apply(Rational.of(3, 2));
     ExactTensorQ.require(w1);
     assertEquals(w1, Tensors.fromString("{60/119, 235/476, 1/476}"));
     Tensor w2 = scalarTensorFunction.apply(RealScalar.of(2.0001));

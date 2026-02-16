@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.chq.ExactScalarQ;
@@ -16,7 +16,7 @@ class ClothoidQuadraticExTest {
     ClothoidQuadraticEx clothoidQuadratic = //
         new ClothoidQuadraticEx(RealScalar.of(2), RealScalar.of(-3), RealScalar.of(7));
     Scalar p0 = clothoidQuadratic.angle(RealScalar.ZERO);
-    Scalar pm = clothoidQuadratic.angle(RationalScalar.of(1, 2));
+    Scalar pm = clothoidQuadratic.angle(Rational.of(1, 2));
     Scalar p1 = clothoidQuadratic.angle(RealScalar.ONE);
     assertEquals(p0, RealScalar.of(2));
     assertEquals(pm, RealScalar.of(-3));

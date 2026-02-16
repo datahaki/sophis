@@ -10,7 +10,7 @@ import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -29,24 +29,24 @@ class BezierCurveTest {
   void testRn() {
     Tensor control = Tensors.fromString("{{0, 0}, {1, 1}, {2, 0}, {3, 1}}");
     ScalarTensorFunction stf1 = new BezierFunction(RGroup.INSTANCE, control);
-    Scalar scalar = RationalScalar.of(1, 4);
+    Scalar scalar = Rational.of(1, 4);
     Tensor tensor = stf1.apply(scalar);
     assertEquals(tensor, Tensors.fromString("{3/4, 7/16}"));
     ExactTensorQ.require(tensor);
     Tensor domain = Subdivide.of(0, 1, 7);
     ScalarTensorFunction stf2 = BezierCurve.of(LinearBiinvariantMean.INSTANCE, control);
     assertEquals(domain.maps(stf1), domain.maps(stf2));
-    stf1.apply(RationalScalar.of(-1, 4));
-    stf1.apply(RationalScalar.of(+5, 4));
+    stf1.apply(Rational.of(-1, 4));
+    stf1.apply(Rational.of(+5, 4));
   }
 
   @Test
   void testSe2Covering() {
     Tensor control = Tensors.fromString("{{0, 0, 0}, {1, 0, 1/2}, {2, 0.4, 2/5}}");
     ScalarTensorFunction scalarTensorFunction = new BezierFunction(Se2CoveringGroup.INSTANCE, control);
-    Scalar scalar = RationalScalar.of(1, 4);
+    Scalar scalar = Rational.of(1, 4);
     Tensor tensor = scalarTensorFunction.apply(scalar);
-    assertEquals(tensor.Get(2), RationalScalar.of(17, 80));
+    assertEquals(tensor.Get(2), Rational.of(17, 80));
     ExactScalarQ.require(tensor.Get(2));
   }
 
@@ -54,7 +54,7 @@ class BezierCurveTest {
   void testOutsideFail() {
     Tensor control = Tensors.fromString("{{0, 0, 0}, {1, 0, 1/2}, {2, 0.4, 2/5}}");
     ScalarTensorFunction scalarTensorFunction = new BezierFunction(Se2CoveringGroup.INSTANCE, control);
-    Scalar scalar = RationalScalar.of(-1, 4);
+    Scalar scalar = Rational.of(-1, 4);
     Tensor tensor = scalarTensorFunction.apply(scalar);
     Tolerance.CHOP.requireClose(tensor, Tensors.vector(-0.45359613406197646, 0.22282532025418184, -23 / 80.));
     ExactScalarQ.require(tensor.Get(2));

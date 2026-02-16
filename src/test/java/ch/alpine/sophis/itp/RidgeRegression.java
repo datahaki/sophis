@@ -4,7 +4,7 @@ package ch.alpine.sophis.itp;
 import java.io.Serializable;
 
 import ch.alpine.sophus.hs.Manifold;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -28,7 +28,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
      * @param point */
     /* package */ Form2(Tensor sequence, Tensor point) {
       matrix = manifold.exponential(point).log().slash(sequence);
-      Scalar factor = RationalScalar.of(1, sequence.length());
+      Scalar factor = Rational.of(1, sequence.length());
       Tensor sigma = Transpose.of(matrix).dot(matrix).multiply(factor);
       // computation of pseudo inverse only may result in numerical deviation from true symmetric result
       sigma = sigma.add(DiagonalMatrix.of(sigma.length(), RealScalar.of(10)));

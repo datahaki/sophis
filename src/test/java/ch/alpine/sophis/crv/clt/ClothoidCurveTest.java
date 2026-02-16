@@ -8,7 +8,7 @@ import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -51,9 +51,9 @@ class ClothoidCurveTest {
   void testDistinct() {
     Tensor p = Array.zeros(3);
     Tensor q = Tensors.vector(-3.7, 0.3, 3.142);
-    Tensor m1 = Clothoid1.INSTANCE.curve(p, q).apply(RationalScalar.HALF);
-    Tensor m2 = Clothoid2.INSTANCE.curve(p, q).apply(RationalScalar.HALF);
-    Tensor m3 = CLOTHOID_BUILDER.curve(p, q).apply(RationalScalar.HALF);
+    Tensor m1 = Clothoid1.INSTANCE.curve(p, q).apply(Rational.HALF);
+    Tensor m2 = Clothoid2.INSTANCE.curve(p, q).apply(Rational.HALF);
+    Tensor m3 = CLOTHOID_BUILDER.curve(p, q).apply(Rational.HALF);
     assertFalse(Chop._01.isClose(m1, m2));
     assertFalse(Chop._01.isClose(m1, m3));
     assertFalse(Chop._01.isClose(m2, m3));

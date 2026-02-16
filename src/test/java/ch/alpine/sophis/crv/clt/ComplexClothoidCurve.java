@@ -5,7 +5,7 @@ import ch.alpine.sophus.hs.GeodesicSpace;
 import ch.alpine.sophus.lie.so2.ArcTan2D;
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.tensor.ComplexScalar;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 
   private static final Tensor W = Tensors.vector(5, 8, 5).divide(RealScalar.of(18.0));
   private static final Tensor X = Tensors.vector(-1, 0, 1) //
-      .multiply(Sqrt.FUNCTION.apply(RationalScalar.of(3, 5))) //
+      .multiply(Sqrt.FUNCTION.apply(Rational.of(3, 5))) //
       .maps(RealScalar.ONE::add) //
       .divide(RealScalar.of(2));
   private static final Scalar _1 = RealScalar.of(1.0);

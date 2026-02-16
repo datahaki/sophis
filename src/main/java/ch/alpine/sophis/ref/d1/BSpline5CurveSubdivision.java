@@ -4,7 +4,7 @@ package ch.alpine.sophis.ref.d1;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
@@ -16,10 +16,10 @@ import ch.alpine.tensor.itp.BinaryAverage;
 /** quintic B-spline is implemented as an extension of
  * cubic B-spline refinement */
 public class BSpline5CurveSubdivision extends BSpline3CurveSubdivision {
-  private static final Scalar _5_8 = RationalScalar.of(5, 8);
-  private static final Scalar _15_16 = RationalScalar.of(15, 16);
-  private static final Scalar _3_8 = RationalScalar.of(3, 8);
-  private static final Scalar _1_16 = RationalScalar.of(1, 16);
+  private static final Scalar _5_8 = Rational.of(5, 8);
+  private static final Scalar _15_16 = Rational.of(15, 16);
+  private static final Scalar _3_8 = Rational.of(3, 8);
+  private static final Scalar _1_16 = Rational.of(1, 16);
 
   /** @param geodesicSpace */
   public BSpline5CurveSubdivision(BinaryAverage geodesicSpace) {

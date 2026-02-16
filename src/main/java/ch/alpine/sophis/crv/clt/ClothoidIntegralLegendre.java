@@ -3,7 +3,7 @@
 package ch.alpine.sophis.crv.clt;
 
 import ch.alpine.tensor.ComplexScalar;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -21,7 +21,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
   private static final Scalar _1 = RealScalar.of(1.0);
   private static final Tensor W = Tensors.vector(5, 8, 5).divide(RealScalar.of(18.0));
   private static final Tensor X = Tensors.vector(-1, 0, 1) //
-      .multiply(Sqrt.FUNCTION.apply(RationalScalar.of(3, 5))) //
+      .multiply(Sqrt.FUNCTION.apply(Rational.of(3, 5))) //
       .maps(RealScalar.ONE::add) //
       .divide(RealScalar.TWO);
   private static final Scalar X0 = X.Get(0);

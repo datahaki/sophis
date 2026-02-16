@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -27,7 +27,7 @@ class MinimumSpanningTreeTest {
     List<IntUndirectedEdge> list = MinimumSpanningTree.of(tensor);
     assertEquals(list.size(), 9);
     Scalar scalar = list.stream().map(edge -> edge.Get(tensor)).reduce(Scalar::add).orElseThrow();
-    assertEquals(scalar, RationalScalar.of(1632341, 2450448));
+    assertEquals(scalar, Rational.of(1632341, 2450448));
   }
 
   @Test

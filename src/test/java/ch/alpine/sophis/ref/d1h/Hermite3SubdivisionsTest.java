@@ -4,7 +4,7 @@ package ch.alpine.sophis.ref.d1h;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.mat.Tolerance;
@@ -28,7 +28,7 @@ class Hermite3SubdivisionsTest {
 
   @Test
   void testTension() {
-    HermiteHiConfig hermiteHiParam = new HermiteHiConfig(RationalScalar.of(2, 157), RationalScalar.of(1, 9));
+    HermiteHiConfig hermiteHiParam = new HermiteHiConfig(Rational.of(2, 157), Rational.of(1, 9));
     HermiteSubdivision hermiteSubdivision = Hermite3Subdivisions.of(RGroup.INSTANCE, Tolerance.CHOP, hermiteHiParam);
     new HermiteSubdivisionQ(RnHermite3Subdivisions.of(hermiteHiParam)).check(hermiteSubdivision);
     new HermiteSubdivisionQ(hermiteSubdivision).checkP(3);

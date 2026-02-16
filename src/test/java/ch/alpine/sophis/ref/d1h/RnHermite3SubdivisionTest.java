@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -59,16 +59,16 @@ class RnHermite3SubdivisionTest {
   void testPolynomialReproduction() {
     new HermiteSubdivisionQ(RnHermite3Subdivisions.standard()).checkP(3);
     HermiteSubdivision hermiteSubdivision = RnHermite3Subdivisions.of(new HermiteHiConfig( //
-        RationalScalar.of(+2, 157), //
-        RationalScalar.of(-3, 43)));
+        Rational.of(+2, 157), //
+        Rational.of(-3, 43)));
     new HermiteSubdivisionQ(hermiteSubdivision).checkP(3);
   }
 
   @Test
   void testPolynomialReproductionMore() {
     HermiteSubdivision hermiteSubdivision = RnHermite3Subdivisions.of(new HermiteHiConfig( //
-        RationalScalar.of(+3, 157), //
-        RationalScalar.of(-5, 43)));
+        Rational.of(+3, 157), //
+        Rational.of(-5, 43)));
     Polynomial f0 = Polynomial.of(Tensors.vector(2, -7, 4, -3));
     Polynomial f1 = f0.derivative();
     Tensor domain = Range.of(0, 10);
@@ -76,7 +76,7 @@ class RnHermite3SubdivisionTest {
     TensorIteration tensorIteration = hermiteSubdivision.string(RealScalar.ONE, control);
     Tensor iterate = tensorIteration.iterate();
     ExactTensorQ.require(iterate);
-    Tensor idm = Range.of(0, 19).multiply(RationalScalar.HALF);
+    Tensor idm = Range.of(0, 19).multiply(Rational.HALF);
     Tensor if0 = iterate.get(Tensor.ALL, 0);
     assertEquals(if0, idm.maps(f0));
     Tensor if1 = iterate.get(Tensor.ALL, 1);

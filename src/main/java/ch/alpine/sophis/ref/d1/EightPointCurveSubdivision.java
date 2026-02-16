@@ -4,7 +4,7 @@ package ch.alpine.sophis.ref.d1;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
@@ -13,9 +13,9 @@ import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.itp.BinaryAverage;
 
 public class EightPointCurveSubdivision extends BSpline1CurveSubdivision {
-  private static final Scalar PQ = RationalScalar.of(49, 44);
-  private static final Scalar _R = RationalScalar.of(245, 201);
-  private static final Scalar _S = RationalScalar.of(1225, 1024);
+  private static final Scalar PQ = Rational.of(49, 44);
+  private static final Scalar _R = Rational.of(245, 201);
+  private static final Scalar _S = Rational.of(1225, 1024);
   // ---
   private final BinaryAverage geodesicSpace;
 

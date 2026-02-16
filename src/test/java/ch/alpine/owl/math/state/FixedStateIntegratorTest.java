@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.owl.math.flow.EulerIntegrator;
 import ch.alpine.owl.math.model.SingleIntegratorStateSpaceModel;
 import ch.alpine.owl.math.model.StateSpaceModel;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -22,13 +22,13 @@ class FixedStateIntegratorTest {
   void testSimple() {
     StateSpaceModel stateSpaceModel = SingleIntegratorStateSpaceModel.INSTANCE;
     FixedStateIntegrator fsi = //
-        FixedStateIntegrator.create(EulerIntegrator.INSTANCE, stateSpaceModel, RationalScalar.of(1, 2), 3);
+        FixedStateIntegrator.create(EulerIntegrator.INSTANCE, stateSpaceModel, Rational.of(1, 2), 3);
     Tensor u = Tensors.vector(1, 2);
     // Flow flow = StateSpaceModels.createFlow(SingleIntegratorStateSpaceModel.INSTANCE, );
     List<StateTime> list = fsi.trajectory(new StateTime(Tensors.vector(2, 3), RealScalar.of(10)), u);
     assertEquals(list.size(), 3);
     assertEquals(list.get(2).time(), Scalars.fromString("10+3/2"));
-    assertEquals(fsi.getTimeStepTrajectory(), RationalScalar.of(3, 2));
+    assertEquals(fsi.getTimeStepTrajectory(), Rational.of(3, 2));
   }
 
   @Test

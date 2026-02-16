@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.itp.BinaryAverage;
@@ -18,8 +18,8 @@ import ch.alpine.tensor.itp.BinaryAverage;
  * {b (1 - a), 1 - b, a b, a b, 1 - b, b (1 - a)}/2
  * Solve[Thread[% == weights]] */
 public class FarSixPointCurveSubdivision extends AbstractSixPointCurveSubdivision {
-  private static final Scalar PR = RationalScalar.of(50, 51);
-  private static final Scalar Q_ = RationalScalar.of(153, 128);
+  private static final Scalar PR = Rational.of(50, 51);
+  private static final Scalar Q_ = Rational.of(153, 128);
 
   /** @param geodesicSpace */
   public FarSixPointCurveSubdivision(BinaryAverage geodesicSpace) {

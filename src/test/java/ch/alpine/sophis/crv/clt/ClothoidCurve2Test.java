@@ -3,7 +3,7 @@ package ch.alpine.sophis.crv.clt;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -17,10 +17,10 @@ class ClothoidCurve2Test {
   void testQuantity() {
     Tensor p1 = Tensors.fromString("{2[m], 3[m], 1}");
     Tensor q1 = Tensors.fromString("{4[m], 7[m], 2}");
-    Tensor r1 = new ClothoidCurve2(p1, q1).apply(RationalScalar.HALF);
+    Tensor r1 = new ClothoidCurve2(p1, q1).apply(Rational.HALF);
     Tensor p2 = Tensors.fromString("{2, 3, 1}");
     Tensor q2 = Tensors.fromString("{4, 7, 2}");
-    Tensor r2 = ComplexClothoidCurve.INSTANCE.split(p2, q2, RationalScalar.HALF);
+    Tensor r2 = ComplexClothoidCurve.INSTANCE.split(p2, q2, Rational.HALF);
     Chop._02.requireClose(r1, ClothoidCurveTest.metric(r2));
   }
 

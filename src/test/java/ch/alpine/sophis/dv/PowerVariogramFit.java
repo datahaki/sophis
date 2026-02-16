@@ -4,7 +4,7 @@ package ch.alpine.sophis.dv;
 import java.util.Objects;
 
 import ch.alpine.sophus.math.api.TensorMetric;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -38,7 +38,7 @@ public enum PowerVariogramFit {
       for (int j = i + 1; j < n; ++j) {
         Scalar rb = power.apply(tensorMetric.distance(sequence.get(i), sequence.get(j)));
         Scalar val = LenientAdd.of( //
-            AbsSquared.between(y[i], y[j]).multiply(RationalScalar.HALF), nugsq.negate()).multiply(rb);
+            AbsSquared.between(y[i], y[j]).multiply(Rational.HALF), nugsq.negate()).multiply(rb);
         num = Objects.isNull(num) ? val : num.add(val);
         den = LenientAdd.of( //
             den, rb.multiply(rb));

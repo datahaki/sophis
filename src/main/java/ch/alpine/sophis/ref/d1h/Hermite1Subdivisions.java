@@ -2,7 +2,7 @@
 package ch.alpine.sophis.ref.d1h;
 
 import ch.alpine.sophus.hs.HomogeneousSpace;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 
@@ -18,7 +18,7 @@ import ch.alpine.tensor.Scalar;
  * by Merrien, 1992 */
 public enum Hermite1Subdivisions {
   ;
-  private static final Scalar _1_4 = RationalScalar.of(1, 4);
+  private static final Scalar _1_4 = Rational.of(1, 4);
 
   /** References:
    * "Scalar and Hermite subdivision schemes"
@@ -42,7 +42,7 @@ public enum Hermite1Subdivisions {
     return new Hermite1Subdivision( //
         homogeneousSpace, //
         hermiteLoParam.lambda(), //
-        RealScalar.ONE.subtract(hermiteLoParam.mu()).multiply(RationalScalar.HALF), //
+        RealScalar.ONE.subtract(hermiteLoParam.mu()).multiply(Rational.HALF), //
         hermiteLoParam.mu().multiply(_1_4));
   }
 

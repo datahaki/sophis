@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.lie.LieGroup;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -45,7 +45,7 @@ public class Hermite3Filter implements HermiteFilter {
     private Control(Scalar delta, Tensor control) {
       this.control = control;
       cgk = RealScalar.of(256).divide(delta);
-      cvk = RationalScalar.of(3, 16).divide(delta);
+      cvk = Rational.of(3, 16).divide(delta);
     }
 
     private Tensor center(Tensor p, Tensor q, Tensor r) {

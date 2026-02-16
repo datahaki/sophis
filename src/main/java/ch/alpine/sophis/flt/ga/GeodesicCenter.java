@@ -8,7 +8,7 @@ import java.util.function.Function;
 import ch.alpine.sophis.flt.CenterFilter;
 import ch.alpine.sophis.math.win.SymmetricVectorQ;
 import ch.alpine.sophis.math.win.UniformWindowSampler;
-import ch.alpine.tensor.RationalScalar;
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -111,6 +111,6 @@ public class GeodesicCenter implements TensorUnaryOperator {
       Tensor lR = tensor.get(2 * radius - index);
       pR = binaryAverage.split(lR, pR, RealScalar.ONE.subtract(scalar));
     }
-    return binaryAverage.split(pL, pR, RationalScalar.HALF);
+    return binaryAverage.split(pL, pR, Rational.HALF);
   }
 }
