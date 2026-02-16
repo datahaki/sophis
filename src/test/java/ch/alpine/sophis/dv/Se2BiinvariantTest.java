@@ -139,7 +139,7 @@ class Se2BiinvariantTest {
     BiinvariantMean biinvariantMean = Se2CoveringGroup.INSTANCE.biinvariantMean();
     int n = 4 + random.nextInt(4);
     Tensor points = RandomVariate.of(distribution, random, n, 3);
-    Tensor target = AveragingWeights.INSTANCE.origin(points);
+    Tensor target = AveragingWeights.of(points.length());
     Tensor x = biinvariantMean.mean(points, target);
     Tensor weights = barycentricCoordinate.weights(points, x);
     Chop._10.requireClose(Total.ofVector(weights), RealScalar.ONE);
@@ -309,7 +309,7 @@ class Se2BiinvariantTest {
     for (BarycentricCoordinate barycentricCoordinate : BIINVARIANT_COORDINATES) {
       int n = 4 + random.nextInt(4);
       Tensor points = RandomVariate.of(distribution, n, 3);
-      Tensor target = AveragingWeights.INSTANCE.origin(points);
+      Tensor target = AveragingWeights.of(points.length());
       Tensor x = biinvariantMean.mean(points, target);
       Tensor weights = barycentricCoordinate.weights(points, x);
       Chop._10.requireClose(Total.ofVector(weights), RealScalar.ONE);

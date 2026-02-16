@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.gbc.d2;
 
-import ch.alpine.sophus.math.Genesis;
+import ch.alpine.sophis.math.Genesis;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.mat.DiagonalMatrix;

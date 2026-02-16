@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.decim;
 
-import ch.alpine.sophus.math.api.TensorNorm;
+import ch.alpine.sophis.math.TensorNorm;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;

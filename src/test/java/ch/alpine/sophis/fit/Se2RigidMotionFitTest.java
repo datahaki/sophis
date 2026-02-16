@@ -47,7 +47,7 @@ class Se2RigidMotionFitTest {
       Tensor target = Tensor.of(points.stream().map(se2ForwardAction));
       Tensor rigidMotionFit = Se2RigidMotionFit.of(points, target);
       Chop._04.requireClose(xya, rigidMotionFit); // Chop_08 is insufficient
-      Tensor rigidMotionFi2 = Se2RigidMotionFit.of(points, target, AveragingWeights.INSTANCE.origin(points));
+      Tensor rigidMotionFi2 = Se2RigidMotionFit.of(points, target, AveragingWeights.of(points.length()));
       Chop._08.requireClose(xya, rigidMotionFi2);
     }
   }

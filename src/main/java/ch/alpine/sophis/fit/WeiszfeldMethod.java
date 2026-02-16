@@ -35,7 +35,7 @@ public record WeiszfeldMethod(Chop chop) implements SpatialMedian, Serializable 
 
   @Override // from SpatialMedian
   public Optional<Tensor> uniform(Tensor sequence) {
-    return weighted(sequence, AveragingWeights.INSTANCE.origin(sequence));
+    return weighted(sequence, AveragingWeights.of(sequence.length()));
   }
 
   @Override // from SpatialMedian

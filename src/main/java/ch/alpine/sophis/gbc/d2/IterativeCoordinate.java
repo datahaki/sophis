@@ -6,7 +6,7 @@ import java.util.Deque;
 import java.util.Objects;
 
 import ch.alpine.sophis.dv.AffineCoordinate;
-import ch.alpine.sophus.math.Genesis;
+import ch.alpine.sophis.math.Genesis;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.FiniteTensorQ;
 import ch.alpine.tensor.ext.Integers;

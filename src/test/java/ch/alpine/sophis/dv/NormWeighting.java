@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophus.math.Genesis;
-import ch.alpine.sophus.math.api.TensorNorm;
+import ch.alpine.sophis.math.Genesis;
+import ch.alpine.sophis.math.TensorNorm;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeTotal;

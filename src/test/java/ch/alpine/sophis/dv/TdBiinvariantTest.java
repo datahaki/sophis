@@ -80,7 +80,7 @@ class TdBiinvariantTest {
       for (int length = n + 2; length < n + 8; ++length) {
         RandomSampleInterface rsi = new TdRandomSample(UniformDistribution.of(-1, 1), n, ExponentialDistribution.standard());
         Tensor sequence = RandomSample.of(rsi, length);
-        Tensor constant = AveragingWeights.INSTANCE.origin(sequence);
+        Tensor constant = AveragingWeights.of(sequence.length());
         Tensor center = TdGroup.INSTANCE.biinvariantMean().mean(sequence, constant);
         Tensor weights = barycentricCoordinate.weights(sequence, center);
         Tolerance.CHOP.requireClose(weights, constant);

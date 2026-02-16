@@ -27,7 +27,7 @@ class InsidePolygonCoordinateTest {
       for (int n = 3; n < 10; ++n) {
         Tensor points = CirclePoints.of(n);
         Tensor w1 = barycentricCoordinate.weights(points, Array.zeros(2));
-        Chop._08.requireClose(w1, AveragingWeights.INSTANCE.origin(points));
+        Chop._08.requireClose(w1, AveragingWeights.of(points.length()));
         AffineQ.INSTANCE.require(w1); // , Chop._08);
         Tensor w2 = barycentricCoordinate.weights(points, Tensors.vector(2, 2));
         assertEquals(w2.toString(), ConstantArray.of(DoubleScalar.INDETERMINATE, n).toString());

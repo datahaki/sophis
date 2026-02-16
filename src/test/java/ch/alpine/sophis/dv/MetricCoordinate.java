@@ -3,9 +3,9 @@ package ch.alpine.sophis.dv;
 
 import java.util.Objects;
 
+import ch.alpine.sophis.math.Genesis;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AveragingWeights;
-import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 
@@ -21,7 +21,7 @@ public record MetricCoordinate(Genesis genesis) implements Genesis {
     return new MetricBiinvariant(RGroup.INSTANCE).coordinate(variogram);
   }
 
-  private static final Genesis AFFINE = new MetricCoordinate(AveragingWeights.INSTANCE);
+  private static final Genesis AFFINE = new MetricCoordinate(lev -> AveragingWeights.of(lev.length()));
 
   /** Affine coordinates are a special case of inverse distance coordinates
    * namely with exponent beta == 0.

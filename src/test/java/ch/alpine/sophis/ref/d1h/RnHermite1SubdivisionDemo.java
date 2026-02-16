@@ -3,7 +3,7 @@ package ch.alpine.sophis.ref.d1h;
 
 import java.io.IOException;
 
-import ch.alpine.sophus.math.Do;
+import ch.alpine.sophis.math.Do;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

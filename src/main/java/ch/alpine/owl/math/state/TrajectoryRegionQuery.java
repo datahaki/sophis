@@ -4,7 +4,7 @@ package ch.alpine.owl.math.state;
 import java.util.List;
 import java.util.Optional;
 
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 
 /** performs trajectory containment query
  * 

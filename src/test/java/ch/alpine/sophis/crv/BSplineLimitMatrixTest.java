@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.math.StochasticMatrixQ;
+import ch.alpine.sophis.math.StochasticMatrixQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.itp.BSplineInterpolation;

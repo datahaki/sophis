@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
+import ch.alpine.sophis.math.Genesis;
 import ch.alpine.sophus.math.AffineQ;
-import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Transpose;

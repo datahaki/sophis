@@ -40,7 +40,7 @@ public record HsWeiszfeldMethod(BiinvariantMean biinvariantMean, Sedarim sedarim
   }
 
   private Optional<Tensor> minimum(Tensor sequence, UnaryOperator<Tensor> unaryOperator) {
-    Tensor equalw = AveragingWeights.INSTANCE.origin(sequence);
+    Tensor equalw = AveragingWeights.of(sequence.length());
     Tensor point = biinvariantMean.mean(sequence, NormalizeTotal.FUNCTION.apply(unaryOperator.apply(equalw)));
     for (int iteration = 0; iteration < MAX_ITERATIONS; ++iteration) {
       Tensor weights = sedarim.sunder(point);

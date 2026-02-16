@@ -5,9 +5,9 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.math.Genesis;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;
-import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.ComplexScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.ExactTensorQ;

@@ -3,8 +3,8 @@ package ch.alpine.sophis.dv;
 
 import java.io.Serializable;
 
+import ch.alpine.sophis.math.Genesis;
 import ch.alpine.sophus.hs.HsAlgebra;
-import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.Tensor;
 
 /** @param hsAlgebra

@@ -29,7 +29,7 @@ public enum Amplifiers {
       Sign.requirePositive(sigma);
       ScalarUnaryOperator suo = scalar -> Exp.FUNCTION.apply(scalar.multiply(sigma));
       return weights -> {
-        Tensor average = AveragingWeights.INSTANCE.origin(weights);
+        Tensor average = AveragingWeights.of(weights.length());
         return weights.subtract(average).maps(suo);
       };
     }
@@ -47,7 +47,7 @@ public enum Amplifiers {
     public TensorUnaryOperator supply(Scalar sigma) {
       ScalarUnaryOperator suo = new SmoothRamp(sigma);
       return weights -> {
-        Tensor average = AveragingWeights.INSTANCE.origin(weights);
+        Tensor average = AveragingWeights.of(weights.length());
         return weights.subtract(average).maps(suo);
       };
     }
@@ -57,7 +57,7 @@ public enum Amplifiers {
     public TensorUnaryOperator supply(Scalar sigma) {
       ScalarUnaryOperator suo = new ArcTanAmplifier(sigma);
       return weights -> {
-        Tensor average = AveragingWeights.INSTANCE.origin(weights);
+        Tensor average = AveragingWeights.of(weights.length());
         return weights.subtract(average).maps(suo);
       };
     }

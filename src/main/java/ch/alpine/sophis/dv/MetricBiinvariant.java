@@ -3,15 +3,15 @@ package ch.alpine.sophis.dv;
 
 import java.util.Objects;
 
+import ch.alpine.sophis.math.Genesis;
+import ch.alpine.sophis.math.TensorNorm;
 import ch.alpine.sophus.hs.Exponential;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.hs.MetricManifold;
 import ch.alpine.sophus.hs.gr.GrExponential;
 import ch.alpine.sophus.hs.spd.SpdExponential;
-import ch.alpine.sophus.math.Genesis;
+import ch.alpine.sophus.math.FrobeniusForm;
 import ch.alpine.sophus.math.api.BilinearForm;
-import ch.alpine.sophus.math.api.FrobeniusForm;
-import ch.alpine.sophus.math.api.TensorNorm;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.io.MathematicaFormat;

@@ -3,7 +3,7 @@ package ch.alpine.sophis.crv.d2.alg;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.math.api.Region;
+import ch.alpine.sophis.math.Region;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.ext.Integers;

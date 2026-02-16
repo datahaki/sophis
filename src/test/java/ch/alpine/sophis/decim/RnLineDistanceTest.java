@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.math.TensorNorm;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.api.TensorNorm;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

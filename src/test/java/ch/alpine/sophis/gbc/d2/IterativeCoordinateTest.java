@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.alg.OriginEnclosureQ;
 import ch.alpine.sophis.dv.MetricCoordinate;
+import ch.alpine.sophis.math.Genesis;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

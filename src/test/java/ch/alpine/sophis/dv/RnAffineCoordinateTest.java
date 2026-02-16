@@ -29,7 +29,7 @@ class RnAffineCoordinateTest {
       Tensor points = RandomVariate.of(distribution, n, 2);
       TensorUnaryOperator affineCoordinates = RnAffineCoordinate.of(points);
       Tensor weights = affineCoordinates.apply(Mean.of(points));
-      Chop._10.requireClose(weights, AveragingWeights.INSTANCE.origin(points));
+      Chop._10.requireClose(weights, AveragingWeights.of(points.length()));
     }
   }
 
@@ -40,7 +40,7 @@ class RnAffineCoordinateTest {
       Tensor points = RandomVariate.of(distribution, n, 2);
       TensorUnaryOperator affineCoordinates = RnAffineCoordinate.of(points);
       Tensor weights = affineCoordinates.apply(Mean.of(points));
-      Chop._10.requireClose(weights, AveragingWeights.INSTANCE.origin(points));
+      Chop._10.requireClose(weights, AveragingWeights.of(points.length()));
       // ExactTensorQ.require(weights);
     }
   }
@@ -52,7 +52,7 @@ class RnAffineCoordinateTest {
       Tensor points = RandomVariate.of(distribution, n, n - 1);
       TensorUnaryOperator affineCoordinates = RnAffineCoordinate.of(points);
       Tensor weights = affineCoordinates.apply(Mean.of(points));
-      Chop._10.requireClose(weights, AveragingWeights.INSTANCE.origin(points));
+      Chop._10.requireClose(weights, AveragingWeights.of(points.length()));
       Chop._10.requireClose(Tensor.of(points.stream().map(affineCoordinates)), IdentityMatrix.of(n));
     }
   }

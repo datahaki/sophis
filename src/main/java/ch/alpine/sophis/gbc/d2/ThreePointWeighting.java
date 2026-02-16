@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import ch.alpine.sophis.crv.d2.Det2D;
-import ch.alpine.sophus.math.Genesis;
+import ch.alpine.sophis.math.Genesis;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;

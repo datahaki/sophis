@@ -39,7 +39,7 @@ public record RigidMotionFit(Tensor rotation, Tensor translation) implements Ten
    * @param target matrix of dimension n x d
    * @return */
   public static RigidMotionFit of(Tensor origin, Tensor target) {
-    return _of(origin, target, AveragingWeights.INSTANCE.origin(origin));
+    return _of(origin, target, AveragingWeights.of(origin.length()));
   }
 
   // helper function

@@ -80,7 +80,7 @@ class HeBiinvariantTest {
       for (int length = 2 * n + 2; length < 2 * n + 10; ++length) {
         RandomSampleInterface rsi = new HeNGroup(n);
         Tensor sequence = RandomSample.of(rsi, length);
-        Tensor constant = AveragingWeights.INSTANCE.origin(sequence);
+        Tensor constant = AveragingWeights.of(sequence.length());
         Tensor center = HeGroup.INSTANCE.biinvariantMean().mean(sequence, constant);
         Tensor weights = barycentricCoordinate.weights(sequence, center);
         Tolerance.CHOP.requireClose(weights, constant);

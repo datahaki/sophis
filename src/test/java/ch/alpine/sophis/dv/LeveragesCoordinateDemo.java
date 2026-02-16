@@ -1,9 +1,9 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
+import ch.alpine.sophis.math.Genesis;
 import ch.alpine.sophus.hs.Manifold;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.Genesis;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.pdf.RandomVariate;

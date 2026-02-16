@@ -28,7 +28,7 @@ class MinTriangleAreaSquaredTest {
       Tensor polygon = CirclePoints.of(n);
       polygon.forEach(row -> row.append(RealScalar.of(3)));
       Tensor weights = MinTriangleAreaSquared.INSTANCE.origin(polygon);
-      Tolerance.CHOP.requireClose(weights, AveragingWeights.INSTANCE.origin(polygon));
+      Tolerance.CHOP.requireClose(weights, AveragingWeights.of(polygon.length()));
     }
   }
 
@@ -39,7 +39,7 @@ class MinTriangleAreaSquaredTest {
       polygon.forEach(row -> row.append(RealScalar.of(3)));
       polygon = polygon.maps(s -> Quantity.of(s, "s"));
       Tensor weights = MinTriangleAreaSquared.INSTANCE.origin(polygon);
-      Tolerance.CHOP.requireClose(weights, AveragingWeights.INSTANCE.origin(polygon));
+      Tolerance.CHOP.requireClose(weights, AveragingWeights.of(polygon.length()));
     }
   }
 
@@ -81,7 +81,7 @@ class MinTriangleAreaSquaredTest {
     for (int count = 0; count < 10; ++count) {
       Tensor polygon = RandomVariate.of(distribution, 3, 3);
       Tensor weights = MinTriangleAreaSquared.INSTANCE.origin(polygon);
-      Tolerance.CHOP.requireClose(weights, AveragingWeights.INSTANCE.origin(polygon));
+      Tolerance.CHOP.requireClose(weights, AveragingWeights.of(polygon.length()));
     }
   }
 
@@ -91,7 +91,7 @@ class MinTriangleAreaSquaredTest {
     for (int count = 0; count < 10; ++count) {
       Tensor polygon = RandomVariate.of(distribution, 2, 3);
       Tensor weights = MinTriangleAreaSquared.INSTANCE.origin(polygon);
-      Tolerance.CHOP.requireClose(weights, AveragingWeights.INSTANCE.origin(polygon));
+      Tolerance.CHOP.requireClose(weights, AveragingWeights.of(polygon.length()));
     }
   }
 
@@ -101,7 +101,7 @@ class MinTriangleAreaSquaredTest {
     for (int count = 0; count < 10; ++count) {
       Tensor polygon = RandomVariate.of(distribution, 1, 3);
       Tensor weights = MinTriangleAreaSquared.INSTANCE.origin(polygon);
-      Tolerance.CHOP.requireClose(weights, AveragingWeights.INSTANCE.origin(polygon));
+      Tolerance.CHOP.requireClose(weights, AveragingWeights.of(polygon.length()));
     }
   }
 
