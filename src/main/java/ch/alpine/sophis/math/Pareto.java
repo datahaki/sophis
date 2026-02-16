@@ -1,5 +1,5 @@
 // code by ynager
-package ch.alpine.owl.math;
+package ch.alpine.sophis.math;
 
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

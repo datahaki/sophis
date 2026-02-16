@@ -1,7 +1,7 @@
 // code by jl, jph
 package ch.alpine.owl.glc.adapter;
 
-import ch.alpine.owl.math.CoordinateWrap;
+import ch.alpine.sophis.math.api.CoordinateWrap;
 import ch.alpine.tensor.Tensor;
 
 public enum IdentityWrap implements CoordinateWrap {

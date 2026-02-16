@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.owl.math;
+package ch.alpine.sophis.math;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.red.Times;

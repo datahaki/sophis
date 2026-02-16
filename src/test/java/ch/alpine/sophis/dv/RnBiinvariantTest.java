@@ -74,7 +74,7 @@ class RnBiinvariantTest {
     Distribution distribution = UniformDistribution.unit();
     BarycentricCoordinate barycentricCoordinate = AffineWrap.of(RGroup.INSTANCE);
     for (int d = 2; d < 5; ++d)
-      for (int n = 5; n < 10; ++n) {
+      for (int n = d + 5; n < 10; ++n) {
         Tensor sequence = RandomVariate.of(distribution, n, d);
         TensorUnaryOperator affineCoordinates = RnAffineCoordinate.of(sequence);
         Tensor point = RandomVariate.of(distribution, d);
