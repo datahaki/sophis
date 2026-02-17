@@ -91,7 +91,7 @@ enum CatmullClarkSubdivisionExport {
   }
 
   static void main() throws IOException {
-    Path path = HomeDirectory.Ephemeral.createDirectories(CatmullClarkSubdivisionExport.class.getSimpleName());
+    Path path = HomeDirectory.Ephemeral.mk_dirs(CatmullClarkSubdivisionExport.class.getSimpleName());
     Put.of(path.resolve("grid.mathematica"), univariate());
     Put.of(path.resolve("se2.mathematica"), se2());
     Put.of(path.resolve("r3s2.mathematica"), r3s2());
