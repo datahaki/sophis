@@ -2,12 +2,12 @@
 package ch.alpine.sophis.decim;
 
 import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophus.math.VectorProjection;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeUnlessZero;
 import ch.alpine.tensor.nrm.Vector2Norm;
-import ch.alpine.tensor.red.Projection;
 
 /** consistent with
  * <pre>
@@ -29,7 +29,7 @@ public enum RnLineDistance implements LineDistance {
 
     public TensorNormImpl(Tensor p, Tensor q) {
       this.p = p;
-      projection = Projection.on(NORMALIZE.apply(q.subtract(p)));
+      projection = VectorProjection.on(NORMALIZE.apply(q.subtract(p)));
     }
 
     @Override // from TensorNorm
