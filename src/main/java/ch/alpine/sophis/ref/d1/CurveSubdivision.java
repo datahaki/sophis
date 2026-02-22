@@ -11,4 +11,8 @@ public interface CurveSubdivision {
   /** @param tensor
    * @return one round of subdivision of non-closed curve defined by given tensor */
   Tensor string(Tensor tensor);
+
+  default Tensor auto(Tensor tensor, boolean isCyclic) {
+    return isCyclic ? cyclic(tensor) : string(tensor);
+  }
 }

@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophis.crv.d2;
 
+import ch.alpine.sophis.ref.d1.CurveSubdivision;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
@@ -10,17 +11,19 @@ import ch.alpine.tensor.lie.rot.Cross;
 import ch.alpine.tensor.nrm.NormalizeUnlessZero;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
-public enum Normal2D {
-  ;
+public enum Normal2D implements CurveSubdivision {
+  INSTANCE;
+
   private static final TensorUnaryOperator NORMALIZE_UNLESS_ZERO = NormalizeUnlessZero.with(Vector2Norm::of);
   /** generic since normals are unitless */
   private static final Tensor ZEROS = Array.zeros(2);
 
   /** @param points of the form {{p1x, p1y}, {p2x, p2y}, ..., {pNx, pNy}}
    * @return matrix of the form {{n1x, n1y}, {n2x, n2y}, ..., {nNx, nNy}} unitless */
-  public static Tensor string(Tensor points) {
-    Tensor normal = Tensors.empty(); // TODO SOPHUS IMPL use reserve
+  @Override
+  public Tensor string(Tensor points) {
     int length = points.length();
+    Tensor normal = Tensors.reserve(length);
     if (2 < length) {
       Tensor a = points.get(0);
       Tensor b = points.get(1);
@@ -42,6 +45,22 @@ public enum Normal2D {
     } else //
     if (1 < length)
       normal.append(ZEROS);
+    return normal;
+  }
+
+  @Override
+  public Tensor cyclic(Tensor points) {
+    int length = points.length();
+    Tensor normal = Tensors.reserve(length);
+    // if (Tensors.isEmpty(points))
+    // return Tensors.empty();
+    // if (length == 1)
+    // return Array.zeros(2);
+    for (int i = 0; i < length; ++i) {
+      Tensor a = points.get(Math.floorMod(i - 1, length));
+      Tensor b = points.get(Math.floorMod(i + 1, length));
+      normal.append(process(b.subtract(a)));
+    }
     return normal;
   }
 

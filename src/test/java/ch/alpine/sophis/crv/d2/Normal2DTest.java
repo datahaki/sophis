@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.pdf.Distribution;
@@ -23,11 +24,17 @@ import ch.alpine.tensor.red.Total;
 
 class Normal2DTest {
   @Test
+  void emptyCyc() {
+    assertEquals(Normal2D.INSTANCE.cyclic(Tensors.empty()), Tensors.empty());
+    assertEquals(Normal2D.INSTANCE.cyclic(Tensors.fromString("{{0,2}}")), Array.zeros(1, 2));
+  }
+
+  @Test
   void testStringLength() {
     Distribution distribution = NormalDistribution.standard();
     for (int count = 0; count < 10; ++count) {
       Tensor tensor = RandomVariate.of(distribution, count, 2);
-      Tensor string = Normal2D.string(tensor);
+      Tensor string = Normal2D.INSTANCE.string(tensor);
       assertEquals(string.length(), count);
     }
   }
@@ -37,7 +44,7 @@ class Normal2DTest {
     Distribution distribution = NormalDistribution.of(Quantity.of(1, "m"), Quantity.of(2, "m"));
     for (int count = 0; count < 10; ++count) {
       Tensor tensor = RandomVariate.of(distribution, count, 2);
-      Tensor string = Normal2D.string(tensor);
+      Tensor string = Normal2D.INSTANCE.string(tensor);
       assertEquals(string.length(), count);
       if (0 < string.length())
         assertEquals(EqualsReduce.zero(string), RealScalar.ZERO);
@@ -48,7 +55,7 @@ class Normal2DTest {
   void testStringZerosLength() {
     for (int count = 0; count < 10; ++count) {
       Tensor tensor = Array.zeros(count, 2);
-      Tensor string = Normal2D.string(tensor);
+      Tensor string = Normal2D.INSTANCE.string(tensor);
       assertEquals(string.length(), count);
       assertEquals(tensor, string);
     }
@@ -59,12 +66,12 @@ class Normal2DTest {
     Distribution distribution = TriangularDistribution.with(Quantity.of(0, "m"), Quantity.of(1, "m"));
     {
       int n = 0;
-      Tensor result = Normal2D.string(RandomVariate.of(distribution, n, 2));
+      Tensor result = Normal2D.INSTANCE.string(RandomVariate.of(distribution, n, 2));
       assertEquals(Dimensions.of(result), List.of(n));
       Total.of(result);
     }
     for (int n = 1; n < 5; ++n) {
-      Tensor result = Normal2D.string(RandomVariate.of(distribution, n, 2));
+      Tensor result = Normal2D.INSTANCE.string(RandomVariate.of(distribution, n, 2));
       assertEquals(Dimensions.of(result), Arrays.asList(n, 2));
       Total.of(result);
     }
@@ -73,6 +80,6 @@ class Normal2DTest {
   @Test
   void testTriple() {
     Distribution distribution = TriangularDistribution.with(Quantity.of(0, "m"), Quantity.of(1, "m"));
-    assertThrows(Exception.class, () -> Normal2D.string(RandomVariate.of(distribution, 1, 3)));
+    assertThrows(Exception.class, () -> Normal2D.INSTANCE.string(RandomVariate.of(distribution, 1, 3)));
   }
 }

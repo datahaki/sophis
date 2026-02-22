@@ -8,8 +8,11 @@ import java.util.Optional;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Unprotect;
+import ch.alpine.tensor.alg.Flatten;
 import ch.alpine.tensor.nrm.Hypot;
 import ch.alpine.tensor.nrm.Vector2Norm;
+import ch.alpine.tensor.red.EqualsReduce;
 
 /** The implementation supports the use of Quantity.
  * The signed curvature is a Quantity with negated unit,
@@ -40,5 +43,9 @@ public enum SignedCurvature2D {
     return Scalars.isZero(den) //
         ? Optional.empty()
         : Optional.of(v.add(v).divide(den)); // 2 * v / den == (v + v) / den
+  }
+
+  public static Scalar orElseZero(Tensor a, Tensor b, Tensor c) {
+    return of(a, b, c).orElseGet(() -> Unprotect.negateUnit(EqualsReduce.zero(Flatten.of(a, b, c))));
   }
 }

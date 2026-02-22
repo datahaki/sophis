@@ -23,35 +23,35 @@ class Curvature2DTest {
   @Test
   void testString2() {
     Tensor points = Tensors.fromString("{{0, 0}, {1, 1}}");
-    Tensor vector = Curvature2D.string(points);
+    Tensor vector = Curvature2D.INSTANCE.string(points);
     Tolerance.CHOP.requireClose(vector, Tensors.vector(0, 0));
   }
 
   @Test
   void testString3() {
     Tensor points = Tensors.fromString("{{0, 0}, {1, 1}, {2, 0}}");
-    Tensor vector = Curvature2D.string(points);
+    Tensor vector = Curvature2D.INSTANCE.string(points);
     Tolerance.CHOP.requireClose(vector, Tensors.vector(-1, -1, -1));
   }
 
   @Test
   void testStringEmpty() {
     Tensor points = Tensors.empty();
-    Tensor vector = Curvature2D.string(points);
+    Tensor vector = Curvature2D.INSTANCE.string(points);
     assertEquals(points, vector);
   }
 
   @Test
   void testQuantity() {
     Tensor points = Join.of(CirclePoints.of(10), Array.zeros(10, 2)).maps(s -> Quantity.of(s, "m"));
-    Tensor string = Curvature2D.string(points);
+    Tensor string = Curvature2D.INSTANCE.string(points);
     assertEquals(string.stream().map(Scalar.class::cast).map(QuantityUnit::of).distinct().count(), 1);
   }
 
   @Test
   void testQuantity3() {
     Tensor points = CirclePoints.of(3).maps(s -> Quantity.of(s, "m"));
-    Tensor string = Curvature2D.string(points);
+    Tensor string = Curvature2D.INSTANCE.string(points);
     VectorQ.requireLength(string, 3);
     assertEquals(string.stream().map(Scalar.class::cast).map(QuantityUnit::of).distinct().count(), 1);
   }
@@ -59,7 +59,7 @@ class Curvature2DTest {
   @Test
   void testQuantity4() {
     Tensor points = CirclePoints.of(4).maps(s -> Quantity.of(s, "m"));
-    Tensor string = Curvature2D.string(points);
+    Tensor string = Curvature2D.INSTANCE.string(points);
     VectorQ.requireLength(string, 4);
     assertEquals(string.stream().map(Scalar.class::cast).map(QuantityUnit::of).distinct().count(), 1);
   }
@@ -67,23 +67,23 @@ class Curvature2DTest {
   @Test
   void testCirclePoints() {
     for (int n = 3; n < 10; ++n)
-      Tolerance.CHOP.requireClose(Total.of(Curvature2D.string(CirclePoints.of(n))), RealScalar.of(n));
+      Tolerance.CHOP.requireClose(Total.of(Curvature2D.INSTANCE.string(CirclePoints.of(n))), RealScalar.of(n));
   }
 
   @Test
   void testQuantityFail() {
     Tensor points = Join.of(Array.zeros(10, 2).maps(s -> Quantity.of(s, "m")), Array.zeros(10, 2));
-    assertThrows(Exception.class, () -> Curvature2D.string(points));
+    assertThrows(Exception.class, () -> Curvature2D.INSTANCE.string(points));
   }
 
   @Test
   void testFailHi() {
     Tensor points = Tensors.fromString("{{0, 0, 0}, {1, 1, 0}, {2, 0, 0}}");
-    assertThrows(Exception.class, () -> Curvature2D.string(points));
+    assertThrows(Exception.class, () -> Curvature2D.INSTANCE.string(points));
   }
 
   @Test
   void testFailStringScalar() {
-    assertThrows(Exception.class, () -> Curvature2D.string(RealScalar.ZERO));
+    assertThrows(Exception.class, () -> Curvature2D.INSTANCE.string(RealScalar.ZERO));
   }
 }
