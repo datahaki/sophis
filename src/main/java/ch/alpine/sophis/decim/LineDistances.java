@@ -2,6 +2,8 @@
 package ch.alpine.sophis.decim;
 
 import ch.alpine.sophus.hs.HomogeneousSpace;
+import ch.alpine.sophus.hs.HsLineDistance;
+import ch.alpine.sophus.math.api.LineDistance;
 
 /** various norms for curve decimation */
 public enum LineDistances {

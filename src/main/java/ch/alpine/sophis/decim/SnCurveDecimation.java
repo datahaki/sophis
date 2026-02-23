@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophis.decim;
 
+import ch.alpine.sophus.hs.s.SnLineDistance;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.sca.Sign;
 

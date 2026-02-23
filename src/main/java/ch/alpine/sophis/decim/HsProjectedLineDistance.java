@@ -4,8 +4,9 @@ package ch.alpine.sophis.decim;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophis.math.api.TensorDistance;
 import ch.alpine.sophus.hs.HomogeneousSpace;
+import ch.alpine.sophus.math.api.LineDistance;
+import ch.alpine.sophus.math.api.TensorDistance;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;
@@ -20,7 +21,7 @@ public class HsProjectedLineDistance implements LineDistance, Serializable {
   }
 
   @Override // from LineDistance
-  public TensorDistance tensorNorm(Tensor beg, Tensor end) {
+  public TensorDistance distanceToLine(Tensor beg, Tensor end) {
     return new NormImpl(beg, end);
   }
 
