@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.decim;
 
-import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophis.math.api.TensorDistance;
 import ch.alpine.sophus.math.VectorProjection;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -19,11 +19,11 @@ public enum RnLineDistance implements LineDistance {
   private static final TensorUnaryOperator NORMALIZE = NormalizeUnlessZero.with(Vector2Norm::of);
 
   @Override // from LineDistance
-  public TensorNorm tensorNorm(Tensor p, Tensor q) {
+  public TensorDistance tensorNorm(Tensor p, Tensor q) {
     return new TensorNormImpl(p, q);
   }
 
-  private static class TensorNormImpl implements TensorNorm {
+  private static class TensorNormImpl implements TensorDistance {
     private final Tensor p;
     private final TensorUnaryOperator projection;
 
@@ -33,7 +33,7 @@ public enum RnLineDistance implements LineDistance {
     }
 
     @Override // from TensorNorm
-    public Scalar norm(Tensor d) {
+    public Scalar distance(Tensor d) {
       d = d.subtract(p);
       return Vector2Norm.of(d.subtract(projection.apply(d)));
     }

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophis.math.api.TensorDistance;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -59,10 +59,10 @@ import ch.alpine.tensor.sca.Sign;
       Scalar max = epsilon.zero();
       scalars[beg] = max;
       if (beg + 1 < end) { // at least one element in between beg and end
-        TensorNorm tensorNorm = lineDistance.tensorNorm(tensors[beg], tensors[end]);
+        TensorDistance tensorNorm = lineDistance.tensorNorm(tensors[beg], tensors[end]);
         int mid = -1;
         for (int index = beg + 1; index < end; ++index) {
-          Scalar dist = tensorNorm.norm(tensors[index]);
+          Scalar dist = tensorNorm.distance(tensors[index]);
           scalars[index] = dist;
           if (Scalars.lessThan(max, dist)) {
             max = dist;

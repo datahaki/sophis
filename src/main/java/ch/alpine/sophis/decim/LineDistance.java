@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.decim;
 
-import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophis.math.api.TensorDistance;
 import ch.alpine.tensor.Tensor;
 
 @FunctionalInterface
@@ -12,5 +12,5 @@ public interface LineDistance {
    * @param p
    * @param q
    * @return distance function between elements and line/geodesic defined from p and q */
-  TensorNorm tensorNorm(Tensor p, Tensor q);
+  TensorDistance tensorNorm(Tensor p, Tensor q);
 }

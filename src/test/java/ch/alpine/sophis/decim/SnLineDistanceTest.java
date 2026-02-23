@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophis.math.api.TensorDistance;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.hs.s.Sphere;
 import ch.alpine.tensor.Scalar;
@@ -35,9 +35,9 @@ class SnLineDistanceTest {
   void testSimple(int d) {
     Tensor p = UnitVector.of(d + 1, 0);
     Tensor q = UnitVector.of(d + 1, 1);
-    TensorNorm tensorNorm = SnLineDistance.INSTANCE.tensorNorm(p, q);
+    TensorDistance tensorNorm = SnLineDistance.INSTANCE.tensorNorm(p, q);
     Tensor r = UnitVector.of(d + 1, 2);
-    Scalar norm = tensorNorm.norm(r);
+    Scalar norm = tensorNorm.distance(r);
     Tolerance.CHOP.requireClose(norm, Pi.HALF);
   }
 
@@ -49,8 +49,8 @@ class SnLineDistanceTest {
         Tensor p = RandomSample.of(randomSampleInterface);
         Tensor q = RandomSample.of(randomSampleInterface);
         Tensor r = RandomSample.of(randomSampleInterface);
-        TensorNorm tensorNorm = SnLineDistance.INSTANCE.tensorNorm(p, q);
-        Scalar norm = Serialization.copy(tensorNorm).norm(r);
+        TensorDistance tensorNorm = SnLineDistance.INSTANCE.tensorNorm(p, q);
+        Scalar norm = Serialization.copy(tensorNorm).distance(r);
         CLIP.requireInside(norm);
       }
     }
@@ -65,7 +65,7 @@ class SnLineDistanceTest {
         Tensor p = RandomSample.of(randomSampleInterface);
         Tensor q = RandomSample.of(randomSampleInterface);
         Tensor r = SnManifold.INSTANCE.split(p, q, RandomVariate.of(distribution));
-        Chop._10.requireAllZero(SnLineDistance.INSTANCE.tensorNorm(p, q).norm(r));
+        Chop._10.requireAllZero(SnLineDistance.INSTANCE.tensorNorm(p, q).distance(r));
       }
     }
   }

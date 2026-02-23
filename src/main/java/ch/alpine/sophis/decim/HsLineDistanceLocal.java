@@ -3,14 +3,14 @@ package ch.alpine.sophis.decim;
 
 import java.io.Serializable;
 
-import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophis.math.api.TensorDistance;
 import ch.alpine.sophus.math.api.Exponential;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Times;
 
-public record HsLineDistanceLocal(Exponential exponential, Tensor normal) implements TensorNorm, Serializable {
+public record HsLineDistanceLocal(Exponential exponential, Tensor normal) implements TensorDistance, Serializable {
   /** @param tensor of the lie group
    * @return element of the lie algebra */
   public Tensor project(Tensor tensor) {
@@ -26,7 +26,7 @@ public record HsLineDistanceLocal(Exponential exponential, Tensor normal) implem
   }
 
   @Override // from TensorNorm
-  public Scalar norm(Tensor tensor) {
+  public Scalar distance(Tensor tensor) {
     return Vector2Norm.of(orthogonal(tensor));
   }
 }

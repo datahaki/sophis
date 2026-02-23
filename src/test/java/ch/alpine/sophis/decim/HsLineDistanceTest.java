@@ -25,8 +25,8 @@ class HsLineDistanceTest {
         Serialization.copy(new HsLineDistance(RGroup.INSTANCE));
     HsLineDistanceLocal tensorNorm = //
         Serialization.copy(hsLineDistance.tensorNorm(Tensors.vector(1, 2), Tensors.vector(10, 2)));
-    assertEquals(tensorNorm.norm(Tensors.vector(5, 2)), RealScalar.ZERO);
-    assertEquals(tensorNorm.norm(Tensors.vector(5, 3)), RealScalar.ONE);
+    assertEquals(tensorNorm.distance(Tensors.vector(5, 2)), RealScalar.ZERO);
+    assertEquals(tensorNorm.distance(Tensors.vector(5, 3)), RealScalar.ONE);
   }
 
   @Test
@@ -36,7 +36,7 @@ class HsLineDistanceTest {
     Tensor p = UnitVector.of(3, 0);
     Tensor q = Vector2Norm.NORMALIZE.apply(Tensors.vector(1, 1, 0));
     HsLineDistanceLocal normImpl = hsLineDistance.tensorNorm(p, q);
-    Tolerance.CHOP.requireClose(normImpl.norm(UnitVector.of(3, 2)), Pi.HALF);
-    Tolerance.CHOP.requireClose(normImpl.norm(UnitVector.of(3, 2).negate()), Pi.HALF);
+    Tolerance.CHOP.requireClose(normImpl.distance(UnitVector.of(3, 2)), Pi.HALF);
+    Tolerance.CHOP.requireClose(normImpl.distance(UnitVector.of(3, 2).negate()), Pi.HALF);
   }
 }

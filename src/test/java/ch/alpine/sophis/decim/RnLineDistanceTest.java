@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophis.math.api.TensorDistance;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -21,8 +21,8 @@ class RnLineDistanceTest {
   @Test
   void testSimple() {
     LineDistance lineDistance = RnLineDistance.INSTANCE;
-    TensorNorm tensorNorm = lineDistance.tensorNorm(Tensors.vector(10, 0), Tensors.vector(10, 20));
-    Scalar norm = tensorNorm.norm(Tensors.vector(30, 100));
+    TensorDistance tensorNorm = lineDistance.tensorNorm(Tensors.vector(10, 0), Tensors.vector(10, 20));
+    Scalar norm = tensorNorm.distance(Tensors.vector(30, 100));
     ExactScalarQ.require(norm);
     assertEquals(norm, RealScalar.of(20));
   }
@@ -36,8 +36,8 @@ class RnLineDistanceTest {
       Tensor p = RandomVariate.of(distribution, d);
       Tensor q = RandomVariate.of(distribution, d);
       Tensor r = RandomVariate.of(distribution, d);
-      Scalar d1 = lineDistance1.tensorNorm(p, q).norm(r);
-      Scalar d2 = lineDistance2.tensorNorm(p, q).norm(r);
+      Scalar d1 = lineDistance1.tensorNorm(p, q).distance(r);
+      Scalar d2 = lineDistance2.tensorNorm(p, q).distance(r);
       Tolerance.CHOP.requireClose(d1, d2);
     }
   }

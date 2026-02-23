@@ -3,11 +3,12 @@ package ch.alpine.sophis.decim;
 
 import java.io.Serializable;
 
-import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophis.math.api.TensorDistance;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.lie.TensorProduct;
 import ch.alpine.tensor.mat.IdentityMatrix;
+import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.tri.ArcSin;
@@ -17,22 +18,23 @@ public enum SnLineDistance implements LineDistance {
   INSTANCE;
 
   @Override // from LineDistance
-  public TensorNorm tensorNorm(Tensor p, Tensor q) {
+  public TensorDistance tensorNorm(Tensor p, Tensor q) {
     return new TensorNormImpl(p, q);
   }
 
-  private static class TensorNormImpl implements TensorNorm, Serializable {
+  private static class TensorNormImpl implements TensorDistance, Serializable {
     private final Tensor m;
 
     public TensorNormImpl(Tensor p, Tensor q) {
       Tensor id_pp = IdentityMatrix.of(p.length()).subtract(TensorProduct.of(p, p));
       Tensor qn = Vector2Norm.NORMALIZE.apply(id_pp.dot(q)); // qn is orthogonal to p
-      // Tolerance.CHOP.requireZero((Scalar) p.dot(qn));
       m = id_pp.subtract(TensorProduct.of(qn, qn)); // m(x) = x - <x,p>p - <x,qn>qn
+      Tolerance.CHOP.requireZero(distance(p));
+      Tolerance.CHOP.requireZero(distance(q));
     }
 
     @Override // from TensorNorm
-    public Scalar norm(Tensor r) {
+    public Scalar distance(Tensor r) {
       return ArcSin.FUNCTION.apply(Clips.unit().apply(Vector2Norm.of(m.dot(r))));
     }
   }
