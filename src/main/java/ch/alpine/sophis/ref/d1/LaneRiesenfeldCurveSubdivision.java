@@ -17,12 +17,12 @@ import ch.alpine.tensor.itp.BinaryAverage;
  * "A theoretical development for the computer generation of piecewise polynomial surfaces"
  * by J. M. Lane and R. F. Riesenfeld; IEEE Trans. Pattern Anal. Machine Intell. 2 (1980), 35-46 */
 public class LaneRiesenfeldCurveSubdivision implements CurveSubdivision, Serializable {
-  /** @param geodesicSpace
+  /** @param binaryAverage
    * @param degree strictly positive
    * @return
    * @throws Exception if geodesicSpace is null */
-  public static CurveSubdivision of(BinaryAverage geodesicSpace, int degree) {
-    return new LaneRiesenfeldCurveSubdivision(geodesicSpace, Integers.requirePositive(degree));
+  public static CurveSubdivision of(BinaryAverage binaryAverage, int degree) {
+    return new LaneRiesenfeldCurveSubdivision(binaryAverage, Integers.requirePositive(degree));
   }
 
   // ---
