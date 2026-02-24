@@ -4,10 +4,8 @@ package ch.alpine.sophis.crv.clt;
 import java.io.Serializable;
 
 import ch.alpine.tensor.Scalar;
-import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.alg.Subdivide;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
@@ -20,7 +18,7 @@ import ch.alpine.tensor.sca.Sign;
 
 /** @param probes -min == max for tests to pass */
 public class ClothoidSolutions implements Serializable {
-  private static final Chop CHOP = Chop._08;
+  private static final Chop CHOP = Chop._10;
   private final ClothoidTangentDefect clothoidTangentDefect;
   private final Tensor probes;
   /** function is s1 odd
@@ -30,10 +28,7 @@ public class ClothoidSolutions implements Serializable {
 
   public ClothoidSolutions(ClothoidTangentDefect clothoidTangentDefect, Clip clip) {
     this.clothoidTangentDefect = clothoidTangentDefect;
-    probes = Subdivide.intermediate_increasing(clip, 100);
-    boolean noZero = probes.stream() //
-        .map(Scalar.class::cast).filter(Scalars::isZero).findAny().isEmpty();
-    Throw.unless(noZero);
+    probes = Subdivide.increasing(clip, 100);
     ScalarUnaryOperator function = clothoidTangentDefect::defect;
     FindRoot findRoot = FindRoot.of(function, CHOP);
     Tensor defects = probes.maps(clothoidTangentDefect);
