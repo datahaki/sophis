@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.crv.clt.ClothoidSolutions.Search;
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -16,17 +14,18 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
+import ch.alpine.tensor.sca.Clip;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Mod;
 
 class ClothoidSolutionsTest {
-  private static final ClothoidSolutions CLOTHOID_SOLUTIONS = ClothoidSolutions.of(Clips.absolute(15.0));
+  private static final Clip CLIP = Clips.absolute(15.0);
   private static final int ATTEMPTS = 3;
 
   @Test
   void testS1Odd() {
-    Search cs1 = CLOTHOID_SOLUTIONS.new Search(RealScalar.of(+0.1), RealScalar.of(0.3));
-    Search cs2 = CLOTHOID_SOLUTIONS.new Search(RealScalar.of(-0.1), RealScalar.of(0.3));
+    ClothoidSolutions cs1 = new ClothoidSolutions(ClothoidTangentDefect.of(+0.1, 0.3), CLIP);
+    ClothoidSolutions cs2 = new ClothoidSolutions(ClothoidTangentDefect.of(-0.1, 0.3), CLIP);
     Tensor sol1 = cs1.lambdas();
     Tensor sol2 = Sort.of(cs2.lambdas().negate());
     Chop._04.requireClose(sol1, sol2);
@@ -51,8 +50,8 @@ class ClothoidSolutionsTest {
     for (int count = 0; count < ATTEMPTS; ++count) {
       Scalar s1 = RandomVariate.of(distribution);
       Scalar s2 = RandomVariate.of(distribution);
-      Search cs1 = CLOTHOID_SOLUTIONS.new Search(s1, s2);
-      Search cs2 = CLOTHOID_SOLUTIONS.new Search(s1.negate(), s2);
+      ClothoidSolutions cs1 = new ClothoidSolutions(ClothoidTangentDefect.of(s1, s2), CLIP);
+      ClothoidSolutions cs2 = new ClothoidSolutions(ClothoidTangentDefect.of(s1.negate(), s2), CLIP);
       // ClothoidSolutions cs1 = ClothoidSolutions.of(s1, s2);
       // ClothoidSolutions cs2 = ClothoidSolutions.of(s1.negate(), s2);
       Tensor sol1 = cs1.lambdas();
@@ -67,8 +66,8 @@ class ClothoidSolutionsTest {
     for (int count = 0; count < ATTEMPTS; ++count) {
       Scalar s1 = RandomVariate.of(distribution);
       Scalar s2 = RandomVariate.of(distribution);
-      Search cs1 = CLOTHOID_SOLUTIONS.new Search(s1, s2);
-      Search cs2 = CLOTHOID_SOLUTIONS.new Search(s1, s2.negate());
+      ClothoidSolutions cs1 = new ClothoidSolutions(ClothoidTangentDefect.of(s1, s2), CLIP);
+      ClothoidSolutions cs2 = new ClothoidSolutions(ClothoidTangentDefect.of(s1, s2.negate()), CLIP);
       // ClothoidSolutions cs1 = ClothoidSolutions.of(s1, s2);
       // ClothoidSolutions cs2 = ClothoidSolutions.of(s1, s2.negate());
       Tensor sol1 = cs1.lambdas();
@@ -83,8 +82,8 @@ class ClothoidSolutionsTest {
     for (int count = 0; count < ATTEMPTS; ++count) {
       Scalar s1 = RandomVariate.of(distribution);
       Scalar s2 = RandomVariate.of(distribution);
-      Search cs1 = CLOTHOID_SOLUTIONS.new Search(s1, s2);
-      Search cs2 = CLOTHOID_SOLUTIONS.new Search(s1.add(Pi.TWO), s2);
+      ClothoidSolutions cs1 = new ClothoidSolutions(ClothoidTangentDefect.of(s1, s2), CLIP);
+      ClothoidSolutions cs2 = new ClothoidSolutions(ClothoidTangentDefect.of(s1.add(Pi.TWO), s2), CLIP);
       // ClothoidSolutions cs1 = ClothoidSolutions.of(s1, s2);
       // ClothoidSolutions cs2 = ClothoidSolutions.of(s1.add(Pi.TWO), s2);
       Tensor sol1 = cs1.lambdas();
@@ -99,8 +98,8 @@ class ClothoidSolutionsTest {
     for (int count = 0; count < ATTEMPTS; ++count) {
       Scalar s1 = RandomVariate.of(distribution);
       Scalar s2 = RandomVariate.of(distribution);
-      Search cs1 = CLOTHOID_SOLUTIONS.new Search(s1, s2);
-      Search cs2 = CLOTHOID_SOLUTIONS.new Search(Mod.function(Pi.TWO).apply(s1), s2);
+      ClothoidSolutions cs1 = new ClothoidSolutions(ClothoidTangentDefect.of(s1, s2), CLIP);
+      ClothoidSolutions cs2 = new ClothoidSolutions(ClothoidTangentDefect.of(Mod.function(Pi.TWO).apply(s1), s2), CLIP);
       // ClothoidSolutions cs1 = ClothoidSolutions.of(s1, s2);
       // ClothoidSolutions cs2 = ClothoidSolutions.of(Mod.function(Pi.TWO).apply(s1),
       // s2);
@@ -116,14 +115,14 @@ class ClothoidSolutionsTest {
     for (int count = 0; count < ATTEMPTS; ++count) {
       Scalar s1 = RandomVariate.of(distribution);
       Scalar s2 = RandomVariate.of(distribution);
-      Search cs1 = CLOTHOID_SOLUTIONS.new Search(s1, s2);
+      ClothoidSolutions cs1 = new ClothoidSolutions(ClothoidTangentDefect.of(s1, s2), CLIP);
       // ClothoidSolutions cs1 = ClothoidSolutions.of(s1, s2);
       Scalar r1 = Mod.function(Pi.TWO).apply(s1);
       boolean mirror = Scalars.lessThan(Pi.VALUE, r1);
       if (mirror)
         r1 = Pi.TWO.subtract(r1);
       assertTrue(Scalars.lessThan(r1, Pi.VALUE));
-      Search cs2 = CLOTHOID_SOLUTIONS.new Search(r1, s2);
+      ClothoidSolutions cs2 = new ClothoidSolutions(ClothoidTangentDefect.of(r1, s2), CLIP);
       // ClothoidSolutions cs2 = ClothoidSolutions.of(r1, s2);
       Tensor sol1 = cs1.lambdas();
       if (mirror)

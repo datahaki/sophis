@@ -5,7 +5,10 @@ import ch.alpine.tensor.ComplexScalar;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
+import ch.alpine.tensor.itp.LinearInterpolation;
+import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.sca.Im;
 import ch.alpine.tensor.sca.Re;
@@ -17,6 +20,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
  * and the imaginary part should be positive */
 public class ClothoidTangentDefect implements ScalarUnaryOperator {
   private static final Scalar DIAG = ComplexScalar.unit(Pi.QUARTER);
+  private static final Scalar EPS = RealScalar.of(1e-10);
 
   public static ClothoidTangentDefect of(Scalar s1, Scalar s2) {
     return new ClothoidTangentDefect(s1, s2);
@@ -24,6 +28,10 @@ public class ClothoidTangentDefect implements ScalarUnaryOperator {
 
   public static ClothoidTangentDefect of(Number s1, Number s2) {
     return of(RealScalar.of(s1), RealScalar.of(s2));
+  }
+
+  public static ClothoidTangentDefect of(ClothoidContext clothoidContext) {
+    return of(clothoidContext.s1(), clothoidContext.s2());
   }
 
   // ---
@@ -38,7 +46,13 @@ public class ClothoidTangentDefect implements ScalarUnaryOperator {
   }
 
   @Override
-  public Scalar apply(Scalar lam) { // lam != 0
+  public Scalar apply(Scalar lam) {
+    return Tolerance.CHOP.isZero(lam) //
+        ? LinearInterpolation.of(Tensors.of(unsafe(lam.subtract(EPS)), unsafe(lam.add(EPS)))).At(Rational.HALF)
+        : unsafe(lam);
+  }
+
+  private Scalar unsafe(Scalar lam) {
     Scalar factor = DIAG.divide(Sqrt.FUNCTION.apply(lam));
     Scalar exp = Exp.FUNCTION.apply(s2_half_sqr.divide(lam).add(s1).add(lam).multiply(ComplexScalar.I));
     Scalar erf1 = Erf.FUNCTION.apply(s2_half.add(lam).multiply(factor));

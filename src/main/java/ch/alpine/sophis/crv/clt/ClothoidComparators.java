@@ -22,5 +22,13 @@ public enum ClothoidComparators implements Comparator<Clothoid> {
           Abs.FUNCTION.apply(clothoid1.curvature().head()), //
           Abs.FUNCTION.apply(clothoid2.curvature().head()));
     }
+  },
+  CURVATURE_TAIL {
+    @Override
+    public int compare(Clothoid clothoid1, Clothoid clothoid2) {
+      return Scalars.compare( //
+          Abs.FUNCTION.apply(clothoid1.curvature().tail()), //
+          Abs.FUNCTION.apply(clothoid2.curvature().tail()));
+    }
   }, //
 }
