@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import ch.alpine.sophis.crv.clt.mid.ClothoidQuadratic;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.io.MathematicaFormat;
 
 /** Reference: U. Reif slides
  * 
@@ -31,6 +32,8 @@ public record ClothoidBuilderImpl( //
 
   @Override
   public final String toString() {
-    return "Cl" + clothoidQuadratic;
+    return MathematicaFormat.concise( //
+        clothoidQuadratic.toString(), //
+        clothoidIntegration.toString().substring(0, 1));
   }
 }

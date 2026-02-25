@@ -15,4 +15,9 @@ public enum Se2ClothoidQuadratic implements ClothoidQuadratic {
     b1 = So2.MOD.apply(b1); // normal form T1 == b1
     return LagrangeQuadratic.interp(b0, MidpointTangentApproximation.ORDER4.apply(b0, b1), b1);
   }
+
+  @Override
+  public String toString() {
+    return "Cl";
+  }
 }

@@ -14,4 +14,9 @@ public enum Se2CoveringClothoidQuadratic implements ClothoidQuadratic {
     // TODO SOPHUS ALG not final implementation
     return LagrangeQuadratic.interp(b0, MidpointTangentApproximation.LAYERS.apply(b0, b1), b1);
   }
+
+  @Override
+  public String toString() {
+    return "ClC";
+  }
 }
