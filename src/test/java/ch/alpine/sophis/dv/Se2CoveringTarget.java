@@ -3,7 +3,7 @@ package ch.alpine.sophis.dv;
 
 import java.util.Objects;
 
-import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophis.api.TensorNorm;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.nrm.Vector2Norm;

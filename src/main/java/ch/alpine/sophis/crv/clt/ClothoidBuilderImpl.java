@@ -28,4 +28,9 @@ public record ClothoidBuilderImpl( //
   public Clothoid curve(Tensor p, Tensor q) {
     return from(new ClothoidContext(p, q));
   }
+
+  @Override
+  public final String toString() {
+    return "Cl" + clothoidQuadratic;
+  }
 }

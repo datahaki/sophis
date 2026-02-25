@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophis.math.api.Genesis;
+import ch.alpine.sophis.api.Genesis;
 import ch.alpine.tensor.Tensor;
 
 /** attempts to produce positive weights for levers with zero in convex hull

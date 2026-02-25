@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.sophis.gbc.d2;
 
+import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophis.dv.Sedarim;
-import ch.alpine.sophis.math.api.Genesis;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

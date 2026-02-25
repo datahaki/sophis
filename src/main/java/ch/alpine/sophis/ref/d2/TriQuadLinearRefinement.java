@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import ch.alpine.sophis.math.win.UniformWindowSampler;
 import ch.alpine.sophis.srf.IntDirectedEdge;
 import ch.alpine.sophis.srf.SurfaceMesh;
+import ch.alpine.sophis.win.UniformWindowSampler;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Integers;

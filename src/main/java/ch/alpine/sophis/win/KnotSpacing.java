@@ -1,5 +1,5 @@
 // code by ob, jph
-package ch.alpine.sophis.math.win;
+package ch.alpine.sophis.win;
 
 import java.util.Objects;
 

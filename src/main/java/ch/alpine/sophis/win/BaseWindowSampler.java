@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.math.win;
+package ch.alpine.sophis.win;
 
 import java.io.Serializable;
 import java.util.function.Function;

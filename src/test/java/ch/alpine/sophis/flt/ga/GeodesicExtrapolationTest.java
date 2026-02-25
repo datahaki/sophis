@@ -9,7 +9,7 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.MonomialExtrapolationMask;
-import ch.alpine.sophis.math.win.HalfWindowSampler;
+import ch.alpine.sophis.win.HalfWindowSampler;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Rational;

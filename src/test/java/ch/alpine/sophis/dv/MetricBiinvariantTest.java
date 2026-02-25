@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.math.api.Genesis;
+import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;

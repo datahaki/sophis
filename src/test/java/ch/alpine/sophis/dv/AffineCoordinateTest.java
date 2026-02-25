@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import ch.alpine.sophis.math.api.Genesis;
+import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophus.bm.IterativeBiinvariantMean;
 import ch.alpine.sophus.hs.s.Sphere;
 import ch.alpine.sophus.lie.rn.RGroup;

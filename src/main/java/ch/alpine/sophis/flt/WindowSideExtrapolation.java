@@ -4,7 +4,7 @@ package ch.alpine.sophis.flt;
 import java.io.Serializable;
 import java.util.function.Function;
 
-import ch.alpine.sophis.math.win.HalfWindowSampler;
+import ch.alpine.sophis.win.HalfWindowSampler;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

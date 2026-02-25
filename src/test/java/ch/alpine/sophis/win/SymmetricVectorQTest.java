@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.math.win;
+package ch.alpine.sophis.win;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;

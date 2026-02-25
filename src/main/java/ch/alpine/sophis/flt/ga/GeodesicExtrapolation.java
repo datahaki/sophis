@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.function.Function;
 
-import ch.alpine.sophis.math.win.HalfWindowSampler;
+import ch.alpine.sophis.win.HalfWindowSampler;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

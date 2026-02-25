@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.math.win;
+package ch.alpine.sophis.win;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Reverse;

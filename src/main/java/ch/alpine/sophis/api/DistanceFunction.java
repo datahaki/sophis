@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.math.api;
+package ch.alpine.sophis.api;
 
 import ch.alpine.tensor.Scalar;
 

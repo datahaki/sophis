@@ -4,7 +4,7 @@ package ch.alpine.sophis.flt.bm;
 import java.util.Objects;
 import java.util.function.Function;
 
-import ch.alpine.sophis.math.win.UniformWindowSampler;
+import ch.alpine.sophis.win.UniformWindowSampler;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;

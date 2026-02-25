@@ -5,8 +5,8 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Objects;
 
+import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophis.gbc.amp.IdentRamp;
-import ch.alpine.sophis.math.api.Genesis;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;

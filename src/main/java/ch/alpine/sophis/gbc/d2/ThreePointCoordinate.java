@@ -3,7 +3,7 @@ package ch.alpine.sophis.gbc.d2;
 
 import java.io.Serializable;
 
-import ch.alpine.sophis.math.api.Genesis;
+import ch.alpine.sophis.api.Genesis;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 
 /** Three-point coordinates are also referred to as "Complete family of coordinates"

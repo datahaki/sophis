@@ -6,8 +6,8 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import ch.alpine.sophis.flt.CenterFilter;
-import ch.alpine.sophis.math.win.SymmetricVectorQ;
-import ch.alpine.sophis.math.win.UniformWindowSampler;
+import ch.alpine.sophis.win.SymmetricVectorQ;
+import ch.alpine.sophis.win.UniformWindowSampler;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

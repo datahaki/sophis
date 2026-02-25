@@ -4,7 +4,7 @@ package ch.alpine.sophis.dv;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophis.math.api.Genesis;
+import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;

@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.gbc.d2;
 
-import ch.alpine.sophis.math.api.Genesis;
+import ch.alpine.sophis.api.Genesis;
 
 /** References:
  * "Iterative coordinates"

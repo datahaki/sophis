@@ -3,8 +3,8 @@ package ch.alpine.sophis.dv;
 
 import java.util.Objects;
 
-import ch.alpine.sophis.math.api.Genesis;
-import ch.alpine.sophis.math.api.TensorNorm;
+import ch.alpine.sophis.api.Genesis;
+import ch.alpine.sophis.api.TensorNorm;
 import ch.alpine.sophus.api.BilinearForm;
 import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.api.MetricManifold;

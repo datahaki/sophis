@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.BSplineLimitMask;
 import ch.alpine.sophis.flt.ga.GeodesicCenter.Splits;
-import ch.alpine.sophis.math.win.UniformWindowSampler;
+import ch.alpine.sophis.win.UniformWindowSampler;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.tensor.Rational;
