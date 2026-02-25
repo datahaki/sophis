@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.itp;
 
-import ch.alpine.sophus.math.api.TensorMetric;
+import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.tensor.alg.AdjacentReduce;
 import ch.alpine.tensor.alg.Differences;
 import ch.alpine.tensor.api.TensorUnaryOperator;

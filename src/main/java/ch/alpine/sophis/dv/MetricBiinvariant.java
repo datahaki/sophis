@@ -5,13 +5,13 @@ import java.util.Objects;
 
 import ch.alpine.sophis.math.api.Genesis;
 import ch.alpine.sophis.math.api.TensorNorm;
-import ch.alpine.sophus.hs.gr.GrExponential;
-import ch.alpine.sophus.hs.spd.SpdExponential;
+import ch.alpine.sophus.api.BilinearForm;
+import ch.alpine.sophus.api.Manifold;
+import ch.alpine.sophus.api.MetricManifold;
+import ch.alpine.sophus.api.TangentSpace;
+import ch.alpine.sophus.hs.gr.GrTangentSpace;
+import ch.alpine.sophus.hs.spd.SpdTangentSpace;
 import ch.alpine.sophus.math.FrobeniusForm;
-import ch.alpine.sophus.math.api.BilinearForm;
-import ch.alpine.sophus.math.api.Exponential;
-import ch.alpine.sophus.math.api.Manifold;
-import ch.alpine.sophus.math.api.MetricManifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.io.MathematicaFormat;
@@ -73,7 +73,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
 public class MetricBiinvariant extends BiinvariantBase {
   /** TODO require VectorizedManifold
    * 
-   * Careful: not suitable for {@link SpdExponential}, and {@link GrExponential}
+   * Careful: not suitable for {@link SpdTangentSpace}, and {@link GrTangentSpace}
    * because these implementations drop coefficients of the log in the vectorLog
    * implementation. that means the scalar product on the subspace would have to be
    * adapted. */
@@ -90,7 +90,7 @@ public class MetricBiinvariant extends BiinvariantBase {
     Objects.requireNonNull(sequence);
     return point -> {
       BilinearForm bilinearForm = metricManifold.bilinearForm(point);
-      Exponential exponential = manifold.exponential(point);
+      TangentSpace exponential = manifold.exponential(point);
       return Tensor.of(sequence.stream().map(exponential::log).map(bilinearForm::norm));
     };
   }

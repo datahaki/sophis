@@ -9,9 +9,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.itp.RidgeRegression.Form2;
+import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
-import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.mat.PositiveDefiniteMatrixQ;

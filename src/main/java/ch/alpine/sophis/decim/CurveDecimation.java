@@ -3,9 +3,9 @@ package ch.alpine.sophis.decim;
 
 import java.util.Objects;
 
+import ch.alpine.sophus.api.LineDistance;
 import ch.alpine.sophus.hs.HomogeneousSpace;
 import ch.alpine.sophus.hs.HsLineDistance;
-import ch.alpine.sophus.math.api.LineDistance;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;

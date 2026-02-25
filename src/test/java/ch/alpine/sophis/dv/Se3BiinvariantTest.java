@@ -11,13 +11,13 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import ch.alpine.sophus.api.Exponential;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.se.SeNGroup;
 import ch.alpine.sophus.lie.se3.Se3Exponential;
 import ch.alpine.sophus.math.AffineQ;
-import ch.alpine.sophus.math.api.Exponential;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.chq.ZeroDefectArrayQ;

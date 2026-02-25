@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import ch.alpine.sophus.api.TangentSpace;
 import ch.alpine.sophus.hs.HomogeneousSpace;
 import ch.alpine.sophus.hs.HsTransport;
-import ch.alpine.sophus.math.api.Exponential;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -101,7 +101,7 @@ public class Hermite3Subdivision implements HermiteSubdivision, Serializable {
       Tensor cv1df = cv1v2.subtract(cv1v1).multiply(cgk);
       Tensor cg = homogeneousSpace.exponential(cg1).exp(cv1df);
       // ---
-      Exponential exponential = homogeneousSpace.exponential(cg);
+      TangentSpace exponential = homogeneousSpace.exponential(cg);
       Tensor clpg = exponential.log(pg); // p - c
       Tensor clrg = exponential.log(rg); // r - c
       Tensor cv1 = clrg.subtract(clpg).multiply(cvk); // r - p
@@ -127,7 +127,7 @@ public class Hermite3Subdivision implements HermiteSubdivision, Serializable {
       Tensor rg1df = rg1v2.subtract(rg1v1).multiply(rgk);
       Tensor rg = homogeneousSpace.exponential(rg1).exp(rg1df);
       // ---
-      Exponential exponential = homogeneousSpace.exponential(rg);
+      TangentSpace exponential = homogeneousSpace.exponential(rg);
       Tensor rlpg = exponential.log(pg); // p - r
       Tensor rlqg = exponential.log(qg); // q - r
       Tensor rv1 = rlqg.subtract(rlpg).multiply(rvk); // q - p

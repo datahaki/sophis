@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 
-import ch.alpine.sophus.math.api.LineDistance;
-import ch.alpine.sophus.math.api.TensorDistance;
+import ch.alpine.sophus.api.LineDistance;
+import ch.alpine.sophus.api.TensorDistance;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;

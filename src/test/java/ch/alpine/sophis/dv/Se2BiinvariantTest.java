@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringRandomSample;
@@ -23,7 +24,6 @@ import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.se2.Se2RandomSample;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.sophus.math.AveragingWeights;
-import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;

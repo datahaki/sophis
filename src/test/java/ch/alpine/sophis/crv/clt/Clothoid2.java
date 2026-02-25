@@ -2,7 +2,7 @@
 package ch.alpine.sophis.crv.clt;
 
 import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
-import ch.alpine.sophus.math.api.GeodesicSpace;
+import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarTensorFunction;
 

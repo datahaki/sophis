@@ -10,6 +10,7 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.hs.gr.GrAction;
 import ch.alpine.sophus.hs.gr.GrManifold;
@@ -18,7 +19,6 @@ import ch.alpine.sophus.hs.rpn.RpManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.sophus.lie.so.SoNGroup;
-import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

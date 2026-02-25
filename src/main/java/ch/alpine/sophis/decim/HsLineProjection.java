@@ -3,8 +3,8 @@ package ch.alpine.sophis.decim;
 
 import java.io.Serializable;
 
+import ch.alpine.sophus.api.TangentSpace;
 import ch.alpine.sophus.hs.HomogeneousSpace;
-import ch.alpine.sophus.math.api.Exponential;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeUnlessZero;
@@ -17,7 +17,7 @@ public record HsLineProjection(HomogeneousSpace homogeneousSpace) implements Ser
   public Tensor onto(Tensor p, Tensor q, Tensor r) {
     // TODO SOPHUS ALG and not generic: log not always vector, metric different, also uses magic const
     for (int count = 0; count < 6; ++count) {
-      Exponential exponential = homogeneousSpace.exponential(p);
+      TangentSpace exponential = homogeneousSpace.exponential(p);
       Tensor lq = exponential.log(q);
       Tensor normal = NORMALIZE_UNLESS_ZERO.apply(lq);
       Tensor lr = exponential.log(r);

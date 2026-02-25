@@ -11,6 +11,7 @@ import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophis.dv.Biinvariant;
 import ch.alpine.sophis.dv.Biinvariants;
 import ch.alpine.sophis.dv.LeveragesCoordinate;
+import ch.alpine.sophus.api.TangentSpace;
 import ch.alpine.sophus.hs.HomogeneousSpace;
 import ch.alpine.sophus.hs.gr.Grassmannian;
 import ch.alpine.sophus.hs.h.Hyperboloid;
@@ -22,8 +23,7 @@ import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.so.SoNGroup;
 import ch.alpine.sophus.math.AffineQ;
-import ch.alpine.sophus.math.api.Exponential;
-import ch.alpine.sophus.math.sample.LocalRandomSample;
+import ch.alpine.sophus.rsm.LocalRandomSample;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.pdf.RandomSample;
@@ -56,8 +56,8 @@ class SampleManifolds {
   void testSimple(HomogeneousSpace homogeneousSpace) {
     RandomSampleInterface rsi = (RandomSampleInterface) homogeneousSpace;
     Tensor p = RandomSample.of(rsi);
-    Exponential exponential = homogeneousSpace.exponential(p);
-    RandomSampleInterface rpnts = LocalRandomSample.of(exponential, p, 0.1);
+    TangentSpace tangentSpace = homogeneousSpace.exponential(p);
+    RandomSampleInterface rpnts = LocalRandomSample.of(tangentSpace, 0.1);
     Tensor sequence = RandomSample.of(rpnts, 20);
     Biinvariant biinvariant = Biinvariants.GARDEN.ofSafe(homogeneousSpace);
     biinvariant.relative_distances(sequence);
@@ -65,7 +65,7 @@ class SampleManifolds {
     BarycentricCoordinate barycentricCoordinate = LeveragesCoordinate.of(homogeneousSpace, InversePowerVariogram.of(2));
     Tensor weights = barycentricCoordinate.weights(sequence, p);
     AffineQ.INSTANCE.require(weights);
-    Tensor levers = exponential.vectorLog().slash(sequence);
+    Tensor levers = tangentSpace.vectorLog().slash(sequence);
     Tensor residual = weights.dot(levers);
     Tolerance.CHOP.requireAllZero(residual);
     Tensor q = homogeneousSpace.biinvariantMean().mean(sequence, weights);

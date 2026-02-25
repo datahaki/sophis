@@ -3,7 +3,7 @@ package ch.alpine.sophis.dv;
 
 import java.util.Objects;
 
-import ch.alpine.sophus.math.api.Manifold;
+import ch.alpine.sophus.api.Manifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 

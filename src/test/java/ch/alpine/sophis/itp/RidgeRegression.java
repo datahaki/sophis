@@ -3,7 +3,7 @@ package ch.alpine.sophis.itp;
 
 import java.io.Serializable;
 
-import ch.alpine.sophus.math.api.Manifold;
+import ch.alpine.sophus.api.Manifold;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

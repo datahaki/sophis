@@ -3,8 +3,8 @@ package ch.alpine.sophis.dv;
 
 import java.util.List;
 
-import ch.alpine.sophus.math.api.Exponential;
-import ch.alpine.sophus.math.api.Manifold;
+import ch.alpine.sophus.api.Manifold;
+import ch.alpine.sophus.api.TangentSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Int;
 import ch.alpine.tensor.mat.gr.Mahalanobis;
@@ -17,11 +17,11 @@ import ch.alpine.tensor.mat.gr.Mahalanobis;
  * by Jan Hakenberg, 2020
  * 
  * @see HarborBiinvariant */
-/* package */ record GardenDistanceVector(List<Exponential> exponentials, List<Mahalanobis> array) implements Sedarim {
+/* package */ record GardenDistanceVector(List<TangentSpace> exponentials, List<Mahalanobis> array) implements Sedarim {
   /** @param manifold
    * @param sequence */
   public static GardenDistanceVector of(Manifold manifold, Tensor sequence) {
-    List<Exponential> exponentials = sequence.stream().map(manifold::exponential).toList();
+    List<TangentSpace> exponentials = sequence.stream().map(manifold::exponential).toList();
     return new GardenDistanceVector(exponentials, exponentials.stream() //
         .map(exponential -> exponential.vectorLog().slash(sequence)) //
         .map(Mahalanobis::new) //

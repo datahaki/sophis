@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophus.math.api.Manifold;
+import ch.alpine.sophus.api.Manifold;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.MathematicaFormat;

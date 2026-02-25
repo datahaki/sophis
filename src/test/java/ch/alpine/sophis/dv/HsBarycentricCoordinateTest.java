@@ -11,7 +11,7 @@ import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.hs.HsAlgebra;
 import ch.alpine.sophus.hs.HsBiinvariantMean;
 import ch.alpine.sophus.hs.s.SnAlgebra;
-import ch.alpine.sophus.math.sample.BallRandomSample;
+import ch.alpine.sophus.rsm.BallRandomSample;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;

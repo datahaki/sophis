@@ -5,8 +5,8 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import ch.alpine.sophis.math.api.Genesis;
+import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.math.AffineQ;
-import ch.alpine.sophus.math.api.Manifold;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.DeterminateTensorQ;
 

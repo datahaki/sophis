@@ -9,8 +9,8 @@ import java.lang.reflect.Modifier;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.api.TensorMetric;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.nrm.FrobeniusNorm;

@@ -5,9 +5,9 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Objects;
 
+import ch.alpine.sophus.api.TangentSpace;
 import ch.alpine.sophus.hs.HomogeneousSpace;
 import ch.alpine.sophus.hs.HsTransport;
-import ch.alpine.sophus.math.api.Exponential;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -86,7 +86,7 @@ public class Hermite2Subdivision implements HermiteSubdivision, Serializable {
         Tensor rv1df = rg1v1.subtract(rg1v2);
         Tensor rg = homogeneousSpace.exponential(rg1).exp(rv1df);
         // ---
-        Exponential exponential = homogeneousSpace.exponential(rg);
+        TangentSpace exponential = homogeneousSpace.exponential(rg);
         Tensor lrp = exponential.log(pg); // p - r
         Tensor lrq = exponential.log(qg); // q - r
         Tensor rv1 = lrq.subtract(lrp).multiply(rvk);
@@ -104,7 +104,7 @@ public class Hermite2Subdivision implements HermiteSubdivision, Serializable {
         Tensor rv1df = rg1v1.subtract(rg1v2);
         Tensor rg = homogeneousSpace.exponential(rg1).exp(rv1df);
         // ---
-        Exponential exponential = homogeneousSpace.exponential(rg);
+        TangentSpace exponential = homogeneousSpace.exponential(rg);
         Tensor lrp = exponential.log(pg); // p - r
         Tensor lrq = exponential.log(qg); // q - r
         Tensor rv1 = lrq.subtract(lrp).multiply(rvk);

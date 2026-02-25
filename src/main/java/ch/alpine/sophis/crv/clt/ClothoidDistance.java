@@ -2,7 +2,7 @@
 package ch.alpine.sophis.crv.clt;
 
 import ch.alpine.sophis.math.api.TensorNorm;
-import ch.alpine.sophus.math.api.TensorMetric;
+import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
