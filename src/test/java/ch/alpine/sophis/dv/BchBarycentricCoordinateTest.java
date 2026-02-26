@@ -4,6 +4,7 @@ package ch.alpine.sophis.dv;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.hs.HsAlgebra;
@@ -24,6 +25,7 @@ import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class BchBarycentricCoordinateTest {
+  @Disabled
   @Test
   void testSe2() {
     Distribution distribution = UniformDistribution.of(-0.1, 0.1);

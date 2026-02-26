@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.Random;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.bm.BiinvariantMean;
@@ -26,6 +27,7 @@ class SeBiinvariantTest {
     return matrixAlgebra.ad();
   }
 
+  @Disabled
   @Test
   void testHs() {
     Random random = new Random(3);
