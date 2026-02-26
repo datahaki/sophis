@@ -46,7 +46,6 @@ class So3BiinvariantTest {
     Chop._08.requireClose(mean, o2);
     // ---
     Tensor p = So3Group.INSTANCE.randomSample(ThreadLocalRandom.current());
-    // LieGroupElement lieGroupElement = So3Group.INSTANCE.element(p);
     Tensor seqlft = Tensor.of(sequence.stream().map(t -> LIE_GROUP.combine(p, t)));
     Tensor weights2 = AFFINE.weights(seqlft, LIE_GROUP.combine(p, mean));
     Chop._10.requireClose(weights1, weights2);
@@ -83,7 +82,6 @@ class So3BiinvariantTest {
       Chop._08.requireClose(mean, o2);
       // ---
       Tensor p = So3Group.INSTANCE.randomSample(ThreadLocalRandom.current());
-      // LieGroupElement lieGroupElement = So3Group.INSTANCE.element();
       Tensor seqlft = Tensor.of(sequence.stream().map(t -> LIE_GROUP.combine(p, t)));
       Tensor weights2 = barycentricCoordinate.weights(seqlft, LIE_GROUP.combine(p, mean));
       Chop._06.requireClose(weights1, weights2);

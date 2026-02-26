@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.hs.HsAlgebra;
 import ch.alpine.sophus.hs.HsBiinvariantMean;
+import ch.alpine.sophus.lie.LieAlgebraMatrixBasis;
 import ch.alpine.sophus.lie.MatrixAlgebra;
 import ch.alpine.sophus.lie.se.SeNGroup;
 import ch.alpine.tensor.Tensor;
@@ -20,7 +21,7 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
 
 class SeBiinvariantTest {
   public static Tensor se(int n) {
-    Tensor basis = new SeNGroup(n).matrixBasis();
+    Tensor basis = LieAlgebraMatrixBasis.of(new SeNGroup(n));
     MatrixAlgebra matrixAlgebra = new MatrixAlgebra(basis);
     return matrixAlgebra.ad();
   }
