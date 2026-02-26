@@ -14,6 +14,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.chq.ExactScalarQ;
@@ -23,6 +24,7 @@ import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.red.Diagonal;
 import ch.alpine.tensor.sca.Re;
+import ch.alpine.tensor.sca.ply.Polynomial;
 import ch.alpine.tensor.spa.SparseArray;
 
 class PlausibleRationalTest {
@@ -55,5 +57,14 @@ class PlausibleRationalTest {
     Scalar scalar = suo.apply(RealScalar.of(0.0));
     ExactScalarQ.require(scalar);
     assertEquals(suo.apply(Pi.VALUE), Pi.VALUE);
+  }
+
+  @Test
+  void testRoots() {
+    Polynomial polynomial = Polynomial.fromRoots(Tensors.fromString("{1/2,7/5,20/3}"));
+    Tensor roots = polynomial.roots();
+    ScalarUnaryOperator suo = PlausibleRational.of(10);
+    Tensor maps = roots.maps(suo);
+    IO.println(maps);
   }
 }
