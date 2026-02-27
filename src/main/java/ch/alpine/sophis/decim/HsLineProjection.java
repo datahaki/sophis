@@ -17,7 +17,7 @@ public record HsLineProjection(HomogeneousSpace homogeneousSpace) implements Ser
   public Tensor onto(Tensor p, Tensor q, Tensor r) {
     // TODO SOPHUS ALG and not generic: log not always vector, metric different, also uses magic const
     for (int count = 0; count < 6; ++count) {
-      TangentSpace exponential = homogeneousSpace.exponential(p);
+      TangentSpace exponential = homogeneousSpace.tangentSpace(p);
       Tensor lq = exponential.log(q);
       Tensor normal = NORMALIZE_UNLESS_ZERO.apply(lq);
       Tensor lr = exponential.log(r);

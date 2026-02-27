@@ -48,7 +48,7 @@ class SnBiinvariantsTest {
       Tensor weights = barycentricCoordinate.weights(sequence, mean);
       VectorQ.requireLength(weights, n);
       AffineQ.INSTANCE.require(weights); // , Chop._08);
-      Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.exponential(mean)).tangent();
+      Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.tangentSpace(mean)).tangent();
       Chop._06.requireAllZero(evaluate);
       Chop._06.requireClose(mean, SnManifold.INSTANCE.biinvariantMean().mean(sequence, weights));
     }
@@ -67,7 +67,7 @@ class SnBiinvariantsTest {
       VectorQ.requireLength(weights, n);
       AffineQ.INSTANCE.require(weights);
       {
-        Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.exponential(mean)).tangent();
+        Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.tangentSpace(mean)).tangent();
         Chop._08.requireAllZero(evaluate);
       }
       // ---
@@ -75,7 +75,7 @@ class SnBiinvariantsTest {
         Tensor matrix = RandomSample.of(randomSampleInterface);
         Tensor mean2 = matrix.dot(mean);
         Tensor shifted = Tensor.of(sequence.stream().map(matrix::dot));
-        Tensor evaluate = MeanDefect.of(shifted, weights, SnManifold.INSTANCE.exponential(mean2)).tangent();
+        Tensor evaluate = MeanDefect.of(shifted, weights, SnManifold.INSTANCE.tangentSpace(mean2)).tangent();
         Chop._10.requireAllZero(evaluate);
         Tensor weights2 = barycentricCoordinate.weights(shifted, mean2);
         Chop._04.requireClose(weights, weights2); // 1e-6 does not always work
@@ -93,7 +93,7 @@ class SnBiinvariantsTest {
     Chop._08.requireClose(sequence, Transpose.of(rotation));
     Tensor weights = barycentricCoordinate.weights(sequence, mean);
     Chop._12.requireClose(weights, NormalizeTotal.FUNCTION.apply(Tensors.vector(1, 1, 1)));
-    Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.exponential(mean)).tangent();
+    Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.tangentSpace(mean)).tangent();
     Chop._12.requireAllZero(evaluate);
     Chop._05.requireClose(mean, SnManifold.INSTANCE.biinvariantMean().mean(sequence, weights));
   }

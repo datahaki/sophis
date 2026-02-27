@@ -21,7 +21,7 @@ import ch.alpine.tensor.mat.gr.Mahalanobis;
   /** @param manifold
    * @param sequence */
   public static GardenDistanceVector of(Manifold manifold, Tensor sequence) {
-    List<TangentSpace> exponentials = sequence.stream().map(manifold::exponential).toList();
+    List<TangentSpace> exponentials = sequence.stream().map(manifold::tangentSpace).toList();
     return new GardenDistanceVector(exponentials, exponentials.stream() //
         .map(exponential -> exponential.vectorLog().slash(sequence)) //
         .map(Mahalanobis::new) //

@@ -90,7 +90,7 @@ public class MetricBiinvariant extends BiinvariantBase {
     Objects.requireNonNull(sequence);
     return point -> {
       BilinearForm bilinearForm = metricManifold.bilinearForm(point);
-      TangentSpace exponential = manifold.exponential(point);
+      TangentSpace exponential = manifold.tangentSpace(point);
       return Tensor.of(sequence.stream().map(exponential::log).map(bilinearForm::norm));
     };
   }
@@ -114,7 +114,7 @@ public class MetricBiinvariant extends BiinvariantBase {
   public Sedarim coordinate(ScalarUnaryOperator variogram, Tensor sequence) {
     Objects.requireNonNull(sequence);
     Objects.requireNonNull(variogram);
-    return point -> coordinate(variogram).origin(manifold.exponential(point).vectorLog().slash(sequence));
+    return point -> coordinate(variogram).origin(manifold.tangentSpace(point).vectorLog().slash(sequence));
   }
 
   public Genesis coordinate(ScalarUnaryOperator variogram) {
@@ -127,7 +127,7 @@ public class MetricBiinvariant extends BiinvariantBase {
     Objects.requireNonNull(variogram);
     Objects.requireNonNull(sequence);
     return point -> {
-      Tensor levers = manifold.exponential(point).vectorLog().slash(sequence);
+      Tensor levers = manifold.tangentSpace(point).vectorLog().slash(sequence);
       return LagrangeCoordinates.of(levers, weighting(variogram).origin(levers));
     };
   }

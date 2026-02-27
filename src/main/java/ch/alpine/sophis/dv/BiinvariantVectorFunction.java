@@ -30,7 +30,7 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
     this.sequence = sequence;
     this.tensorMetric = Objects.requireNonNull(tensorMetric);
     influences = Tensor.of(sequence.stream() //
-        .map(point -> manifold.exponential(point).vectorLog().slash(sequence)) //
+        .map(point -> manifold.tangentSpace(point).vectorLog().slash(sequence)) //
         .map(InfluenceMatrix::of) //
         .map(InfluenceMatrix::matrix));
   }
@@ -38,7 +38,7 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
   /** @param point
    * @return biinvariant vector at given point of manifold */
   public BiinvariantVector biinvariantVector(Tensor point) {
-    Tensor levers = manifold.exponential(point).vectorLog().slash(sequence);
+    Tensor levers = manifold.tangentSpace(point).vectorLog().slash(sequence);
     InfluenceMatrix influenceMatrix = InfluenceMatrix.of(levers);
     Tensor matrix = influenceMatrix.matrix();
     return new BiinvariantVector( //

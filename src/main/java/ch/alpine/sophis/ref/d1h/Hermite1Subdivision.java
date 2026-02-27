@@ -72,11 +72,11 @@ public class Hermite1Subdivision implements HermiteSubdivision, Serializable {
         Tensor rg1 = homogeneousSpace.midpoint(pg, qg);
         Tensor rpv = hsTransport.shift(pg, rg1).apply(pv); // at rg1
         Tensor rqv = hsTransport.shift(qg, rg1).apply(qv);
-        rg = homogeneousSpace.exponential(rg1).exp(rpv.subtract(rqv).multiply(rgk));
+        rg = homogeneousSpace.tangentSpace(rg1).exp(rpv.subtract(rqv).multiply(rgk));
       }
       final Tensor rv1;
       {
-        TangentSpace exponential = homogeneousSpace.exponential(rg);
+        TangentSpace exponential = homogeneousSpace.tangentSpace(rg);
         Tensor lrq = exponential.log(qg); // at rg pointing to q
         Tensor lrp = exponential.log(pg); // at rg pointing to p
         rv1 = lrq.subtract(lrp).multiply(rvk); // at rg

@@ -58,7 +58,7 @@ public class Hermite3Filter implements HermiteFilter {
       Tensor cg1 = biinvariantMean.mean(Unprotect.byRef(pg, qg, rg), CGW);
       Tensor cg2 = pv.subtract(rv).divide(cgk);
       Tensor cg = lieGroup.combine(cg1, cg2);
-      Tensor log = lieGroup.exponential(pg).log(rg); // r - p
+      Tensor log = lieGroup.tangentSpace(pg).log(rg); // r - p
       Tensor cv1 = log.multiply(cvk);
       Tensor cv2 = CVW.dot(Unprotect.byRef(pv, qv, rv));
       Tensor cv = cv1.add(cv2);

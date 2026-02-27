@@ -27,7 +27,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
     /** @param sequence of n anchor points
      * @param point */
     /* package */ Form2(Tensor sequence, Tensor point) {
-      matrix = manifold.exponential(point).log().slash(sequence);
+      matrix = manifold.tangentSpace(point).log().slash(sequence);
       Scalar factor = Rational.of(1, sequence.length());
       Tensor sigma = Transpose.of(matrix).dot(matrix).multiply(factor);
       // computation of pseudo inverse only may result in numerical deviation from true symmetric result

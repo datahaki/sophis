@@ -37,7 +37,7 @@ public class HsProjectedLineDistance implements LineDistance, Serializable {
     @Override // from TensorNorm
     public Scalar distance(Tensor r) {
       Tensor c = hsLineProjection.onto(beg, end, r);
-      return Vector2Norm.of(homogeneousSpace.exponential(c).log(r));
+      return Vector2Norm.of(homogeneousSpace.tangentSpace(c).log(r));
     }
   }
 }

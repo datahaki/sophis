@@ -99,9 +99,9 @@ public class Hermite3Subdivision implements HermiteSubdivision, Serializable {
       Tensor cv1v1 = hsTransport.shift(pg, cg1).apply(pv); // at cg1
       Tensor cv1v2 = hsTransport.shift(rg, cg1).apply(rv); // at cg1
       Tensor cv1df = cv1v2.subtract(cv1v1).multiply(cgk);
-      Tensor cg = homogeneousSpace.exponential(cg1).exp(cv1df);
+      Tensor cg = homogeneousSpace.tangentSpace(cg1).exp(cv1df);
       // ---
-      TangentSpace exponential = homogeneousSpace.exponential(cg);
+      TangentSpace exponential = homogeneousSpace.tangentSpace(cg);
       Tensor clpg = exponential.log(pg); // p - c
       Tensor clrg = exponential.log(rg); // r - c
       Tensor cv1 = clrg.subtract(clpg).multiply(cvk); // r - p
@@ -125,9 +125,9 @@ public class Hermite3Subdivision implements HermiteSubdivision, Serializable {
       Tensor rg1v1 = hsTransport.shift(pg, rg1).apply(pv);
       Tensor rg1v2 = hsTransport.shift(qg, rg1).apply(qv);
       Tensor rg1df = rg1v2.subtract(rg1v1).multiply(rgk);
-      Tensor rg = homogeneousSpace.exponential(rg1).exp(rg1df);
+      Tensor rg = homogeneousSpace.tangentSpace(rg1).exp(rg1df);
       // ---
-      TangentSpace exponential = homogeneousSpace.exponential(rg);
+      TangentSpace exponential = homogeneousSpace.tangentSpace(rg);
       Tensor rlpg = exponential.log(pg); // p - r
       Tensor rlqg = exponential.log(qg); // q - r
       Tensor rv1 = rlqg.subtract(rlpg).multiply(rvk); // q - p

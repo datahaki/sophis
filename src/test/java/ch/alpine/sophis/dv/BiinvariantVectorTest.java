@@ -44,14 +44,14 @@ class BiinvariantVectorTest {
     Tensor sequence = RandomVariate.of(NormalDistribution.standard(), 10, 3);
     Tensor point = RandomVariate.of(NormalDistribution.standard(), 3);
     Manifold manifold = RGroup.INSTANCE;
-    Tensor matrix = Tensor.of(sequence.stream().map(manifold.exponential(point)::log));
+    Tensor matrix = Tensor.of(sequence.stream().map(manifold.tangentSpace(point)::log));
     Tensor nullsp = NullSpace.of(Transpose.of(matrix));
     OrthogonalMatrixQ.INSTANCE.require(nullsp);
     Chop._08.requireClose(PseudoInverse.of(nullsp), Transpose.of(nullsp));
   }
 
   private static Tensor _check(Manifold manifold, Tensor sequence, Tensor point) {
-    Tensor V = manifold.exponential(point).log().slash(sequence);
+    Tensor V = manifold.tangentSpace(point).log().slash(sequence);
     Tensor VT = Transpose.of(V);
     Tensor pinv = PseudoInverse.of(VT.dot(V));
     new SymmetricMatrixQ(Chop._04).require(pinv);
@@ -63,7 +63,7 @@ class BiinvariantVectorTest {
     Tensor traceh = Trace.of(H);
     Chop._07.requireClose(traceh, traceh.maps(Round.FUNCTION));
     // ---
-    Tensor matrix = manifold.exponential(point).log().slash(sequence);
+    Tensor matrix = manifold.tangentSpace(point).log().slash(sequence);
     InfluenceMatrix influenceMatrix = InfluenceMatrix.of(matrix);
     SymmetricMatrixQ.INSTANCE.require(influenceMatrix.matrix());
     Chop._08.requireClose(H, influenceMatrix.matrix());

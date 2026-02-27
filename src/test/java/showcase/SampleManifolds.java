@@ -56,7 +56,7 @@ class SampleManifolds {
   void testSimple(HomogeneousSpace homogeneousSpace) {
     RandomSampleInterface rsi = (RandomSampleInterface) homogeneousSpace;
     Tensor p = RandomSample.of(rsi);
-    TangentSpace tangentSpace = homogeneousSpace.exponential(p);
+    TangentSpace tangentSpace = homogeneousSpace.tangentSpace(p);
     RandomSampleInterface rpnts = LocalRandomSample.of(tangentSpace, 0.1);
     Tensor sequence = RandomSample.of(rpnts, 20);
     Biinvariant biinvariant = Biinvariants.GARDEN.ofSafe(homogeneousSpace);

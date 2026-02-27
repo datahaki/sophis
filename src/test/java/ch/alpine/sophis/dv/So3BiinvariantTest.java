@@ -63,7 +63,7 @@ class So3BiinvariantTest {
     Tensor sequence = Tensors.of(g1, g2, g3, g4);
     Tensor mean = So3Exponential.vectorExp(Tensors.vector(0.4, 0.2, 0.3));
     Tensor weights = barycentricCoordinate.weights(sequence, mean);
-    Tensor defect = MeanDefect.of(sequence, weights, LIE_GROUP.exponential(mean)).tangent();
+    Tensor defect = MeanDefect.of(sequence, weights, LIE_GROUP.tangentSpace(mean)).tangent();
     Chop._10.requireAllZero(defect);
   }
 
