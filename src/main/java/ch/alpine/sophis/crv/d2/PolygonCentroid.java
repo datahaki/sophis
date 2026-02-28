@@ -23,7 +23,7 @@ public enum PolygonCentroid {
     if (polygon.length() == 2)
       return VectorQ.requireLength(Mean.of(polygon), 2);
     Tensor prev = Last.of(polygon);
-    Tensor contrib = Tensors.empty(); // TODO SOPHUS IMPL use reserve
+    Tensor contrib = Tensors.reserve(polygon.length());
     for (Tensor next : polygon) {
       contrib.append(prev.add(next).multiply(Det2D.of(prev, next)));
       prev = next;
