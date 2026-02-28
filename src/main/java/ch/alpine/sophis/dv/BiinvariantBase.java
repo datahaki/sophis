@@ -10,7 +10,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 
 public abstract class BiinvariantBase implements Biinvariant, Serializable {
-  protected final Manifold manifold;
+  private final Manifold manifold;
 
   protected BiinvariantBase(Manifold manifold) {
     this.manifold = Objects.requireNonNull(manifold);

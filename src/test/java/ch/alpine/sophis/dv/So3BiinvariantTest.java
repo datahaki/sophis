@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import ch.alpine.sophus.api.MetricManifold;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.VectorizedGroup;
@@ -29,7 +30,7 @@ class So3BiinvariantTest {
   private static final LieGroup LIE_GROUP = new VectorizedGroup(So3Group.INSTANCE);
 
   static BarycentricCoordinate[] barycentrics() {
-    return GbcHelper.barycentrics(LIE_GROUP);
+    return GbcHelper.barycentrics((MetricManifold) LIE_GROUP);
   }
 
   @Test

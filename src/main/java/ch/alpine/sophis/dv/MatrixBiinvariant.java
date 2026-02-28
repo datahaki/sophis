@@ -37,6 +37,6 @@ import ch.alpine.tensor.ext.PackageTestAccess;
    * by Jan Hakenberg, 2020 */
   @PackageTestAccess
   final BiinvariantVectorFunction biinvariantVectorFunction(Tensor sequence) {
-    return new BiinvariantVectorFunction(manifold, sequence, this);
+    return new BiinvariantVectorFunction(manifold(), sequence, this);
   }
 }

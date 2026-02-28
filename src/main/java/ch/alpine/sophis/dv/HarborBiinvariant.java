@@ -21,6 +21,6 @@ import ch.alpine.tensor.nrm.FrobeniusNorm;
 
   @Override
   public String toString() {
-    return MathematicaFormat.concise("Harbor", manifold);
+    return MathematicaFormat.concise("Harbor", manifold());
   }
 }

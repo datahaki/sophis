@@ -38,12 +38,12 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
   @Override // from Biinvariant
   public Sedarim relative_distances(Tensor sequence) {
     Objects.requireNonNull(sequence);
-    return point -> origin(manifold.tangentSpace(point).vectorLog().slash(sequence));
+    return point -> origin(manifold().tangentSpace(point).vectorLog().slash(sequence));
   }
 
   @Override // from Biinvariant
   public Sedarim coordinate(ScalarUnaryOperator variogram, Tensor sequence) {
-    return HsCoordinates.wrap(manifold, coordinate(variogram), sequence);
+    return HsCoordinates.wrap(manifold(), coordinate(variogram), sequence);
   }
 
   public Genesis coordinate(ScalarUnaryOperator variogram) {
@@ -55,7 +55,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
     Objects.requireNonNull(variogram);
     Objects.requireNonNull(sequence);
     return point -> {
-      Tensor levers = manifold.tangentSpace(point).vectorLog().slash(sequence);
+      Tensor levers = manifold().tangentSpace(point).vectorLog().slash(sequence);
       Tensor target = NormalizeTotal.FUNCTION.apply(origin(levers).maps(variogram));
       return LagrangeCoordinates.of(levers, target);
     };
@@ -68,6 +68,6 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
 
   @Override
   public String toString() {
-    return MathematicaFormat.concise("Leverages", manifold);
+    return MathematicaFormat.concise("Leverages", manifold());
   }
 }

@@ -3,7 +3,7 @@ package ch.alpine.sophis.dv;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.api.Manifold;
+import ch.alpine.sophus.api.MetricManifold;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
@@ -26,7 +26,7 @@ class LeveragesCoordinateTest {
   void testR1equiv() {
     // in R1 we have W^ID = w^IL
     // but not in R2 etc.
-    Manifold manifold = RGroup.INSTANCE;
+    MetricManifold manifold = RGroup.INSTANCE;
     MetricBiinvariant metricBiinvariant = new MetricBiinvariant(manifold);
     LeveragesBiinvariant leveragesBiinvariant = new LeveragesBiinvariant(manifold);
     ScalarUnaryOperator variogram = s -> s;

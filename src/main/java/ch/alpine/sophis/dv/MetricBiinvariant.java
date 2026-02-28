@@ -4,9 +4,7 @@ package ch.alpine.sophis.dv;
 import java.util.Objects;
 
 import ch.alpine.sophis.api.Genesis;
-import ch.alpine.sophis.api.TensorNorm;
 import ch.alpine.sophus.api.BilinearForm;
-import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.api.MetricManifold;
 import ch.alpine.sophus.api.TangentSpace;
 import ch.alpine.sophus.hs.gr.GrTangentSpace;
@@ -71,18 +69,16 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
  * "Biinvariant Generalized Barycentric Coordinates on Lie Groups"
  * by Jan Hakenberg, 2020 */
 public class MetricBiinvariant extends BiinvariantBase {
-  /** TODO require VectorizedManifold
-   * 
-   * Careful: not suitable for {@link SpdTangentSpace}, and {@link GrTangentSpace}
+  /** Careful: not suitable for {@link SpdTangentSpace}, and {@link GrTangentSpace}
    * because these implementations drop coefficients of the log in the vectorLog
    * implementation. that means the scalar product on the subspace would have to be
    * adapted. */
   private final MetricManifold metricManifold;
 
-  /** @param manifold that is instance of {@link TensorNorm} */
-  public MetricBiinvariant(Manifold manifold) {
-    super(manifold);
-    this.metricManifold = (MetricManifold) manifold;
+  /** @param metricManifold that is instance of {@link MetricManifold} */
+  public MetricBiinvariant(MetricManifold metricManifold) {
+    super(metricManifold);
+    this.metricManifold = metricManifold;
   }
 
   @Override // from Biinvariant
@@ -90,7 +86,7 @@ public class MetricBiinvariant extends BiinvariantBase {
     Objects.requireNonNull(sequence);
     return point -> {
       BilinearForm bilinearForm = metricManifold.bilinearForm(point);
-      TangentSpace exponential = manifold.tangentSpace(point);
+      TangentSpace exponential = manifold().tangentSpace(point);
       return Tensor.of(sequence.stream().map(exponential::log).map(bilinearForm::norm));
     };
   }
@@ -114,7 +110,7 @@ public class MetricBiinvariant extends BiinvariantBase {
   public Sedarim coordinate(ScalarUnaryOperator variogram, Tensor sequence) {
     Objects.requireNonNull(sequence);
     Objects.requireNonNull(variogram);
-    return point -> coordinate(variogram).origin(manifold.tangentSpace(point).vectorLog().slash(sequence));
+    return point -> coordinate(variogram).origin(manifold().tangentSpace(point).vectorLog().slash(sequence));
   }
 
   public Genesis coordinate(ScalarUnaryOperator variogram) {
@@ -127,13 +123,13 @@ public class MetricBiinvariant extends BiinvariantBase {
     Objects.requireNonNull(variogram);
     Objects.requireNonNull(sequence);
     return point -> {
-      Tensor levers = manifold.tangentSpace(point).vectorLog().slash(sequence);
+      Tensor levers = manifold().tangentSpace(point).vectorLog().slash(sequence);
       return LagrangeCoordinates.of(levers, weighting(variogram).origin(levers));
     };
   }
 
   @Override
   public String toString() {
-    return MathematicaFormat.concise("Metric", manifold);
+    return MathematicaFormat.concise("Metric", manifold());
   }
 }

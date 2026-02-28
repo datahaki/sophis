@@ -2,6 +2,7 @@
 package ch.alpine.sophis.dv;
 
 import ch.alpine.sophus.api.Manifold;
+import ch.alpine.sophus.api.MetricManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
@@ -34,7 +35,7 @@ public enum GbcHelper {
         sequence).sunder(point);
   }
 
-  public static BarycentricCoordinate[] barycentrics(Manifold manifold) { //
+  public static BarycentricCoordinate[] barycentrics(MetricManifold manifold) { //
     return new BarycentricCoordinate[] { //
         lagrainate_of(new MetricBiinvariant(manifold), InversePowerVariogram.of(2)), //
         lagrainate_of(new LeveragesBiinvariant(manifold), InversePowerVariogram.of(2)), //

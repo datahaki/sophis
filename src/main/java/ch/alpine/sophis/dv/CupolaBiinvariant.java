@@ -21,6 +21,6 @@ import ch.alpine.tensor.io.MathematicaFormat;
 
   @Override
   public String toString() {
-    return MathematicaFormat.concise("Cupola", manifold);
+    return MathematicaFormat.concise("Cupola", manifold());
   }
 }

@@ -15,16 +15,16 @@ import ch.alpine.tensor.io.MathematicaFormat;
 
   @Override // from Biinvariant
   public Sedarim relative_distances(Tensor sequence) {
-    return GardenDistanceVector.of(manifold, sequence);
+    return GardenDistanceVector.of(manifold(), sequence);
   }
 
   @Override // from Biinvariant
   public Sedarim coordinate(ScalarUnaryOperator variogram, Tensor sequence) {
-    return new GardenCoordinate(manifold, variogram, sequence);
+    return new GardenCoordinate(manifold(), variogram, sequence);
   }
 
   @Override
   public String toString() {
-    return MathematicaFormat.concise("Garden", manifold);
+    return MathematicaFormat.concise("Garden", manifold());
   }
 }

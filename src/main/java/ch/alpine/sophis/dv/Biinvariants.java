@@ -10,7 +10,7 @@ import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.api.MetricManifold;
 
 public enum Biinvariants {
-  METRIC(MetricBiinvariant::new),
+  METRIC(manifold -> new MetricBiinvariant((MetricManifold) manifold)),
   LEVERAGES(LeveragesBiinvariant::new),
   GARDEN(GardenBiinvariant::new),
   HARBOR(HarborBiinvariant::new),
@@ -34,8 +34,8 @@ public enum Biinvariants {
   // ---
   public static Map<Biinvariants, Biinvariant> all(Manifold manifold) {
     Map<Biinvariants, Biinvariant> map = magic4(manifold);
-    if (manifold instanceof MetricManifold)
-      map.put(METRIC, new MetricBiinvariant(manifold));
+    if (manifold instanceof MetricManifold metricManifold)
+      map.put(METRIC, new MetricBiinvariant(metricManifold));
     return map;
   }
 
@@ -57,8 +57,8 @@ public enum Biinvariants {
    * @return instances of biinvariant that result in symmetric distance matrices */
   public static Map<Biinvariants, Biinvariant> kriging(Manifold manifold) {
     Map<Biinvariants, Biinvariant> map = new EnumMap<>(Biinvariants.class);
-    if (manifold instanceof MetricManifold)
-      map.put(METRIC, new MetricBiinvariant(manifold));
+    if (manifold instanceof MetricManifold metricManifold)
+      map.put(METRIC, new MetricBiinvariant(metricManifold));
     map.put(HARBOR, new HarborBiinvariant(manifold));
     return map;
   }
