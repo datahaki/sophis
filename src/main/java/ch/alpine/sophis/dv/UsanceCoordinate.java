@@ -9,13 +9,13 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
  * Reference:
  * "Biinvariant Generalized Barycentric Coordinates on Lie Groups"
  * by Jan Hakenberg, 2020 */
-public enum LeveragesCoordinate {
+public enum UsanceCoordinate {
   ;
   /** @param hsDesign
    * @param manifold
    * @param variogram for instance InversePowerVariogram.of(2)
    * @return */
   public static BarycentricCoordinate of(Manifold manifold, ScalarUnaryOperator variogram) {
-    return new HsCoordinates(manifold, new LeveragesGenesis(variogram));
+    return new HsCoordinates(manifold, new UsanceGenesis(variogram));
   }
 }

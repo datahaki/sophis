@@ -4,7 +4,10 @@ package ch.alpine.sophis.flow;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
-/** integrator of time-invariant differential constraint */
+/** integrator of time-invariant differential constraint
+ * 
+ * Numerical ODE Solver
+ * DSolve */
 @FunctionalInterface
 public interface Integrator {
   /** @param flow

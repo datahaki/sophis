@@ -19,7 +19,7 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.spa.SparseArray;
 
-class LeveragesGenesisTest {
+class UsanceGenesisTest {
   @Test
   void testSimple() {
     Random randomGenerator = new Random(2);
@@ -29,7 +29,7 @@ class LeveragesGenesisTest {
     assertEquals(hsAlgebra.dimM(), n);
     assertEquals(hsAlgebra.dimH(), 1 + 3);
     Distribution distribution = UniformDistribution.of(-0.05, 0.05);
-    HsBarycentricCoordinate hsBarycentricCoordinate = new HsBarycentricCoordinate(hsAlgebra, LeveragesGenesis.DEFAULT);
+    HsBarycentricCoordinate hsBarycentricCoordinate = new HsBarycentricCoordinate(hsAlgebra, UsanceGenesis.DEFAULT);
     Tensor sequence = RandomVariate.of(distribution, randomGenerator, n + 2, n);
     Tensor x = RandomVariate.of(distribution, randomGenerator, n);
     Tensor weights = hsBarycentricCoordinate.weights(sequence, x);

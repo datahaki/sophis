@@ -35,8 +35,8 @@ class SpdBiinvariantTest {
         new HsCoordinates(SpdManifold.INSTANCE, MetricCoordinate.of(InversePowerVariogram.of(2))), //
         // LeveragesCoordinate.slow(SpdManifold.INSTANCE, InversePowerVariogram.of(1)), //
         // LeveragesCoordinate.slow(SpdManifold.INSTANCE, InversePowerVariogram.of(2)), //
-        LeveragesCoordinate.of(SpdManifold.INSTANCE, InversePowerVariogram.of(1)), //
-        LeveragesCoordinate.of(SpdManifold.INSTANCE, InversePowerVariogram.of(2)), //
+        UsanceCoordinate.of(SpdManifold.INSTANCE, InversePowerVariogram.of(1)), //
+        UsanceCoordinate.of(SpdManifold.INSTANCE, InversePowerVariogram.of(2)), //
     };
   }
 

@@ -19,11 +19,11 @@ import ch.alpine.tensor.sca.var.InversePowerVariogram;
  * "Biinvariant Distance Vectors"
  * by Jan Hakenberg, 2020
  * 
- * @see LeveragesCoordinate
+ * @see UsanceCoordinate
  * 
  * @param variogram for instance InversePowerVariogram */
-public record LeveragesGenesis(ScalarUnaryOperator variogram) implements Genesis {
-  public static final Genesis DEFAULT = new LeveragesGenesis(InversePowerVariogram.of(2));
+public record UsanceGenesis(ScalarUnaryOperator variogram) implements Genesis {
+  public static final Genesis DEFAULT = new UsanceGenesis(InversePowerVariogram.of(2));
 
   @Override // from Genesis
   public Tensor origin(Tensor levers) {

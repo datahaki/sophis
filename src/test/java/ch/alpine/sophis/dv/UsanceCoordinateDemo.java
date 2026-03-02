@@ -11,13 +11,13 @@ import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.qty.Timing;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
-/* package */ enum LeveragesCoordinateDemo {
+enum UsanceCoordinateDemo {
   ;
   static void main() {
     {
       Manifold manifold = RGroup.INSTANCE;
       ScalarUnaryOperator variogram = InversePowerVariogram.of(2);
-      BarycentricCoordinate c1 = LeveragesCoordinate.of(manifold, variogram);
+      BarycentricCoordinate c1 = UsanceCoordinate.of(manifold, variogram);
       Timing t1 = Timing.stopped();
       Timing t2 = Timing.stopped();
       for (int count = 0; count < 1000; ++count) {
@@ -32,7 +32,7 @@ import ch.alpine.tensor.sca.var.InversePowerVariogram;
     }
     {
       Manifold manifold = RGroup.INSTANCE;
-      Genesis genesis = new LeveragesBiinvariant(manifold);
+      Genesis genesis = new UsanceBiinvariant(manifold);
       BarycentricCoordinate w1 = new HsCoordinates(manifold, genesis);
       Timing t1 = Timing.stopped();
       Timing t2 = Timing.stopped();

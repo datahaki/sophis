@@ -11,12 +11,12 @@ import ch.alpine.sophus.api.MetricManifold;
 
 public enum Biinvariants {
   METRIC(manifold -> new MetricBiinvariant((MetricManifold) manifold)),
-  LEVERAGES(LeveragesBiinvariant::new),
+  USANCE(UsanceBiinvariant::new),
   GARDEN(GardenBiinvariant::new),
   HARBOR(HarborBiinvariant::new),
   CUPOLA(CupolaBiinvariant::new);
 
-  public static final List<Biinvariants> FAST = List.of(METRIC, LEVERAGES, GARDEN);
+  public static final List<Biinvariants> FAST = List.of(METRIC, USANCE, GARDEN);
   private final Function<Manifold, Biinvariant> supplier;
 
   Biinvariants(Function<Manifold, Biinvariant> supplier) {
@@ -27,7 +27,7 @@ public enum Biinvariants {
    * @return */
   public Biinvariant ofSafe(Manifold manifold) {
     if (equals(METRIC) && !(manifold instanceof MetricManifold))
-      return LEVERAGES.supplier.apply(manifold);
+      return USANCE.supplier.apply(manifold);
     return supplier.apply(manifold);
   }
 
@@ -47,7 +47,7 @@ public enum Biinvariants {
 
   public static Map<Biinvariants, Biinvariant> magic3(Manifold manifold) {
     Map<Biinvariants, Biinvariant> map = new EnumMap<>(Biinvariants.class);
-    map.put(LEVERAGES, LEVERAGES.ofSafe(manifold));
+    map.put(USANCE, USANCE.ofSafe(manifold));
     map.put(GARDEN, GARDEN.ofSafe(manifold));
     map.put(HARBOR, HARBOR.ofSafe(manifold));
     return map;

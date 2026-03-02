@@ -27,7 +27,7 @@ class StBiinvariantTest {
     Tensor sequence = RandomVariate.of(distribution, 12, 7);
     Tensor point = RandomVariate.of(distribution, 7);
     HsBarycentricCoordinate hsBarycentricCoordinate = //
-        new HsBarycentricCoordinate(hsAlgebra, LeveragesGenesis.DEFAULT);
+        new HsBarycentricCoordinate(hsAlgebra, UsanceGenesis.DEFAULT);
     Tensor weights = hsBarycentricCoordinate.weights(sequence, point);
     BiinvariantMean biinvariantMean = HsBiinvariantMean.of(hsAlgebra);
     Tensor mean = biinvariantMean.mean(sequence, weights);

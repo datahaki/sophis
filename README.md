@@ -130,44 +130,9 @@ Instead of using a complicated extended Kalman filter, geodesic averages based o
 The pose of mobile robots is typically recorded at high frequencies.
 The trajectory can be faithfully reconstructed from a fraction of the samples.
 
-
 ## Contributors
 
 Jan Hakenberg, Oliver Brinkmann, Joel Gächter
-
-
-## Integration
-
-From time to time, a version is deployed and made available for maven integration. Specify `repository` and `dependency` of the library `sophis` in the `pom.xml` file of your maven project:
-
-```xml
-<dependencies>
-  <!-- other dependencies -->
-  <dependency>
-    <groupId>ch.alpine</groupId>
-    <artifactId>sophis</artifactId>
-    <version>0.0.1</version>
-  </dependency>
-</dependencies>
-
-<repositories>
-  <!-- other repositories -->
-  <repository>
-    <id>sophis-mvn-repo</id>
-    <url>https://raw.github.com/datahaki/sophis/mvn-repo/</url>
-    <snapshots>
-      <enabled>true</enabled>
-      <updatePolicy>always</updatePolicy>
-    </snapshots>
-  </repository>
-</repositories>
-```
-
-The source code is attached to every release.
-
-The branch `master` always contains the latest features for Java 17, and does not correspond to the most recent deployed version generally.
-
----
 
 ## References
 

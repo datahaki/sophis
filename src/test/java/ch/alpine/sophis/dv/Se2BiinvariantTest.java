@@ -351,7 +351,7 @@ class Se2BiinvariantTest {
     for (Tensor _beta : betas) {
       Scalar beta = (Scalar) _beta;
       // BarycentricCoordinate bc0 = LeveragesCoordinate.slow(Se2CoveringManifold.INSTANCE, InversePowerVariogram.of(beta));
-      BarycentricCoordinate bc1 = LeveragesCoordinate.of(Se2CoveringGroup.INSTANCE, InversePowerVariogram.of(beta));
+      BarycentricCoordinate bc1 = UsanceCoordinate.of(Se2CoveringGroup.INSTANCE, InversePowerVariogram.of(beta));
       for (int n = 4; n < 10; ++n) {
         Tensor sequence = RandomSample.of(RANDOM_SAMPLE_INTERFACE, n);
         Tensor mean = RandomSample.of(RANDOM_SAMPLE_INTERFACE);

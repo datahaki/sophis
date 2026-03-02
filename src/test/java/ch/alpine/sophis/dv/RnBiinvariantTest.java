@@ -52,7 +52,7 @@ class RnBiinvariantTest {
       Tensor vardst = Tensor.of(sequence.stream().map(tensorUnaryOperator::sunder));
       SymmetricMatrixQ.INSTANCE.require(vardst);
     }
-    Biinvariant leveragesBiinvariant = Biinvariants.LEVERAGES.ofSafe(manifold);
+    Biinvariant leveragesBiinvariant = Biinvariants.USANCE.ofSafe(manifold);
     {
       Sedarim tensorUnaryOperator = leveragesBiinvariant.relative_distances(sequence);
       Tensor vardst = Tensor.of(sequence.stream().map(tensorUnaryOperator::sunder));

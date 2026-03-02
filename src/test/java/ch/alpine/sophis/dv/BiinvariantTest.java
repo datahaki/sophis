@@ -94,7 +94,7 @@ class BiinvariantTest {
     Manifold manifold = GrManifold.INSTANCE;
     Biinvariant[] biinvariants = new Biinvariant[] { //
         Biinvariants.METRIC.ofSafe(manifold), //
-        Biinvariants.LEVERAGES.ofSafe(manifold), //
+        Biinvariants.USANCE.ofSafe(manifold), //
         Biinvariants.GARDEN.ofSafe(manifold) };
     RandomGenerator random1 = ThreadLocalRandom.current();
     int n = 3 + random1.nextInt(2);

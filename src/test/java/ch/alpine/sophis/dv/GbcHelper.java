@@ -38,7 +38,7 @@ public enum GbcHelper {
   public static BarycentricCoordinate[] barycentrics(MetricManifold manifold) { //
     return new BarycentricCoordinate[] { //
         lagrainate_of(new MetricBiinvariant(manifold), InversePowerVariogram.of(2)), //
-        lagrainate_of(new LeveragesBiinvariant(manifold), InversePowerVariogram.of(2)), //
+        lagrainate_of(new UsanceBiinvariant(manifold), InversePowerVariogram.of(2)), //
         lagrainate_of(new GardenBiinvariant(manifold), InversePowerVariogram.of(2)), //
         new HsCoordinates(manifold, new MetricBiinvariant(RGroup.INSTANCE).coordinate(InversePowerVariogram.of(1))), //
         new HsCoordinates(manifold, new MetricBiinvariant(RGroup.INSTANCE).coordinate(InversePowerVariogram.of(2))), //
@@ -48,8 +48,8 @@ public enum GbcHelper {
         // LeveragesCoordinate.slow(vectorLogManifold, InversePowerVariogram.of(2)), //
         harborCoordinate_of(manifold, InversePowerVariogram.of(1)), //
         harborCoordinate_of(manifold, InversePowerVariogram.of(2)), //
-        LeveragesCoordinate.of(manifold, InversePowerVariogram.of(1)), //
-        LeveragesCoordinate.of(manifold, InversePowerVariogram.of(2)), //
+        UsanceCoordinate.of(manifold, InversePowerVariogram.of(1)), //
+        UsanceCoordinate.of(manifold, InversePowerVariogram.of(2)), //
         inversCoordinate_of(new MetricBiinvariant(manifold)), //
         inversCoordinate_of(new HarborBiinvariant(manifold)), //
         kriginCoordinate_of(new MetricBiinvariant(manifold)), //
@@ -59,7 +59,7 @@ public enum GbcHelper {
 
   public static BarycentricCoordinate[] biinvariant(Manifold manifold) { //
     return new BarycentricCoordinate[] { //
-        lagrainate_of(new LeveragesBiinvariant(manifold), InversePowerVariogram.of(2)), //
+        lagrainate_of(new UsanceBiinvariant(manifold), InversePowerVariogram.of(2)), //
         lagrainate_of(new GardenBiinvariant(manifold), InversePowerVariogram.of(2)), //
         gardenCoordinate_of(manifold, InversePowerVariogram.of(1)), //
         gardenCoordinate_of(manifold, InversePowerVariogram.of(2)), //
@@ -67,8 +67,8 @@ public enum GbcHelper {
         // LeveragesCoordinate.slow(vectorLogManifold, InversePowerVariogram.of(2)), //
         harborCoordinate_of(manifold, InversePowerVariogram.of(1)), //
         harborCoordinate_of(manifold, InversePowerVariogram.of(2)), //
-        LeveragesCoordinate.of(manifold, InversePowerVariogram.of(1)), //
-        LeveragesCoordinate.of(manifold, InversePowerVariogram.of(2)), //
+        UsanceCoordinate.of(manifold, InversePowerVariogram.of(1)), //
+        UsanceCoordinate.of(manifold, InversePowerVariogram.of(2)), //
         kriginCoordinate_of(new HarborBiinvariant(manifold)), //
     };
   }

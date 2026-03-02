@@ -40,13 +40,13 @@ class BchBarycentricCoordinateTest {
       Tensor sequence = RandomVariate.of(distribution, randomGenerator, n, 3);
       Tensor x = RandomVariate.of(distribution, randomGenerator, 3);
       BarycentricCoordinate barycentricCoordinate = //
-          new BchBarycentricCoordinate(bch, new LeveragesGenesis(variogram));
+          new BchBarycentricCoordinate(bch, new UsanceGenesis(variogram));
       Tensor weights = barycentricCoordinate.weights(sequence, x);
       Tensor mean = HsBiinvariantMean.of(hsAlgebra).mean(sequence, weights);
       Chop._06.requireClose(mean, x);
       // ---
       Tensor seqG = Tensor.of(sequence.stream().map(Se2CoveringGroup.INSTANCE.exponential0()::exp));
-      BarycentricCoordinate bc = LeveragesCoordinate.of(Se2CoveringGroup.INSTANCE, variogram);
+      BarycentricCoordinate bc = UsanceCoordinate.of(Se2CoveringGroup.INSTANCE, variogram);
       Tensor weights2 = bc.weights(seqG, Se2CoveringGroup.INSTANCE.exponential0().exp(x));
       Chop._08.requireClose(weights, weights2);
     }
@@ -65,7 +65,7 @@ class BchBarycentricCoordinateTest {
       Tensor sequence = RandomVariate.of(distribution, randomGenerator, n, 3);
       Tensor x = RandomVariate.of(distribution, randomGenerator, 3);
       BarycentricCoordinate barycentricCoordinate = //
-          new BchBarycentricCoordinate(bch, new LeveragesGenesis(InversePowerVariogram.of(2)));
+          new BchBarycentricCoordinate(bch, new UsanceGenesis(InversePowerVariogram.of(2)));
       Tensor weights = barycentricCoordinate.weights(sequence, x);
       Tensor mean = HsBiinvariantMean.of(hsAlgebra).mean(sequence, weights);
       Tolerance.CHOP.requireClose(mean, x);

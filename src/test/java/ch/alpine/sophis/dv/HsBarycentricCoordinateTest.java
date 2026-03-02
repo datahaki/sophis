@@ -28,7 +28,7 @@ class HsBarycentricCoordinateTest {
   void testSimple(int d) {
     HsAlgebra hsAlgebra = SnAlgebra.of(d);
     RandomSampleInterface randomSampleInterface = BallRandomSample.of(Array.zeros(d), RealScalar.of(0.05));
-    BarycentricCoordinate barycentricCoordinate = new HsBarycentricCoordinate(hsAlgebra, new LeveragesGenesis(InversePowerVariogram.of(2)));
+    BarycentricCoordinate barycentricCoordinate = new HsBarycentricCoordinate(hsAlgebra, new UsanceGenesis(InversePowerVariogram.of(2)));
     for (int n = d + 1; n < d + 4; ++n) {
       Tensor sequence = RandomSample.of(randomSampleInterface, randomGenerator, n);
       Tensor point = RandomSample.of(randomSampleInterface, randomGenerator);

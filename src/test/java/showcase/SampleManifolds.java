@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophis.dv.Biinvariant;
 import ch.alpine.sophis.dv.Biinvariants;
-import ch.alpine.sophis.dv.LeveragesCoordinate;
+import ch.alpine.sophis.dv.UsanceCoordinate;
 import ch.alpine.sophus.api.TangentSpace;
 import ch.alpine.sophus.hs.HomogeneousSpace;
 import ch.alpine.sophus.hs.gr.Grassmannian;
@@ -62,7 +62,7 @@ class SampleManifolds {
     Biinvariant biinvariant = Biinvariants.GARDEN.ofSafe(homogeneousSpace);
     biinvariant.relative_distances(sequence);
     biinvariant.coordinate(InversePowerVariogram.of(2), sequence);
-    BarycentricCoordinate barycentricCoordinate = LeveragesCoordinate.of(homogeneousSpace, InversePowerVariogram.of(2));
+    BarycentricCoordinate barycentricCoordinate = UsanceCoordinate.of(homogeneousSpace, InversePowerVariogram.of(2));
     Tensor weights = barycentricCoordinate.weights(sequence, p);
     AffineQ.INSTANCE.require(weights);
     Tensor levers = tangentSpace.vectorLog().slash(sequence);

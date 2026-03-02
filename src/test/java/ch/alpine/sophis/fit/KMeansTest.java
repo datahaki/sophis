@@ -104,7 +104,7 @@ class KMeansTest {
   @Test
   void testSe2Standard() {
     LieGroup lieGroup = Se2CoveringGroup.INSTANCE;
-    Biinvariant biinvariant = Biinvariants.LEVERAGES.ofSafe(lieGroup);
+    Biinvariant biinvariant = Biinvariants.USANCE.ofSafe(lieGroup);
     Tensor sequence = RandomVariate.of(NormalDistribution.standard(), 40, 3);
     KMeans kMeans = new KMeans( //
         biinvariant.relative_distances(sequence), //

@@ -43,7 +43,7 @@ class SeBiinvariantTest {
       Tensor g = RandomVariate.of(distribution, random, ad.length());
       Tensor m = RandomVariate.of(distribution, random, n);
       hsAlgebra.action(g, m);
-      HsBarycentricCoordinate hsBarycentricCoordinate = new HsBarycentricCoordinate(hsAlgebra, LeveragesGenesis.DEFAULT);
+      HsBarycentricCoordinate hsBarycentricCoordinate = new HsBarycentricCoordinate(hsAlgebra, UsanceGenesis.DEFAULT);
       Tensor sequence = RandomVariate.of(distribution, random, n + 2, n);
       Tensor x = RandomVariate.of(distribution, random, n);
       Tensor weights = hsBarycentricCoordinate.weights(sequence, x);

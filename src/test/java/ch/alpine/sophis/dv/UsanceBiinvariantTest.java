@@ -15,12 +15,12 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 
-class LeveragesBiinvariantTest {
+class UsanceBiinvariantTest {
   @Test
   void testRn() {
     Tensor sequence = RandomVariate.of(UniformDistribution.unit(), 10, 3);
     Manifold manifold = RGroup.INSTANCE;
-    LeveragesBiinvariant leveragesBiinvariant = new LeveragesBiinvariant(manifold);
+    UsanceBiinvariant leveragesBiinvariant = new UsanceBiinvariant(manifold);
     Sedarim w2 = leveragesBiinvariant.relative_distances(sequence);
     for (int count = 0; count < 10; ++count) {
       Tensor point = RandomVariate.of(UniformDistribution.unit(), 3);
@@ -33,7 +33,7 @@ class LeveragesBiinvariantTest {
     RandomSampleInterface randomSampleInterface = new Sphere(2);
     Tensor sequence = RandomSample.of(randomSampleInterface, 10);
     Manifold manifold = SnManifold.INSTANCE;
-    LeveragesBiinvariant leveragesBiinvariant = new LeveragesBiinvariant(manifold);
+    UsanceBiinvariant leveragesBiinvariant = new UsanceBiinvariant(manifold);
     Sedarim w2 = leveragesBiinvariant.relative_distances(sequence);
     for (int count = 0; count < 10; ++count) {
       Tensor point = RandomSample.of(randomSampleInterface);
@@ -46,7 +46,7 @@ class LeveragesBiinvariantTest {
     Distribution distribution = UniformDistribution.unit();
     Tensor sequence = RandomVariate.of(distribution, 10, 3);
     Manifold manifold = Se2Group.INSTANCE;
-    LeveragesBiinvariant leveragesBiinvariant = new LeveragesBiinvariant(manifold);
+    UsanceBiinvariant leveragesBiinvariant = new UsanceBiinvariant(manifold);
     Sedarim w2 = leveragesBiinvariant.relative_distances(sequence);
     for (int count = 0; count < 10; ++count) {
       Tensor point = RandomVariate.of(distribution, 3);

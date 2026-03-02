@@ -30,8 +30,8 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
  * 
  * "Biinvariant Distance Vectors"
  * by Jan Hakenberg, 2020 */
-/* package */ class LeveragesBiinvariant extends BiinvariantBase implements Genesis {
-  public LeveragesBiinvariant(Manifold manifold) {
+/* package */ class UsanceBiinvariant extends BiinvariantBase implements Genesis {
+  public UsanceBiinvariant(Manifold manifold) {
     super(manifold);
   }
 
@@ -47,7 +47,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
   }
 
   public Genesis coordinate(ScalarUnaryOperator variogram) {
-    return new LeveragesGenesis(variogram);
+    return new UsanceGenesis(variogram);
   }
 
   @Override // from Biinvariant
