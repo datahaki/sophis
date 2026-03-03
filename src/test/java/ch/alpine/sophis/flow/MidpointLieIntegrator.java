@@ -10,11 +10,11 @@ import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
-public class MidpointLieIntegrator implements Integrator, Serializable {
+public class MidpointLieIntegrator implements TimeIntegrator, Serializable {
   /** @param lieGroup
    * @param exponential
    * @return */
-  public static Integrator of(LieGroup lieGroup, TangentSpace exponential) {
+  public static TimeIntegrator of(LieGroup lieGroup, TangentSpace exponential) {
     return new MidpointLieIntegrator( //
         Objects.requireNonNull(lieGroup), //
         Objects.requireNonNull(exponential));

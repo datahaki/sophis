@@ -11,7 +11,7 @@ import ch.alpine.tensor.ext.Integers;
 /** Numerical Recipes 3rd Edition Section 17.3.1
  * 
  * @param n strictly positive */
-public record ModifiedMidpointIntegrator(int n) implements Integrator, Serializable {
+public record ModifiedMidpointIntegrator(int n) implements TimeIntegrator, Serializable {
   public ModifiedMidpointIntegrator {
     Integers.requirePositive(n);
   }

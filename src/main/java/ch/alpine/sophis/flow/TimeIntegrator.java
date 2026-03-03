@@ -9,7 +9,7 @@ import ch.alpine.tensor.Tensor;
  * Numerical ODE Solver
  * DSolve */
 @FunctionalInterface
-public interface Integrator {
+public interface TimeIntegrator {
   /** @param flow
    * @param x
    * @param h

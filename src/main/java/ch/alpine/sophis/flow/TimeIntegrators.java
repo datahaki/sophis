@@ -8,8 +8,10 @@ import ch.alpine.tensor.Tensor;
 /** 2nd order RungeKutta
  * integrator requires 2 flow evaluations
  * 
- * Numerical Recipes 3rd Edition (17.1.2) */
-public enum Integrators implements Integrator {
+ * Numerical Recipes 3rd Edition (17.1.2)
+ * 
+ * "Numerical Time-Integration Methods" */
+public enum TimeIntegrators implements TimeIntegrator {
   EULER {
     @Override
     public Tensor step(StateSpaceModel stateSpaceModel, Tensor x, Tensor u, Scalar h) {

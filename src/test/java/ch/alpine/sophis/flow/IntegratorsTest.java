@@ -20,7 +20,7 @@ class IntegratorsTest {
     StateSpaceModel stateSpaceModel = StateSpaceModels.DOUBLE_INTEGRATOR;
     Tensor u = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m*s^-2"));
     Tensor x = Tensors.fromString("{2[m], 3[m], 4[m*s^-1], 5[m*s^-1]}"); // pos and vel
-    Tensor r = Integrators.EULER.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
+    Tensor r = TimeIntegrators.EULER.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
     assertEquals(r, Tensors.fromString("{10[m], 13[m], 6[m*s^-1], 9[m*s^-1]}"));
   }
 
@@ -30,10 +30,10 @@ class IntegratorsTest {
     Tensor u = Tensors.vector(1, 2);
     Tensor x = Tensors.vector(7, 2);
     Scalar h = RealScalar.of(3);
-    Tensor euler_x1 = Integrators.EULER.step(stateSpaceModel, x, u, h);
-    Tensor mid_x1 = Integrators.MIDPOINT.step(stateSpaceModel, x, u, h);
-    Tensor rk4_x1 = Integrators.RK4.step(stateSpaceModel, x, u, h);
-    Tensor rk45_x1 = Integrators.RK45.step(stateSpaceModel, x, u, h);
+    Tensor euler_x1 = TimeIntegrators.EULER.step(stateSpaceModel, x, u, h);
+    Tensor mid_x1 = TimeIntegrators.MIDPOINT.step(stateSpaceModel, x, u, h);
+    Tensor rk4_x1 = TimeIntegrators.RK4.step(stateSpaceModel, x, u, h);
+    Tensor rk45_x1 = TimeIntegrators.RK45.step(stateSpaceModel, x, u, h);
     assertEquals(euler_x1, x.add(u.multiply(h)));
     assertEquals(euler_x1, mid_x1);
     for (int n = 1; n < 10; ++n) {
@@ -54,7 +54,7 @@ class IntegratorsTest {
     StateSpaceModel stateSpaceModel = StateSpaceModels.SINGLE_INTEGRATOR;
     Tensor u = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m*s^-1"));
     Tensor x = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m"));
-    Tensor r = Integrators.MIDPOINT.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
+    Tensor r = TimeIntegrators.MIDPOINT.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
     assertEquals(r, Tensors.fromString("{3[m], 6[m]}"));
   }
 
@@ -63,7 +63,7 @@ class IntegratorsTest {
     StateSpaceModel stateSpaceModel = StateSpaceModels.DOUBLE_INTEGRATOR;
     Tensor u = QuantityTensor.of(Tensors.vector(1, 2), Unit.of("m*s^-2"));
     Tensor x = Tensors.fromString("{2[m], 3[m], 4[m*s^-1], 5[m*s^-1]}"); // pos and vel
-    Tensor r = Integrators.MIDPOINT.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
+    Tensor r = TimeIntegrators.MIDPOINT.step(stateSpaceModel, x, u, Quantity.of(2, "s"));
     assertEquals(r, Tensors.fromString("{12[m], 17[m], 6[m*s^-1], 9[m*s^-1]}"));
   }
 }
