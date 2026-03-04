@@ -9,13 +9,13 @@ import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophis.dv.HsCoordinates;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;
-import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.ConstantArray;
 import ch.alpine.tensor.lie.rot.CirclePoints;
+import ch.alpine.tensor.nrm.AveragingWeights;
 import ch.alpine.tensor.sca.Chop;
 
 class InsidePolygonCoordinateTest {

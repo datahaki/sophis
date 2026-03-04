@@ -11,7 +11,7 @@ The library was developed with the following objectives in mind
 * suitable for use in safety-critical real-time systems
 * implementation of theoretical concepts with high level of abstraction
 
-## Algorithms
+## 🧮 Algorithms
 
 * biinvariant distance vectors
 * biinvariant barycentric coordinates, iterative coordinates
@@ -32,7 +32,7 @@ The library was developed with the following objectives in mind
 
 ---
 
-## Publications
+## 📰 Publications
 
 ### Curve Subdivision in SE(2)
 
@@ -108,7 +108,7 @@ $i=1, ..., 6$.
 
 ---
 
-## Examples
+## 💡 Examples
 
 ##### Geodesic DeBoor Algorithm
 
@@ -130,11 +130,11 @@ Instead of using a complicated extended Kalman filter, geodesic averages based o
 The pose of mobile robots is typically recorded at high frequencies.
 The trajectory can be faithfully reconstructed from a fraction of the samples.
 
-## Contributors
+## 👥 Contributors
 
 Jan Hakenberg, Oliver Brinkmann, Joel Gächter
 
-## References
+## 📚 References
 
 * *Exponential Barycenters of the Canonical Cartan Connection and Invariant Means on Lie Groups* by Xavier Pennec, Vincent Arsigny
 * *Manifold-valued subdivision schemes based on geodesic inductive averaging* by Nira Dyn, Nir Sharon

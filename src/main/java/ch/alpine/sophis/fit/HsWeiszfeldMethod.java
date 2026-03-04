@@ -7,8 +7,8 @@ import java.util.function.UnaryOperator;
 
 import ch.alpine.sophis.dv.Sedarim;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.nrm.AveragingWeights;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.sca.Chop;

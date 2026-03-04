@@ -2,11 +2,11 @@
 package ch.alpine.sophis.fit;
 
 import ch.alpine.sophus.math.AffineQ;
-import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.mat.pd.Orthogonalize;
+import ch.alpine.tensor.nrm.AveragingWeights;
 import ch.alpine.tensor.red.Times;
 
 /** function computes the best-fitting rigid transformation that aligns

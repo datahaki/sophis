@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.td.TdGroup;
 import ch.alpine.sophus.lie.td.TdRandomSample;
-import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.mat.Tolerance;
+import ch.alpine.tensor.nrm.AveragingWeights;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.c.ExponentialDistribution;

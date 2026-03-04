@@ -5,9 +5,9 @@ import java.util.Objects;
 
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
+import ch.alpine.tensor.nrm.AveragingWeights;
 
 /** ONLY FOR TESTING */
 public record MetricCoordinate(Genesis genesis) implements Genesis {

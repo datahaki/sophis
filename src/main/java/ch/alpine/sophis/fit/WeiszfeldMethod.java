@@ -6,11 +6,11 @@ import java.util.Objects;
 import java.util.Optional;
 
 import ch.alpine.sophus.math.AffineQ;
-import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.ArgMin;
+import ch.alpine.tensor.nrm.AveragingWeights;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.red.Times;

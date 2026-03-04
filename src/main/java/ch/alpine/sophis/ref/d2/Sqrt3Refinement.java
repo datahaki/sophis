@@ -3,9 +3,9 @@ package ch.alpine.sophis.ref.d2;
 
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.math.AveragingWeights;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.nrm.AveragingWeights;
 
 public record Sqrt3Refinement(BiinvariantMean biinvariantMean) implements SurfaceMeshRefinement {
   private static final Tensor WEIGHTS = AveragingWeights.of(3);
