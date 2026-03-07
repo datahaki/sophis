@@ -12,8 +12,6 @@ import ch.alpine.tensor.sca.Clip;
 
 /** axis-aligned region of infinity extension in the direction of other axes */
 public class FreeBoundedIntervalRegion extends ImplicitFunctionRegion implements Serializable {
-  private static final Scalar HALF = Rational.HALF;
-  // ---
   private final int index;
   private final Scalar semiwidth;
   private final Scalar center;
@@ -22,7 +20,7 @@ public class FreeBoundedIntervalRegion extends ImplicitFunctionRegion implements
    * @param clip */
   public FreeBoundedIntervalRegion(int index, Clip clip) {
     this.index = Integers.requirePositiveOrZero(index);
-    semiwidth = clip.width().multiply(HALF);
+    semiwidth = clip.width().multiply(Rational.HALF);
     center = clip.min().add(semiwidth);
   }
 
