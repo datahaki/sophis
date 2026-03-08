@@ -4,6 +4,7 @@ package ch.alpine.sophis.ref.d1;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -11,7 +12,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.ext.Integers;
-import ch.alpine.tensor.itp.BinaryAverage;
 
 /** C1 interpolatory four-point scheme
  * Dubuc 1986, Dyn/Gregory/Levin 1987
@@ -42,11 +42,11 @@ public class FourPointCurveSubdivision extends BSpline1CurveSubdivision {
   private final static Scalar P5_4 = Rational.of(+5, 4);
   private final static Scalar P3_4 = Rational.of(+3, 4);
   // ---
-  protected final BinaryAverage geodesicSpace;
+  protected final GeodesicSpace geodesicSpace;
   private final Scalar lambda;
   private final Scalar _1_lam;
 
-  public FourPointCurveSubdivision(BinaryAverage geodesicSpace, Scalar omega) {
+  public FourPointCurveSubdivision(GeodesicSpace geodesicSpace, Scalar omega) {
     super(geodesicSpace);
     this.geodesicSpace = geodesicSpace;
     Scalar two_omega = omega.add(omega);
@@ -57,7 +57,7 @@ public class FourPointCurveSubdivision extends BSpline1CurveSubdivision {
   /** standard four point scheme with omega = 1/16
    * 
    * @param geodesicSpace */
-  public FourPointCurveSubdivision(BinaryAverage geodesicSpace) {
+  public FourPointCurveSubdivision(GeodesicSpace geodesicSpace) {
     this(geodesicSpace, P1_16);
   }
 

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.chq.ScalarQ;
 import ch.alpine.tensor.ext.Integers;
-import ch.alpine.tensor.itp.BinaryAverage;
 
 /** Reference:
  * "A theoretical development for the computer generation of piecewise polynomial surfaces"
@@ -21,7 +21,7 @@ public class LaneRiesenfeldCurveSubdivision implements CurveSubdivision, Seriali
    * @param degree strictly positive
    * @return
    * @throws Exception if geodesicSpace is null */
-  public static CurveSubdivision of(BinaryAverage binaryAverage, int degree) {
+  public static CurveSubdivision of(GeodesicSpace binaryAverage, int degree) {
     return new LaneRiesenfeldCurveSubdivision(binaryAverage, Integers.requirePositive(degree));
   }
 
@@ -30,7 +30,7 @@ public class LaneRiesenfeldCurveSubdivision implements CurveSubdivision, Seriali
   private final BSpline1CurveSubdivision bSpline1CurveSubdivision;
   private final int degree;
 
-  private LaneRiesenfeldCurveSubdivision(BinaryAverage geodesicSpace, int degree) {
+  private LaneRiesenfeldCurveSubdivision(GeodesicSpace geodesicSpace, int degree) {
     bSpline1CurveSubdivision = new BSpline1CurveSubdivision(geodesicSpace);
     this.degree = degree;
   }

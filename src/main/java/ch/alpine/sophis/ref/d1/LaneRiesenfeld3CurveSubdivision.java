@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.chq.ScalarQ;
 import ch.alpine.tensor.ext.Integers;
-import ch.alpine.tensor.itp.BinaryAverage;
 
 /** subdivision scheme with linear subdivision for mid-point insertion and
  * LaneRiesenfeldCurveSubdivision with degree 3 for vertex reposition.
@@ -25,14 +25,14 @@ import ch.alpine.tensor.itp.BinaryAverage;
 public final class LaneRiesenfeld3CurveSubdivision extends AbstractBSpline3CurveSubdivision implements Serializable {
   /** @param geodesicSpace
    * @return */
-  public static CurveSubdivision of(BinaryAverage geodesicSpace) {
+  public static CurveSubdivision of(GeodesicSpace geodesicSpace) {
     return new LaneRiesenfeld3CurveSubdivision(Objects.requireNonNull(geodesicSpace));
   }
 
   // ---
-  private final BinaryAverage geodesicSpace;
+  private final GeodesicSpace geodesicSpace;
 
-  private LaneRiesenfeld3CurveSubdivision(BinaryAverage geodesicSpace) {
+  private LaneRiesenfeld3CurveSubdivision(GeodesicSpace geodesicSpace) {
     this.geodesicSpace = geodesicSpace;
   }
 

@@ -4,6 +4,7 @@ package ch.alpine.sophis.ref.d1;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -11,7 +12,6 @@ import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.chq.ScalarQ;
 import ch.alpine.tensor.ext.Integers;
-import ch.alpine.tensor.itp.BinaryAverage;
 
 /** quintic B-spline is implemented as an extension of
  * cubic B-spline refinement */
@@ -22,7 +22,7 @@ public class BSpline5CurveSubdivision extends BSpline3CurveSubdivision {
   private static final Scalar _1_16 = Rational.of(1, 16);
 
   /** @param geodesicSpace */
-  public BSpline5CurveSubdivision(BinaryAverage geodesicSpace) {
+  public BSpline5CurveSubdivision(GeodesicSpace geodesicSpace) {
     super(geodesicSpace);
   }
 
