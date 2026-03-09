@@ -16,13 +16,13 @@ import ch.alpine.tensor.ext.Integers;
 /** Reference:
  * "A theoretical development for the computer generation of piecewise polynomial surfaces"
  * by J. M. Lane and R. F. Riesenfeld; IEEE Trans. Pattern Anal. Machine Intell. 2 (1980), 35-46 */
-public class LaneRiesenfeldCurveSubdivision implements CurveSubdivision, Serializable {
-  /** @param binaryAverage
+public final class LaneRiesenfeldCurveSubdivision implements CurveSubdivision, Serializable {
+  /** @param geodesicSpace
    * @param degree strictly positive
    * @return
    * @throws Exception if geodesicSpace is null */
-  public static CurveSubdivision of(GeodesicSpace binaryAverage, int degree) {
-    return new LaneRiesenfeldCurveSubdivision(binaryAverage, Integers.requirePositive(degree));
+  public static CurveSubdivision of(GeodesicSpace geodesicSpace, int degree) {
+    return new LaneRiesenfeldCurveSubdivision(geodesicSpace, Integers.requirePositive(degree));
   }
 
   // ---
