@@ -72,6 +72,7 @@ public class KMeans {
   }
 
   public int complete() {
+    // FIXME NO INFINITE LOOP !!!
     int count = 0;
     if (Objects.isNull(labels)) {
       iterate();

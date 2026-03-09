@@ -31,7 +31,7 @@ class CatmullClarkRefinementTest {
 
   @Test
   void testCube() {
-    SurfaceMesh surfaceMesh = PlyFormat.parse(ResourceData.lines("/ch/alpine/sophus/mesh/unitcube.ply"));
+    SurfaceMesh surfaceMesh = PlyFormat.parse(ResourceData.lines("ch/alpine/sophus/mesh/unitcube.ply"));
     assertTrue(surfaceMesh.boundary().isEmpty());
     SurfaceMeshRefinement surfaceMeshRefinement = new CatmullClarkRefinement(LinearBiinvariantMean.INSTANCE);
     SurfaceMesh refine1 = surfaceMeshRefinement.refine(surfaceMesh);
