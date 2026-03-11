@@ -9,14 +9,11 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Last;
 
-/** polygon not necessarily convex
- * 
- * computes signed area circumscribed by given polygon
- * area is positive when polygon is in counter-clockwise direction */
 public enum PolygonArea {
   ;
-  /** @param polygon
-   * @return */
+  /** @param polygon not necessarily convex
+   * @return computes signed area circumscribed by given polygon
+   * area is positive when polygon is in counter-clockwise direction */
   public static Scalar of(Tensor polygon) {
     if (Tensors.isEmpty(polygon))
       return RealScalar.ZERO;
