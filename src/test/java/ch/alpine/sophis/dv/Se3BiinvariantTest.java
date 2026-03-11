@@ -55,8 +55,8 @@ class Se3BiinvariantTest {
     assertEquals(linearSubspace.dimensions(), 6);
     Distribution distribution = NormalDistribution.of(0, 0.1);
     Tensor vs = linearSubspace.slash(RandomVariate.of(distribution, n, 6));
-    Tensor sequence = LIE_GROUP.exponential0().exp().slash(vs);
-    Tensor point = LIE_GROUP.exponential0().exp(linearSubspace.apply(RandomVariate.of(distribution, 6)));
+    Tensor sequence = LIE_GROUP.lieExponential().exp().slash(vs);
+    Tensor point = LIE_GROUP.lieExponential().exp(linearSubspace.apply(RandomVariate.of(distribution, 6)));
     LIE_GROUP.isPointQ().require(point);
     Tensor weights = barycentricCoordinate.weights(sequence, point);
     // Tensor points = RandomSample.of(RSI_Se3A, random, n);

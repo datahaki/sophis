@@ -70,7 +70,7 @@ class AffineCoordinateTest {
     Distribution distribution = NormalDistribution.of(0.0, 0.3);
     for (int d = 3; d <= 5; ++d)
       for (int n = d + 1; n < 10; ++n) {
-        Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, d).stream().map(RGroup.INSTANCE.exponential0()::exp));
+        Tensor sequence = Tensor.of(RandomVariate.of(distribution, n, d).stream().map(RGroup.INSTANCE.lieExponential()::exp));
         Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(UniformDistribution.unit(), n));
         Optional<Tensor> optional = ITERATIVE_BIINVARIANT_MEAN.apply(sequence, weights);
         Tensor mean = optional.orElseThrow();
@@ -86,7 +86,7 @@ class AffineCoordinateTest {
     Random random = new Random(3);
     Distribution distribution = NormalDistribution.of(0.0, 0.3);
     int n = 4;
-    Tensor sequence = Tensor.of(RandomVariate.of(distribution, random, n, 3).stream().map(RGroup.INSTANCE.exponential0()::exp));
+    Tensor sequence = Tensor.of(RandomVariate.of(distribution, random, n, 3).stream().map(RGroup.INSTANCE.lieExponential()::exp));
     Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(UniformDistribution.unit(), random, n));
     Optional<Tensor> optional = ITERATIVE_BIINVARIANT_MEAN.apply(sequence, weights);
     Tensor mean = optional.orElseThrow();
