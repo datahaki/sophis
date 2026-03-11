@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2BiinvariantMeans;
 import ch.alpine.sophus.lie.se2.Se2Group;
@@ -17,7 +18,7 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
 
 class CurveSubdivisionTest {
-  private static void _checkSym(CurveSubdivision cs, Tensor tensor) {
+  private static void _checkSym(CurveOperator cs, Tensor tensor) {
     Tensor forward = cs.string(tensor);
     Tensor reverse = cs.string(Reverse.of(tensor));
     Chop._12.requireClose(Reverse.of(forward), reverse);
@@ -38,7 +39,7 @@ class CurveSubdivisionTest {
     }
   }
 
-  public static final CurveSubdivision[] CURVE_SUBDIVISIONS = { //
+  public static final CurveOperator[] CURVE_SUBDIVISIONS = { //
       new BSpline1CurveSubdivision(Se2Group.INSTANCE), //
       new BSpline2CurveSubdivision(Se2Group.INSTANCE), //
       new BSpline3CurveSubdivision(Se2Group.INSTANCE), //
@@ -61,7 +62,7 @@ class CurveSubdivisionTest {
 
   @Test
   void testNullFail() {
-    for (CurveSubdivision curveSubdivision : CURVE_SUBDIVISIONS) {
+    for (CurveOperator curveSubdivision : CURVE_SUBDIVISIONS) {
       assertThrows(Exception.class, () -> curveSubdivision.string(null));
       assertThrows(Exception.class, () -> curveSubdivision.cyclic(null));
     }
@@ -69,7 +70,7 @@ class CurveSubdivisionTest {
 
   @Test
   void testScalarFail() {
-    for (CurveSubdivision curveSubdivision : CURVE_SUBDIVISIONS) {
+    for (CurveOperator curveSubdivision : CURVE_SUBDIVISIONS) {
       assertThrows(Exception.class, () -> curveSubdivision.string(Pi.HALF));
       assertThrows(Exception.class, () -> curveSubdivision.cyclic(Pi.VALUE));
     }

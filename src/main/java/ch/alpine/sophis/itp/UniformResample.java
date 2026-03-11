@@ -4,7 +4,7 @@ package ch.alpine.sophis.itp;
 import java.io.Serializable;
 import java.util.Objects;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -19,12 +19,12 @@ import ch.alpine.tensor.sca.Sign;
 
 /** inspired by
  * <a href="https://reference.wolfram.com/language/ref/Resampling.html">Resampling</a> */
-public class UniformResample implements CurveSubdivision, Serializable {
+public class UniformResample implements CurveOperator, Serializable {
   /** @param tensorMetric
    * @param binaryAverage
    * @param spacing positive
    * @return */
-  public static CurveSubdivision of(TensorMetric tensorMetric, BinaryAverage binaryAverage, Scalar spacing) {
+  public static CurveOperator of(TensorMetric tensorMetric, BinaryAverage binaryAverage, Scalar spacing) {
     return new UniformResample( //
         Objects.requireNonNull(tensorMetric), //
         Objects.requireNonNull(binaryAverage), //

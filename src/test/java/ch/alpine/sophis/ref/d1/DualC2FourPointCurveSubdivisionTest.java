@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -16,21 +17,21 @@ import ch.alpine.tensor.red.Total;
 class DualC2FourPointCurveSubdivisionTest {
   @Test
   void testSimple() {
-    CurveSubdivision curveSubdivision = DualC2FourPointCurveSubdivision.cubic(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = DualC2FourPointCurveSubdivision.cubic(RGroup.INSTANCE);
     Tensor cyclic = curveSubdivision.cyclic(UnitVector.of(10, 1));
     assertEquals(Total.of(cyclic), RealScalar.of(2));
   }
 
   @Test
   void testSpecs() {
-    CurveSubdivision curveSubdivision = DualC2FourPointCurveSubdivision.cubic(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = DualC2FourPointCurveSubdivision.cubic(RGroup.INSTANCE);
     Tensor cyclic = curveSubdivision.cyclic(UnitVector.of(6, 3));
     assertEquals(cyclic, Tensors.fromString("{0, 0, -5/128, -7/128, 35/128, 105/128, 105/128, 35/128, -7/128, -5/128, 0, 0}"));
   }
 
   @Test
   void testTightest() {
-    CurveSubdivision curveSubdivision = DualC2FourPointCurveSubdivision.tightest(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = DualC2FourPointCurveSubdivision.tightest(RGroup.INSTANCE);
     curveSubdivision.cyclic(UnitVector.of(4, 2));
   }
 

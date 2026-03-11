@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
@@ -12,7 +13,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.chq.ExactTensorQ;
 
 class Split2HiDual3PointCurveSubdivisionTest {
-  private static final CurveSubdivision CURVE_SUBDIVISION = //
+  private static final CurveOperator CURVE_SUBDIVISION = //
       Split2HiDual3PointCurveSubdivision.of(RGroup.INSTANCE, Rational.of(1, 3), Rational.of(1, 4));
 
   @Test

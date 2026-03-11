@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.crv.clt.Clothoid;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -33,7 +34,7 @@ public enum BSpline4CurveSubdivision {
    * 
    * @param geodesicSpace
    * @return */
-  public static CurveSubdivision split2lo(BinaryAverage geodesicSpace) {
+  public static CurveOperator split2lo(BinaryAverage geodesicSpace) {
     return Split2LoDual3PointCurveSubdivision.of(geodesicSpace, P2_3, P1_16);
   }
 
@@ -43,7 +44,7 @@ public enum BSpline4CurveSubdivision {
 
   /** @param geodesicSpace
    * @return */
-  public static CurveSubdivision split2hi(BinaryAverage geodesicSpace) {
+  public static CurveOperator split2hi(BinaryAverage geodesicSpace) {
     return Split2HiDual3PointCurveSubdivision.of(geodesicSpace, P11_16, P1_11);
   }
 
@@ -56,7 +57,7 @@ public enum BSpline4CurveSubdivision {
    * 
    * @param geodesicSpace
    * @return */
-  public static CurveSubdivision split3(BinaryAverage geodesicSpace) {
+  public static CurveOperator split3(BinaryAverage geodesicSpace) {
     return split3(geodesicSpace, Rational.HALF);
   }
 
@@ -65,7 +66,7 @@ public enum BSpline4CurveSubdivision {
    * @param geodesicSpace
    * @param value in the interval [1/16, 11/16] give the best results
    * @return */
-  public static CurveSubdivision split3(BinaryAverage geodesicSpace, Scalar value) {
+  public static CurveOperator split3(BinaryAverage geodesicSpace, Scalar value) {
     return Split3Dual3PointCurveSubdivision.of(geodesicSpace, //
         P5.divide(P16.multiply(value.subtract(RealScalar.ONE))).add(RealScalar.ONE), //
         value.multiply(P16).reciprocal(), value);

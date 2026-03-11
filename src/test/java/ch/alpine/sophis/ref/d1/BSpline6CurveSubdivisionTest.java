@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.crv.clt.ClothoidBuilder;
 import ch.alpine.sophis.crv.clt.ClothoidBuilders;
 import ch.alpine.sophus.lie.rn.RGroup;
@@ -19,7 +20,7 @@ class BSpline6CurveSubdivisionTest {
 
   @Test
   void testSimple() {
-    CurveSubdivision curveSubdivision = //
+    CurveOperator curveSubdivision = //
         BSpline6CurveSubdivision.of(RGroup.INSTANCE);
     Tensor tensor = curveSubdivision.cyclic(UnitVector.of(5, 0));
     assertEquals(tensor, //
@@ -30,14 +31,14 @@ class BSpline6CurveSubdivisionTest {
   @Test
   void testEmpty() {
     Tensor curve = Tensors.vector();
-    CurveSubdivision curveSubdivision = BSpline6CurveSubdivision.of(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = BSpline6CurveSubdivision.of(RGroup.INSTANCE);
     assertEquals(curveSubdivision.cyclic(curve), Tensors.empty());
   }
 
   @Test
   void testSingleton() {
     Tensor singleton = Tensors.of(Tensors.vector(1, 2, 3));
-    CurveSubdivision curveSubdivision = BSpline6CurveSubdivision.of(CLOTHOID_BUILDER);
+    CurveOperator curveSubdivision = BSpline6CurveSubdivision.of(CLOTHOID_BUILDER);
     assertEquals(curveSubdivision.cyclic(singleton), singleton);
   }
 

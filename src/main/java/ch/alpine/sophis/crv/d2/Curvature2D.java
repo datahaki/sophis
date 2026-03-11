@@ -4,7 +4,7 @@ package ch.alpine.sophis.crv.d2;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
@@ -12,7 +12,7 @@ import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.ext.Integers;
 
 /** @see CurvatureComb */
-public class Curvature2D extends TripleReduceExtrapolation implements CurveSubdivision {
+public class Curvature2D extends TripleReduceExtrapolation implements CurveOperator {
   public static final Curvature2D INSTANCE = new Curvature2D();
 
   private Curvature2D() {
@@ -48,5 +48,4 @@ public class Curvature2D extends TripleReduceExtrapolation implements CurveSubdi
   public Tensor string(Tensor points) {
     return INSTANCE.apply(points);
   }
-  // TODO cyclic
 }

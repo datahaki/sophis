@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Last;
@@ -16,7 +17,7 @@ import ch.alpine.tensor.ext.Integers;
  * the scheme interpolates the control points
  * 
  * Dyn/Sharon 2014 p.14 show that the contractivity factor is mu = 1/2 */
-public abstract class AbstractBSpline1CurveSubdivision implements CurveSubdivision {
+public abstract class AbstractBSpline1CurveSubdivision implements CurveOperator {
   @Override // from CurveSubdivision
   public Tensor cyclic(Tensor tensor) {
     int length = tensor.length();

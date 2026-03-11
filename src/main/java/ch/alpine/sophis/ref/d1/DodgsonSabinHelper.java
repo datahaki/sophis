@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.crv.d2.SignedCurvature2D;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Rational;
@@ -17,7 +18,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 
 /* package */ enum DodgsonSabinHelper {
   ;
-  static final CurveSubdivision BSPLINE3_EUCLIDEAN = new BSpline3CurveSubdivision(RGroup.INSTANCE);
+  static final CurveOperator BSPLINE3_EUCLIDEAN = new BSpline3CurveSubdivision(RGroup.INSTANCE);
   private static final Scalar HALF = RealScalar.of(0.5);
   private static final Scalar _1_4 = Rational.of(1, 4);
 

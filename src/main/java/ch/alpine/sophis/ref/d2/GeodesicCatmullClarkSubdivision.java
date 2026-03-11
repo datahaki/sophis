@@ -4,8 +4,8 @@ package ch.alpine.sophis.ref.d2;
 import java.util.Arrays;
 import java.util.Objects;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.ref.d1.BSpline3CurveSubdivision;
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
 import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
@@ -16,7 +16,7 @@ import ch.alpine.tensor.Unprotect;
  * by Catmull, Clark; Computer-Aided Design 16(6), 1978 */
 public class GeodesicCatmullClarkSubdivision {
   private final GeodesicSpace geodesicSpace;
-  private final CurveSubdivision curveSubdivision;
+  private final CurveOperator curveSubdivision;
 
   public GeodesicCatmullClarkSubdivision(GeodesicSpace geodesicSpace) {
     this.geodesicSpace = Objects.requireNonNull(geodesicSpace);

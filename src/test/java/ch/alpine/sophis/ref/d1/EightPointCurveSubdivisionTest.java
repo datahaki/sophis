@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -19,7 +20,7 @@ import ch.alpine.tensor.sca.Chop;
 class EightPointCurveSubdivisionTest {
   @Test
   void testSimple() {
-    CurveSubdivision curveSubdivision = new EightPointCurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new EightPointCurveSubdivision(RGroup.INSTANCE);
     Tensor cyclic = curveSubdivision.cyclic(UnitVector.of(10, 5));
     assertEquals(Total.of(cyclic), RealScalar.of(2));
     ExactTensorQ.require(cyclic);
@@ -30,7 +31,7 @@ class EightPointCurveSubdivisionTest {
 
   @Test
   void testCircle() {
-    CurveSubdivision curveSubdivision = new EightPointCurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new EightPointCurveSubdivision(RGroup.INSTANCE);
     for (int n = 40; n < 60; n += 3)
       Chop._09.requireClose(curveSubdivision.cyclic(CirclePoints.of(n)), CirclePoints.of(n * 2));
   }

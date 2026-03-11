@@ -3,6 +3,7 @@ package ch.alpine.sophis.ref.d1;
 
 import java.util.Iterator;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Last;
@@ -14,7 +15,7 @@ import ch.alpine.tensor.chq.ScalarQ;
  * only used by
  * 
  * @see BSpline2CurveSubdivision */
-public abstract class AbstractBSpline2CurveSubdivision implements CurveSubdivision {
+public abstract class AbstractBSpline2CurveSubdivision implements CurveOperator {
   @Override // from CurveSubdivision
   public final Tensor cyclic(Tensor tensor) {
     ScalarQ.thenThrow(tensor);

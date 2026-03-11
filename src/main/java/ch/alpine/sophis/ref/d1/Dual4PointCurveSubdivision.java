@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -17,7 +18,7 @@ import ch.alpine.tensor.chq.ScalarQ;
 import ch.alpine.tensor.ext.Integers;
 
 /** dual scheme */
-public class Dual4PointCurveSubdivision implements CurveSubdivision, Serializable {
+public class Dual4PointCurveSubdivision implements CurveOperator, Serializable {
   private final GeodesicSpace geodesicSpace;
   private final Scalar lo_pq;
   private final Scalar lo_rs;

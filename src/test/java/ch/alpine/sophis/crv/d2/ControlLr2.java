@@ -1,13 +1,13 @@
 // code by jph
 package ch.alpine.sophis.crv.d2;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-/* package */ enum ControlLr2 implements CurveSubdivision {
+/* package */ enum ControlLr2 implements CurveOperator {
   INSTANCE;
 
   private static final Scalar _1_4 = Rational.of(1, 4);

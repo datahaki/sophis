@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.crv.clt.ClothoidBuilder;
 import ch.alpine.sophis.crv.clt.ClothoidBuilders;
 import ch.alpine.sophus.lie.rn.RGroup;
@@ -23,7 +24,7 @@ class BSpline5CurveSubdivisionTest {
 
   @Test
   void testCyclicMask() {
-    CurveSubdivision curveSubdivision = new BSpline5CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new BSpline5CurveSubdivision(RGroup.INSTANCE);
     Tensor tensor = curveSubdivision.cyclic(Tensors.vector(1, 0, 0, 0, 0, 0, 0));
     assertEquals(tensor, Tensors.fromString( //
         "{5/8, 15/32, 3/16, 1/32, 0, 0, 0, 0, 0, 0, 0, 1/32, 3/16, 15/32}"));
@@ -31,7 +32,7 @@ class BSpline5CurveSubdivisionTest {
 
   @Test
   void testString() {
-    CurveSubdivision curveSubdivision = new BSpline5CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new BSpline5CurveSubdivision(RGroup.INSTANCE);
     for (int length = 3; length < 7; ++length) {
       Tensor tensor = curveSubdivision.cyclic(UnitVector.of(length, 2));
       ExactTensorQ.require(tensor);
@@ -42,7 +43,7 @@ class BSpline5CurveSubdivisionTest {
   @Test
   void testEmpty() {
     Tensor curve = Tensors.vector();
-    CurveSubdivision curveSubdivision = new BSpline5CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new BSpline5CurveSubdivision(RGroup.INSTANCE);
     assertEquals(curveSubdivision.string(curve), Tensors.empty());
     assertEquals(curveSubdivision.cyclic(curve), Tensors.empty());
   }
@@ -50,14 +51,14 @@ class BSpline5CurveSubdivisionTest {
   @Test
   void testSingleton() {
     Tensor singleton = Tensors.of(Tensors.vector(1, 2, 3));
-    CurveSubdivision curveSubdivision = new BSpline5CurveSubdivision(CLOTHOID_BUILDER);
+    CurveOperator curveSubdivision = new BSpline5CurveSubdivision(CLOTHOID_BUILDER);
     assertEquals(curveSubdivision.cyclic(singleton), singleton);
     assertEquals(curveSubdivision.string(singleton), singleton);
   }
 
   @Test
   void testTerminal() {
-    CurveSubdivision curveSubdivision = new BSpline5CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new BSpline5CurveSubdivision(RGroup.INSTANCE);
     Clip clip = Clips.interval(1, 2);
     for (int length = 2; length < 7; ++length) {
       Tensor tensor = curveSubdivision.string(UnitVector.of(length, 0));

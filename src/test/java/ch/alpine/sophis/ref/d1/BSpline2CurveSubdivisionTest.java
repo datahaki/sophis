@@ -10,6 +10,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.hs.h.HManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Rational;
@@ -30,7 +31,7 @@ import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.red.Nest;
 
 class BSpline2CurveSubdivisionTest {
-  private static final CurveSubdivision CURVE_SUBDIVISION = new BSpline2CurveSubdivision(RGroup.INSTANCE);
+  private static final CurveOperator CURVE_SUBDIVISION = new BSpline2CurveSubdivision(RGroup.INSTANCE);
 
   @Test
   void testSubdiv() {

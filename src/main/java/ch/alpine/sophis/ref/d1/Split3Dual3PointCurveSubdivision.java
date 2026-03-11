@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -13,7 +14,7 @@ public class Split3Dual3PointCurveSubdivision extends Dual3PointCurveSubdivision
    * @param qr_f
    * @param pqqr
    * @return */
-  public static CurveSubdivision of(BinaryAverage binaryAverage, Scalar pq_f, Scalar qr_f, Scalar pqqr) {
+  public static CurveOperator of(BinaryAverage binaryAverage, Scalar pq_f, Scalar qr_f, Scalar pqqr) {
     return new Split3Dual3PointCurveSubdivision(binaryAverage, pq_f, qr_f, pqqr);
   }
 

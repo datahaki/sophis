@@ -5,6 +5,7 @@ package ch.alpine.sophis.ref.d1;
 import java.util.ArrayList;
 import java.util.List;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.ext.Integers;
@@ -17,7 +18,7 @@ import ch.alpine.tensor.ext.Integers;
  * control points are in R^2
  * 
  * subdivision along geodesics in metric spaces other than Euclidean is not defined */
-public enum DodgsonSabinCurveSubdivision implements CurveSubdivision {
+public enum DodgsonSabinCurveSubdivision implements CurveOperator {
   INSTANCE;
 
   @Override // from CurveSubdivision

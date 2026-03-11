@@ -9,6 +9,7 @@ import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -26,7 +27,7 @@ import ch.alpine.tensor.red.Nest;
 class FourPointCurveSubdivisionTest {
   @Test
   void testSimple() {
-    CurveSubdivision curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
     Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = Nest.of(curveSubdivision::cyclic, tensor, 1);
@@ -36,7 +37,7 @@ class FourPointCurveSubdivisionTest {
 
   @Test
   void testString() {
-    CurveSubdivision curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
     Tensor vector = Tensors.vector(0, 1, 2, 3);
     Tensor string = curveSubdivision.string(vector);
     assertEquals(string, Subdivide.of(0, 3, 6));
@@ -45,7 +46,7 @@ class FourPointCurveSubdivisionTest {
 
   @Test
   void testStringTwo() {
-    CurveSubdivision curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
     Tensor vector = Tensors.vector(0, 1);
     Tensor string = curveSubdivision.string(vector);
     assertEquals(string, Subdivide.of(0, 1, 2));
@@ -54,7 +55,7 @@ class FourPointCurveSubdivisionTest {
 
   @Test
   void testStringOne() {
-    CurveSubdivision curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
     Tensor vector = Tensors.vector(3);
     Tensor string = curveSubdivision.string(vector);
     assertEquals(string, Tensors.vector(3));
@@ -75,7 +76,7 @@ class FourPointCurveSubdivisionTest {
 
   @Test
   void testCyclic() {
-    CurveSubdivision curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new FourPointCurveSubdivision(RGroup.INSTANCE);
     for (int n = 3; n < 10; ++n) {
       Tensor tensor = curveSubdivision.cyclic(CirclePoints.of(n));
       Tensor filter = Tensor.of(IntStream.range(0, tensor.length() / 2) //

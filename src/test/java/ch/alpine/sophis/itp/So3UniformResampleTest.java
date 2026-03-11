@@ -8,7 +8,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.lie.so.So3Group;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -19,7 +19,7 @@ class So3UniformResampleTest {
   @Disabled
   @Test
   void testSimple() {
-    CurveSubdivision curveSubdivision = //
+    CurveOperator curveSubdivision = //
         UniformResample.of(So3Group.INSTANCE, So3Group.INSTANCE, RealScalar.ONE);
     Tensor vector = RandomSample.of(So3Group.INSTANCE, 20);
     Tensor string = curveSubdivision.string(vector);

@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -22,7 +23,7 @@ import ch.alpine.tensor.red.Nest;
 class HormannSabinCurveSubdivisionTest {
   @Test
   void testSimple() {
-    CurveSubdivision curveSubdivision = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
     Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = Nest.of(curveSubdivision::cyclic, tensor, 1);
@@ -37,21 +38,21 @@ class HormannSabinCurveSubdivisionTest {
 
   @Test
   void testDefault() {
-    CurveSubdivision cs0 = HormannSabinCurveSubdivision.of(RGroup.INSTANCE);
-    CurveSubdivision cs1 = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
+    CurveOperator cs0 = HormannSabinCurveSubdivision.of(RGroup.INSTANCE);
+    CurveOperator cs1 = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
     assertEquals(cs0.string(UnitVector.of(10, 5)), cs1.string(UnitVector.of(10, 5)));
   }
 
   @Test
   void testSplit2Hi() {
-    CurveSubdivision cs0 = HormannSabinCurveSubdivision.of(RGroup.INSTANCE);
-    CurveSubdivision cs1 = HormannSabinCurveSubdivision.split2(RGroup.INSTANCE);
+    CurveOperator cs0 = HormannSabinCurveSubdivision.of(RGroup.INSTANCE);
+    CurveOperator cs1 = HormannSabinCurveSubdivision.split2(RGroup.INSTANCE);
     assertEquals(cs0.string(UnitVector.of(10, 5)), cs1.string(UnitVector.of(10, 5)));
   }
 
   @Test
   void testString() {
-    CurveSubdivision curveSubdivision = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
     Tensor vector = Tensors.vector(0, 1, 2, 3);
     Tensor string = curveSubdivision.string(vector);
     assertEquals(string, Tensors.fromString("{1/4, 3/4, 5/4, 7/4, 9/4, 11/4}"));
@@ -60,7 +61,7 @@ class HormannSabinCurveSubdivisionTest {
 
   @Test
   void testStringTwo() {
-    CurveSubdivision curveSubdivision = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
     Tensor vector = Tensors.vector(0, 1);
     Tensor string = curveSubdivision.string(vector);
     assertEquals(string, Tensors.fromString("{1/4, 3/4}"));
@@ -69,7 +70,7 @@ class HormannSabinCurveSubdivisionTest {
 
   @Test
   void testStringOne() {
-    CurveSubdivision curveSubdivision = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE);
     Tensor vector = Tensors.vector(3);
     Tensor string = curveSubdivision.string(vector);
     assertEquals(string, Tensors.vector(3));

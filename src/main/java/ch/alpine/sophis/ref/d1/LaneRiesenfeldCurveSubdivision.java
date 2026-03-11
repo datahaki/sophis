@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
@@ -16,12 +17,12 @@ import ch.alpine.tensor.ext.Integers;
 /** Reference:
  * "A theoretical development for the computer generation of piecewise polynomial surfaces"
  * by J. M. Lane and R. F. Riesenfeld; IEEE Trans. Pattern Anal. Machine Intell. 2 (1980), 35-46 */
-public final class LaneRiesenfeldCurveSubdivision implements CurveSubdivision, Serializable {
+public final class LaneRiesenfeldCurveSubdivision implements CurveOperator, Serializable {
   /** @param geodesicSpace
    * @param degree strictly positive
    * @return
    * @throws Exception if geodesicSpace is null */
-  public static CurveSubdivision of(GeodesicSpace geodesicSpace, int degree) {
+  public static CurveOperator of(GeodesicSpace geodesicSpace, int degree) {
     return new LaneRiesenfeldCurveSubdivision(geodesicSpace, Integers.requirePositive(degree));
   }
 

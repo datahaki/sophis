@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.crv.clt.ClothoidBuilder;
 import ch.alpine.sophis.crv.clt.ClothoidBuilders;
 import ch.alpine.sophus.hs.r3s2.R3S2Geodesic;
@@ -39,7 +40,7 @@ class BSpline3CurveSubdivisionTest {
 
   @Test
   void testSimple() {
-    CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
     Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = Nest.of(curveSubdivision::cyclic, tensor, 1);
@@ -51,7 +52,7 @@ class BSpline3CurveSubdivisionTest {
   @Test
   void testString() {
     Tensor curve = Tensors.vector(0, 1, 2, 3);
-    CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
     Tensor refined = curveSubdivision.string(curve);
     assertEquals(refined, Tensors.fromString("{0, 1/2, 1, 3/2, 2, 5/2, 3}"));
     ExactTensorQ.require(refined);
@@ -60,7 +61,7 @@ class BSpline3CurveSubdivisionTest {
   @Test
   void testStringTwo() {
     Tensor curve = Tensors.vector(0, 1);
-    CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
     Tensor refined = curveSubdivision.string(curve);
     assertEquals(refined, Tensors.fromString("{0, 1/2, 1}"));
     ExactTensorQ.require(refined);
@@ -69,7 +70,7 @@ class BSpline3CurveSubdivisionTest {
   @Test
   void testStringOne() {
     Tensor curve = Tensors.vector(1);
-    CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
     Tensor refined = curveSubdivision.string(curve);
     assertEquals(refined, Tensors.fromString("{1}"));
     ExactTensorQ.require(refined);
@@ -78,7 +79,7 @@ class BSpline3CurveSubdivisionTest {
   @Test
   void testEmpty() {
     Tensor curve = Tensors.vector();
-    CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
     assertEquals(curveSubdivision.string(curve), Tensors.empty());
     assertEquals(curveSubdivision.cyclic(curve), Tensors.empty());
   }
@@ -86,7 +87,7 @@ class BSpline3CurveSubdivisionTest {
   @Test
   void testSingleton() {
     Tensor singleton = Tensors.of(Tensors.vector(1, 2, 3));
-    CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(CLOTHOID_BUILDER);
+    CurveOperator curveSubdivision = new BSpline3CurveSubdivision(CLOTHOID_BUILDER);
     assertEquals(curveSubdivision.cyclic(singleton), singleton);
     assertEquals(curveSubdivision.string(singleton), singleton);
   }
@@ -118,14 +119,14 @@ class BSpline3CurveSubdivisionTest {
     final Tensor bs;
     final Tensor lr;
     {
-      CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
+      CurveOperator curveSubdivision = new BSpline3CurveSubdivision(RGroup.INSTANCE);
       Timing timing = Timing.started();
       bs = Nest.of(curveSubdivision::string, tensor, depth);
       timing.stop();
       // System.out.println("bs=" + timing.seconds());
     }
     {
-      CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 3);
+      CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 3);
       Timing timing = Timing.started();
       lr = Nest.of(curveSubdivision::string, tensor, depth);
       timing.stop();
@@ -142,14 +143,14 @@ class BSpline3CurveSubdivisionTest {
     final Tensor bs;
     final Tensor lr;
     {
-      CurveSubdivision curveSubdivision = new BSpline3CurveSubdivision(Se2CoveringGroup.INSTANCE);
+      CurveOperator curveSubdivision = new BSpline3CurveSubdivision(Se2CoveringGroup.INSTANCE);
       Timing timing = Timing.started();
       bs = Nest.of(curveSubdivision::string, tensor, depth);
       timing.stop();
       // System.out.println("bs=" + timing.seconds());
     }
     {
-      CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(Se2CoveringGroup.INSTANCE, 3);
+      CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(Se2CoveringGroup.INSTANCE, 3);
       Timing timing = Timing.started();
       lr = Nest.of(curveSubdivision::string, tensor, depth);
       timing.stop();

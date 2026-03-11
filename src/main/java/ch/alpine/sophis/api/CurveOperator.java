@@ -1,10 +1,10 @@
 // code by jph
-package ch.alpine.sophis.ref.d1;
+package ch.alpine.sophis.api;
 
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
-public interface CurveSubdivision {
+public interface CurveOperator {
   /** @param tensor
    * @return one round of subdivision of closed curve defined by given tensor */
   Tensor cyclic(Tensor tensor);

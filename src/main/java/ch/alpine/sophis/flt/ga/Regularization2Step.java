@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -25,7 +25,7 @@ import ch.alpine.tensor.ext.PackageTestAccess;
  * 
  * @param geodesicSpace
  * @param factor for instance 2/3 */
-public record Regularization2Step(GeodesicSpace geodesicSpace, Scalar factor) implements CurveSubdivision, Serializable {
+public record Regularization2Step(GeodesicSpace geodesicSpace, Scalar factor) implements CurveOperator, Serializable {
   /** @param prev
    * @param curr
    * @param next

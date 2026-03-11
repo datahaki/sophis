@@ -3,6 +3,7 @@ package ch.alpine.sophis.ref.d1;
 
 import java.util.Objects;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
@@ -16,7 +17,7 @@ public class MSpline4CurveSubdivision extends Dual3PointCurveSubdivision {
 
   /** @param biinvariantMean
    * @return */
-  public static CurveSubdivision of(BiinvariantMean biinvariantMean) {
+  public static CurveOperator of(BiinvariantMean biinvariantMean) {
     BinaryAverage binaryAverage = (p, q, scalar) -> //
     biinvariantMean.mean(Unprotect.byRef(p, q), Tensors.of(RealScalar.ONE.subtract(scalar), scalar));
     return new MSpline4CurveSubdivision(binaryAverage, biinvariantMean);

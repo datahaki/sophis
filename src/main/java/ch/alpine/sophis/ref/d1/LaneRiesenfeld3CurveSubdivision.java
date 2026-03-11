@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
@@ -25,7 +26,7 @@ import ch.alpine.tensor.ext.Integers;
 public final class LaneRiesenfeld3CurveSubdivision extends AbstractBSpline3CurveSubdivision implements Serializable {
   /** @param geodesicSpace
    * @return */
-  public static CurveSubdivision of(GeodesicSpace geodesicSpace) {
+  public static CurveOperator of(GeodesicSpace geodesicSpace) {
     return new LaneRiesenfeld3CurveSubdivision(Objects.requireNonNull(geodesicSpace));
   }
 

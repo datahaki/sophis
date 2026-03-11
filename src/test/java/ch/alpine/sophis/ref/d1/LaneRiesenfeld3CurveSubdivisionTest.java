@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.hs.r3s2.R3S2Geodesic;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.RealScalar;
@@ -29,7 +30,7 @@ import ch.alpine.tensor.red.Nest;
 class LaneRiesenfeld3CurveSubdivisionTest {
   @Test
   void testSimple() {
-    CurveSubdivision curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
     Tensor tensor = CirclePoints.of(4).maps(operator);
     Tensor actual = Nest.of(curveSubdivision::cyclic, tensor, 1);
@@ -41,7 +42,7 @@ class LaneRiesenfeld3CurveSubdivisionTest {
   @Test
   void testString() {
     Tensor curve = Tensors.vector(0, 1, 2, 3);
-    CurveSubdivision curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
     Tensor refined = curveSubdivision.string(curve);
     assertEquals(refined, Tensors.fromString("{0, 1/2, 1, 3/2, 2, 5/2, 3}"));
     ExactTensorQ.require(refined);
@@ -50,7 +51,7 @@ class LaneRiesenfeld3CurveSubdivisionTest {
   @Test
   void testStringTwo() {
     Tensor curve = Tensors.vector(0, 1);
-    CurveSubdivision curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
     Tensor refined = curveSubdivision.string(curve);
     assertEquals(refined, Tensors.fromString("{0, 1/2, 1}"));
     ExactTensorQ.require(refined);
@@ -59,7 +60,7 @@ class LaneRiesenfeld3CurveSubdivisionTest {
   @Test
   void testStringOne() {
     Tensor curve = Tensors.vector(1);
-    CurveSubdivision curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
     Tensor refined = curveSubdivision.string(curve);
     assertEquals(refined, Tensors.fromString("{1}"));
     ExactTensorQ.require(refined);
@@ -68,7 +69,7 @@ class LaneRiesenfeld3CurveSubdivisionTest {
   @Test
   void testEmpty() {
     Tensor curve = Tensors.vector();
-    CurveSubdivision curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = LaneRiesenfeld3CurveSubdivision.of(RGroup.INSTANCE);
     assertEquals(curveSubdivision.string(curve), Tensors.empty());
     assertEquals(curveSubdivision.cyclic(curve), Tensors.empty());
   }

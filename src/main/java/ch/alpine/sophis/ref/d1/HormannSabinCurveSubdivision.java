@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -20,7 +21,7 @@ public enum HormannSabinCurveSubdivision {
   private static final Scalar P6_7 = Rational.of(6, 7);
   private static final Scalar N3_32 = Rational.of(-3, 32);
 
-  public static CurveSubdivision of(BinaryAverage binaryAverage) {
+  public static CurveOperator of(BinaryAverage binaryAverage) {
     return Split2LoDual3PointCurveSubdivision.of(binaryAverage, P6_7, N3_32);
   }
 
@@ -29,7 +30,7 @@ public enum HormannSabinCurveSubdivision {
 
   /** @param binaryAverage
    * @return three-point scheme */
-  public static CurveSubdivision split3(BinaryAverage binaryAverage) {
+  public static CurveOperator split3(BinaryAverage binaryAverage) {
     Scalar omega = OMEGA;
     Scalar pq_f = Rational.HALF.add(RealScalar.of(6).multiply(omega));
     Scalar qr_f = RealScalar.of(6).multiply(omega).negate();
@@ -41,7 +42,7 @@ public enum HormannSabinCurveSubdivision {
   private static final Scalar P27_32 = Rational.of(27, 32);
   private static final Scalar N1_9 = Rational.of(-1, 9);
 
-  public static CurveSubdivision split2(BinaryAverage binaryAverage) {
+  public static CurveOperator split2(BinaryAverage binaryAverage) {
     return Split2HiDual3PointCurveSubdivision.of(binaryAverage, P27_32, N1_9);
   }
 }

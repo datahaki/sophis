@@ -6,7 +6,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 
 /* ONLY FOR TESTING */
-public class GeodesicBSplineInterpolation extends AbstractBSplineInterpolation {
+class GeodesicBSplineInterpolation extends AbstractBSplineInterpolation {
   /** @param geodesicSpace
    * @param degree
    * @param target */

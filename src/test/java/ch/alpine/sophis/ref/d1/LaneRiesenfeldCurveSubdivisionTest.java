@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.crv.clt.ClothoidBuilder;
 import ch.alpine.sophis.crv.clt.ClothoidBuilders;
 import ch.alpine.sophus.lie.rn.RGroup;
@@ -19,7 +20,7 @@ class LaneRiesenfeldCurveSubdivisionTest {
 
   @Test
   void testDeg1() {
-    CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 1);
+    CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 1);
     Tensor string = curveSubdivision.string(Tensors.vector(1, 2, 3, 4));
     assertEquals(string, Tensors.fromString("{1, 3/2, 2, 5/2, 3, 7/2, 4}"));
     ExactTensorQ.require(string);
@@ -27,7 +28,7 @@ class LaneRiesenfeldCurveSubdivisionTest {
 
   @Test
   void testDeg2() {
-    CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 2);
+    CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 2);
     Tensor string = curveSubdivision.string(Tensors.vector(1, 2, 3, 4));
     assertEquals(string, Tensors.fromString("{5/4, 7/4, 9/4, 11/4, 13/4, 15/4}"));
     ExactTensorQ.require(string);
@@ -35,7 +36,7 @@ class LaneRiesenfeldCurveSubdivisionTest {
 
   @Test
   void testDeg3() {
-    CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 3);
+    CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 3);
     Tensor string = curveSubdivision.string(Tensors.vector(1, 2, 3, 4));
     assertEquals(string, Tensors.fromString("{1, 3/2, 2, 5/2, 3, 7/2, 4}"));
     ExactTensorQ.require(string);
@@ -43,7 +44,7 @@ class LaneRiesenfeldCurveSubdivisionTest {
 
   @Test
   void testDeg4() {
-    CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 4);
+    CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 4);
     Tensor string = curveSubdivision.string(Tensors.vector(1, 2, 3, 4));
     assertEquals(string, Tensors.fromString("{5/4, 7/4, 9/4, 11/4, 13/4, 15/4}"));
     ExactTensorQ.require(string);
@@ -51,7 +52,7 @@ class LaneRiesenfeldCurveSubdivisionTest {
 
   @Test
   void testDeg5() {
-    CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 5);
+    CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 5);
     Tensor string = curveSubdivision.string(Tensors.vector(1, 2, 3, 4));
     assertEquals(string, Tensors.fromString("{1, 3/2, 2, 5/2, 3, 7/2, 4}"));
     ExactTensorQ.require(string);
@@ -59,7 +60,7 @@ class LaneRiesenfeldCurveSubdivisionTest {
 
   @Test
   void testCyc2() {
-    CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 2);
+    CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 2);
     Tensor cyclic = curveSubdivision.cyclic(Tensors.vector(1, 2, 3, 4));
     assertEquals(cyclic, Tensors.fromString("{5/4, 7/4, 9/4, 11/4, 13/4, 15/4, 13/4, 7/4}"));
     ExactTensorQ.require(cyclic);
@@ -67,8 +68,8 @@ class LaneRiesenfeldCurveSubdivisionTest {
 
   @Test
   void testCyc3() {
-    CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 3);
-    CurveSubdivision curveSubdivisiom = new BSpline3CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, 3);
+    CurveOperator curveSubdivisiom = new BSpline3CurveSubdivision(RGroup.INSTANCE);
     Tensor tensor = Tensors.vector(1, 2, 3, 4);
     assertEquals(curveSubdivisiom.cyclic(tensor), Tensors.fromString("{3/2, 3/2, 2, 5/2, 3, 7/2, 7/2, 5/2}"));
     Tensor cyclic = curveSubdivision.cyclic(tensor);
@@ -79,7 +80,7 @@ class LaneRiesenfeldCurveSubdivisionTest {
   @Test
   void testEmpty() {
     for (int degree = 1; degree < 4; ++degree) {
-      CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(CLOTHOID_BUILDER, degree);
+      CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(CLOTHOID_BUILDER, degree);
       assertEquals(curveSubdivision.cyclic(Tensors.empty()), Tensors.empty());
       assertEquals(curveSubdivision.string(Tensors.empty()), Tensors.empty());
     }
@@ -89,7 +90,7 @@ class LaneRiesenfeldCurveSubdivisionTest {
   void testSingleton() {
     Tensor singleton = Tensors.of(Tensors.vector(1, 2, 3));
     for (int degree = 1; degree < 4; ++degree) {
-      CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(CLOTHOID_BUILDER, degree);
+      CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(CLOTHOID_BUILDER, degree);
       assertEquals(curveSubdivision.cyclic(singleton), singleton);
       assertEquals(curveSubdivision.string(singleton), singleton);
     }
@@ -98,7 +99,7 @@ class LaneRiesenfeldCurveSubdivisionTest {
   @Test
   void testDegMatrix() {
     for (int degree = 1; degree < 6; ++degree) {
-      CurveSubdivision curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, degree);
+      CurveOperator curveSubdivision = LaneRiesenfeldCurveSubdivision.of(RGroup.INSTANCE, degree);
       for (int length = 0; length < 10; ++length) {
         Tensor tensor = Range.of(0, length);
         curveSubdivision.string(tensor);

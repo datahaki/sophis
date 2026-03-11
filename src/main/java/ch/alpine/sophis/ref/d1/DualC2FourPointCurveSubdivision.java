@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophis.ref.d1;
 
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -19,7 +20,7 @@ public enum DualC2FourPointCurveSubdivision {
    * 
    * @param geodesicSpace
    * @return */
-  public static CurveSubdivision cubic(GeodesicSpace geodesicSpace) {
+  public static CurveOperator cubic(GeodesicSpace geodesicSpace) {
     return of(geodesicSpace, Rational.of(1, 128));
   }
 
@@ -29,14 +30,14 @@ public enum DualC2FourPointCurveSubdivision {
    * 
    * @param geodesicSpace
    * @return */
-  public static CurveSubdivision tightest(GeodesicSpace geodesicSpace) {
+  public static CurveOperator tightest(GeodesicSpace geodesicSpace) {
     return of(geodesicSpace, RealScalar.of(0.013723));
   }
 
   /** @param geodesicSpace
    * @param omega tension parameter
    * @return */
-  public static CurveSubdivision of(GeodesicSpace geodesicSpace, Scalar omega) {
+  public static CurveOperator of(GeodesicSpace geodesicSpace, Scalar omega) {
     Scalar pq_f = RealScalar.of(3).add(RealScalar.of(36).multiply(omega)) //
         .divide(RealScalar.of(3).add(RealScalar.of(8).multiply(omega)));
     Scalar rs_f = RealScalar.of(20).multiply(omega) //

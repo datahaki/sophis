@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -20,20 +20,20 @@ import ch.alpine.tensor.qty.Quantity;
 class RnUniformResampleTest {
   /** @param spacing positive
    * @return */
-  public static CurveSubdivision of(Scalar spacing) {
+  public static CurveOperator of(Scalar spacing) {
     return UniformResample.of(RGroup.INSTANCE, RGroup.INSTANCE, spacing);
   }
 
   @Test
   void testString() throws ClassNotFoundException, IOException {
-    CurveSubdivision curveSubdivision = Serialization.copy(of(Quantity.of(2, "m")));
+    CurveOperator curveSubdivision = Serialization.copy(of(Quantity.of(2, "m")));
     Tensor tensor = curveSubdivision.string(Tensors.fromString("{{0[m]}, {1[m]}, {3[m]}, {6[m]}}"));
     assertEquals(ExactTensorQ.require(tensor), Tensors.fromString("{{0[m]}, {2[m]}, {4[m]}}"));
   }
 
   @Test
   void testCyclic() {
-    CurveSubdivision curveSubdivision = of(Quantity.of(2, "m"));
+    CurveOperator curveSubdivision = of(Quantity.of(2, "m"));
     Tensor tensor = curveSubdivision.cyclic(Tensors.fromString("{{0[m]}, {1[m]}, {3[m]}, {6[m]}}"));
     assertEquals(ExactTensorQ.require(tensor), Tensors.fromString("{{0[m]}, {2[m]}, {4[m]}, {6[m]}, {4[m]}, {2[m]}}"));
   }

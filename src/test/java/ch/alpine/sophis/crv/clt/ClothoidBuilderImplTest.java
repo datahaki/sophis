@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
 import ch.alpine.sophus.lie.so2.So2;
 import ch.alpine.tensor.Rational;
@@ -50,8 +50,8 @@ class ClothoidBuilderImplTest {
   @Test
   void testSimple2() {
     Tensor q = Tensors.vector(-2.05, 0, 0);
-    CurveSubdivision lrL = LaneRiesenfeldCurveSubdivision.of(ClothoidBuilders.SE2_LEGENDRE.clothoidBuilder(), 1);
-    CurveSubdivision lrA = LaneRiesenfeldCurveSubdivision.of(ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder(), 1);
+    CurveOperator lrL = LaneRiesenfeldCurveSubdivision.of(ClothoidBuilders.SE2_LEGENDRE.clothoidBuilder(), 1);
+    CurveOperator lrA = LaneRiesenfeldCurveSubdivision.of(ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder(), 1);
     {
       Tensor pL = lrL.string(Tensors.of(Array.zeros(3), q)).get(1);
       Tolerance.CHOP.requireClose(pL, Tensors.vector(-1.025, 0, 4.245082897851892));

@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.crv.d2;
 
-import ch.alpine.sophis.ref.d1.CurveSubdivision;
+import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
@@ -11,7 +11,7 @@ import ch.alpine.tensor.lie.rot.Cross;
 import ch.alpine.tensor.nrm.NormalizeUnlessZero;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
-public enum Normal2D implements CurveSubdivision {
+public enum Normal2D implements CurveOperator {
   INSTANCE;
 
   private static final TensorUnaryOperator NORMALIZE_UNLESS_ZERO = NormalizeUnlessZero.with(Vector2Norm::of);
