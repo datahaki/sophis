@@ -17,6 +17,7 @@ public enum Biinvariants {
   CUPOLA(CupolaBiinvariant::new);
 
   public static final List<Biinvariants> FAST = List.of(METRIC, USANCE, GARDEN);
+  public static final List<Biinvariants> OKAY = List.of(METRIC, USANCE, GARDEN, HARBOR);
   private final Function<Manifold, Biinvariant> supplier;
 
   Biinvariants(Function<Manifold, Biinvariant> supplier) {
