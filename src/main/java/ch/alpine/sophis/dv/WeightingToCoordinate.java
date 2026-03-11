@@ -9,7 +9,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
 
 /** Reference:
  * https://vixra.org/abs/2007.0043 */
-/* package */ record WeightingToCoordinate(InfluenceMatrix influenceMatrix) implements TensorUnaryOperator {
+record WeightingToCoordinate(InfluenceMatrix influenceMatrix) implements TensorUnaryOperator {
   /** function returns a vector vnull that satisfies
    * vnull . levers == 0
    * 

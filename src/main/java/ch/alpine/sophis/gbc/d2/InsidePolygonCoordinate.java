@@ -11,7 +11,7 @@ import ch.alpine.tensor.alg.ConstantArray;
  * 
  * @param genesis that evaluates polygon coordinates at zero (0, 0) */
 public record InsidePolygonCoordinate(Genesis genesis) implements Genesis {
-  @Override // from BarycentricCoordinate
+  @Override // from Genesis
   public Tensor origin(Tensor levers) {
     return OriginEnclosureQ.INSTANCE.test(levers) //
         ? genesis.origin(levers)

@@ -7,7 +7,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
-/* package */ enum InverseNorm implements Genesis {
+enum InverseNorm implements Genesis {
   INSTANCE;
 
   private static final ScalarUnaryOperator VARIOGRAM = InversePowerVariogram.of(1);

@@ -16,8 +16,6 @@ public enum Biinvariants {
   HARBOR(HarborBiinvariant::new),
   CUPOLA(CupolaBiinvariant::new);
 
-  public static final List<Biinvariants> FAST = List.of(METRIC, USANCE, GARDEN);
-  public static final List<Biinvariants> OKAY = List.of(METRIC, USANCE, GARDEN, HARBOR);
   private final Function<Manifold, Biinvariant> supplier;
 
   Biinvariants(Function<Manifold, Biinvariant> supplier) {
@@ -33,6 +31,9 @@ public enum Biinvariants {
   }
 
   // ---
+  public static final List<Biinvariants> FAST = List.of(METRIC, USANCE, GARDEN);
+  public static final List<Biinvariants> OKAY = List.of(METRIC, USANCE, GARDEN, HARBOR);
+
   public static Map<Biinvariants, Biinvariant> all(Manifold manifold) {
     Map<Biinvariants, Biinvariant> map = magic4(manifold);
     if (manifold instanceof MetricManifold metricManifold)

@@ -37,7 +37,7 @@ public class SPatch implements Sedarim {
   /** @param v
    * @param genesis
    * @param d typically 2 */
-  public SPatch(Tensor v, Genesis genesis, int d) {
+  private SPatch(Tensor v, Genesis genesis, int d) {
     this.n = v.length();
     this.v = v;
     this.genesis = genesis;

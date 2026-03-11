@@ -21,7 +21,8 @@ import ch.alpine.tensor.sca.pow.Sqrt;
  * IV Distance Matrices
  * "Linear Algebra Learning from Data"
  * by Gilbert Strang, 2019 */
-public class DistanceMatrixToPoints {
+public enum DistanceMatrixToPoints {
+  ;
   /** @param matrix symmetric of squared distances
    * @return list of n points of minimal dimension centered around origin
    * @see SymmetricMatrixQ */

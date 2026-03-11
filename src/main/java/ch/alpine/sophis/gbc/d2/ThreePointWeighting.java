@@ -3,7 +3,6 @@ package ch.alpine.sophis.gbc.d2;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophis.crv.d2.Det2D;
@@ -19,10 +18,6 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 /** Three-point homogeneous weights:
  * weighting satisfies barycentric equation but do not necessarily sum up to one. */
 public record ThreePointWeighting(ThreePointScaling threePointScaling) implements Genesis {
-  public ThreePointWeighting {
-    Objects.requireNonNull(threePointScaling);
-  }
-
   @Override
   public Tensor origin(Tensor levers) {
     int length = levers.length();

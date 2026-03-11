@@ -20,7 +20,6 @@ import ch.alpine.tensor.red.Times;
 public record IterativeAffineCoordinate(TensorUnaryOperator amplifier, int k) implements GenesisDeque {
   private static final Genesis GENESIS = AffineCoordinate.INSTANCE;
 
-  // ---
   public IterativeAffineCoordinate {
     Objects.requireNonNull(amplifier);
     Integers.requirePositiveOrZero(k);

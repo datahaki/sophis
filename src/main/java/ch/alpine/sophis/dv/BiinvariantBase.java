@@ -9,6 +9,11 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 
+/** use in
+ * {@link MetricBiinvariant}
+ * {@link UsanceBiinvariant}
+ * {@link GardenBiinvariant}
+ * {@link MatrixBiinvariant} */
 public abstract class BiinvariantBase implements Biinvariant, Serializable {
   private final Manifold manifold;
 
@@ -23,8 +28,8 @@ public abstract class BiinvariantBase implements Biinvariant, Serializable {
 
   @Override // from Biinvariant
   public final Sedarim var_dist(ScalarUnaryOperator variogram, Tensor sequence) {
-    Sedarim sedarim = relative_distances(sequence);
     Objects.requireNonNull(variogram);
+    Sedarim sedarim = relative_distances(sequence);
     return point -> sedarim.sunder(point).maps(variogram);
   }
 

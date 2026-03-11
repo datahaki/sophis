@@ -9,7 +9,7 @@ import ch.alpine.tensor.nrm.FrobeniusNorm;
 
 /** bi-invariant
  * results in a symmetric distance matrix -> can use for kriging and minimum spanning tree */
-/* package */ class HarborBiinvariant extends MatrixBiinvariant {
+class HarborBiinvariant extends MatrixBiinvariant {
   public HarborBiinvariant(Manifold manifold) {
     super(manifold);
   }

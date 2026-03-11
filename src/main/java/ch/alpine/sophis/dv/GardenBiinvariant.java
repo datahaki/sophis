@@ -8,7 +8,7 @@ import ch.alpine.tensor.io.MathematicaFormat;
 
 /** bi-invariant
  * results in a symmetric distance matrix -> can use for kriging */
-/* package */ class GardenBiinvariant extends BiinvariantBase {
+class GardenBiinvariant extends BiinvariantBase {
   public GardenBiinvariant(Manifold manifold) {
     super(manifold);
   }

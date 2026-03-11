@@ -16,13 +16,13 @@ import ch.alpine.tensor.mat.gr.InfluenceMatrix;
  * Reference:
  * "Biinvariant Distance Vectors"
  * by Jan Hakenberg, 2020 */
-/* package */ class BiinvariantVectorFunction implements Serializable {
+class BiinvariantVectorFunction implements Serializable {
   private final Manifold manifold;
   private final Tensor sequence;
   private final TensorMetric tensorMetric;
   private final Tensor influences;
 
-  /** @param hsDesign
+  /** @param manifold
    * @param sequence
    * @param tensorMetric */
   public BiinvariantVectorFunction(Manifold manifold, Tensor sequence, TensorMetric tensorMetric) {

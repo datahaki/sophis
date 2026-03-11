@@ -9,7 +9,7 @@ import ch.alpine.tensor.io.MathematicaFormat;
 
 /** bi-invariant
  * results in a symmetric distance matrix -> can use for kriging and minimum spanning tree */
-/* package */ class CupolaBiinvariant extends MatrixBiinvariant {
+class CupolaBiinvariant extends MatrixBiinvariant {
   public CupolaBiinvariant(Manifold manifold) {
     super(manifold);
   }

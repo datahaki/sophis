@@ -18,10 +18,10 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
  * @see InsidePolygonCoordinate */
 public enum ThreePointCoordinate {
   ;
-  /** @param biFunction
+  /** @param threePointScaling
    * @return */
-  public static Genesis of(ThreePointScaling biFunction) {
-    Genesis genesis = new ThreePointWeighting(biFunction);
+  public static Genesis of(ThreePointScaling threePointScaling) {
+    Genesis genesis = new ThreePointWeighting(threePointScaling);
     return (Genesis & Serializable) //
     levers -> NormalizeTotal.FUNCTION.apply(genesis.origin(levers));
   }

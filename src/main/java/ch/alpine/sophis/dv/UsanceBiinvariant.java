@@ -30,7 +30,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
  * 
  * "Biinvariant Distance Vectors"
  * by Jan Hakenberg, 2020 */
-/* package */ class UsanceBiinvariant extends BiinvariantBase implements Genesis {
+class UsanceBiinvariant extends BiinvariantBase implements Genesis {
   public UsanceBiinvariant(Manifold manifold) {
     super(manifold);
   }
