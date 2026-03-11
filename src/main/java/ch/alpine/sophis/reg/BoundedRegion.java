@@ -8,7 +8,7 @@ import ch.alpine.tensor.opt.nd.CoordinateBoundingBox;
  * 
  * @see CoordinateBoundingBox */
 @FunctionalInterface
-public interface RegionBounds {
+public interface BoundedRegion {
   /** @return box that contains region entirely */
   CoordinateBoundingBox coordinateBounds();
 }

@@ -24,7 +24,7 @@ import ch.alpine.tensor.sca.Sign;
  * <li>zero in a single point: the center, and
  * <li>negative nowhere
  * </ul> */
-public class BallRegion extends ImplicitRegionWithDistance implements RegionBounds {
+public class BallRegion extends ImplicitRegionWithDistance implements BoundedRegion {
   private final Tensor center;
   private final Scalar radius;
 

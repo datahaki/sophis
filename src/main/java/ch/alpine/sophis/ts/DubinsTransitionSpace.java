@@ -6,30 +6,17 @@ import java.util.Comparator;
 import java.util.Objects;
 
 import ch.alpine.sophis.crv.dub.DubinsPath;
-import ch.alpine.sophis.crv.dub.DubinsPathComparators;
 import ch.alpine.sophis.crv.dub.FixedRadiusDubins;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Sign;
 
-public class DubinsTransitionSpace implements TransitionSpace, Serializable {
-  /** @param radius positive
-   * @param comparator
-   * @return
-   * @see DubinsPathComparators */
-  public static TransitionSpace of(Scalar radius, Comparator<DubinsPath> comparator) {
-    return new DubinsTransitionSpace( //
-        Sign.requirePositive(radius), //
-        Objects.requireNonNull(comparator));
-  }
-
-  // ---
-  private final Scalar radius;
-  private final Comparator<DubinsPath> comparator;
-
-  private DubinsTransitionSpace(Scalar radius, Comparator<DubinsPath> comparator) {
-    this.radius = radius;
-    this.comparator = comparator;
+/** @param radius positive
+ * @param comparator */
+public record DubinsTransitionSpace(Scalar radius, Comparator<DubinsPath> comparator) implements TransitionSpace, Serializable {
+  public DubinsTransitionSpace {
+    Sign.requirePositive(radius);
+    Objects.requireNonNull(comparator);
   }
 
   @Override // from TransitionSpace

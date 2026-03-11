@@ -23,8 +23,8 @@ import ch.alpine.tensor.red.Min;
 import ch.alpine.tensor.sca.Sign;
 
 class WavefrontTest {
-  private static void check3d(Path file) throws IOException {
-    try (InputStream inputStream = Files.newInputStream(file)) {
+  private static void check3d(Path path) throws IOException {
+    try (InputStream inputStream = Files.newInputStream(path)) {
       Wavefront wavefront = WavefrontFormat.parse(ReadLine.of(inputStream));
       Tensor normals = wavefront.normals();
       assertEquals(Dimensions.of(normals).get(1), Integer.valueOf(3));
@@ -54,8 +54,8 @@ class WavefrontTest {
   void testLoad() throws IOException {
     Path directory = HomeDirectory.Projects.resolve("gym-duckietown", "gym_duckietown", "meshes");
     if (Files.isDirectory(directory))
-      for (Path file : Files.list(directory).toList())
-        if (file.endsWith(".obj"))
-          check3d(file);
+      for (Path path : Files.list(directory).toList())
+        if (path.endsWith(".obj"))
+          check3d(path);
   }
 }

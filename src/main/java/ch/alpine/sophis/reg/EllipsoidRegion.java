@@ -20,7 +20,7 @@ import ch.alpine.tensor.sca.Sign;
  * Notice: evaluate(...) does not correspond to Euclidean distance
  * 
  * @see BallRegion */
-public class EllipsoidRegion extends ImplicitFunctionRegion implements RegionBounds {
+public class EllipsoidRegion extends ImplicitFunctionRegion implements BoundedRegion {
   private final Tensor center;
   private final Tensor radius;
   private final Tensor invert;
