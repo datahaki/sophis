@@ -2,6 +2,7 @@
 package ch.alpine.sophis.gbc.d2;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.tensor.nrm.NormalizeTotal;
@@ -21,6 +22,7 @@ public enum ThreePointCoordinate {
   /** @param threePointScaling
    * @return */
   public static Genesis of(ThreePointScaling threePointScaling) {
+    Objects.requireNonNull(threePointScaling);
     Genesis genesis = new ThreePointWeighting(threePointScaling);
     return (Genesis & Serializable) //
     levers -> NormalizeTotal.FUNCTION.apply(genesis.origin(levers));
