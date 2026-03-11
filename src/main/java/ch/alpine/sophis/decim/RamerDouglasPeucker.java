@@ -23,7 +23,7 @@ import ch.alpine.tensor.sca.Sign;
  * worst-case complexity is O(n^2)."
  * 
  * https://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm */
-/* package */ record RamerDouglasPeucker(LineDistance lineDistance, Scalar epsilon) implements CurveDecimation {
+record RamerDouglasPeucker(LineDistance lineDistance, Scalar epsilon) implements CurveDecimation {
   public RamerDouglasPeucker {
     Sign.requirePositiveOrZero(epsilon);
   }

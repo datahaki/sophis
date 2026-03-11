@@ -14,7 +14,7 @@ import ch.alpine.tensor.sca.tri.ArcCos;
 import ch.alpine.tensor.sca.tri.ArcSin;
 import ch.alpine.tensor.sca.tri.Cos;
 
-/* package */ enum DubinsSteers {
+enum DubinsSteers {
   STEER_2_TURNS_DIFF_SIDE {
     @Override // from DubinsSteer
     public Optional<Tensor> steer(Scalar dist_tr, Scalar th_tr, Scalar th_total, Scalar radius) {

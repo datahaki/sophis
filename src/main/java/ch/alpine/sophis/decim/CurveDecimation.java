@@ -16,16 +16,15 @@ public interface CurveDecimation extends TensorUnaryOperator {
    * @param epsilon non-negative
    * @return */
   static CurveDecimation of(HomogeneousSpace homogeneousSpace, Scalar epsilon) {
-    return new RamerDouglasPeucker(new HsLineDistance(homogeneousSpace), epsilon);
+    return of(new HsLineDistance(homogeneousSpace), epsilon);
   }
 
   /** @param homogeneousSpace
    * @param epsilon non-negative
    * @return */
   static CurveDecimation symmetric(HomogeneousSpace homogeneousSpace, Scalar epsilon) {
-    return new RamerDouglasPeucker( //
-        new SymmetricLineDistance(new HsLineDistance(homogeneousSpace)), //
-        epsilon);
+    return of( //
+        new SymmetricLineDistance(new HsLineDistance(homogeneousSpace)), epsilon);
   }
 
   /** @param lineDistance
@@ -35,7 +34,6 @@ public interface CurveDecimation extends TensorUnaryOperator {
     return new RamerDouglasPeucker(Objects.requireNonNull(lineDistance), epsilon);
   }
 
-  // ---
   /** @param tensor
    * @return */
   DecimationResult evaluate(Tensor tensor);

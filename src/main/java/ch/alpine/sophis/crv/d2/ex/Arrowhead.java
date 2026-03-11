@@ -14,11 +14,10 @@ import ch.alpine.tensor.Tensors;
  * <a href="https://reference.wolfram.com/language/ref/Arrowheads.html">Arrowheads</a> */
 public enum Arrowhead {
   ;
-  private static final Scalar THIRD = Rational.THIRD;
   private static final Tensor POLYGON = Tensors.matrix(new Scalar[][] { //
       { RealScalar.ONE, RealScalar.ZERO }, //
-      { Rational.HALF.negate(), THIRD }, //
-      { Rational.HALF.negate(), THIRD.negate() } //
+      { Rational.HALF.negate(), Rational.THIRD }, //
+      { Rational.HALF.negate(), Rational.THIRD.negate() } //
   });
 
   /** @param scalar

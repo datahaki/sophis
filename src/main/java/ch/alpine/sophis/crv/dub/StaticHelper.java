@@ -8,7 +8,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.sca.Mod;
 
-/* package */ enum StaticHelper {
+enum StaticHelper {
   ;
   private static final ScalarUnaryOperator MOD_TWO_PI = Mod.function(Pi.TWO);
 

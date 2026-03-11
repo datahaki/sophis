@@ -11,7 +11,7 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 import ch.alpine.tensor.sca.tri.Cos;
 import ch.alpine.tensor.sca.tri.Sin;
 
-/* package */ enum FlexiTurns {
+enum FlexiTurns {
   ;
   public static Scalar maxRadius2TurnsDiffSide(Scalar dist_tr, Scalar th_tr, Scalar th_total, Scalar radius) {
     Scalar turn = th_total.subtract(th_tr);
