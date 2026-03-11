@@ -192,6 +192,7 @@ class Se2BiinvariantTest {
         if (!Chop._06.isClose(weights, UnitVector.of(n, index))) {
           IO.println(barycentricCoordinate);
           IO.println(weights);
+          fail();
         }
       }
     }

@@ -17,7 +17,6 @@ class IntUndirectedEdgeTest {
     assertEquals(undirectedEdge.j(), 3);
     IntUndirectedEdge rev = new IntUndirectedEdge(3, 2);
     assertEquals(undirectedEdge, rev);
-    // IO.println(rev);
     assertEquals(rev.toString(), "IntUndirectedEdge[i=2, j=3]");
   }
 

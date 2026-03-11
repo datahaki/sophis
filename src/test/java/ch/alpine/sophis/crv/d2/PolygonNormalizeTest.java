@@ -9,6 +9,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.lie.rot.CirclePoints;
 import ch.alpine.tensor.mat.Tolerance;
 
@@ -26,5 +27,15 @@ class PolygonNormalizeTest {
     Tensor tensor = PolygonNormalize.of(polygon, RealScalar.TWO);
     Scalar area = PolygonArea.of(tensor);
     Tolerance.CHOP.requireClose(area, RealScalar.TWO);
+  }
+
+  @Test
+  void testCircleRev() {
+    Scalar target = RealScalar.of(4);
+    Tensor p1 = PolygonNormalize.of(CirclePoints.of(4), target);
+    Tensor p2 = PolygonNormalize.of(Reverse.of(CirclePoints.of(4)), target);
+    Scalar area = PolygonArea.of(p1);
+    Tolerance.CHOP.requireClose(area, target);
+    Tolerance.CHOP.requireClose(p1, p2);
   }
 }

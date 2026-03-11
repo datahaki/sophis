@@ -7,6 +7,8 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Tensors;
@@ -14,6 +16,12 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class BiinvariantsTest {
+  @ParameterizedTest
+  @EnumSource
+  void testString(Biinvariants biinvariants) {
+    biinvariants.ofSafe(RGroup.INSTANCE).toString();
+  }
+
   @Test
   void testSerializable() throws ClassNotFoundException, IOException {
     Serialization.copy(Biinvariants.all(RGroup.INSTANCE));

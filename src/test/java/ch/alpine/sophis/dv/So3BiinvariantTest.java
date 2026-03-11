@@ -108,6 +108,7 @@ class So3BiinvariantTest {
         if (!Chop._06.isClose(weights, UnitVector.of(n, index))) {
           IO.println(barycentricCoordinate);
           IO.println(weights);
+          // fail();
           // Chop._06.requireClose(weights, UnitVector.of(n, index));
         } else {
           Tensor o2 = LIE_GROUP.biinvariantMean().mean(sequence, weights);

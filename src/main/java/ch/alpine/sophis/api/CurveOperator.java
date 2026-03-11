@@ -17,7 +17,9 @@ public interface CurveOperator {
    * @param isCyclic
    * @return */
   default Tensor auto(Tensor tensor, boolean isCyclic) {
-    return isCyclic ? cyclic(tensor) : string(tensor);
+    return isCyclic //
+        ? cyclic(tensor)
+        : string(tensor);
   }
 
   /** @param isCyclic

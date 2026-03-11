@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.hs.HsAlgebra;
 import ch.alpine.sophus.hs.HsBiinvariantMean;
-import ch.alpine.sophus.lie.LieAlgebraMatrixBasis;
 import ch.alpine.sophus.lie.MatrixAlgebra;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.lie.so.So3Group;
@@ -30,10 +29,8 @@ class BchBarycentricCoordinateTest {
   void testSe2() {
     Distribution distribution = UniformDistribution.of(-0.1, 0.1);
     RandomGenerator randomGenerator = new Random(1);
-    Tensor basis = LieAlgebraMatrixBasis.of(Se2CoveringGroup.INSTANCE);
-    MatrixAlgebra matrixAlgebra = new MatrixAlgebra(basis);
-    TensorBinaryOperator bch = BakerCampbellHausdorff.of(matrixAlgebra.ad(), 10, Tolerance.CHOP);
-    Tensor ad = matrixAlgebra.ad();
+    Tensor ad = MatrixAlgebra.of(Se2CoveringGroup.INSTANCE).ad();
+    TensorBinaryOperator bch = BakerCampbellHausdorff.of(ad, 10, Tolerance.CHOP);
     HsAlgebra hsAlgebra = new HsAlgebra(ad, ad.length(), 6);
     ScalarUnaryOperator variogram = InversePowerVariogram.of(2.5);
     for (int n = 4; n < 7; ++n) {
@@ -56,8 +53,7 @@ class BchBarycentricCoordinateTest {
   void testSo3MeanRandom() {
     Distribution distribution = UniformDistribution.of(-0.1, 0.1);
     RandomGenerator randomGenerator = new Random(1);
-    Tensor basis = LieAlgebraMatrixBasis.of(So3Group.INSTANCE);
-    MatrixAlgebra matrixAlgebra = new MatrixAlgebra(basis);
+    MatrixAlgebra matrixAlgebra = MatrixAlgebra.of(So3Group.INSTANCE);
     Tensor ad = matrixAlgebra.ad();
     TensorBinaryOperator bch = BakerCampbellHausdorff.of(ad, 6);
     HsAlgebra hsAlgebra = new HsAlgebra(ad, ad.length(), 6);
