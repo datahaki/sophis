@@ -2,6 +2,7 @@
 package ch.alpine.sophis.fit;
 
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
 
@@ -40,12 +41,17 @@ public record HsWeiszfeldMethod(BiinvariantMean biinvariantMean, Sedarim sedarim
   }
 
   private Optional<Tensor> minimum(Tensor sequence, UnaryOperator<Tensor> unaryOperator) {
-    Tensor equalw = AveragingWeights.of(sequence.length());
-    Tensor point = biinvariantMean.mean(sequence, NormalizeTotal.FUNCTION.apply(unaryOperator.apply(equalw)));
+    Tensor prev = null;
+    Tensor weights = AveragingWeights.of(sequence.length());
     for (int iteration = 0; iteration < MAX_ITERATIONS; ++iteration) {
-      Tensor weights = sedarim.sunder(point);
-      if (chop.isClose(point, point = biinvariantMean.mean(sequence, NormalizeTotal.FUNCTION.apply(unaryOperator.apply(weights)))))
-        return Optional.of(point);
+      Optional<Tensor> optional = biinvariantMean.optional(sequence, NormalizeTotal.FUNCTION.apply(unaryOperator.apply(weights)));
+      if (optional.isEmpty())
+        return optional;
+      Tensor next = optional.orElseThrow();
+      if (Objects.nonNull(prev) && chop.isClose(prev, next))
+        return optional;
+      prev = next;
+      weights = sedarim.sunder(next);
     }
     return Optional.empty();
   }
