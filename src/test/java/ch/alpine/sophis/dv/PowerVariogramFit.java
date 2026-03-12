@@ -13,7 +13,7 @@ import ch.alpine.tensor.io.ScalarArray;
 import ch.alpine.tensor.qty.LenientAdd;
 import ch.alpine.tensor.sca.AbsSquared;
 import ch.alpine.tensor.sca.pow.Power;
-import ch.alpine.tensor.sca.var.PowerVariogram;
+import ch.alpine.tensor.sca.var.ExtPowerVariogram;
 
 // TODO ONLY USED IN TESTS
 public enum PowerVariogramFit {
@@ -26,7 +26,7 @@ public enum PowerVariogramFit {
    * @param exponent in the range [1, 2)
    * @return
    * @throws Exception if values is not a tensor of rank 1 */
-  public static PowerVariogram fit(TensorMetric tensorMetric, Tensor sequence, Tensor values, Scalar exponent) {
+  public static ScalarUnaryOperator fit(TensorMetric tensorMetric, Tensor sequence, Tensor values, Scalar exponent) {
     Scalar[] y = ScalarArray.ofVector(values);
     final int n = sequence.length();
     Scalar num = null; // 0[|seq_0| * v[0] * v[0]]
@@ -43,6 +43,6 @@ public enum PowerVariogramFit {
         den = LenientAdd.of( //
             den, rb.multiply(rb));
       }
-    return new PowerVariogram(num.divide(den), power);
+    return new ExtPowerVariogram(num.divide(den), power);
   }
 }

@@ -42,7 +42,7 @@ class KrigingTest {
   void testSimple2() {
     Distribution distributiox = NormalDistribution.standard();
     Distribution distribution = NormalDistribution.of(0, 0.1);
-    PowerVariogram powerVariogram = PowerVariogram.of(1, 1.4);
+    ScalarUnaryOperator powerVariogram = PowerVariogram.of(1.4);
     Map<Biinvariants, Biinvariant> map = Biinvariants.kriging(Se2CoveringGroup.INSTANCE);
     for (Biinvariant biinvariant : map.values()) {
       int n = 4 + ThreadLocalRandom.current().nextInt(6);
@@ -74,7 +74,7 @@ class KrigingTest {
     int n = 10;
     Tensor sequence = RandomVariate.of(distribution, n, 3);
     Tensor values = RandomVariate.of(distribution, n, 2);
-    ScalarUnaryOperator variogram = PowerVariogram.of(RealScalar.ONE, RealScalar.of(1.5));
+    ScalarUnaryOperator variogram = PowerVariogram.of(RealScalar.of(1.5));
     Map<Biinvariants, Biinvariant> map = Biinvariants.kriging(RGroup.INSTANCE);
     for (Biinvariant biinvariant : map.values()) {
       Sedarim weightingInterface = biinvariant.var_dist(variogram, sequence);
@@ -92,7 +92,7 @@ class KrigingTest {
     int n = 10;
     Tensor sequence = RandomVariate.of(distribution, n, 3);
     Tensor values = RandomVariate.of(distribution, n);
-    ScalarUnaryOperator variogram = PowerVariogram.of(RealScalar.ONE, RealScalar.of(1.5));
+    ScalarUnaryOperator variogram = PowerVariogram.of(RealScalar.of(1.5));
     Map<Biinvariants, Biinvariant> map = Biinvariants.kriging(RGroup.INSTANCE);
     for (Biinvariant biinvariant : map.values()) {
       Sedarim weightingInterface = biinvariant.var_dist(variogram, sequence);
@@ -108,7 +108,7 @@ class KrigingTest {
   void testBarycentric() throws ClassNotFoundException, IOException {
     RandomGenerator random = new Random(13);
     Distribution distribution = NormalDistribution.standard();
-    ScalarUnaryOperator variogram = PowerVariogram.of(RealScalar.ONE, RealScalar.of(1.5));
+    ScalarUnaryOperator variogram = PowerVariogram.of(RealScalar.of(1.5));
     int n = 5 + random.nextInt(5);
     Map<Biinvariants, Biinvariant> map = Biinvariants.kriging(RGroup.INSTANCE);
     for (int d = 1; d < 4; ++d) {
@@ -131,7 +131,7 @@ class KrigingTest {
   @Test
   void testQuantityAbsolute() {
     Distribution distributionX = NormalDistribution.of(Quantity.of(0, "m"), Quantity.of(2, "m"));
-    ScalarUnaryOperator variogram = new ExponentialVariogram(Quantity.of(3, "m"), RealScalar.of(2));
+    ScalarUnaryOperator variogram = ExponentialVariogram.of(Quantity.of(3, "m"), RealScalar.of(2));
     int n = 10;
     int d = 3;
     Tensor sequence = RandomVariate.of(distributionX, n, d);
@@ -174,14 +174,14 @@ class KrigingTest {
     Tensor values = RandomVariate.of(distributionY, n);
     Biinvariant biinvariant = Biinvariants.METRIC.ofSafe(RGroup.INSTANCE);
     {
-      ScalarUnaryOperator variogram = Serialization.copy(new ExponentialVariogram(Quantity.of(3, "m"), RealScalar.of(2)));
+      ScalarUnaryOperator variogram = Serialization.copy(ExponentialVariogram.of(Quantity.of(3, "m"), RealScalar.of(2)));
       Sedarim weightingInterface = biinvariant.var_dist(variogram, sequence);
       Kriging kriging = Kriging.interpolation(weightingInterface, sequence, values);
       Scalar value = (Scalar) kriging.estimate(RandomVariate.of(distributionX, d));
       QuantityMagnitude.singleton(Unit.of("s")).apply(value);
     }
     {
-      PowerVariogram variogram = Serialization.copy(PowerVariogramFit.fit(RGroup.INSTANCE, sequence, values, RealScalar.ONE));
+      ScalarUnaryOperator variogram = Serialization.copy(PowerVariogramFit.fit(RGroup.INSTANCE, sequence, values, RealScalar.ONE));
       Tensor covariance = DiagonalMatrix.of(n, Quantity.of(1, "s^2"));
       Sedarim weightingInterface = biinvariant.var_dist(variogram, sequence);
       Kriging kriging = Kriging.regression(weightingInterface, sequence, values, covariance);
