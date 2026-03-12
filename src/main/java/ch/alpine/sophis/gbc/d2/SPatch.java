@@ -61,6 +61,10 @@ public class SPatch implements Sedarim {
         .orElseThrow().divide(RealScalar.of(rep.length()));
   }
 
+  public int n() {
+    return n;
+  }
+
   public Tensor getLs() {
     return ls;
   }
