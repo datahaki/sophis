@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.Genesis;
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.ComplexScalar;
@@ -20,7 +21,6 @@ import ch.alpine.tensor.red.Entrywise;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Im;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class LagrangeCoordinateTest {
   private static void _check(Tensor levers, Tensor weights) {

@@ -11,6 +11,7 @@ import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophis.dv.Biinvariant;
 import ch.alpine.sophis.dv.Biinvariants;
 import ch.alpine.sophis.dv.UsanceCoordinate;
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.api.TangentSpace;
 import ch.alpine.sophus.hs.HomogeneousSpace;
 import ch.alpine.sophus.hs.gr.Grassmannian;
@@ -28,7 +29,6 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class SampleManifolds {
   public static List<HomogeneousSpace> homogeneousSpaces() {

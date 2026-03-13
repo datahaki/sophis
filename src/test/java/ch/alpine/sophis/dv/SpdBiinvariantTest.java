@@ -12,6 +12,7 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.hs.spd.SpdManifold;
 import ch.alpine.sophus.hs.spd.SpdNManifold;
 import ch.alpine.sophus.lie.so.SoNGroup;
@@ -25,7 +26,6 @@ import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.sca.Chop;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class SpdBiinvariantTest {
   public static BarycentricCoordinate[] list() {

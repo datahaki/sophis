@@ -3,6 +3,9 @@ package ch.alpine.sophis.dv;
 
 import java.io.Serializable;
 
+import ch.alpine.sophis.var.ExponentialVariogram;
+import ch.alpine.sophis.var.PowerVariogram;
+import ch.alpine.sophis.var.SphericalVariogram;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -16,9 +19,6 @@ import ch.alpine.tensor.mat.pi.PseudoInverse;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityUnit;
 import ch.alpine.tensor.red.EqualsReduce;
-import ch.alpine.tensor.sca.var.ExponentialVariogram;
-import ch.alpine.tensor.sca.var.PowerVariogram;
-import ch.alpine.tensor.sca.var.SphericalVariogram;
 
 /** implementation of kriging for homogeneous spaces
  * 

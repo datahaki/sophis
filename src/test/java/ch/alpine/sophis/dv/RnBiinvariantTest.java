@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
@@ -32,7 +33,6 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.red.Total;
 import ch.alpine.tensor.sca.Chop;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class RnBiinvariantTest {
   static BarycentricCoordinate[] barycentrics() {

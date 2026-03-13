@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.lie.he.HeGroup;
 import ch.alpine.sophus.lie.he.HeNGroup;
 import ch.alpine.tensor.RealScalar;
@@ -18,7 +19,6 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.sca.Chop;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class HeBiinvariantTest {
   private static final BarycentricCoordinate AFFINE = AffineWrap.of(HeGroup.INSTANCE);

@@ -2,11 +2,11 @@
 package ch.alpine.sophis.dv;
 
 import ch.alpine.sophis.api.Genesis;
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.mat.gr.InfluenceMatrix;
 import ch.alpine.tensor.mat.gr.Mahalanobis;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 /** target coordinate is the preferred way to evaluate
  * inverse leverage coordinates.

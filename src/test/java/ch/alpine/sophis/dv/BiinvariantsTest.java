@@ -10,10 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.Serialization;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class BiinvariantsTest {
   @ParameterizedTest

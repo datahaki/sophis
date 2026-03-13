@@ -3,6 +3,7 @@ package ch.alpine.sophis.dv;
 
 import java.util.Objects;
 
+import ch.alpine.sophis.var.ExtPowerVariogram;
 import ch.alpine.sophus.api.TensorMetric;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -13,7 +14,6 @@ import ch.alpine.tensor.io.ScalarArray;
 import ch.alpine.tensor.qty.LenientAdd;
 import ch.alpine.tensor.sca.AbsSquared;
 import ch.alpine.tensor.sca.pow.Power;
-import ch.alpine.tensor.sca.var.ExtPowerVariogram;
 
 // TODO ONLY USED IN TESTS
 public enum PowerVariogramFit {

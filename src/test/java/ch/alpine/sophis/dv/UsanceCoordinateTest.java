@@ -3,6 +3,7 @@ package ch.alpine.sophis.dv;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.api.MetricManifold;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
@@ -19,7 +20,6 @@ import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clips;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class UsanceCoordinateTest {
   @Test

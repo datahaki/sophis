@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.alg.OriginEnclosureQ;
 import ch.alpine.sophis.dv.MetricBiinvariant;
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RealScalar;
@@ -18,7 +19,6 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Ramp;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class IterativeTargetCoordinateTest {
   @Test

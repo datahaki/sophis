@@ -2,6 +2,7 @@
 package ch.alpine.sophis.dv;
 
 import ch.alpine.sophis.api.Genesis;
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Tensor;
@@ -9,7 +10,6 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.qty.Timing;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 enum UsanceCoordinateDemo {
   ;

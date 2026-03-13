@@ -7,6 +7,7 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.hs.HsAlgebra;
 import ch.alpine.sophus.hs.HsBiinvariantMean;
@@ -18,7 +19,6 @@ import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class HsBarycentricCoordinateTest {
   RandomGenerator randomGenerator = new Random(3);

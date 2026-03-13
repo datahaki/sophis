@@ -12,6 +12,8 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.var.ExponentialVariogram;
+import ch.alpine.sophis.var.PowerVariogram;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.math.AffineQ;
@@ -32,8 +34,6 @@ import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.QuantityMagnitude;
 import ch.alpine.tensor.qty.Unit;
 import ch.alpine.tensor.sca.Chop;
-import ch.alpine.tensor.sca.var.ExponentialVariogram;
-import ch.alpine.tensor.sca.var.PowerVariogram;
 
 class KrigingTest {
   // private static final Biinvariant[] BIINV = { Biinvariants.HARBOR };

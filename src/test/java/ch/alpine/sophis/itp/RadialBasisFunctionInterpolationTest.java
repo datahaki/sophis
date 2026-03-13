@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.sophis.dv.Biinvariant;
 import ch.alpine.sophis.dv.Biinvariants;
 import ch.alpine.sophis.dv.Sedarim;
+import ch.alpine.sophis.var.PowerVariogram;
+import ch.alpine.sophis.var.VariogramFunctions;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RealScalar;
@@ -25,8 +27,6 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.sca.Chop;
-import ch.alpine.tensor.sca.var.PowerVariogram;
-import ch.alpine.tensor.sca.var.VariogramFunctions;
 
 class RadialBasisFunctionInterpolationTest {
   @Test

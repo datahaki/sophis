@@ -9,6 +9,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.Genesis;
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
@@ -23,7 +24,6 @@ import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.red.Total;
 import ch.alpine.tensor.sca.Chop;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class MetricBiinvariantTest {
   private static final Genesis INVERSE_DISTANCE_WEIGHTING = //

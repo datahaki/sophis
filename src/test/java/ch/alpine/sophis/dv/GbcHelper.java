@@ -1,11 +1,11 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.api.MetricManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 public enum GbcHelper {
   ;

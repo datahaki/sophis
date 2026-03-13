@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophis.crv.d2.alg.OriginEnclosureQ;
 import ch.alpine.sophis.dv.MetricCoordinate;
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.rn.RGroup;
@@ -26,7 +27,6 @@ import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class IterativeCoordinateTest {
   private static void _checkIterative(Genesis genesis) {

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
@@ -53,7 +54,6 @@ import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clips;
 import ch.alpine.tensor.sca.Unitize;
 import ch.alpine.tensor.sca.pow.Power;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class Se2BiinvariantTest {
   private static final BarycentricCoordinate[] QUANTITY_COORDINATES = //

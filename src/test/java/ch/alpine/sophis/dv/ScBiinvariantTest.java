@@ -3,6 +3,7 @@ package ch.alpine.sophis.dv;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.lie.sc.ScGroup;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -11,7 +12,6 @@ import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.ExponentialDistribution;
 import ch.alpine.tensor.sca.Chop;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class ScBiinvariantTest {
   public static final BarycentricCoordinate INSTANCE = new HsCoordinates( //

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.sophis.dv.Biinvariant;
 import ch.alpine.sophis.dv.Biinvariants;
 import ch.alpine.sophis.dv.Sedarim;
+import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.hs.s.SnPhongMean;
 import ch.alpine.sophus.hs.s.Sphere;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
@@ -19,7 +20,6 @@ import ch.alpine.tensor.pdf.RandomSample;
 import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
-import ch.alpine.tensor.sca.var.InversePowerVariogram;
 
 class CrossAveragingTest {
   @Test
