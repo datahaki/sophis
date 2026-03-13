@@ -1,20 +1,40 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.api.MetricManifold;
+import ch.alpine.sophus.api.TangentSpace;
+import ch.alpine.sophus.hs.HomogeneousSpace;
+import ch.alpine.sophus.hs.gr.Grassmannian;
+import ch.alpine.sophus.hs.h.Hyperboloid;
 import ch.alpine.sophus.hs.s.SnManifold;
+import ch.alpine.sophus.hs.s.Sphere;
+import ch.alpine.sophus.hs.st.StiefelManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
+import ch.alpine.sophus.lie.rn.RnGroup;
+import ch.alpine.sophus.lie.se.SeNGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
+import ch.alpine.sophus.lie.se2.Se2Group;
+import ch.alpine.sophus.lie.so.SoNGroup;
+import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.rsm.LocalRandomSample;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
+import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.pdf.Distribution;
+import ch.alpine.tensor.pdf.RandomSample;
+import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
@@ -22,6 +42,47 @@ import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clips;
 
 class UsanceCoordinateTest {
+  public static List<HomogeneousSpace> homogeneousSpaces() {
+    return Arrays.asList( //
+        new StiefelManifold(3, 1), //
+        new Grassmannian(5, 2), //
+        new RnGroup(3), //
+        Se2Group.INSTANCE, //
+        Se2CoveringGroup.INSTANCE, //
+        new SeNGroup(3), //
+        new SeNGroup(4), //
+        new SoNGroup(2), //
+        new SoNGroup(3), //
+        new SoNGroup(4), //
+        new Sphere(2), //
+        new Sphere(3), //
+        new Hyperboloid(2), //
+        new Hyperboloid(3), //
+        new Hyperboloid(4) //
+    );
+  }
+
+  @ParameterizedTest
+  @MethodSource("homogeneousSpaces")
+  void testSimple(HomogeneousSpace homogeneousSpace) {
+    RandomSampleInterface rsi = (RandomSampleInterface) homogeneousSpace;
+    Tensor p = RandomSample.of(rsi);
+    TangentSpace tangentSpace = homogeneousSpace.tangentSpace(p);
+    RandomSampleInterface rpnts = LocalRandomSample.of(tangentSpace, 0.1);
+    Tensor sequence = RandomSample.of(rpnts, 20);
+    Biinvariant biinvariant = Biinvariants.GARDEN.ofSafe(homogeneousSpace);
+    biinvariant.relative_distances(sequence);
+    biinvariant.coordinate(InversePowerVariogram.of(2), sequence);
+    BarycentricCoordinate barycentricCoordinate = UsanceCoordinate.of(homogeneousSpace, InversePowerVariogram.of(2));
+    Tensor weights = barycentricCoordinate.weights(sequence, p);
+    AffineQ.INSTANCE.require(weights);
+    Tensor levers = tangentSpace.vectorLog().slash(sequence);
+    Tensor residual = weights.dot(levers);
+    Tolerance.CHOP.requireAllZero(residual);
+    Tensor q = homogeneousSpace.biinvariantMean().mean(sequence, weights);
+    Tolerance.CHOP.requireClose(p, q);
+  }
+
   @Test
   void testR1equiv() {
     // in R1 we have W^ID = w^IL

@@ -4,15 +4,15 @@ package ch.alpine.sophis.crv.clt;
 import java.io.Serializable;
 
 import ch.alpine.sophis.crv.clt.mid.ClothoidQuadratic;
+import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.MathematicaFormat;
 
 /** Reference: U. Reif slides
  * 
  * maps to SE(2) or SE(2) Covering */
-public record ClothoidBuilderImpl( //
-    ClothoidQuadratic clothoidQuadratic, //
-    ClothoidIntegration clothoidIntegration) implements ClothoidBuilder, Serializable {
+public record ClothoidBuilderImpl(ClothoidQuadratic clothoidQuadratic, ClothoidIntegration clothoidIntegration) //
+    implements ClothoidBuilder, Serializable {
   /** @param clothoidContext
    * @return */
   public Clothoid from(ClothoidContext clothoidContext) {
@@ -23,6 +23,10 @@ public record ClothoidBuilderImpl( //
         clothoidContext.p(), //
         clothoidIntegral, //
         clothoidContext.diff());
+  }
+
+  public static ClothoidBuilder custom(Scalar lambda, ClothoidIntegration clothoidIntegration) {
+    return new ClothoidBuilderImpl(CustomClothoidQuadratic.of(lambda), clothoidIntegration);
   }
 
   @Override // from ClothoidBuilder
