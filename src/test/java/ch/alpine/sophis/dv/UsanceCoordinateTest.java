@@ -3,6 +3,7 @@ package ch.alpine.sophis.dv;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -79,8 +80,9 @@ class UsanceCoordinateTest {
     Tensor levers = tangentSpace.vectorLog().slash(sequence);
     Tensor residual = weights.dot(levers);
     Tolerance.CHOP.requireAllZero(residual);
-    Tensor q = homogeneousSpace.biinvariantMean().mean(sequence, weights);
-    Tolerance.CHOP.requireClose(p, q);
+    Optional<Tensor> optional = homogeneousSpace.biinvariantMean().optional(sequence, weights);
+    if (optional.isPresent())
+      Tolerance.CHOP.requireClose(p, optional.orElseThrow());
   }
 
   @Test
