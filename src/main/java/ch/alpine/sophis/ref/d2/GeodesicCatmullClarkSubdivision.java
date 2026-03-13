@@ -16,11 +16,11 @@ import ch.alpine.tensor.Unprotect;
  * by Catmull, Clark; Computer-Aided Design 16(6), 1978 */
 public class GeodesicCatmullClarkSubdivision {
   private final GeodesicSpace geodesicSpace;
-  private final CurveOperator curveSubdivision;
+  private final CurveOperator curveOperator;
 
   public GeodesicCatmullClarkSubdivision(GeodesicSpace geodesicSpace) {
     this.geodesicSpace = Objects.requireNonNull(geodesicSpace);
-    curveSubdivision = new BSpline3CurveSubdivision(geodesicSpace);
+    curveOperator = new BSpline3CurveSubdivision(geodesicSpace);
   }
 
   public Tensor quad(Tensor a1, Tensor a2, Tensor b1, Tensor b2) {
@@ -83,11 +83,11 @@ public class GeodesicCatmullClarkSubdivision {
       }
     Tensor tensor = Tensor.of(Arrays.stream(array).map(Unprotect::byRef));
     /* assign border top bottom */
-    tensor.set(curveSubdivision.string(grid.get(0)), 0);
-    tensor.set(curveSubdivision.string(grid.get(rows - 1)), outr - 1);
+    tensor.set(curveOperator.string(grid.get(0)), 0);
+    tensor.set(curveOperator.string(grid.get(rows - 1)), outr - 1);
     /* assign border left right */
-    tensor.set(curveSubdivision.string(grid.get(Tensor.ALL, 0)), Tensor.ALL, 0);
-    tensor.set(curveSubdivision.string(grid.get(Tensor.ALL, cols - 1)), Tensor.ALL, outc - 1);
+    tensor.set(curveOperator.string(grid.get(Tensor.ALL, 0)), Tensor.ALL, 0);
+    tensor.set(curveOperator.string(grid.get(Tensor.ALL, cols - 1)), Tensor.ALL, outc - 1);
     return tensor;
   }
 }

@@ -17,9 +17,9 @@ class SnUniformResampleTest {
   @Test
   void testSimple() {
     Scalar spacing = Pi.VALUE.divide(RealScalar.of(10));
-    CurveOperator curveSubdivision = UniformResample.of(SnManifold.INSTANCE, SnManifold.INSTANCE, spacing);
+    CurveOperator curveOperator = UniformResample.of(SnManifold.INSTANCE, SnManifold.INSTANCE, spacing);
     Tensor tensor = Tensors.fromString("{{1, 0}, {0, 1}, {-1, 0}}");
-    Tensor string = curveSubdivision.string(tensor);
+    Tensor string = curveOperator.string(tensor);
     Tensor distances = AdjacentDistances.of(SnManifold.INSTANCE).apply(string);
     Scalar variance = Variance.ofVector(distances);
     Chop._20.requireAllZero(variance);

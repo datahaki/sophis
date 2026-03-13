@@ -26,15 +26,15 @@ class RnUniformResampleTest {
 
   @Test
   void testString() throws ClassNotFoundException, IOException {
-    CurveOperator curveSubdivision = Serialization.copy(of(Quantity.of(2, "m")));
-    Tensor tensor = curveSubdivision.string(Tensors.fromString("{{0[m]}, {1[m]}, {3[m]}, {6[m]}}"));
+    CurveOperator curveOperator = Serialization.copy(of(Quantity.of(2, "m")));
+    Tensor tensor = curveOperator.string(Tensors.fromString("{{0[m]}, {1[m]}, {3[m]}, {6[m]}}"));
     assertEquals(ExactTensorQ.require(tensor), Tensors.fromString("{{0[m]}, {2[m]}, {4[m]}}"));
   }
 
   @Test
   void testCyclic() {
-    CurveOperator curveSubdivision = of(Quantity.of(2, "m"));
-    Tensor tensor = curveSubdivision.cyclic(Tensors.fromString("{{0[m]}, {1[m]}, {3[m]}, {6[m]}}"));
+    CurveOperator curveOperator = of(Quantity.of(2, "m"));
+    Tensor tensor = curveOperator.cyclic(Tensors.fromString("{{0[m]}, {1[m]}, {3[m]}, {6[m]}}"));
     assertEquals(ExactTensorQ.require(tensor), Tensors.fromString("{{0[m]}, {2[m]}, {4[m]}, {6[m]}, {4[m]}, {2[m]}}"));
   }
 

@@ -131,7 +131,7 @@ class KrigingTest {
   @Test
   void testQuantityAbsolute() {
     Distribution distributionX = NormalDistribution.of(Quantity.of(0, "m"), Quantity.of(2, "m"));
-    ScalarUnaryOperator variogram = ExponentialVariogram.of(Quantity.of(3, "m"), RealScalar.of(2));
+    ScalarUnaryOperator variogram = ExponentialVariogram.of(Quantity.of(3, "m"));
     int n = 10;
     int d = 3;
     Tensor sequence = RandomVariate.of(distributionX, n, d);
@@ -146,7 +146,7 @@ class KrigingTest {
   @Test
   void testQuantityBiinvariant() {
     Distribution distributionX = NormalDistribution.of(Quantity.of(0, "m"), Quantity.of(2, "m"));
-    ScalarUnaryOperator variogram = ExponentialVariogram.of(3, 2);
+    ScalarUnaryOperator variogram = ExponentialVariogram.of(3);
     int n = 10;
     int d = 3;
     Tensor sequence = RandomVariate.of(distributionX, n, d);
@@ -174,7 +174,7 @@ class KrigingTest {
     Tensor values = RandomVariate.of(distributionY, n);
     Biinvariant biinvariant = Biinvariants.METRIC.ofSafe(RGroup.INSTANCE);
     {
-      ScalarUnaryOperator variogram = Serialization.copy(ExponentialVariogram.of(Quantity.of(3, "m"), RealScalar.of(2)));
+      ScalarUnaryOperator variogram = Serialization.copy(ExponentialVariogram.of(Quantity.of(3, "m")));
       Sedarim weightingInterface = biinvariant.var_dist(variogram, sequence);
       Kriging kriging = Kriging.interpolation(weightingInterface, sequence, values);
       Scalar value = (Scalar) kriging.estimate(RandomVariate.of(distributionX, d));

@@ -66,7 +66,7 @@ public enum VariogramFunctions {
   EXPONENTIAL {
     @Override
     public ScalarUnaryOperator of(Scalar param) {
-      return ExponentialVariogram.of(param, RealScalar.ONE);
+      return ExponentialVariogram.of(param);
     }
   },
   /** 0 -> 0, Infinity -> 1 */

@@ -30,10 +30,10 @@ class BSpline1CurveSubdivisionTest {
 
   @Test
   void testCyclic() {
-    CurveOperator curveSubdivision = new BSpline1CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveOperator = new BSpline1CurveSubdivision(RGroup.INSTANCE);
     ScalarUnaryOperator operator = Rationalize.withDenominatorLessEquals(100);
     Tensor tensor = CirclePoints.of(4).maps(operator);
-    Tensor actual = curveSubdivision.cyclic(tensor);
+    Tensor actual = curveOperator.cyclic(tensor);
     ExactTensorQ.require(actual);
     Tensor expected = Tensors.fromString("{{1, 0}, {1/2, 1/2}, {0, 1}, {-1/2, 1/2}, {-1, 0}, {-1/2, -1/2}, {0, -1}, {1/2, -1/2}}");
     assertEquals(expected, actual);
@@ -41,8 +41,8 @@ class BSpline1CurveSubdivisionTest {
 
   @Test
   void testString() {
-    CurveOperator curveSubdivision = new BSpline1CurveSubdivision(RGroup.INSTANCE);
-    Tensor string = curveSubdivision.string(Tensors.fromString("{{0, 10}, {1, 12}}"));
+    CurveOperator curveOperator = new BSpline1CurveSubdivision(RGroup.INSTANCE);
+    Tensor string = curveOperator.string(Tensors.fromString("{{0, 10}, {1, 12}}"));
     assertEquals(string, Tensors.fromString("{{0, 10}, {1/2, 11}, {1, 12}}"));
     ExactTensorQ.require(string);
   }
@@ -50,8 +50,8 @@ class BSpline1CurveSubdivisionTest {
   @Test
   void testStringTwo() {
     Tensor curve = Tensors.vector(0, 1);
-    CurveOperator curveSubdivision = new BSpline1CurveSubdivision(RGroup.INSTANCE);
-    Tensor refined = curveSubdivision.string(curve);
+    CurveOperator curveOperator = new BSpline1CurveSubdivision(RGroup.INSTANCE);
+    Tensor refined = curveOperator.string(curve);
     assertEquals(refined, Tensors.fromString("{0, 1/2, 1}"));
     ExactTensorQ.require(refined);
   }
@@ -60,8 +60,8 @@ class BSpline1CurveSubdivisionTest {
   void testStringRange() {
     int length = 9;
     Tensor curve = Range.of(0, length + 1);
-    CurveOperator curveSubdivision = new BSpline1CurveSubdivision(RGroup.INSTANCE);
-    Tensor refined = curveSubdivision.string(curve);
+    CurveOperator curveOperator = new BSpline1CurveSubdivision(RGroup.INSTANCE);
+    Tensor refined = curveOperator.string(curve);
     assertEquals(refined, Subdivide.of(0, length, length * 2));
     ExactTensorQ.require(refined);
   }
@@ -69,8 +69,8 @@ class BSpline1CurveSubdivisionTest {
   @Test
   void testStringOne() {
     Tensor curve = Tensors.vector(8);
-    CurveOperator curveSubdivision = new BSpline1CurveSubdivision(RGroup.INSTANCE);
-    Tensor refined = curveSubdivision.string(curve);
+    CurveOperator curveOperator = new BSpline1CurveSubdivision(RGroup.INSTANCE);
+    Tensor refined = curveOperator.string(curve);
     assertEquals(refined, Tensors.fromString("{8}"));
     ExactTensorQ.require(refined);
   }
@@ -78,8 +78,8 @@ class BSpline1CurveSubdivisionTest {
   @Test
   void testStringEmpty() {
     Tensor curve = Tensors.vector();
-    CurveOperator curveSubdivision = new BSpline1CurveSubdivision(RGroup.INSTANCE);
-    Tensor refined = curveSubdivision.string(curve);
+    CurveOperator curveOperator = new BSpline1CurveSubdivision(RGroup.INSTANCE);
+    Tensor refined = curveOperator.string(curve);
     assertTrue(Tensors.isEmpty(refined));
     ExactTensorQ.require(refined);
   }
@@ -87,17 +87,17 @@ class BSpline1CurveSubdivisionTest {
   @Test
   void testCyclicEmpty() {
     Tensor curve = Tensors.vector();
-    CurveOperator curveSubdivision = new BSpline1CurveSubdivision(RGroup.INSTANCE);
-    Tensor refined = curveSubdivision.cyclic(curve);
+    CurveOperator curveOperator = new BSpline1CurveSubdivision(RGroup.INSTANCE);
+    Tensor refined = curveOperator.cyclic(curve);
     assertTrue(Tensors.isEmpty(refined));
     ExactTensorQ.require(refined);
   }
 
   @Test
   void testCirclePoints() {
-    CurveOperator curveSubdivision = new BSpline1CurveSubdivision(RGroup.INSTANCE);
+    CurveOperator curveOperator = new BSpline1CurveSubdivision(RGroup.INSTANCE);
     for (int n = 3; n < 10; ++n) {
-      Tensor tensor = curveSubdivision.cyclic(CirclePoints.of(n));
+      Tensor tensor = curveOperator.cyclic(CirclePoints.of(n));
       Tensor filter = Tensor.of(IntStream.range(0, tensor.length() / 2) //
           .map(i -> i * 2) //
           .mapToObj(tensor::get));
@@ -108,9 +108,9 @@ class BSpline1CurveSubdivisionTest {
   @Test
   void testSingleton() {
     Tensor singleton = Tensors.of(Tensors.vector(1, 2, 3));
-    CurveOperator curveSubdivision = new BSpline1CurveSubdivision(CLOTHOID_BUILDER);
-    assertEquals(curveSubdivision.cyclic(singleton), singleton);
-    assertEquals(curveSubdivision.string(singleton), singleton);
+    CurveOperator curveOperator = new BSpline1CurveSubdivision(CLOTHOID_BUILDER);
+    assertEquals(curveOperator.cyclic(singleton), singleton);
+    assertEquals(curveOperator.string(singleton), singleton);
   }
 
   @Test
