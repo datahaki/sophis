@@ -1,13 +1,13 @@
 // code by jph
 package ch.alpine.sophis.fit;
 
-import java.util.Arrays;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.mat.SymmetricMatrixQ;
 import ch.alpine.tensor.num.RandomPermutation;
 
@@ -18,33 +18,40 @@ import ch.alpine.tensor.num.RandomPermutation;
  * 
  * Reference:
  * "Algorithmik" by Uwe Schoening, p.328 */
-public class Tsp2OptHeuristic {
-  private final Tensor matrix;
-  private final int n;
-  private final RandomGenerator randomGenerator;
-  private final int[] index;
+public record Tsp2OptHeuristic(Tensor matrix, int[] index) {
+  /** @param matrix
+   * @param randomGenerator
+   * @return */
+  public static Tsp2OptHeuristic of(Tensor matrix, RandomGenerator randomGenerator) {
+    int[] index = RandomPermutation.of(matrix.length(), randomGenerator);
+    return new Tsp2OptHeuristic(matrix, index);
+  }
+
+  public static Tsp2OptHeuristic of(Tensor matrix) {
+    return of(matrix, ThreadLocalRandom.current());
+  }
 
   /** the entries in the symmetric distance matrix may be negative
    * 
    * @param matrix symmetric where an entry (i, j) is the cost of including
    * edge (i, j) in the path
    * @param randomGenerator */
-  public Tsp2OptHeuristic(Tensor matrix, RandomGenerator randomGenerator) {
-    this.matrix = SymmetricMatrixQ.INSTANCE.require(matrix);
-    n = matrix.length();
-    this.randomGenerator = randomGenerator;
-    index = RandomPermutation.of(matrix.length(), randomGenerator);
+  public Tsp2OptHeuristic {
+    SymmetricMatrixQ.INSTANCE.require(matrix);
+    Integers.requirePermutation(index);
+    Integers.requireEquals(matrix.length(), index.length);
   }
 
-  public Tsp2OptHeuristic(Tensor matrix) {
-    this(matrix, ThreadLocalRandom.current());
+  public boolean next() {
+    return next(ThreadLocalRandom.current());
   }
 
   /** one random re-routing attempt
    * 
    * @return true if previous solution could be improved, resulting in a modified
    * {@link #index} and lower {@link #cost()} */
-  public boolean next() {
+  public boolean next(RandomGenerator randomGenerator) {
+    int n = matrix.length();
     if (n < 4)
       return false;
     while (true) {
@@ -83,15 +90,11 @@ public class Tsp2OptHeuristic {
 
   /** @return cost of current solution */
   public Scalar cost() {
+    int n = matrix.length();
     int last = n - 1;
     Scalar cost = matrix.Get(index[last], index[0]);
     for (int i = 0; i < last;)
       cost = cost.add(matrix.Get(index[i], index[++i]));
     return cost;
-  }
-
-  /** @return current solution */
-  public int[] index() {
-    return Arrays.copyOf(index, index.length);
   }
 }

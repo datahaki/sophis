@@ -28,7 +28,7 @@ class Tsp2OptHeuristicTest {
     RandomGenerator random = new Random(1);
     for (int n = 1; n < 10; ++n) {
       Tensor tensor = Symmetrize.of(RandomVariate.of(distribution, random, n, n)).multiply(RealScalar.TWO);
-      Tsp2OptHeuristic tsp2OptHeuristic = new Tsp2OptHeuristic(tensor, random);
+      Tsp2OptHeuristic tsp2OptHeuristic = Tsp2OptHeuristic.of(tensor, random);
       Scalar cost0 = tsp2OptHeuristic.cost();
       boolean next = tsp2OptHeuristic.next();
       Integers.requirePermutation(tsp2OptHeuristic.index());
@@ -45,7 +45,7 @@ class Tsp2OptHeuristicTest {
     int n = 11;
     RandomGenerator random = new Random(1);
     Tensor tensor = Symmetrize.of(RandomVariate.of(distribution, random, n, n));
-    Tsp2OptHeuristic tsp2OptHeuristic = new Tsp2OptHeuristic(tensor, random);
+    Tsp2OptHeuristic tsp2OptHeuristic = Tsp2OptHeuristic.of(tensor, random);
     Scalar cost0 = tsp2OptHeuristic.cost();
     for (int count = 0; count < 10; ++count) {
       tsp2OptHeuristic.next();
@@ -57,6 +57,6 @@ class Tsp2OptHeuristicTest {
 
   @Test
   void testFail() {
-    assertThrows(Throw.class, () -> new Tsp2OptHeuristic(HilbertMatrix.of(2, 3), new Random(1)));
+    assertThrows(Throw.class, () -> Tsp2OptHeuristic.of(HilbertMatrix.of(2, 3), new Random(1)));
   }
 }
