@@ -60,7 +60,7 @@ class SnBiinvariantsTest {
     RandomGenerator randomGenerator = new Random(3);
     for (int d = 2; d <= 4; ++d) {
       Tensor mean = UnitVector.of(d, 0);
-      RandomSampleInterface randomSampleInterface = new SoNGroup(d);
+      RandomSampleInterface randomSampleInterface = new SoNGroup(d).randomSampleInterface();
       int n = d + 1 + randomGenerator.nextInt(3);
       Tensor sequence = randomCloud(mean, n, randomGenerator);
       Tensor weights = barycentricCoordinate.weights(sequence, mean);

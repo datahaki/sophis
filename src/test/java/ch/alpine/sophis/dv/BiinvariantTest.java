@@ -100,14 +100,14 @@ class BiinvariantTest {
     int n = 3 + random1.nextInt(2);
     ScalarUnaryOperator variogram = InversePowerVariogram.of(2);
     int k = 1 + random1.nextInt(n - 1);
-    RandomSampleInterface randomSampleInterface = new Grassmannian(n, k);
+    RandomSampleInterface randomSampleInterface = new Grassmannian(n, k).randomSampleInterface();
     int d = k * (n - k);
     RandomGenerator randomGenerator = new Random(1);
     Tensor seq_o = RandomSample.of(randomSampleInterface, randomGenerator, d + 2);
     Tensor pnt_o = RandomSample.of(randomSampleInterface, randomGenerator);
     for (Biinvariant biinvariant : biinvariants) {
       Tensor w_o = biinvariant.coordinate(variogram, seq_o).sunder(pnt_o);
-      GrAction grAction = new GrAction(RandomSample.of(new SoNGroup(n), randomGenerator));
+      GrAction grAction = new GrAction(RandomSample.of(new SoNGroup(n).randomSampleInterface(), randomGenerator));
       Tensor seq_l = Tensor.of(seq_o.stream().map(grAction));
       Tensor pnt_l = grAction.apply(pnt_o);
       Tensor w_l = biinvariant.coordinate(variogram, seq_l).sunder(pnt_l);

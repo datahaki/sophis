@@ -30,7 +30,7 @@ class UsanceBiinvariantTest {
 
   @Test
   void testSn() {
-    RandomSampleInterface randomSampleInterface = new Sphere(2);
+    RandomSampleInterface randomSampleInterface = new Sphere(2).randomSampleInterface();
     Tensor sequence = RandomSample.of(randomSampleInterface, 10);
     Manifold manifold = SnManifold.INSTANCE;
     UsanceBiinvariant leveragesBiinvariant = new UsanceBiinvariant(manifold);

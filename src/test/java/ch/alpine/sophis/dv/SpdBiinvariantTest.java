@@ -48,7 +48,7 @@ class SpdBiinvariantTest {
     int fail = 0;
     int len = 5 + random1.nextInt(3);
     SpdNManifold spdNManifold = new SpdNManifold(d);
-    RandomSampleInterface rsi = spdNManifold;
+    RandomSampleInterface rsi = spdNManifold.randomSampleInterface();
     Random randomGenerator = random1;
     Tensor sequence = RandomSample.of(rsi, randomGenerator, len);
     for (BarycentricCoordinate barycentricCoordinate : list())
@@ -72,7 +72,7 @@ class SpdBiinvariantTest {
     int d = 2;
     int len = 5 + random.nextInt(3);
     SpdNManifold spdNManifold = new SpdNManifold(d);
-    RandomSampleInterface rsi = spdNManifold;
+    RandomSampleInterface rsi = spdNManifold.randomSampleInterface();
     Tensor sequence = RandomSample.of(rsi, len);
     for (BarycentricCoordinate barycentricCoordinate : list()) {
       int index = random.nextInt(sequence.length());
@@ -97,12 +97,12 @@ class SpdBiinvariantTest {
         int count = 1 + randomGenerator.nextInt(3);
         int len = n * (n + 1) / 2 + count;
         SpdNManifold spdNManifold = new SpdNManifold(n);
-        RandomSampleInterface rsi = spdNManifold;
+        RandomSampleInterface rsi = spdNManifold.randomSampleInterface();
         Tensor sequence = RandomSample.of(rsi, len);
         Tensor mL = RandomSample.of(rsi);
         Tensor weights1 = biinvariant.coordinate(InversePowerVariogram.of(2), sequence).sunder(mL);
         // ---
-        Tensor g = RandomSample.of(new SoNGroup(n), randomGenerator);
+        Tensor g = RandomSample.of(new SoNGroup(n).randomSampleInterface(), randomGenerator);
         Tensor sR = Tensor.of(sequence.stream().map(t -> BasisTransform.ofForm(t, g)));
         Tensor mR = BasisTransform.ofForm(mL, g);
         Tensor weights2 = biinvariant.coordinate(InversePowerVariogram.of(2), sR).sunder(mR);
@@ -120,7 +120,7 @@ class SpdBiinvariantTest {
       int count = 1 + randomGenerator.nextInt(3);
       int len = n * (n + 1) / 2 + count;
       SpdNManifold spdNManifold = new SpdNManifold(n);
-      RandomSampleInterface rsi = spdNManifold;
+      RandomSampleInterface rsi = spdNManifold.randomSampleInterface();
       Tensor sequence = RandomSample.of(rsi, randomGenerator, len);
       Tensor mL = RandomSample.of(rsi, randomGenerator);
       Tensor weights1 = biinvariant.coordinate(InversePowerVariogram.of(2), sequence).sunder(mL);

@@ -111,7 +111,7 @@ class BiinvariantVectorTest {
   void testSnCAnchorIsTarget() {
     Manifold manifold = SnManifold.INSTANCE;
     for (int dimension = 2; dimension < 4; ++dimension) {
-      RandomSampleInterface randomSampleInterface = new Sphere(dimension);
+      RandomSampleInterface randomSampleInterface = new Sphere(dimension).randomSampleInterface();
       for (int count = dimension + 1; count < 7; ++count) {
         Tensor sequence = RandomSample.of(randomSampleInterface, count);
         Tensor point = RandomSample.of(randomSampleInterface);

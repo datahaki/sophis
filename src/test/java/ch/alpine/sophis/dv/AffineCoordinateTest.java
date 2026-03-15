@@ -34,7 +34,7 @@ class AffineCoordinateTest {
   @ValueSource(ints = { 1, 2, 3, 4 })
   void testSn(int d) {
     Genesis genesis = MetricCoordinate.affine();
-    RandomSampleInterface randomSampleInterface = new Sphere(1);
+    RandomSampleInterface randomSampleInterface = new Sphere(1).randomSampleInterface();
     RandomGenerator randomGenerator = new Random(3);
     for (int n = d + 2; n < 10 + d; ++n) {
       Tensor levers = RandomSample.of(randomSampleInterface, randomGenerator, n);

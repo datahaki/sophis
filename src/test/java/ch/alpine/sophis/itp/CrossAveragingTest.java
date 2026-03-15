@@ -30,7 +30,7 @@ class CrossAveragingTest {
       int n = 4 + ThreadLocalRandom.current().nextInt(4);
       Tensor sequence = RandomVariate.of(distribution, n, 3);
       Sedarim tensorUnaryOperator = biinvariant.weighting(InversePowerVariogram.of(2), sequence);
-      RandomSampleInterface randomSampleInterface = new Sphere(4);
+      RandomSampleInterface randomSampleInterface = new Sphere(4).randomSampleInterface();
       Tensor values = RandomSample.of(randomSampleInterface, n);
       Tensor point = RandomVariate.of(distribution, 3);
       // the use of snphong mean is not a mistake but an abuse

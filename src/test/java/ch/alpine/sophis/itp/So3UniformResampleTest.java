@@ -20,7 +20,7 @@ class So3UniformResampleTest {
   @Test
   void testSimple() {
     CurveOperator curveOperator = UniformResample.of(So3Group.INSTANCE, So3Group.INSTANCE, RealScalar.ONE);
-    Tensor vector = RandomSample.of(So3Group.INSTANCE, 20);
+    Tensor vector = RandomSample.of(So3Group.INSTANCE.randomSampleInterface(), 20);
     Tensor string = curveOperator.string(vector);
     assertEquals(Dimensions.of(string).subList(1, 3), Arrays.asList(3, 3));
   }

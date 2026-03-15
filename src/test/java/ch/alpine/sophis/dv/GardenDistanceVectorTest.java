@@ -41,7 +41,7 @@ class GardenDistanceVectorTest {
 
   @Test
   void testSn1() {
-    RandomSampleInterface randomSampleInterface = new Sphere(2);
+    RandomSampleInterface randomSampleInterface = new Sphere(2).randomSampleInterface();
     Manifold manifold = SnManifold.INSTANCE;
     for (int length = 4; length < 10; ++length) {
       Tensor sequence = RandomSample.of(randomSampleInterface, length);

@@ -10,6 +10,7 @@ import ch.alpine.sophus.hs.st.StiefelManifold;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.pdf.RandomSample;
 
 class CurveRandomProcessTest {
   @Test
@@ -21,7 +22,7 @@ class CurveRandomProcessTest {
   @Test
   void testStiefel() {
     StiefelManifold stiefelManifold = new StiefelManifold(5, 2);
-    Tensor p = stiefelManifold.randomSample(new Random(2));
+    Tensor p = RandomSample.of(stiefelManifold.randomSampleInterface(), new Random(2));
     CurveRandomProcess.stream(stiefelManifold, RealScalar.of(0.1), p).limit(10).toList();
   }
 }

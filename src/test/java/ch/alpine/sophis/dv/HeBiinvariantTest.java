@@ -38,7 +38,7 @@ class HeBiinvariantTest {
     for (BarycentricCoordinate barycentricCoordinate : BARYCENTRIC_COORDINATES)
       for (int n = 1; n < 3; ++n)
         for (int length = 2 * n + 2; length < 2 * n + 10; ++length) {
-          RandomSampleInterface rsi = new HeNGroup(n);
+          RandomSampleInterface rsi = new HeNGroup(n).randomSampleInterface();
           Tensor sequence = RandomSample.of(rsi, length);
           Tensor mean1 = RandomSample.of(rsi);
           Tensor weights = barycentricCoordinate.weights(sequence, mean1);
@@ -58,7 +58,7 @@ class HeBiinvariantTest {
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(AFFINE);
     for (int n = 1; n < 3; ++n)
       for (int length = 2 * n + 2; length < 2 * n + 10; ++length) {
-        RandomSampleInterface rsi = new HeNGroup(n);
+        RandomSampleInterface rsi = new HeNGroup(n).randomSampleInterface();
         Tensor sequence = RandomSample.of(rsi, random, length);
         Tensor mean1 = RandomSample.of(rsi, random);
         Tensor weights = barycentricCoordinate.weights(sequence, mean1);
@@ -78,7 +78,7 @@ class HeBiinvariantTest {
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(AFFINE);
     for (int n = 1; n < 3; ++n)
       for (int length = 2 * n + 2; length < 2 * n + 10; ++length) {
-        RandomSampleInterface rsi = new HeNGroup(n);
+        RandomSampleInterface rsi = new HeNGroup(n).randomSampleInterface();
         Tensor sequence = RandomSample.of(rsi, length);
         Tensor constant = AveragingWeights.of(sequence.length());
         Tensor center = HeGroup.INSTANCE.biinvariantMean().mean(sequence, constant);
