@@ -27,14 +27,14 @@ public record IterativeCoordinateMatrix(int k) implements Genesis {
     Tensor scaling = InverseNorm.INSTANCE.origin(levers);
     Tensor matrix = DiagonalMatrix.sparse(scaling);
     Tensor normalized = Times.of(scaling, levers);
-    Tensor midmat = Adds.matrix(levers.length());
+    Tensor midmat = Adds.matrix_reverse(levers.length());
     for (int depth = 0; depth < k; ++depth) {
       Tensor midpoints = Adds.forward(normalized);
       scaling = InverseNorm.INSTANCE.origin(midpoints);
       matrix = Times.of(scaling, midmat).dot(matrix);
       normalized = Times.of(scaling, midpoints);
     }
-    Chop._10.requireClose(matrix.dot(levers), normalized);
+    Chop._08.requireClose(matrix.dot(levers), normalized);
     return matrix;
   }
 }

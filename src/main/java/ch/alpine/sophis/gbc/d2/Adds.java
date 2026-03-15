@@ -6,7 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
 
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Last;
@@ -14,6 +13,8 @@ import ch.alpine.tensor.ext.Cache;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.mat.IdentityMatrix;
 
+/** performs matrix [1 1 0 0 0; 0 1 1 0 0; ... ] multiplication without
+ * the need to build matrix */
 /* package */ enum Adds {
   ;
   /** @param tensor non-empty
@@ -43,18 +44,26 @@ import ch.alpine.tensor.mat.IdentityMatrix;
 
   // ---
   private static final int CACHE_SIZE = 32;
-  private static final Function<Integer, Tensor> CACHE = Cache.of(Adds::build, CACHE_SIZE);
+  private static final Function<Integer, Tensor> FORWARD = Cache.of(Adds::build_forward, CACHE_SIZE);
+  private static final Function<Integer, Tensor> REVERSE = Cache.of(Adds::build_reverse, CACHE_SIZE);
 
   /** @param n strictly positive
    * @return */
-  public static Tensor matrix(int n) {
-    return CACHE.apply(Integers.requirePositive(n));
+  public static Tensor matrix_forward(int n) {
+    return FORWARD.apply(Integers.requirePositive(n));
   }
 
-  private static Tensor build(int n) {
-    Tensor matrix = IdentityMatrix.sparse(n);
-    for (int i = 0; i < n; ++i)
-      matrix.set(RealScalar.ONE, i, (i + 1) % n);
-    return matrix;
+  /** @param n strictly positive
+   * @return */
+  public static Tensor matrix_reverse(int n) {
+    return REVERSE.apply(Integers.requirePositive(n));
+  }
+
+  private static Tensor build_forward(int n) {
+    return Tensor.of(IdentityMatrix.of(n).stream().map(Adds::forward));
+  }
+
+  private static Tensor build_reverse(int n) {
+    return Tensor.of(IdentityMatrix.of(n).stream().map(Adds::reverse));
   }
 }
