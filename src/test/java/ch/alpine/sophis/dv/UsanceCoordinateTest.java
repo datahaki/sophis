@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.api.MetricManifold;
 import ch.alpine.sophus.api.TangentSpace;
-import ch.alpine.sophus.hs.HomogeneousSpace;
+import ch.alpine.sophus.hs.SpecificHomogeneousSpace;
 import ch.alpine.sophus.hs.gr.Grassmannian;
 import ch.alpine.sophus.hs.h.Hyperboloid;
 import ch.alpine.sophus.hs.s.SnManifold;
@@ -43,7 +43,7 @@ import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Clips;
 
 class UsanceCoordinateTest {
-  public static List<HomogeneousSpace> homogeneousSpaces() {
+  public static List<SpecificHomogeneousSpace> homogeneousSpaces() {
     return Arrays.asList( //
         new StiefelManifold(3, 1), //
         new Grassmannian(5, 2), //
@@ -65,8 +65,8 @@ class UsanceCoordinateTest {
 
   @ParameterizedTest
   @MethodSource("homogeneousSpaces")
-  void testSimple(HomogeneousSpace homogeneousSpace) {
-    RandomSampleInterface rsi = (RandomSampleInterface) homogeneousSpace;
+  void testSimple(SpecificHomogeneousSpace homogeneousSpace) {
+    RandomSampleInterface rsi = homogeneousSpace.randomSampleInterface();
     Tensor p = RandomSample.of(rsi);
     TangentSpace tangentSpace = homogeneousSpace.tangentSpace(p);
     RandomSampleInterface rpnts = LocalRandomSample.of(tangentSpace, 0.1);
