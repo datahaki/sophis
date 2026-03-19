@@ -5,18 +5,14 @@ import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.alg.VectorQ;
-import ch.alpine.tensor.api.TensorUnaryOperator;
-import ch.alpine.tensor.mat.Tolerance;
+import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.qty.UnitSystem;
 
 /** inspired by
  * <a href="https://reference.wolfram.com/language/ref/GeoPosition.html">GeoPosition</a> */
 public enum GeoPosition {
   ;
-  private static final Tensor UNIT = UnitVector.of(3, 0);
-
   /** @param string for example "38°20′44″N 00°46′8″W"
    * @return */
   public static Scalar fromString(String string) {
@@ -32,11 +28,15 @@ public enum GeoPosition {
     Tensor rot1 = So3Exponential.vectorExp(Tensors.of(lat.zero(), lat.negate(), lat.zero()));
     Scalar lon = lat_lon.Get(1);
     Tensor rot2 = So3Exponential.vectorExp(Tensors.of(lon.zero(), lon.zero(), lon));
-    Tolerance.CHOP.requireClose(rot1.dot(UNIT), rot1.get(Tensor.ALL, 0));
     return rot2.dot(rot1.get(Tensor.ALL, 0));
   }
 
-  public static TensorUnaryOperator operator() {
-    return GeoPosition::of;
+  /** consistent with mathematica
+   * 
+   * @param lat_lon
+   * @return */
+  public static Tensor xyz(Tensor lat_lon) {
+    // TODO use ellipsoid model
+    return of(lat_lon).multiply(Quantity.of(6_378_137, "m"));
   }
 }
