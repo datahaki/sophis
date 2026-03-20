@@ -10,18 +10,18 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.ext.Integers;
+import ch.alpine.tensor.sca.ply.TripleReduceExtrapolation;
 
 /** @see CurvatureComb */
-public class Curvature2D extends TripleReduceExtrapolation implements CurveOperator {
-  public static final Curvature2D INSTANCE = new Curvature2D();
+public enum Curvature2D implements CurveOperator {
+  INSTANCE;
 
-  private Curvature2D() {
-  }
-
-  @Override
-  protected Scalar reduce(Tensor p, Tensor q, Tensor r) {
-    return SignedCurvature2D.orElseZero(p, q, r);
-  }
+  private static final TripleReduceExtrapolation SIGNED_CURVATURE = new TripleReduceExtrapolation() {
+    @Override
+    protected Scalar reduce(Tensor p, Tensor q, Tensor r) {
+      return SignedCurvature2D.orElseZero(p, q, r);
+    }
+  };
 
   @Override
   public Tensor cyclic(Tensor tensor) {
@@ -46,6 +46,6 @@ public class Curvature2D extends TripleReduceExtrapolation implements CurveOpera
    * values of {@link SignedCurvature2D} */
   @Override
   public Tensor string(Tensor points) {
-    return INSTANCE.apply(points);
+    return SIGNED_CURVATURE.apply(points);
   }
 }
