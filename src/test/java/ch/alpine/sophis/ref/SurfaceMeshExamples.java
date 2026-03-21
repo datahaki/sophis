@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.ref.d2;
+package ch.alpine.sophis.ref;
 
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.tensor.RealScalar;
