@@ -8,6 +8,7 @@ import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
+import ch.alpine.tensor.alg.Array;
 import ch.alpine.tensor.alg.Last;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.sca.ply.TripleReduceExtrapolation;
@@ -21,6 +22,11 @@ public enum Curvature2D implements CurveOperator {
     protected Scalar reduce(Tensor p, Tensor q, Tensor r) {
       return SignedCurvature2D.orElseZero(p, q, r);
     }
+
+    @Override
+    protected Tensor petite(Tensor sequence) {
+      return Array.zeros(sequence.length());
+    };
   };
 
   @Override
