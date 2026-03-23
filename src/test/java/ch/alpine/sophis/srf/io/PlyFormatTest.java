@@ -11,7 +11,7 @@ import ch.alpine.tensor.ext.ResourceData;
 class PlyFormatTest {
   @Test
   void testSimple() {
-    SurfaceMesh surfaceMesh = PlyFormat.parse(ResourceData.lines("ch/alpine/sophus/mesh/unitcube.ply"));
+    SurfaceMesh surfaceMesh = PlyFormat.parse(ResourceData.lines("ch/alpine/sophis/mesh/unitcube.ply"));
     assertEquals(surfaceMesh.vrt.length(), 8);
     assertEquals(surfaceMesh.faces().size(), 6);
   }
