@@ -4,6 +4,8 @@ package ch.alpine.sophis.api;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
+/** used for curve subdivision, or curve refinement
+ * also for curve decimation */
 public interface CurveOperator {
   /** @param tensor
    * @return one round of subdivision of closed curve defined by given tensor */

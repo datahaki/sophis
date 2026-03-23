@@ -13,24 +13,34 @@ The library was developed with the following objectives in mind
 
 ## 🧮 Algorithms
 
+##### Curves
+
+* Bézier-, spline-, radial basis function interpolation
+* Dubins path
+* Ramer-Douglas-Peucker algorithm for curve decimation
+
+##### Barycentric coordinates
+
 * biinvariant distance vectors
 * biinvariant barycentric coordinates, iterative coordinates
-* biinvariant mean, spatial median
-* filtering (using geodesic averages, biinvariant mean)
-* parallel transport: pole ladder, schild's ladder
-* kriging
-* Bézier-, spline-, radial basis function interpolation
-* curve subdivision, Hermite curve subdivision
-* clothoid
-* Dubins path
 * barycentric coordinates for polygons: mean value, discrete harmonic, ...
-* Ramer-Douglas-Peucker algorithm for curve decimation 
-* Graham scan for convex hull in the plane
-* rigid motion fit, sphere fit
-* Baker Campbell Hausdorff formula
-* Clifford algebra, geometric product
+* kriging
 
----
+##### Filtering
+
+* spatial median
+* filtering (using geodesic averages, biinvariant mean)
+
+##### Subdivision
+
+* curve subdivision, Hermite curve subdivision
+* surface subdivision: Catmull-Clark, Doo-Sabin
+
+##### Miscellaneous
+
+* convex hull for point clouds in 2D and 3D
+* rigid motion fit, sphere fit
+* region
 
 ## 📰 Publications
 
@@ -106,8 +116,6 @@ $q_i = (px_i, py_i, θ_i) \in SE(2)$
 for
 $i=1, ..., 6$.
 
----
-
 ## 💡 Examples
 
 ##### Geodesic DeBoor Algorithm
@@ -132,7 +140,7 @@ The trajectory can be faithfully reconstructed from a fraction of the samples.
 
 ## 👥 Contributors
 
-Jan Hakenberg, Oliver Brinkmann, Joel Gächter
+Jan Hakenberg, Oliver Brinkmann, Joel Gächter, Valentina Cavinato, Jonas Londschien
 
 ## 🌐 QuickHull3D
 
