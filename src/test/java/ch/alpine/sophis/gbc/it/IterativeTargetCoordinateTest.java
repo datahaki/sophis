@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import ch.alpine.sophis.crv.d2.alg.OriginEnclosureQ;
 import ch.alpine.sophis.dv.MetricBiinvariant;
 import ch.alpine.sophis.var.InversePowerVariogram;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.pdf.RandomVariate;
@@ -32,7 +32,7 @@ class IterativeTargetCoordinateTest {
       if (OriginEnclosureQ.isInsideConvexHull(levers)) {
         Deque<WeightsFactors> deque = genesis.deque(levers);
         Tensor vector = genesis.origin(levers);
-        AffineQ.INSTANCE.require(vector); // , Chop._10);
+        AffineVectorQ.INSTANCE.require(vector); // , Chop._10);
         Chop._08.requireAllZero(vector.dot(levers));
         if (1 < deque.size() && deque.size() < 100) {
           Tensor w0 = deque.peekFirst().weights();

@@ -6,7 +6,7 @@ import java.util.Objects;
 
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophus.api.Manifold;
-import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.DeterminateTensorQ;
 
@@ -30,7 +30,7 @@ public record HsCoordinates(Manifold manifold, Genesis genesis) implements Baryc
   public Tensor weights(Tensor sequence, Tensor point) {
     Tensor weights = genesis.origin(manifold.tangentSpace(point).vectorLog().slash(sequence));
     return DeterminateTensorQ.of(weights) //
-        ? AffineQ.INSTANCE.require(weights)
+        ? AffineVectorQ.INSTANCE.require(weights)
         : weights;
   }
 }

@@ -10,12 +10,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import ch.alpine.sophus.api.MetricManifold;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.VectorizedGroup;
 import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.sophus.lie.so.So3Group;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.UnitVector;
@@ -104,7 +104,7 @@ class So3BiinvariantTest {
       int index = 0;
       for (Tensor point : sequence) {
         Tensor weights = barycentricCoordinate.weights(sequence, point);
-        AffineQ.INSTANCE.require(weights);
+        AffineVectorQ.INSTANCE.require(weights);
         if (!Chop._06.isClose(weights, UnitVector.of(n, index))) {
           IO.println(barycentricCoordinate);
           IO.println(weights);

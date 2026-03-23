@@ -13,10 +13,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.var.InversePowerVariogram;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.hs.spd.SpdManifold;
 import ch.alpine.sophus.hs.spd.SpdNManifold;
 import ch.alpine.sophus.lie.so.SoNGroup;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.BasisTransform;
 import ch.alpine.tensor.alg.UnitVector;
@@ -55,7 +55,7 @@ class SpdBiinvariantTest {
       try {
         Tensor point = RandomSample.of(rsi, randomGenerator);
         Tensor weights = barycentricCoordinate.weights(sequence, point);
-        AffineQ.INSTANCE.require(weights); // , Chop._08);
+        AffineVectorQ.INSTANCE.require(weights); // , Chop._08);
         Tensor spd = SpdManifold.INSTANCE.biinvariantMean().mean(sequence, weights);
         Chop._08.requireClose(spd, point);
       } catch (Exception exception) {
@@ -78,7 +78,7 @@ class SpdBiinvariantTest {
       int index = random.nextInt(sequence.length());
       Tensor point = sequence.get(index);
       Tensor weights = barycentricCoordinate.weights(sequence, point);
-      AffineQ.INSTANCE.require(weights); // , Chop._08);
+      AffineVectorQ.INSTANCE.require(weights); // , Chop._08);
       Tolerance.CHOP.requireClose(weights, UnitVector.of(len, index));
       Tensor spd = SpdManifold.INSTANCE.biinvariantMean().mean(sequence, weights);
       Tolerance.CHOP.requireClose(spd, point);

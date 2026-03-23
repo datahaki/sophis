@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 import ch.alpine.sophis.win.HalfWindowSampler;
-import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -56,7 +56,7 @@ public class GeodesicExtrapolation implements TensorUnaryOperator {
     @PackageTestAccess
     static Tensor of(Tensor mask) {
       // check for affinity
-      AffineQ.INSTANCE.require(mask);
+      AffineVectorQ.INSTANCE.require(mask);
       // no extrapolation possible
       if (mask.length() == 1)
         return Tensors.vector(1);

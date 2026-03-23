@@ -2,7 +2,7 @@
 package ch.alpine.sophis.dv;
 
 import ch.alpine.sophis.api.Genesis;
-import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Transpose;
@@ -34,7 +34,7 @@ public enum AffineCoordinate implements Genesis {
     Tensor z = CholeskyDecomposition.of(matrix).solve(u); // TODO this can fail !
     Tensor weights = x.dot(z);
     // typically the sum of the weights is already quite close to 1
-    new AffineQ(Chop._08).require(weights);
+    new AffineVectorQ(Chop._08).require(weights);
     return NormalizeTotal.FUNCTION.apply(weights);
   }
 }

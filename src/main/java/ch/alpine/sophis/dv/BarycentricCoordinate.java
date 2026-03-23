@@ -1,8 +1,8 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.bm.BiinvariantMean;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
 
 /** The barycentric coordinate is the "INVERSE" of computing a weighted average.
@@ -20,6 +20,6 @@ public interface BarycentricCoordinate {
   /** @param sequence
    * @param point
    * @return vector of affine weights corresponding to given point
-   * @see AffineQ */
+   * @see AffineVectorQ */
   Tensor weights(Tensor sequence, Tensor point);
 }

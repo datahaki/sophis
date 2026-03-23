@@ -9,7 +9,7 @@ import java.io.IOException;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.CurveOperator;
-import ch.alpine.sophis.crv.clt.ClothoidBuilders;
+import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;

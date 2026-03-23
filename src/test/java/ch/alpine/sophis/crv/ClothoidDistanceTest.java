@@ -1,49 +1,26 @@
 // code by jph
-package ch.alpine.sophis.crv.clt;
-
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
-
-import java.io.IOException;
+package ch.alpine.sophis.crv;
 
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.CurveOperator;
 import ch.alpine.sophis.ref.d1.LaneRiesenfeldCurveSubdivision;
-import ch.alpine.sophus.lie.so2.So2;
-import ch.alpine.tensor.Rational;
+import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.api.ScalarTensorFunction;
-import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.mat.Tolerance;
-import ch.alpine.tensor.pdf.Distribution;
-import ch.alpine.tensor.pdf.RandomVariate;
-import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.red.Nest;
 import ch.alpine.tensor.sca.Chop;
 
-class ClothoidBuilderImplTest {
-  private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
-
+class ClothoidDistanceTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
-    Distribution distribution = UniformDistribution.of(-8, 8);
-    ClothoidBuilder clothoidInterface = Serialization.copy(CLOTHOID_BUILDER);
-    for (int count = 0; count < 100; ++count) {
-      Tensor p = RandomVariate.of(distribution, 3);
-      Tensor q = RandomVariate.of(distribution, 3);
-      Clothoid clothoid = clothoidInterface.curve(p, q);
-      Chop._07.requireZero(So2.MOD.apply(clothoid.apply(RealScalar.ZERO).Get(2).subtract(p.Get(2))));
-      Chop._07.requireZero(So2.MOD.apply(clothoid.apply(RealScalar.ONE).Get(2).subtract(q.Get(2))));
-    }
-  }
-
-  @Test
-  void testErf() {
-    ScalarTensorFunction scalarTensorFunction = CLOTHOID_BUILDER.curve(Tensors.vector(1, 2, 3), Array.zeros(3));
-    assertInstanceOf(Clothoid.class, scalarTensorFunction);
+  void testSimple() {
+    Chop._10.requireClose(ClothoidDistance.SE2_ANALYTIC.norm(Tensors.vector(10, 0, 0)), RealScalar.of(10));
+    Chop._10.requireClose(ClothoidDistance.SE2_COVERING.norm(Tensors.vector(10, 0, 0)), RealScalar.of(10));
+    Chop._10.requireClose(ClothoidDistance.SE2_ANALYTIC.norm(Tensors.vector(23, 0, 0)), RealScalar.of(23));
+    Chop._10.requireClose(ClothoidDistance.SE2_COVERING.norm(Tensors.vector(23, 0, 0)), RealScalar.of(23));
   }
 
   @SuppressWarnings("unused")
@@ -60,9 +37,9 @@ class ClothoidBuilderImplTest {
       Chop._02.requireClose(mLA, mLL);
       // System.out.println(mLL);
       // {-1.7030138036773317, 0.2166473557662918, 2.430899623066361}
-      Tensor mLO = ComplexClothoidCurve.INSTANCE.curve(pL, q).apply(Rational.HALF);
+      // Tensor mLO = ComplexClothoidCurve.INSTANCE.curve(pL, q).apply(Rational.HALF);
       // System.out.println(mLO);
-      Tensor mL3 = new ClothoidCurve3(pL, q).apply(Rational.HALF);
+      // Tensor mL3 = new ClothoidCurve3(pL, q).apply(Rational.HALF);
       // System.out.println(mL3);
       // System.out.println("---");
     }

@@ -15,10 +15,10 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.api.Manifold;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Array;
@@ -97,7 +97,7 @@ class RnBiinvariantTest {
       Tensor mean = RandomVariate.of(distribution, randomGenerator, d);
       // FIXME wights don't always add up to 1
       Tensor weights = barycentricCoordinate.weights(points, mean);
-      AffineQ.INSTANCE.require(weights);
+      AffineVectorQ.INSTANCE.require(weights);
       Tensor result = LinearBiinvariantMean.INSTANCE.mean(points, weights);
       Chop._08.requireClose(mean, result);
     }
@@ -198,6 +198,6 @@ class RnBiinvariantTest {
     sequence.append(sequence.get(n - 1).multiply(RealScalar.of(5)));
     Tensor weights = barycentricCoordinate.weights(sequence, Array.zeros(d));
     assertEquals(sequence.length(), n + 1);
-    AffineQ.INSTANCE.require(weights); // , Chop._08);
+    AffineVectorQ.INSTANCE.require(weights); // , Chop._08);
   }
 }

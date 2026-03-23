@@ -14,9 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.var.ExponentialVariogram;
 import ch.alpine.sophis.var.PowerVariogram;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
@@ -122,7 +122,7 @@ class KrigingTest {
           // ---
           Tensor point = RandomVariate.of(distribution, d);
           Tensor weights = kriging.estimate(point);
-          new AffineQ(Chop._08).require(weights); // TODO this should be spot on !!!
+          new AffineVectorQ(Chop._08).require(weights); // TODO this should be spot on !!!
         }
       }
     }

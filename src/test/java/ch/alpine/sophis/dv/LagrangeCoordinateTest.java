@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophis.var.InversePowerVariogram;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.ComplexScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.ExactTensorQ;
@@ -24,7 +24,7 @@ import ch.alpine.tensor.sca.Im;
 
 class LagrangeCoordinateTest {
   private static void _check(Tensor levers, Tensor weights) {
-    AffineQ.INSTANCE.require(weights); // Chop._10
+    AffineVectorQ.INSTANCE.require(weights); // Chop._10
     Chop._08.requireAllZero(weights.dot(levers));
   }
 

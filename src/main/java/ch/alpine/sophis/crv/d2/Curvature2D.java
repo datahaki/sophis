@@ -25,7 +25,7 @@ public enum Curvature2D implements CurveOperator {
 
     @Override
     protected Tensor petite(Tensor sequence) {
-      return Array.zeros(sequence.length());
+      return Array.zeros(sequence.length()); // TODO SOPHIS units
     };
   };
 

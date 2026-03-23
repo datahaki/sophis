@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophis.dv.HsCoordinates;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
@@ -31,11 +31,11 @@ class ThreePointScalingsTest {
         Tensor points = CirclePoints.of(n);
         Tensor w1 = barycentricCoordinate.weights(points, Array.zeros(2));
         Chop._08.requireClose(w1, AveragingWeights.of(points.length()));
-        AffineQ.INSTANCE.require(w1); // , Chop._08);
+        AffineVectorQ.INSTANCE.require(w1); // , Chop._08);
         Tensor w2 = barycentricCoordinate.weights(CirclePoints.of(n), Tensors.vector(2, 2));
         assertEquals(w2.length(), n);
         assertTrue(FiniteTensorQ.of(w2));
-        AffineQ.INSTANCE.require(w2); // , Chop._08);
+        AffineVectorQ.INSTANCE.require(w2); // , Chop._08);
       }
     }
   }

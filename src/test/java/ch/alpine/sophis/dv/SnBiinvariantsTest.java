@@ -7,11 +7,11 @@ import java.util.random.RandomGenerator;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.hs.s.SnManifold;
 import ch.alpine.sophus.lie.so.So3Exponential;
 import ch.alpine.sophus.lie.so.SoNGroup;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Transpose;
@@ -47,7 +47,7 @@ class SnBiinvariantsTest {
       Tensor sequence = randomCloud(mean, n, randomGenerator);
       Tensor weights = barycentricCoordinate.weights(sequence, mean);
       VectorQ.requireLength(weights, n);
-      AffineQ.INSTANCE.require(weights); // , Chop._08);
+      AffineVectorQ.INSTANCE.require(weights); // , Chop._08);
       Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.tangentSpace(mean)).tangent();
       Chop._06.requireAllZero(evaluate);
       Chop._06.requireClose(mean, SnManifold.INSTANCE.biinvariantMean().mean(sequence, weights));
@@ -65,7 +65,7 @@ class SnBiinvariantsTest {
       Tensor sequence = randomCloud(mean, n, randomGenerator);
       Tensor weights = barycentricCoordinate.weights(sequence, mean);
       VectorQ.requireLength(weights, n);
-      AffineQ.INSTANCE.require(weights);
+      AffineVectorQ.INSTANCE.require(weights);
       {
         Tensor evaluate = MeanDefect.of(sequence, weights, SnManifold.INSTANCE.tangentSpace(mean)).tangent();
         Chop._08.requireAllZero(evaluate);

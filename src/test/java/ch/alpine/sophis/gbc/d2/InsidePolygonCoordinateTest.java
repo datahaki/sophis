@@ -7,8 +7,8 @@ import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.dv.BarycentricCoordinate;
 import ch.alpine.sophis.dv.HsCoordinates;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -28,7 +28,7 @@ class InsidePolygonCoordinateTest {
         Tensor points = CirclePoints.of(n);
         Tensor w1 = barycentricCoordinate.weights(points, Array.zeros(2));
         Chop._08.requireClose(w1, AveragingWeights.of(points.length()));
-        AffineQ.INSTANCE.require(w1); // , Chop._08);
+        AffineVectorQ.INSTANCE.require(w1); // , Chop._08);
         Tensor w2 = barycentricCoordinate.weights(points, Tensors.vector(2, 2));
         assertEquals(w2.toString(), ConstantArray.of(DoubleScalar.INDETERMINATE, n).toString());
       }

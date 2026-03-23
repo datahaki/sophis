@@ -9,7 +9,7 @@ import java.util.function.Function;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -27,7 +27,7 @@ class HalfWindowSamplerTest {
       for (int count = 1; count <= 10; ++count) {
         Tensor tensor = function.apply(count);
         assertEquals(tensor.length(), count);
-        AffineQ.INSTANCE.require(tensor); // , Chop._08);
+        AffineVectorQ.INSTANCE.require(tensor); // , Chop._08);
       }
     }
   }

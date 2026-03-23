@@ -2,7 +2,7 @@
 package ch.alpine.sophis.ref.d1;
 
 import ch.alpine.sophis.api.CurveOperator;
-import ch.alpine.sophis.crv.clt.Clothoid;
+import ch.alpine.sophus.clt.Clothoid;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;

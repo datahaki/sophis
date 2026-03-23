@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.fit;
 
-import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.TensorUnaryOperator;
@@ -31,7 +31,7 @@ public record RigidMotionFit(Tensor rotation, Tensor translation) implements Ten
    * @return
    * @throws Exception if total of weights does not equal 1 */
   public static RigidMotionFit of(Tensor origin, Tensor target, Tensor weights) {
-    AffineQ.INSTANCE.require(weights);
+    AffineVectorQ.INSTANCE.require(weights);
     return _of(origin, target, weights);
   }
 

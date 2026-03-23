@@ -12,12 +12,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import ch.alpine.sophus.api.Exponential;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.bm.BiinvariantMean;
 import ch.alpine.sophus.bm.MeanDefect;
 import ch.alpine.sophus.lie.LieGroup;
 import ch.alpine.sophus.lie.se.SeNGroup;
 import ch.alpine.sophus.lie.se3.Se3Exponential;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.chq.ZeroDefectArrayQ;
@@ -62,7 +62,7 @@ class Se3BiinvariantTest {
     // Tensor points = RandomSample.of(RSI_Se3A, random, n);
     // Tensor xya = RandomSample.of(RSI_Se3A, random);
     // Tensor weights = barycentricCoordinate.weights(points, xya);
-    AffineQ.INSTANCE.require(weights); // , Chop._08);
+    AffineVectorQ.INSTANCE.require(weights); // , Chop._08);
     // Tensor check1 = biinvariantMean.mean(points, weights);
     // Chop._10.requireClose(check1, xya);
     // Chop._10.requireClose(Total.ofVector(weights), RealScalar.ONE);
@@ -88,7 +88,7 @@ class Se3BiinvariantTest {
     Tensor point = RandomSample.of(RSI_Se3A, random);
     {
       Tensor weights = barycentricCoordinate.weights(sequence, point);
-      AffineQ.INSTANCE.require(weights);
+      AffineVectorQ.INSTANCE.require(weights);
     }
     {
       Tensor weights = RandomVariate.of(TriangularDistribution.with(1, 0.3), n);

@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 import java.util.Optional;
 
-import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
@@ -40,7 +40,7 @@ public record WeiszfeldMethod(Chop chop) implements SpatialMedian, Serializable 
 
   @Override // from SpatialMedian
   public Optional<Tensor> weighted(Tensor sequence, Tensor weights) {
-    AffineQ.INSTANCE.require(weights);
+    AffineVectorQ.INSTANCE.require(weights);
     Tensor point = weights.dot(sequence).maps(N.DOUBLE); // initial value
     for (int iteration = 0; iteration < MAX_ITERATIONS; ++iteration) {
       Tensor dist = Tensor.of(sequence.stream().map(point.negate()::add).map(Vector2Norm::of));

@@ -3,7 +3,7 @@ package ch.alpine.sophis.ref.d2;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.sca.Chop;
 
@@ -12,7 +12,7 @@ class DooSabinWeightsTest {
   void testSimple() {
     for (int n = 3; n <= 12; ++n) {
       Tensor w = DooSabinWeights.INSTANCE.apply(n);
-      AffineQ.INSTANCE.require(w);
+      AffineVectorQ.INSTANCE.require(w);
       Chop._12.requireClose(w, DooSabinWeights.numeric(n));
     }
   }

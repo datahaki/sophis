@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import ch.alpine.sophus.math.AffineQ;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.UnitVector;
@@ -13,7 +13,7 @@ import ch.alpine.tensor.sca.Chop;
 
 /* package */ enum LagrangeCoordinates {
   ;
-  private static final AffineQ AFFINE_Q_APPROX = new AffineQ(Chop._08);
+  private static final AffineVectorQ AFFINE_Q_APPROX = new AffineVectorQ(Chop._08);
 
   /** @param levers
    * @param target

@@ -15,8 +15,8 @@ import ch.alpine.sophis.dv.Biinvariants;
 import ch.alpine.sophis.dv.Sedarim;
 import ch.alpine.sophis.var.PowerVariogram;
 import ch.alpine.sophis.var.VariogramFunctions;
+import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.sophus.math.AffineQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
@@ -85,7 +85,7 @@ class RadialBasisFunctionInterpolationTest {
         // ---
         Tensor point = RandomVariate.of(distribution, randomGenerator, 3);
         Tensor weights = tensorUnaryOperator.apply(point);
-        AffineQ.INSTANCE.require(weights); // , Chop._08);
+        AffineVectorQ.INSTANCE.require(weights); // , Chop._08);
       }
     }
   }

@@ -1,8 +1,10 @@
 // code by gjoel
-package ch.alpine.sophis.crv.clt;
+package ch.alpine.sophis.crv;
 
 import ch.alpine.sophis.api.TensorNorm;
 import ch.alpine.sophus.api.TensorMetric;
+import ch.alpine.sophus.clt.ClothoidBuilder;
+import ch.alpine.sophus.clt.ClothoidBuilders;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 
