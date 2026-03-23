@@ -6,7 +6,8 @@ import java.util.function.Function;
 import ch.alpine.sophus.bm.BiinvariantMean;
 
 public enum SurfaceMeshRefinements {
-  LINEAR(TriQuadLinearRefinement::new),
+  LINEAR_TRI_QUAD(TriQuadLinearRefinement::new),
+  LINEAR_QUAD(QuadLinearRefinement::new),
   DOO_SABIN(DooSabinRefinement::new),
   CATMULL_CLARK(CatmullClarkRefinement::new);
 
