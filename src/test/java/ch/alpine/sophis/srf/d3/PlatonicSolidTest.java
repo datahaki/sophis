@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.hull.d3;
+package ch.alpine.sophis.srf.d3;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,7 +15,7 @@ class PlatonicSolidTest {
   @ParameterizedTest
   @EnumSource
   void testStructure(PlatonicSolid platonicSolid) {
-    List<int[]> faces = platonicSolid.faces();
+    List<int[]> faces = platonicSolid.surfaceMesh().faces();
     assertEquals(faces.size(), platonicSolid.faceSize());
     assertEquals(faces.stream().map(a -> a.length).distinct().toList(), List.of(platonicSolid.faceShape()));
   }

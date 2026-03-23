@@ -11,7 +11,7 @@ import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.alg.Rotate;
 
 /** so far only used in a test */
-public class SimplexD {
+class SimplexD {
   public static Set<Tensor> of(List<int[]> faces) {
     SimplexD simplexD = new SimplexD();
     for (int[] face : faces)

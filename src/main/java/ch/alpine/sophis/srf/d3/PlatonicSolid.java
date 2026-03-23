@@ -1,8 +1,8 @@
 // code by jph
-package ch.alpine.sophis.hull.d3;
+package ch.alpine.sophis.srf.d3;
 
-import java.util.List;
-
+import ch.alpine.sophis.hull.d3.ConvexHull3D;
+import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.io.Import;
 
@@ -16,7 +16,7 @@ public enum PlatonicSolid {
 
   private final int faceCount;
   private final int faceShape;
-  private final Tensor vertices = Import.of("ch/alpine/qhull3/platonic/" + name().toLowerCase() + ".csv").unmodifiable();
+  private final Tensor vertices = Import.of("ch/alpine/sophis/srf/d3/" + name().toLowerCase() + ".csv").unmodifiable();
 
   PlatonicSolid(int faceCount, int faceShape) {
     this.faceCount = faceCount;
@@ -36,7 +36,7 @@ public enum PlatonicSolid {
   }
 
   /** @return faceSize x faceShape */
-  public List<int[]> faces() {
-    return ConvexHull3D.of(vertices);
+  public SurfaceMesh surfaceMesh() {
+    return new SurfaceMesh(vertices(), ConvexHull3D.of(vertices));
   }
 }
