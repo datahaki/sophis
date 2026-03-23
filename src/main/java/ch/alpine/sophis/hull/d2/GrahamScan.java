@@ -1,6 +1,6 @@
 // code by Robert Sedgewick and Kevin Wayne
 // adapted by jph
-package ch.alpine.sophis.crv.d2.alg;
+package ch.alpine.sophis.hull.d2;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,7 +30,7 @@ import ch.alpine.tensor.sca.Sign;
  * It uses a stack to detect and remove concavities in the boundary efficiently.
  * 
  * <a href="https://en.wikipedia.org/wiki/Graham_scan">Graham scan</a> */
-/* package */ enum GrahamScan {
+enum GrahamScan {
   ;
   private static final Comparator<Tensor> MINY_MINX = (p1, p2) -> {
     int cmp = Scalars.compare(p1.Get(1), p2.Get(1));

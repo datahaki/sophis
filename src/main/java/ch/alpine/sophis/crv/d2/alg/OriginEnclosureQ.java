@@ -2,6 +2,7 @@
 // adapted from PNPOLY - Point Inclusion in Polygon Test W. Randolph Franklin (WRF)
 package ch.alpine.sophis.crv.d2.alg;
 
+import ch.alpine.sophis.hull.d2.ConvexHull2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;

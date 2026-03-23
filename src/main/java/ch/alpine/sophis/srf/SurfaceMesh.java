@@ -37,7 +37,6 @@ public class SurfaceMesh implements Serializable {
     return index;
   }
 
-  // ---
   public void addFace(int... values) {
     long count = IntStream.of(values).distinct().count();
     Integers.requireEquals(values.length, (int) count);

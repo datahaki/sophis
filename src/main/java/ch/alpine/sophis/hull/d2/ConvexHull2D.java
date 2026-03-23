@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.crv.d2.alg;
+package ch.alpine.sophis.hull.d2;
 
 import java.util.stream.Stream;
 

@@ -1,3 +1,4 @@
+// code by jph
 package ch.alpine.sophis.ref.d2;
 
 import org.junit.jupiter.params.ParameterizedTest;

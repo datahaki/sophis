@@ -8,7 +8,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Last;
 
-/* package */ enum FranklinPnpoly {
+enum FranklinPnpoly {
   ;
   /** @param polygon in the 2-dimensional plane
    * @param point of which only the first two coordinates will be considered

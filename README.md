@@ -134,6 +134,20 @@ The trajectory can be faithfully reconstructed from a fraction of the samples.
 
 Jan Hakenberg, Oliver Brinkmann, Joel Gächter
 
+## 🌐 QuickHull3D
+
+QuickHull3D:
+Copyright John E. Lloyd, 2004. All rights reserved. Permission to use,
+copy, modify and redistribute is granted, provided that this copyright
+notice is retained and the author is given credit whenever appropriate.
+
+This  software is distributed "as is", without any warranty, including 
+any implied warranty of merchantability or fitness for a particular
+use. The author assumes no responsibility for, and shall not be liable
+for, any special, indirect, or consequential damages, or any damages
+whatsoever, arising out of or in connection with the use of this
+software.
+
 ## 📚 References
 
 * *Exponential Barycenters of the Canonical Cartan Connection and Invariant Means on Lie Groups* by Xavier Pennec, Vincent Arsigny
