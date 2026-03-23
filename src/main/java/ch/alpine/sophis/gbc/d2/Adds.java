@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
 
+import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.Last;
@@ -15,18 +16,19 @@ import ch.alpine.tensor.mat.IdentityMatrix;
 
 /** performs matrix [1 1 0 0 0; 0 1 1 0 0; ... ] multiplication without
  * the need to build matrix */
-/* package */ enum Adds {
+enum Adds {
   ;
   /** @param tensor non-empty
    * @return */
   public static Tensor forward(Tensor tensor) {
+    // TODO scale matrix to have |EV| lEq 1 !?
     List<Tensor> list = new ArrayList<>(tensor.length());
     Iterator<Tensor> iterator = tensor.iterator();
     Tensor prev = iterator.next();
     Tensor _1st = prev;
     while (iterator.hasNext())
-      list.add(prev.add(prev = iterator.next()));
-    list.add(prev.add(_1st));
+      list.add(prev.add(prev = iterator.next()).multiply(Rational.HALF));
+    list.add(prev.add(_1st).multiply(Rational.HALF));
     Integers.requireEquals(tensor.length(), list.size());
     return Unprotect.using(list);
   }
@@ -37,7 +39,7 @@ import ch.alpine.tensor.mat.IdentityMatrix;
     List<Tensor> list = new ArrayList<>(tensor.length());
     Iterator<Tensor> iterator = tensor.iterator();
     for (Tensor prev = Last.of(tensor); iterator.hasNext();)
-      list.add(prev.add(prev = iterator.next()));
+      list.add(prev.add(prev = iterator.next()).multiply(Rational.HALF));
     Integers.requireEquals(tensor.length(), list.size());
     return Unprotect.using(list);
   }
