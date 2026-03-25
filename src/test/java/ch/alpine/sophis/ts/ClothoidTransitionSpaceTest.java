@@ -47,12 +47,6 @@ class ClothoidTransitionSpaceTest {
       assertNotSame(start, samples.get(0));
       Tolerance.CHOP.requireClose(end, Last.of(samples));
     }
-    // {
-    // Tensor samples = transition.sampled(8);
-    // assertEquals(8, samples.length());
-    // assertNotSame(start, samples.get(0));
-    // assertEquals(end, Last.of(samples));
-    // }
   }
 
   @Test
@@ -73,15 +67,16 @@ class ClothoidTransitionSpaceTest {
           .map(Sign::requirePositive) //
           .allMatch(s -> Scalars.lessEquals(s, res)));
     }
-    // {
-    // Scalar res = Quantity.of(0.5, "m");
-    // TransitionWrap wrap = transition.wrapped(res);
-    // assertEquals(8, wrap.samples().length());
-    // assertNotSame(start, wrap.samples().get(0));
-    // assertEquals(end, Last.of(wrap.samples()));
-    // wrap.spacing().extract(0, 8).stream().map(Tensor::Get) //
-    // .map(Sign::requirePositive) //
-    // .forEach(s -> Chop._01.requireClose(s, transition.length().divide(RealScalar.of(8))));
-    // }
+    {
+      Scalar res = Quantity.of(0.5, "m");
+      TransitionWrap wrap = transition.wrapped(res);
+      assertEquals(9, wrap.samples().length());
+      assertNotSame(start, wrap.samples().get(0));
+      Tolerance.CHOP.requireClose(end, Last.of(wrap.samples()));
+      wrap.spacing().extract(0, 8).stream() //
+          .map(Scalar.class::cast) //
+          .map(Sign::requirePositive) //
+          .forEach(s -> Chop._01.requireClose(s, transition.length().divide(RealScalar.of(9))));
+    }
   }
 }
