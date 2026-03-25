@@ -18,6 +18,8 @@ import ch.alpine.tensor.num.RandomPermutation;
 
 /** TODO SOPHIS API does not enforce mandatory initialization of class, i.e setSeeds */
 public class KMeans {
+  private static final int MAX_ITERATIONS = 200;
+  // ---
   private final Sedarim sedarim;
   private final TensorUnaryOperator mean;
   private final Tensor sequence;
@@ -72,7 +74,6 @@ public class KMeans {
   }
 
   public int complete() {
-    // FIXME NO INFINITE LOOP !!!
     int count = 0;
     if (Objects.isNull(labels)) {
       iterate();
@@ -80,12 +81,17 @@ public class KMeans {
     }
     Tensor prev;
     Tensor next = Tensors.vector(labels);
-    do {
+    int iter = 0;
+    while (iter < MAX_ITERATIONS) {
       prev = next;
       iterate();
       ++count;
       next = Tensors.vector(labels);
-    } while (!prev.equals(next));
+      if (prev.equals(next))
+        return count;
+      ++iter;
+    }
+    System.err.println("kmeans max iter");
     return count;
   }
 
