@@ -18,9 +18,11 @@ import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.lie.rot.Cross;
 import ch.alpine.tensor.mat.IdentityMatrix;
 import ch.alpine.tensor.mat.OrthogonalMatrixQ;
+import ch.alpine.tensor.mat.Tolerance;
 import ch.alpine.tensor.mat.ex.MatrixExp;
 import ch.alpine.tensor.mat.re.Det;
 import ch.alpine.tensor.mat.re.Inverse;
+import ch.alpine.tensor.nrm.AveragingWeights;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
@@ -76,11 +78,20 @@ class RigidMotionFitTest {
     Distribution dist_weights = ExponentialDistribution.of(1);
     for (int d = 2; d < 6; ++d) {
       for (int n = d + 1; n < 11; ++n) {
-        Tensor points = RandomVariate.of(distribution, n, d);
+        Tensor origin = RandomVariate.of(distribution, n, d);
         Tensor target = RandomVariate.of(distribution, n, d);
-        Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(dist_weights, n));
-        RigidMotionFit rigidMotionFit = RigidMotionFit.of(points, target, weights);
-        Chop._08.requireClose(Det.of(rigidMotionFit.rotation()), RealScalar.ONE);
+        {
+          Tensor weights = NormalizeTotal.FUNCTION.apply(RandomVariate.of(dist_weights, n));
+          RigidMotionFit rigidMotionFit = RigidMotionFit.of(origin, target, weights);
+          Chop._08.requireClose(Det.of(rigidMotionFit.rotation()), RealScalar.ONE);
+        }
+        {
+          RigidMotionFit rmf1 = RigidMotionFit.of(origin, target);
+          Tensor weights = AveragingWeights.of(n);
+          RigidMotionFit rmf2 = RigidMotionFit.of(origin, target, weights);
+          Tolerance.CHOP.requireClose(rmf1.rotation(), rmf2.rotation());
+          Tolerance.CHOP.requireClose(rmf1.translation(), rmf2.translation());
+        }
       }
     }
   }

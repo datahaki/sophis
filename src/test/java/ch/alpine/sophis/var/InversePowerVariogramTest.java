@@ -2,6 +2,8 @@
 package ch.alpine.sophis.var;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
 
@@ -37,6 +39,14 @@ class InversePowerVariogramTest {
   void testInverse() {
     assertEquals(InversePowerVariogram.of(1).apply(RealScalar.of(2)), Rational.HALF);
     assertEquals(InversePowerVariogram.of(2).apply(RealScalar.of(2)), Rational.of(1, 4));
+  }
+
+  @Test
+  void testDistinct() {
+    assertFalse(InversePowerVariogram.of(0) instanceof InversePowerVariogram);
+    assertFalse(InversePowerVariogram.of(1) instanceof InversePowerVariogram);
+    assertFalse(InversePowerVariogram.of(2) instanceof InversePowerVariogram);
+    assertTrue(InversePowerVariogram.of(2.3) instanceof InversePowerVariogram);
   }
 
   @Test

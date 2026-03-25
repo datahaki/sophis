@@ -1,6 +1,8 @@
 // code by jph
 package ch.alpine.sophis.var;
 
+import java.util.OptionalInt;
+
 import ch.alpine.tensor.DoubleScalar;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
@@ -15,12 +17,42 @@ import ch.alpine.tensor.sca.pow.Power;
  * <p>Reference:
  * "Interpolation on Scattered Data in Multidimensions" in NR, 2007 */
 public class InversePowerVariogram implements ScalarUnaryOperator {
+  private static enum Distinct implements ScalarUnaryOperator {
+    ONE {
+      @Override
+      public Scalar apply(Scalar r) {
+        Sign.requirePositiveOrZero(r);
+        return Scalars.isZero(r) //
+            ? DoubleScalar.POSITIVE_INFINITY
+            : r.reciprocal();
+      }
+    },
+    TWO {
+      @Override
+      public Scalar apply(Scalar r) {
+        return Scalars.isZero(r) //
+            ? DoubleScalar.POSITIVE_INFINITY
+            : r.multiply(r).reciprocal();
+      }
+    }
+  }
+
   /** @param exponent for instance 2
    * @return */
   public static ScalarUnaryOperator of(Scalar exponent) {
-    return Scalars.isZero(exponent) //
-        ? ConstantOneVariogram.INSTANCE
-        : new InversePowerVariogram(exponent);
+    OptionalInt optionalInt = Scalars.optionalInt(exponent);
+    if (optionalInt.isPresent()) {
+      switch (optionalInt.getAsInt()) {
+      case 0:
+        return ConstantOneVariogram.INSTANCE;
+      case 1:
+        return Distinct.ONE;
+      case 2:
+        return Distinct.TWO;
+      default:
+      }
+    }
+    return new InversePowerVariogram(exponent);
   }
 
   /** @param exponent for instance 2

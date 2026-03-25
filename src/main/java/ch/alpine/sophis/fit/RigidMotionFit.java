@@ -6,7 +6,7 @@ import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.mat.pd.Orthogonalize;
-import ch.alpine.tensor.nrm.AveragingWeights;
+import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.red.Times;
 
 /** function computes the best-fitting rigid transformation that aligns
@@ -22,6 +22,8 @@ import ch.alpine.tensor.red.Times;
  * "The Orthogonal Procrustes Problem"
  * by Gilbert Strang, p.257
  * 
+ * Chatgpt uses the reference: "Kabsch algorithm"
+ * 
  * @param rotation orthogonal matrix with dimension d x d and determinant +1
  * @param translation vector of length d */
 public record RigidMotionFit(Tensor rotation, Tensor translation) implements TensorUnaryOperator {
@@ -35,11 +37,18 @@ public record RigidMotionFit(Tensor rotation, Tensor translation) implements Ten
     return _of(origin, target, weights);
   }
 
-  /** @param origin matrix of dimension n x d
+  /** special case with weights == AveragingWeights.of(n)
+   * 
+   * @param origin matrix of dimension n x d
    * @param target matrix of dimension n x d
    * @return */
   public static RigidMotionFit of(Tensor origin, Tensor target) {
-    return _of(origin, target, AveragingWeights.of(origin.length()));
+    Tensor pm = Mean.of(origin); // mean of origin coordinates
+    Tensor qm = Mean.of(target); // mean of target coordinates
+    Tensor xt = Tensor.of(origin.stream().map(pm.negate()::add)); // levers to origin coordinates
+    Tensor yt = Tensor.of(target.stream().map(qm.negate()::add)); // levers to target coordinates
+    Tensor rotation = Orthogonalize.usingSvd(Transpose.of(yt).dot(xt));
+    return new RigidMotionFit(rotation, qm.subtract(rotation.dot(pm)));
   }
 
   // helper function
