@@ -22,7 +22,7 @@ import ch.alpine.tensor.Tensors;
  * [in the paper the signs of the matrix entries seem to be incorrect]
  * 
  * @see BSpline1CurveSubdivision */
-/* package */ enum RnHermite1Subdivisions {
+enum RnHermite1Subdivisions {
   ;
   /** @param lambda
    * @param mu

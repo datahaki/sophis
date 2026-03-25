@@ -7,7 +7,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-/* package */ enum ControlLr2 implements CurveOperator {
+enum ControlLr2 implements CurveOperator {
   INSTANCE;
 
   private static final Scalar _1_4 = Rational.of(1, 4);

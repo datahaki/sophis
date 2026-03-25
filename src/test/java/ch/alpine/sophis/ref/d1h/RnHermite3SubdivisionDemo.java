@@ -9,7 +9,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
 import ch.alpine.tensor.io.Put;
 
-/* package */ enum RnHermite3SubdivisionDemo {
+enum RnHermite3SubdivisionDemo {
   ;
   static void main() throws IOException {
     Tensor control = Tensors.fromString("{{0, 0}, {1, 0}, {0, -1}, {-1/2, 1}}");

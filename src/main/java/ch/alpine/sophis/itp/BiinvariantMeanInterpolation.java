@@ -26,7 +26,7 @@ import ch.alpine.tensor.sca.Floor;
  * 
  * Hint:
  * for {@link LinearBiinvariantMean} the interpolation is identical to {@link LinearInterpolation} */
-/* package */ class BiinvariantMeanInterpolation extends AbstractInterpolation implements Serializable {
+class BiinvariantMeanInterpolation extends AbstractInterpolation implements Serializable {
   /** @param biinvariantMean
    * @param tensor
    * @return */

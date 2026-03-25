@@ -13,7 +13,7 @@ import ch.alpine.tensor.ext.PackageTestAccess;
 import ch.alpine.tensor.num.Pi;
 import ch.alpine.tensor.sca.tri.Cos;
 
-/* package */ enum DooSabinWeights implements Function<Integer, Tensor> {
+enum DooSabinWeights implements Function<Integer, Tensor> {
   INSTANCE;
 
   private static final int CACHE_SIZE = 48;

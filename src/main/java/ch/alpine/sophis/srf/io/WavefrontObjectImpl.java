@@ -7,7 +7,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-/* package */ class WavefrontObjectImpl implements WavefrontObject, Serializable {
+class WavefrontObjectImpl implements WavefrontObject, Serializable {
   private final String string;
   private final Tensor faces = Tensors.empty();
   private final Tensor normals = Tensors.empty();

@@ -28,7 +28,7 @@ import ch.alpine.tensor.sca.Chop;
  * by Moosmueller, 2018
  * 
  * @see BSpline3CurveSubdivision */
-/* package */ class RnHermite3Subdivision implements HermiteSubdivision {
+class RnHermite3Subdivision implements HermiteSubdivision {
   private static final Tensor DIAG = DiagonalMatrix.of(RealScalar.ONE, Rational.HALF);
   // ---
   private final Tensor AMP;

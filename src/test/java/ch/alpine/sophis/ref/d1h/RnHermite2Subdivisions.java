@@ -14,7 +14,7 @@ import ch.alpine.tensor.sca.ply.Polynomial;
  * implementation for R^n
  * 
  * @see BSpline2CurveSubdivision */
-/* package */ enum RnHermite2Subdivisions {
+enum RnHermite2Subdivisions {
   ;
   private static final Scalar _1_8 = Rational.of(1, 8);
 

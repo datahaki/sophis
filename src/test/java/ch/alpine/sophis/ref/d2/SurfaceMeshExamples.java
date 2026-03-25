@@ -9,7 +9,7 @@ import ch.alpine.tensor.lie.rot.CirclePoints;
 /** Hint:
  * implementation exists only for evaluation purposes
  * class may be removed in future releases */
-/* package */ enum SurfaceMeshExamples {
+enum SurfaceMeshExamples {
   ;
   public static SurfaceMesh unitQuad() {
     SurfaceMesh surfaceMesh = new SurfaceMesh();

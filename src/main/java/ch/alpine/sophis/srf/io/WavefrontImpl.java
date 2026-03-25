@@ -8,7 +8,7 @@ import java.util.List;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-/* package */ class WavefrontImpl implements Wavefront, Serializable {
+class WavefrontImpl implements Wavefront, Serializable {
   private final Tensor vertices = Tensors.empty();
   private final Tensor normals = Tensors.empty();
   private final List<WavefrontObject> objects = new ArrayList<>();

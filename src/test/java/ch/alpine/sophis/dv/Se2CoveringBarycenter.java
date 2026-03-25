@@ -23,7 +23,7 @@ import ch.alpine.tensor.mat.re.LinearSolve;
  * 
  * for sequences of length != 4 the nullspace of the matrix covers
  * possible weights (still subject to normalization) */
-/* package */ class Se2CoveringBarycenter implements TensorUnaryOperator {
+class Se2CoveringBarycenter implements TensorUnaryOperator {
   private static final Tensor RHS = UnitVector.of(4, 3);
   // ---
   private final Tensor sequence;

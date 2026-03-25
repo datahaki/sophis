@@ -19,14 +19,14 @@ import ch.alpine.tensor.sca.pow.Sqrt;
 /** Reference:
  * "Machine Learning - A Probabilistic Perspective"
  * by Kevin P. Murphy, p. 226 */
-/* package */ record RidgeRegression(Manifold manifold) implements Serializable {
-  /* package */ class Form2 implements Serializable {
+record RidgeRegression(Manifold manifold) implements Serializable {
+  class Form2 implements Serializable {
     private final Tensor matrix;
     private final Tensor sigma_inverse;
 
     /** @param sequence of n anchor points
      * @param point */
-    /* package */ Form2(Tensor sequence, Tensor point) {
+    Form2(Tensor sequence, Tensor point) {
       matrix = manifold.tangentSpace(point).log().slash(sequence);
       Scalar factor = Rational.of(1, sequence.length());
       Tensor sigma = Transpose.of(matrix).dot(matrix).multiply(factor);

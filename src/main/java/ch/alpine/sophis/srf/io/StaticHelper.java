@@ -7,7 +7,7 @@ import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 
-/* package */ enum StaticHelper {
+enum StaticHelper {
   ;
   public static Tensor three(String string) {
     StringTokenizer stringTokenizer = new StringTokenizer(string);

@@ -10,7 +10,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 /** Reference:
  * "Biinvariant Distance Vectors"
  * by Jan Hakenberg, 2020 */
-/* package */ class GardenCoordinate implements Sedarim {
+class GardenCoordinate implements Sedarim {
   private final Manifold manifold;
   private final ScalarUnaryOperator variogram;
   private final Sedarim sedarim; // distances

@@ -1,7 +1,7 @@
 // code by stegu
 package ch.alpine.sophis.noise;
 
-/* package */ enum Noise {
+enum Noise {
   TABLE;
 
   // To remove the need for index wrapping, double the permutation table length

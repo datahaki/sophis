@@ -1,7 +1,7 @@
 // code by jph
 package ch.alpine.sophis.noise;
 
-/* package */ enum StaticHelper {
+enum StaticHelper {
   ;
   /** method is faster than (int)Math.floor(x)
    * 

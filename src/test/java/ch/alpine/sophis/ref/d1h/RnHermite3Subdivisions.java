@@ -26,7 +26,7 @@ import ch.alpine.tensor.mat.DiagonalMatrix;
  * implementation for R^n
  * 
  * @see BSpline3CurveSubdivision */
-/* package */ enum RnHermite3Subdivisions {
+enum RnHermite3Subdivisions {
   ;
   private static final Tensor AMP = Tensors.fromString("{{1/2, +1/8}, {-3/4, -1/8}}");
   private static final Tensor AMQ = Tensors.fromString("{{1/2, -1/8}, {+3/4, -1/8}}");

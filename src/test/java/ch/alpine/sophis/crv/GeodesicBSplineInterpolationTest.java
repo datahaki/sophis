@@ -16,7 +16,7 @@ import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.N;
 
 class GeodesicBSplineInterpolationTest {
-  /* package */ static Tensor pet(Tensor prev, Tensor eval, Tensor goal) {
+  static Tensor pet(Tensor prev, Tensor eval, Tensor goal) {
     return prev.add(goal.subtract(eval));
   }
 

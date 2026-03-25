@@ -16,7 +16,7 @@ import ch.alpine.tensor.red.Times;
 import ch.alpine.tensor.red.Total;
 import ch.alpine.tensor.sca.pow.Sqrt;
 
-/* package */ enum DodgsonSabinHelper {
+enum DodgsonSabinHelper {
   ;
   static final CurveOperator BSPLINE3_EUCLIDEAN = new BSpline3CurveSubdivision(RGroup.INSTANCE);
   private static final Scalar HALF = RealScalar.of(0.5);

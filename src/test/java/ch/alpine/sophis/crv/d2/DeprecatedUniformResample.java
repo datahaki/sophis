@@ -16,7 +16,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 /** initial implementation for resampling a sequence of irregular spaced points
  * 
  * UniformResample is superseded by {@link ParametricResample} */
-/* package */ class DeprecatedUniformResample implements Serializable {
+class DeprecatedUniformResample implements Serializable {
   /** determines whether points are connected */
   private final Scalar threshold;
   /** distance between samples after re-sampling */

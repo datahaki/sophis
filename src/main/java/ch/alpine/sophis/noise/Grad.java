@@ -2,7 +2,7 @@
 package ch.alpine.sophis.noise;
 
 /** class extracted from {@link SimplexContinuousNoise} */
-/* package */ record Grad(double x, double y, double z, double w) {
+record Grad(double x, double y, double z, double w) {
   public static Grad of(double x, double y, double z, double w) {
     return new Grad(x, y, z, w);
   }

@@ -11,7 +11,7 @@ import ch.alpine.tensor.mat.pi.LagrangeMultiplier;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.sca.Chop;
 
-/* package */ enum LagrangeCoordinates {
+enum LagrangeCoordinates {
   ;
   private static final AffineVectorQ AFFINE_Q_APPROX = new AffineVectorQ(Chop._08);
 

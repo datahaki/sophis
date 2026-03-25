@@ -22,7 +22,7 @@ import ch.alpine.tensor.sca.Chop;
  * @param AHQ A(-1)
  * 
  * @see BSpline2CurveSubdivision */
-/* package */ record RnHermite2Subdivision(Tensor ALP, Tensor ALQ, Tensor AHP, Tensor AHQ) //
+record RnHermite2Subdivision(Tensor ALP, Tensor ALQ, Tensor AHP, Tensor AHQ) //
     implements HermiteSubdivision {
   private static final Tensor DIAG = DiagonalMatrix.of(RealScalar.ONE, Rational.HALF);
 

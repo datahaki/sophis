@@ -17,7 +17,7 @@ import ch.alpine.tensor.mat.gr.Mahalanobis;
  * by Jan Hakenberg, 2020
  * 
  * @see HarborBiinvariant */
-/* package */ record GardenDistanceVector(List<TangentSpace> exponentials, List<Mahalanobis> array) implements Sedarim {
+record GardenDistanceVector(List<TangentSpace> exponentials, List<Mahalanobis> array) implements Sedarim {
   /** @param manifold
    * @param sequence */
   public static GardenDistanceVector of(Manifold manifold, Tensor sequence) {

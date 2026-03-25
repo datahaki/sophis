@@ -10,7 +10,7 @@ import ch.alpine.tensor.sca.win.DirichletWindow;
  * projects a sequence of points to their geodesic center
  * 
  * Example: if the points are from R^n the center would simply be the mean */
-/* package */ enum GeodesicMean {
+enum GeodesicMean {
   ;
   /** @param binaryAverage
    * @return geodesic center operator with Dirichlet/constant weights */

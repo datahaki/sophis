@@ -13,7 +13,7 @@ import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.sca.Chop;
 
-/* package */ abstract class BaseWindowSampler implements Function<Integer, Tensor>, Serializable {
+abstract class BaseWindowSampler implements Function<Integer, Tensor>, Serializable {
   protected final ScalarUnaryOperator windowFunction;
   protected final boolean isContinuous;
 

@@ -10,7 +10,7 @@ import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.ext.PackageTestAccess;
 
 /** matrices are projection matrices, i.e. from the grassmann-manifold */
-/* package */ abstract class MatrixBiinvariant extends BiinvariantBase implements TensorMetric {
+abstract class MatrixBiinvariant extends BiinvariantBase implements TensorMetric {
   protected MatrixBiinvariant(Manifold manifold) {
     super(manifold);
   }

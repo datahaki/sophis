@@ -29,7 +29,7 @@ import ch.alpine.tensor.sca.Chop;
  * @param AMQ
  * 
  * @see BSpline1CurveSubdivision */
-/* package */ record RnHermite1Subdivision(Tensor AMP, Tensor AMQ) implements HermiteSubdivision {
+record RnHermite1Subdivision(Tensor AMP, Tensor AMQ) implements HermiteSubdivision {
   private static final Tensor DIAG = DiagonalMatrix.of(RealScalar.ONE, Rational.HALF);
 
   @Override // from HermiteSubdivision

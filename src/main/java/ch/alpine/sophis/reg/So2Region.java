@@ -32,7 +32,7 @@ public final class So2Region extends ImplicitRegionWithDistance implements Seria
   private final ScalarUnaryOperator mod;
 
   // constructor exists to test with units
-  /* package */ So2Region(Scalar center, Scalar radius, Scalar half_circumference) {
+  So2Region(Scalar center, Scalar radius, Scalar half_circumference) {
     this.center = Objects.requireNonNull(center);
     this.radius = Sign.requirePositiveOrZero(radius);
     mod = Mod.function( //
