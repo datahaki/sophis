@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.ref.d2;
+package ch.alpine.sophis;
 
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.tensor.RealScalar;
@@ -9,7 +9,7 @@ import ch.alpine.tensor.lie.rot.CirclePoints;
 /** Hint:
  * implementation exists only for evaluation purposes
  * class may be removed in future releases */
-enum SurfaceMeshExamples {
+public enum SurfaceMeshExamples {
   ;
   public static SurfaceMesh unitQuad() {
     SurfaceMesh surfaceMesh = new SurfaceMesh();

@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import ch.alpine.sophis.SurfaceMeshExamples;
 import ch.alpine.sophis.hull.d3.ConvexHull3D;
 import ch.alpine.sophis.srf.SurfaceMesh;
 import ch.alpine.sophis.srf.d3.PlatonicSolid;

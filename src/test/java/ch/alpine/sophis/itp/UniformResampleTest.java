@@ -17,7 +17,7 @@ import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.qty.Quantity;
 
-class RnUniformResampleTest {
+class UniformResampleTest {
   /** @param spacing positive
    * @return */
   public static CurveOperator of(Scalar spacing) {

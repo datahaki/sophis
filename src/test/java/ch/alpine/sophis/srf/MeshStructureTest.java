@@ -1,5 +1,5 @@
 // code by jph
-package ch.alpine.sophis.ref.d2;
+package ch.alpine.sophis.srf;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -7,9 +7,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import ch.alpine.sophis.srf.IntDirectedEdge;
-import ch.alpine.sophis.srf.MeshStructure;
-import ch.alpine.sophis.srf.SurfaceMesh;
+import ch.alpine.sophis.SurfaceMeshExamples;
+import ch.alpine.sophis.ref.d2.DooSabinRefinement;
+import ch.alpine.sophis.ref.d2.SurfaceMeshRefinement;
 import ch.alpine.sophis.srf.io.PlyFormat;
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
 import ch.alpine.tensor.Tensors;
