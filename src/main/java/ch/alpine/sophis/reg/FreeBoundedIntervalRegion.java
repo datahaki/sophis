@@ -20,7 +20,7 @@ public class FreeBoundedIntervalRegion extends ImplicitFunctionRegion implements
    * @param clip */
   public FreeBoundedIntervalRegion(int index, Clip clip) {
     this.index = Integers.requirePositiveOrZero(index);
-    semiwidth = clip.width().multiply(Rational.HALF);
+    semiwidth = clip.length().multiply(Rational.HALF);
     center = clip.min().add(semiwidth);
   }
 
