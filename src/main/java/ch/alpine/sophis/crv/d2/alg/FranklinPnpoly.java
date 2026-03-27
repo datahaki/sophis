@@ -17,7 +17,8 @@ enum FranklinPnpoly {
   public static boolean isInside(Tensor polygon, Tensor point) {
     final Scalar tx = point.Get(0);
     final Scalar ty = point.Get(1);
-    if (Tensors.isEmpty(polygon)) // TODO SOPHUS ALG should be obsolete -> use empty region
+    // TODO SOPHIS ALG should be obsolete -> use empty region
+    if (Tensors.isEmpty(polygon))
       return false;
     boolean c = false;
     Tensor prev = Last.of(polygon);

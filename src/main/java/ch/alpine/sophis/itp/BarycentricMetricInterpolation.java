@@ -12,7 +12,7 @@ import ch.alpine.tensor.api.ScalarTensorFunction;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 
 /** for comparison with {@link BarycentricRationalInterpolation} */
-// TODO SOPHUS review entire class and document
+// TODO SOPHIS review entire class and document
 public record BarycentricMetricInterpolation(Sedarim sedarim) implements ScalarTensorFunction {
   /** @param knots
    * @param variogram

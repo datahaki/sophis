@@ -24,7 +24,7 @@ public class SphericalVariogram implements ScalarUnaryOperator {
    * @return */
   public static ScalarUnaryOperator of(Scalar a, Scalar b) {
     return Scalars.isZero(a) //
-        ? ConstantOneVariogram.INSTANCE // TODO should have unit of b ?
+        ? ConstantOneVariogram.INSTANCE // TODO SOPHIS should have unit of b ?
         : new SphericalVariogram( //
             Sign.requirePositive(a), //
             Objects.requireNonNull(b));

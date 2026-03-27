@@ -28,7 +28,7 @@ import ch.alpine.tensor.red.ScalarSummaryStatistics;
 public enum MinTriangleAreaSquared implements Genesis {
   INSTANCE;
 
-  // TODO SOPHUS can one generalize to n-dimensions
+  // TODO SOPHIS can one generalize to n-dimensions
   /** @param polygon with dimensions n x 3
    * @return affine weight vector of length n
    * @throws Exception if given polygon is empty */

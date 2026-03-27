@@ -38,7 +38,7 @@ public record IterativeTargetCoordinate(Genesis genesis, Scalar beta, int k) imp
     Tensor m = InfluenceMatrix.of(levers).residualMaker();
     Tensor n = NormalizeTotal.FUNCTION.apply(m.dot(w)); // coordinates
     deque.add(new WeightsFactors(n, n.maps(Scalar::zero)));
-    // TODO SOPHUS ALG also target values above 1
+    // TODO SOPHIS ALG also target values above 1
     Tensor b = n.maps(IdentRamp.FUNCTION);
     // Tensor b = n.map(Abs.FUNCTION);
     if (!CHOP.allZero(b))

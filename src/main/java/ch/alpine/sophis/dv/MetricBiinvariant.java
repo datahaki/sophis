@@ -102,7 +102,7 @@ public class MetricBiinvariant extends BiinvariantBase {
     Objects.requireNonNull(variogram);
     // the normalization is necessary to compensate for division by zero
     return levers -> NormalizeTotal.FUNCTION.apply(Tensor.of(levers.stream() //
-        .map(FrobeniusForm.INSTANCE::norm) // FIXME
+        .map(FrobeniusForm.INSTANCE::norm) // FIXME SOPHIS
         .map(variogram)));
   }
 

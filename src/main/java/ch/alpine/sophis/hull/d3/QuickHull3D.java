@@ -221,7 +221,8 @@ class QuickHull3D {
     // CoordinateBounds.of(null, null);
     for (int i = 0; i < 3; i++)
       maxVtxs[i] = minVtxs[i] = pointBuffer[0];
-    Tensor max = pointBuffer[0].pnt.copy(); // TODO obsolete, can use maxVtxs instead
+    // TODO SOPHIS obsolete, can use maxVtxs instead
+    Tensor max = pointBuffer[0].pnt.copy();
     Tensor min = pointBuffer[0].pnt.copy(); // etc ...
     for (int i = 1; i < numPoints(); i++) {
       Tensor pnt = pointBuffer[i].pnt;

@@ -31,7 +31,8 @@ public enum AffineCoordinate implements Genesis {
     int d = Unprotect.dimension1Hint(levers);
     Tensor u = UnitVector.of(d + 1, d);
     Tensor matrix = Transpose.of(x).dot(x);
-    Tensor z = CholeskyDecomposition.of(matrix).solve(u); // TODO this can fail !
+    // TODO SOPHIS CD can fail !
+    Tensor z = CholeskyDecomposition.of(matrix).solve(u);
     Tensor weights = x.dot(z);
     // typically the sum of the weights is already quite close to 1
     new AffineVectorQ(Chop._08).require(weights);

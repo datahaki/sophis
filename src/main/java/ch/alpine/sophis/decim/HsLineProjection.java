@@ -15,7 +15,7 @@ public record HsLineProjection(HomogeneousSpace homogeneousSpace) implements Ser
   private static final TensorUnaryOperator NORMALIZE_UNLESS_ZERO = NormalizeUnlessZero.with(Vector2Norm::of);
 
   public Tensor onto(Tensor p, Tensor q, Tensor r) {
-    // TODO SOPHUS ALG and not generic: log not always vector, metric different, also uses magic const
+    // TODO SOPHIS ALG and not generic: log not always vector, metric different, also uses magic const
     for (int count = 0; count < 6; ++count) {
       TangentSpace exponential = homogeneousSpace.tangentSpace(p);
       Tensor lq = exponential.log(q);

@@ -34,7 +34,7 @@ public class RadialBasisFunctionInterpolation implements TensorUnaryOperator {
    * @param sequence
    * @return */
   public static TensorUnaryOperator of(Sedarim sedarim, Tensor sequence) {
-    // TODO SOPHUS IMPL can be improved since no need dotting with id-matrix
+    // TODO SOPHIS IMPL can be improved since no need dotting with id-matrix
     return of(sedarim, sequence, IdentityMatrix.of(sequence.length()));
   }
 

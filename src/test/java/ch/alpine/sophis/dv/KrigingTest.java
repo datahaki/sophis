@@ -122,7 +122,8 @@ class KrigingTest {
           // ---
           Tensor point = RandomVariate.of(distribution, d);
           Tensor weights = kriging.estimate(point);
-          new AffineVectorQ(Chop._08).require(weights); // TODO this should be spot on !!!
+          // TODO SOPHIS this should be spot on !!!
+          new AffineVectorQ(Chop._08).require(weights);
         }
       }
     }

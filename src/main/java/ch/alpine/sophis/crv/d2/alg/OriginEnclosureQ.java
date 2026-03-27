@@ -11,7 +11,7 @@ import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.chq.MemberQ;
 import ch.alpine.tensor.sca.Sign;
 
-// TODO SOPHUS API generally, the files in this package currently dont all belong in this package together...
+// TODO SOPHIS API generally, the files in this package currently dont all belong in this package together...
 public enum OriginEnclosureQ implements MemberQ {
   INSTANCE;
 

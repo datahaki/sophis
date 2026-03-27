@@ -95,7 +95,7 @@ class RnBiinvariantTest {
       int length = d + 3 + randomGenerator.nextInt(3);
       Tensor points = RandomVariate.of(distribution, randomGenerator, length, d);
       Tensor mean = RandomVariate.of(distribution, randomGenerator, d);
-      // FIXME wights don't always add up to 1
+      // FIXME SOPHIS weights don't always add up to 1
       Tensor weights = barycentricCoordinate.weights(points, mean);
       AffineVectorQ.INSTANCE.require(weights);
       Tensor result = LinearBiinvariantMean.INSTANCE.mean(points, weights);

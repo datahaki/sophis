@@ -43,7 +43,8 @@ public abstract class BiinvariantBase implements Biinvariant, Serializable {
   public Sedarim lagrainate(ScalarUnaryOperator variogram, Tensor sequence) {
     Sedarim sedarim = weighting(variogram, sequence);
     return point -> LagrangeCoordinates.of( //
-        manifold.tangentSpace(point).vectorLog().slash(sequence), // TODO SOPHUS ALG levers are computed twice
+        // TODO SOPHIS ALG levers are computed twice
+        manifold.tangentSpace(point).vectorLog().slash(sequence), //
         sedarim.sunder(point)); // target
   }
 }

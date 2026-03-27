@@ -45,7 +45,7 @@ class BiinvariantMeanInterpolation extends AbstractInterpolation implements Seri
 
   @Override // from Interpolation
   public Tensor get(Tensor index) {
-    // TODO SOPHUS ALG implementation fails when any entry in index corresponds to exactly
+    // TODO SOPHIS ALG implementation fails when any entry in index corresponds to exactly
     // the length of tensor in the respective dimensions
     int n = index.length();
     Tensor findex = index.maps(Floor.FUNCTION);

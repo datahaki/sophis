@@ -36,7 +36,7 @@ public enum GeoPosition {
    * @param lat_lon
    * @return */
   public static Tensor xyz(Tensor lat_lon) {
-    // TODO use ellipsoid model
+    // TODO SOPHIS use ellipsoid model
     return of(lat_lon).multiply(Quantity.of(6_378_137, "m"));
   }
 }

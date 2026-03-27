@@ -21,7 +21,6 @@ enum Adds {
   /** @param tensor non-empty
    * @return */
   public static Tensor forward(Tensor tensor) {
-    // TODO scale matrix to have |EV| lEq 1 !?
     List<Tensor> list = new ArrayList<>(tensor.length());
     Iterator<Tensor> iterator = tensor.iterator();
     Tensor prev = iterator.next();

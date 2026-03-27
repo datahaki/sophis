@@ -55,7 +55,7 @@ public record Kriging(Sedarim sedarim, Scalar one, Tensor weights, Tensor invers
    * @return */
   public static Kriging interpolation(Sedarim sedarim, Tensor sequence, Tensor values) {
     int n = values.length();
-    // TODO SOPHUS UNIT Array.zeros(n, n) may not be sufficiently generic
+    // TODO SOPHIS UNIT Array.zeros(n, n) may not be sufficiently generic
     return regression(sedarim, sequence, values, Array.zeros(n, n));
   }
 
@@ -78,7 +78,7 @@ public record Kriging(Sedarim sedarim, Scalar one, Tensor weights, Tensor invers
     Tensor vardst = sedarim.sunder().slash(sequence);
     SymmetricMatrixQ.INSTANCE.require(vardst);
     Tensor matrix = vardst.subtract(SymmetricMatrixQ.INSTANCE.require(covariance));
-    // TODO SOPHUS IMPL probably can be simplified
+    // TODO SOPHIS IMPL probably can be simplified
     Scalar one = Quantity.of(RealScalar.ONE, QuantityUnit.of(EqualsReduce.zero(matrix)));
     int n = matrix.length();
     Tensor rhs = Tensors.of(values.get(0).maps(Scalar::zero));

@@ -15,7 +15,7 @@ import ch.alpine.tensor.qty.LenientAdd;
 import ch.alpine.tensor.sca.AbsSquared;
 import ch.alpine.tensor.sca.pow.Power;
 
-// TODO ONLY USED IN TESTS
+// TODO SOPHIS ONLY USED IN TESTS
 public enum PowerVariogramFit {
   ;
   /** alpha "is fitted by unweighted least squares over all pairs of data points i and j"

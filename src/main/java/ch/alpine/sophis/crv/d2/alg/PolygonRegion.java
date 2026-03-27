@@ -22,7 +22,7 @@ public class PolygonRegion implements MemberQ {
 
   @Override // from Region
   public boolean test(Tensor tensor) {
-    // TODO SOPHUS ALG design strict: only valid input
+    // TODO SOPHIS ALG design strict: only valid input
     Tensor point = tensor.extract(0, 2);
     return coordinateBoundingBox.test(point) //
         && FranklinPnpoly.isInside(polygon, point);

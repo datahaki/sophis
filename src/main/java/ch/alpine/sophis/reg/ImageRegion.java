@@ -27,7 +27,7 @@ public class ImageRegion implements MemberQ, BoundedRegion {
   /** @param image has to be a matrix
    * @param range effective size of image in coordinate space, vector of length 2
    * @param outside point member status */
-  // TODO OWL API still needed next to BufferedImageRegion
+  // TODO SOPHIS API still needed next to BufferedImageRegion
   public ImageRegion(Tensor image, Tensor range, boolean outside) {
     this.image = MatrixQ.require(image);
     List<Integer> dimensions = Dimensions.of(image);

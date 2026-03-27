@@ -13,7 +13,7 @@ import ch.alpine.tensor.Tensor;
  * Careful: this distance is not symmetric as
  * the clothoid from p to q is generally different from
  * the clothoid from q to p! */
-// TODO API not good
+// TODO SOPHIS API not good
 public enum ClothoidDistance implements TensorMetric, TensorNorm {
   SE2_ANALYTIC(ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder()),
   SE2_LEGENDRE(ClothoidBuilders.SE2_LEGENDRE.clothoidBuilder()),

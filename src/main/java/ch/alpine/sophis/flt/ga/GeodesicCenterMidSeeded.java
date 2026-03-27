@@ -70,7 +70,7 @@ public class GeodesicCenterMidSeeded implements TensorUnaryOperator {
       Scalar factor = halfmask.Get(radius);
       Tensor splits = Tensors.reserve(radius);
       for (int index = radius - 1; 0 <= index; --index) {
-        // TODO SOPHUS not efficient
+        // TODO SOPHIS not efficient
         Scalar lambda = factor.divide(factor.add(halfmask.Get(index)));
         splits.append(lambda);
         factor = factor.add(halfmask.Get(index));

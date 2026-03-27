@@ -38,7 +38,7 @@ public class CurveRandomProcess implements Serializable {
     RandomSampleInterface rsi = LocalRandomSample.of(tangentSpace, sigma);
     Tensor q = RandomSample.of(rsi);
     Tensor pq = tangentSpace.log(q);
-    // TODO this is a temporary hack
+    // TODO SOPHIS this is a temporary hack
     Scalar norm = FrobeniusForm.INSTANCE.norm(pq);
     v = pq.multiply(sigma.divide(norm));
   }
