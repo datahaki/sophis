@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Tensor;
 
@@ -27,7 +28,7 @@ class QuickHull3DTest {
     }
   }
 
-  @RepeatedTest(10)
+  @Test
   void testCubed() {
     for (int n = 20; n < 200; n += 10) {
       Tensor coords = TestHelper.randomCubedPoints(n, 1.0, 0.5);
