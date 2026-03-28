@@ -9,7 +9,7 @@ import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophis.var.InversePowerVariogram;
 import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.sophus.lie.rn.RGroup;
-import ch.alpine.tensor.ComplexScalar;
+import ch.alpine.tensor.Complex;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.ext.Serialization;
@@ -47,7 +47,7 @@ class LagrangeCoordinateTest {
     Genesis genesis = Serialization.copy(new LagrangeCoordinate(idw));
     for (int d = 1; d < 4; ++d)
       for (int n = 5; n < 10; ++n) {
-        Tensor levers = Entrywise.with(ComplexScalar::of).apply( //
+        Tensor levers = Entrywise.with(Complex::of).apply( //
             RandomVariate.of(NormalDistribution.standard(), n, d), //
             RandomVariate.of(NormalDistribution.standard(), n, d));
         {
