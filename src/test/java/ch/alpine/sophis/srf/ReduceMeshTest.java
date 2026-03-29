@@ -25,7 +25,7 @@ class ReduceMeshTest {
     for (int i = 0; i < 100; ++i)
       surfaceMesh.addVert(rg.nextBoolean() ? p : q);
     ReduceMesh reduceMesh = new ReduceMesh(RealScalar.of(0.2));
-    SurfaceMesh result = reduceMesh.process(surfaceMesh);
+    SurfaceMesh result = reduceMesh.of(surfaceMesh);
     assertEquals(result.vrt, IdentityMatrix.of(2));
     assertEquals(surfaceMesh.vrt.length(), 2 + 100);
   }

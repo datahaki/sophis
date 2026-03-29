@@ -5,11 +5,12 @@ import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensors;
 
 public enum GlyphMesh {
   ;
+  /** @param shape
+   * @return */
   public static SurfaceMesh of(Shape shape) {
     Integer prev = null;
     Integer next = null;
@@ -50,7 +51,6 @@ public enum GlyphMesh {
       }
       pathIterator.next();
     }
-    return new ReduceMesh(RealScalar.of(0.01)).process(surfaceMesh);
-    // return surfaceMesh;
+    return surfaceMesh;
   }
 }
