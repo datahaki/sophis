@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.sophis.srf;
 
-import java.awt.Shape;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.PathIterator;
 
 import ch.alpine.tensor.Tensors;
@@ -11,12 +9,11 @@ public enum GlyphMesh {
   ;
   /** @param shape
    * @return */
-  public static SurfaceMesh of(Shape shape) {
+  public static SurfaceMesh of(PathIterator pathIterator) {
     Integer prev = null;
     Integer next = null;
     Integer stol = null;
     Integer last = null;
-    PathIterator pathIterator = shape.getPathIterator(new AffineTransform(1, 0, 0, -1, 0, 0));
     SurfaceMesh surfaceMesh = new SurfaceMesh();
     double[] coords = new double[6];
     while (!pathIterator.isDone()) {
