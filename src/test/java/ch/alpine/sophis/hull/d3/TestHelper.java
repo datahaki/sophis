@@ -53,7 +53,7 @@ enum TestHelper {
     Tensor coords = Tensors.empty();
     Tensor pnt = Tensors.vector(0, 0, 0);
     Tensor base = TestHelper.setRandom(-1, 1, RANDOM);
-    Scalar tol = StaticHelper.DOUBLE_PREC;
+    Scalar tol = QuickHull3D.DOUBLE_PREC;
     if (dimen == 0) {
       for (int i = 0; i < num; i++) {
         pnt = randomlyPerturb(base, tol);

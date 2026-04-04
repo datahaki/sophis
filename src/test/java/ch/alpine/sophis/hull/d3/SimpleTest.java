@@ -2,11 +2,13 @@
 package ch.alpine.sophis.hull.d3;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Partition;
@@ -72,5 +74,11 @@ class SimpleTest {
         9.0, 6.0, 11.0), 3);
     QuickHull3DHelper tester = new QuickHull3DHelper();
     tester.test(coords);
+  }
+
+  @Test
+  void testDoublePrec() {
+    double nextUp = Math.nextUp(1.0) - 1;
+    assertEquals(QuickHull3D.DOUBLE_PREC, RealScalar.of(nextUp));
   }
 }

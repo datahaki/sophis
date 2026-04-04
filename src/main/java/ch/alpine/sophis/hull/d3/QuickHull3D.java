@@ -217,6 +217,11 @@ class QuickHull3D {
     return null;
   }
 
+  /** Precision of a double. */
+  static final Scalar DOUBLE_PREC = RealScalar.of(Math.nextUp(1.0) - 1.0);
+  static final Scalar QUADRO_PREC = DOUBLE_PREC.add(DOUBLE_PREC);
+  static final Scalar _3_PREC = QUADRO_PREC.add(DOUBLE_PREC);
+
   private void computeMaxAndMin() {
     // CoordinateBounds.of(null, null);
     for (int i = 0; i < 3; i++)
@@ -258,7 +263,7 @@ class QuickHull3D {
     if (explicitTolerance == AUTOMATIC_TOLERANCE) {
       Tensor mx = max.maps(Abs.FUNCTION);
       Tensor mn = min.maps(Abs.FUNCTION);
-      tolerance = Total.ofVector(Entrywise.max().apply(mx, mn)).multiply(StaticHelper._3_PREC);
+      tolerance = Total.ofVector(Entrywise.max().apply(mx, mn)).multiply(_3_PREC);
       // RealScalar.of( //
       // (Max.of(Abs.FUNCTION.apply(max.x()), Abs.FUNCTION.apply(min.x())).number().doubleValue() //
       // + Max.of(Abs.FUNCTION.apply(max.y()), Abs.FUNCTION.apply(min.y())).number().doubleValue() //
@@ -545,6 +550,11 @@ class QuickHull3D {
       }
     }
     return eyeVtx;
+  }
+
+  private enum MergeType {
+    NONCONVEX_WRT_LARGER_FACE,
+    NONCONVEX
   }
 
   private void addPointToHull(Vertex eyeVtx) {

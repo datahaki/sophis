@@ -8,7 +8,8 @@ class VertexList {
 
   /** Clears this list. */
   public void clear() {
-    head = tail = null;
+    head = null;
+    tail = null;
   }
 
   /** Adds a vertex to the end of this list. */
