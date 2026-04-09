@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -43,13 +42,6 @@ class BiinvariantsTest {
   void testWeightingVariogramNullFail() {
     for (Biinvariant biinvariant : Biinvariants.all(RGroup.INSTANCE).values())
       assertThrows(Exception.class, () -> biinvariant.weighting(null, Tensors.empty()));
-  }
-
-  @Disabled
-  @Test
-  void testCoordinateVariogramNullFail() {
-    for (Biinvariant biinvariant : Biinvariants.all(RGroup.INSTANCE).values())
-      assertThrows(Exception.class, () -> biinvariant.coordinate(null, Tensors.empty()));
   }
 
   @Test

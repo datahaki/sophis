@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.CurveOperator;
@@ -16,7 +15,6 @@ import ch.alpine.tensor.alg.Dimensions;
 import ch.alpine.tensor.pdf.RandomSample;
 
 class So3UniformResampleTest {
-  @Disabled
   @Test
   void testSimple() {
     CurveOperator curveOperator = UniformResample.of(So3Group.INSTANCE, So3Group.INSTANCE, RealScalar.ONE);

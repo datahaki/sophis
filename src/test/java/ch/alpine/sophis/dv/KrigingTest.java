@@ -9,7 +9,6 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.var.ExponentialVariogram;
@@ -161,33 +160,6 @@ class KrigingTest {
       Kriging kriging = Kriging.interpolation(weightingInterface, sequence, values);
       Scalar apply = (Scalar) kriging.estimate(RandomVariate.of(distributionX, d));
       QuantityMagnitude.singleton(Unit.of("s")).apply(apply);
-    }
-  }
-
-  @Disabled
-  @Test
-  void testFitQuantity() throws ClassNotFoundException, IOException {
-    Distribution distributionX = NormalDistribution.of(Quantity.of(0, "m"), Quantity.of(2, "m"));
-    int n = 10;
-    int d = 3;
-    Tensor sequence = RandomVariate.of(distributionX, n, d);
-    Distribution distributionY = NormalDistribution.of(Quantity.of(0, "s"), Quantity.of(2, "s"));
-    Tensor values = RandomVariate.of(distributionY, n);
-    Biinvariant biinvariant = Biinvariants.METRIC.ofSafe(RGroup.INSTANCE);
-    {
-      ScalarUnaryOperator variogram = Serialization.copy(ExponentialVariogram.of(Quantity.of(3, "m")));
-      Sedarim weightingInterface = biinvariant.var_dist(variogram, sequence);
-      Kriging kriging = Kriging.interpolation(weightingInterface, sequence, values);
-      Scalar value = (Scalar) kriging.estimate(RandomVariate.of(distributionX, d));
-      QuantityMagnitude.singleton(Unit.of("s")).apply(value);
-    }
-    {
-      ScalarUnaryOperator variogram = Serialization.copy(PowerVariogramFit.fit(RGroup.INSTANCE, sequence, values, RealScalar.ONE));
-      Tensor covariance = DiagonalMatrix.of(n, Quantity.of(1, "s^2"));
-      Sedarim weightingInterface = biinvariant.var_dist(variogram, sequence);
-      Kriging kriging = Kriging.regression(weightingInterface, sequence, values, covariance);
-      Scalar value = (Scalar) kriging.estimate(RandomVariate.of(distributionX, d));
-      QuantityMagnitude.singleton(Unit.of("s")).apply(value);
     }
   }
 

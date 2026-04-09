@@ -3,34 +3,22 @@ package ch.alpine.sophis.dv;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.random.RandomGenerator;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.var.InversePowerVariogram;
-import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.bm.MeanDefect;
-import ch.alpine.sophus.hs.gr.GrAction;
-import ch.alpine.sophus.hs.gr.GrManifold;
-import ch.alpine.sophus.hs.gr.Grassmannian;
 import ch.alpine.sophus.hs.rpn.RpManifold;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.so.So3Exponential;
-import ch.alpine.sophus.lie.so.SoNGroup;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
-import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.mat.IdentityMatrix;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.Distribution;
-import ch.alpine.tensor.pdf.RandomSample;
-import ch.alpine.tensor.pdf.RandomSampleInterface;
 import ch.alpine.tensor.pdf.RandomVariate;
 import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
@@ -85,33 +73,6 @@ class BiinvariantTest {
           biinvariant.coordinate(InversePowerVariogram.of(2), sequence));
       Tensor vector = tensorUnaryOperator.sunder(RandomVariate.of(distribution, 3));
       Chop._08.requireClose(Total.ofVector(vector), RealScalar.ONE);
-    }
-  }
-
-  @Disabled
-  @Test
-  void testBiinvariance() {
-    Manifold manifold = GrManifold.INSTANCE;
-    Biinvariant[] biinvariants = new Biinvariant[] { //
-        Biinvariants.METRIC.ofSafe(manifold), //
-        Biinvariants.USANCE.ofSafe(manifold), //
-        Biinvariants.GARDEN.ofSafe(manifold) };
-    RandomGenerator random1 = ThreadLocalRandom.current();
-    int n = 3 + random1.nextInt(2);
-    ScalarUnaryOperator variogram = InversePowerVariogram.of(2);
-    int k = 1 + random1.nextInt(n - 1);
-    RandomSampleInterface randomSampleInterface = new Grassmannian(n, k).randomSampleInterface();
-    int d = k * (n - k);
-    RandomGenerator randomGenerator = new Random(1);
-    Tensor seq_o = RandomSample.of(randomSampleInterface, randomGenerator, d + 2);
-    Tensor pnt_o = RandomSample.of(randomSampleInterface, randomGenerator);
-    for (Biinvariant biinvariant : biinvariants) {
-      Tensor w_o = biinvariant.coordinate(variogram, seq_o).sunder(pnt_o);
-      GrAction grAction = new GrAction(RandomSample.of(new SoNGroup(n).randomSampleInterface(), randomGenerator));
-      Tensor seq_l = Tensor.of(seq_o.stream().map(grAction));
-      Tensor pnt_l = grAction.apply(pnt_o);
-      Tensor w_l = biinvariant.coordinate(variogram, seq_l).sunder(pnt_l);
-      Chop._06.requireClose(w_o, w_l);
     }
   }
 

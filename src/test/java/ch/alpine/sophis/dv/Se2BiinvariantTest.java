@@ -11,7 +11,6 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.RandomGenerator;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -147,7 +146,6 @@ class Se2BiinvariantTest {
     Chop._06.requireClose(x, x_recreated);
   }
 
-  @Disabled
   @ParameterizedTest
   @MethodSource("barycentrics")
   void testRandom(BarycentricCoordinate barycentricCoordinate) {
@@ -221,7 +219,6 @@ class Se2BiinvariantTest {
     }
   }
 
-  @Disabled
   @ParameterizedTest
   @MethodSource("barycentrics")
   void testProjection(BarycentricCoordinate barycentricCoordinate) {
