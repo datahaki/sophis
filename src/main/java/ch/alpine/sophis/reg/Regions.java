@@ -20,7 +20,7 @@ public enum Regions {
   private static final Region EMPTY_REGION = new EmptyRegion<>();
 
   @SuppressWarnings("unchecked")
-  public static final <T> Region<T> emptyRegion() {
+  public static <T> Region<T> emptyRegion() {
     return EMPTY_REGION;
   }
 
@@ -38,7 +38,7 @@ public enum Regions {
   private static final Region COMPLETE_REGION = new CompleteRegion<>();
 
   @SuppressWarnings("unchecked")
-  public static final <T> Region<T> completeRegion() {
+  public static <T> Region<T> completeRegion() {
     return COMPLETE_REGION;
   }
 }

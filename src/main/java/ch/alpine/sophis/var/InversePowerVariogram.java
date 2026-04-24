@@ -17,7 +17,7 @@ import ch.alpine.tensor.sca.pow.Power;
  * <p>Reference:
  * "Interpolation on Scattered Data in Multidimensions" in NR, 2007 */
 public class InversePowerVariogram implements ScalarUnaryOperator {
-  private static enum Distinct implements ScalarUnaryOperator {
+  private enum Distinct implements ScalarUnaryOperator {
     ONE {
       @Override
       public Scalar apply(Scalar r) {
