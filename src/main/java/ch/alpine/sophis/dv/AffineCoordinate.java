@@ -9,7 +9,7 @@ import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.jet.AppendOne;
 import ch.alpine.tensor.mat.MatrixQ;
-import ch.alpine.tensor.mat.cd.CholeskyDecomposition;
+import ch.alpine.tensor.mat.cd.LDLDecomposition;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.sca.Chop;
 
@@ -32,7 +32,7 @@ public enum AffineCoordinate implements Genesis {
     Tensor u = UnitVector.of(d + 1, d);
     Tensor matrix = Transpose.of(x).dot(x);
     // TODO SOPHIS CD can fail !
-    Tensor z = CholeskyDecomposition.of(matrix).solve(u);
+    Tensor z = LDLDecomposition.of(matrix).solve(u);
     Tensor weights = x.dot(z);
     // typically the sum of the weights is already quite close to 1
     new AffineVectorQ(Chop._08).require(weights);

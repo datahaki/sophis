@@ -6,13 +6,13 @@ import java.io.Serializable;
 
 import ch.alpine.sophis.crv.d2.Det2D;
 import ch.alpine.sophis.crv.d2.PolyclipResult;
+import ch.alpine.sophis.hull.d2.ConvexPolygonQ;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.alg.Array;
-import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.ext.PackageTestAccess;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
@@ -26,11 +26,13 @@ import ch.alpine.tensor.sca.Sign;
  * Careful: input exists such that the resulting polygon degenerates into
  * two or more areas, that are connected only with 1-dimensional edges. In
  * such cases, the returned polygon may contain duplicate vertices. */
+// public class to expose PolyclipResult
 public class SutherlandHodgmanAlgorithm implements Serializable {
   /** @param clip convex, vertices ordered ccw, with dimensions n x 2
-   * @return */
+   * @return
+   * @throws Exception if given clip is non-convex */
   public static SutherlandHodgmanAlgorithm of(Tensor clip) {
-    clip.forEach(vertex -> VectorQ.requireLength(vertex, 2));
+    ConvexPolygonQ.INSTANCE.require(clip);
     return new SutherlandHodgmanAlgorithm(clip);
   }
 

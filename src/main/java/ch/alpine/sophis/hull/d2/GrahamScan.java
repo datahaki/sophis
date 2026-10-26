@@ -10,14 +10,12 @@ import java.util.Stack;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import ch.alpine.sophis.crv.d2.Det2D;
 import ch.alpine.sophus.lie.so2.ArcTan2D;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.VectorQ;
-import ch.alpine.tensor.ext.PackageTestAccess;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
 
@@ -72,7 +70,7 @@ enum GrahamScan {
     ++k1;
     // find point not co-linear with point0 and point1
     for (Tensor point : list.subList(k1, list.size()))
-      if (chop.isZero(ccw(point0, point1, point)))
+      if (chop.isZero(StaticHelper.ccw(point0, point1, point)))
         ++k1;
       else
         break;
@@ -81,7 +79,7 @@ enum GrahamScan {
     for (Tensor point : list.subList(k1, list.size())) {
       Tensor top = stack.pop();
       while (!stack.isEmpty()) {
-        Scalar ccw = ccw(stack.peek(), top, point);
+        Scalar ccw = StaticHelper.ccw(stack.peek(), top, point);
         if (Sign.isPositive(chop.apply(ccw)))
           break;
         top = stack.pop();
@@ -90,19 +88,5 @@ enum GrahamScan {
       stack.push(point);
     }
     return Tensor.of(stack.stream());
-  }
-
-  /** Three points are a counter-clockwise turn if ccw > 0, clockwise if
-   * ccw < 0, and co-linear if ccw = 0 because ccw is a determinant that
-   * gives twice the signed area of the triangle formed by p1, p2 and p3.
-   * (from Wikipedia)
-   * 
-   * @param p1
-   * @param p2
-   * @param p3
-   * @return Det2D[p2 - p1, p3 - p1] */
-  @PackageTestAccess
-  static Scalar ccw(Tensor p1, Tensor p2, Tensor p3) {
-    return Det2D.of(p2.subtract(p1), p3.subtract(p1));
   }
 }

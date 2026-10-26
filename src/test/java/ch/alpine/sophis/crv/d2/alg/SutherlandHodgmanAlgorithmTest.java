@@ -8,16 +8,22 @@ import java.util.Random;
 import java.util.random.RandomGenerator;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import ch.alpine.sophis.crv.d2.PolyclipResult;
+import ch.alpine.sophis.hull.d2.ConvexHull2D;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
+import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.chq.ExactTensorQ;
 import ch.alpine.tensor.lie.rot.CirclePoints;
+import ch.alpine.tensor.lie.rot.RotationMatrix;
 import ch.alpine.tensor.mat.HilbertMatrix;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.pdf.c.NormalDistribution;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.qty.Quantity;
 import ch.alpine.tensor.red.EqualsReduce;
@@ -76,5 +82,15 @@ class SutherlandHodgmanAlgorithmTest {
         Tensors.vector(2, 0), //
         Tensors.vector(4, 0), //
         Tensors.vector(9, 0)));
+  }
+
+  @ParameterizedTest
+  @ValueSource(ints = { 20, 25, 30, 40 })
+  void testNonConvexFail(int n) {
+    Tensor poly = RandomVariate.of(NormalDistribution.standard(), n, 2);
+    assertThrows(Exception.class, () -> SutherlandHodgmanAlgorithm.of(poly));
+    Tensor conv = ConvexHull2D.of(poly.dot(RotationMatrix.of(0.1)));
+    SutherlandHodgmanAlgorithm.of(conv).apply(poly);
+    SutherlandHodgmanAlgorithm.of(Reverse.of(conv)).apply(poly);
   }
 }

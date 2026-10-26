@@ -18,7 +18,8 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
  * such cases, the returned polygon may contain duplicate vertices. */
 public class PolygonClip implements Serializable {
   /** @param clip convex, vertices ordered ccw, with dimensions n x 2
-   * @return */
+   * @return
+   * @throws Exception if given clip is non-convex */
   public static TensorUnaryOperator of(Tensor clip) {
     SutherlandHodgmanAlgorithm sutherlandHodgmanAlgorithm = SutherlandHodgmanAlgorithm.of(clip);
     return subject -> sutherlandHodgmanAlgorithm.apply(subject).tensor();

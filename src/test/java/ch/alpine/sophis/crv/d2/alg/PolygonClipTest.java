@@ -9,19 +9,25 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import ch.alpine.sophis.crv.d2.PolygonArea;
+import ch.alpine.sophis.hull.d2.ConvexHull2D;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
+import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.alg.Rotate;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.chq.ExactScalarQ;
 import ch.alpine.tensor.ext.Serialization;
 import ch.alpine.tensor.lie.rot.CirclePoints;
+import ch.alpine.tensor.lie.rot.RotationMatrix;
 import ch.alpine.tensor.mat.HilbertMatrix;
 import ch.alpine.tensor.mat.MatrixQ;
 import ch.alpine.tensor.pdf.RandomVariate;
@@ -134,6 +140,23 @@ class PolygonClipTest {
         MatrixQ.require(result);
         assertEquals((int) Dimensions.of(result).get(1), 2);
       }
+    }
+  }
+
+  @ParameterizedTest
+  @ValueSource(ints = { 20, 25, 30, 40 })
+  void testNonConvexFail(int n) {
+    Tensor poly = RandomVariate.of(NormalDistribution.standard(), n, 2);
+    assertThrows(Exception.class, () -> PolygonClip.of(poly));
+    Tensor conv = ConvexHull2D.of(poly.dot(RotationMatrix.of(0.1)));
+    {
+      Tensor tensor = PolygonClip.of(conv).apply(poly);
+      Scalar area = PolygonArea.of(tensor);
+      assertTrue(Scalars.nonZero(area));
+    }
+    {
+      Tensor tensor = PolygonClip.of(Reverse.of(conv)).apply(poly);
+      assertEquals(tensor, Tensors.unmodifiableEmpty());
     }
   }
 

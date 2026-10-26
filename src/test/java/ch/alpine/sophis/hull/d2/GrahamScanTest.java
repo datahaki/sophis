@@ -20,15 +20,15 @@ import ch.alpine.tensor.sca.Sign;
 class GrahamScanTest {
   @Test
   void testColinear() {
-    assertTrue(Scalars.isZero(GrahamScan.ccw( //
+    assertTrue(Scalars.isZero(StaticHelper.ccw( //
         Tensors.vector(1, 0), //
         Tensors.vector(2, 0), //
         Tensors.vector(1.5, 0))));
-    assertTrue(Scalars.isZero(GrahamScan.ccw( //
+    assertTrue(Scalars.isZero(StaticHelper.ccw( //
         Tensors.vector(1, 0), //
         Tensors.vector(2, 0), //
         Tensors.vector(3, 0))));
-    assertTrue(Scalars.isZero(GrahamScan.ccw( //
+    assertTrue(Scalars.isZero(StaticHelper.ccw( //
         Tensors.vector(1, 0), //
         Tensors.vector(2, 0), //
         Tensors.vector(-1, 0))));
@@ -36,15 +36,15 @@ class GrahamScanTest {
 
   @Test
   void testCcw() {
-    assertTrue(Sign.isPositive(GrahamScan.ccw( //
+    assertTrue(Sign.isPositive(StaticHelper.ccw( //
         Tensors.vector(1, 0), //
         Tensors.vector(2, 0), //
         Tensors.vector(1, 10))));
-    assertTrue(Sign.isPositive(GrahamScan.ccw( //
+    assertTrue(Sign.isPositive(StaticHelper.ccw( //
         Tensors.vector(1, 0), //
         Tensors.vector(2, 0), //
         Tensors.vector(3, 1))));
-    assertTrue(Sign.isPositive(GrahamScan.ccw( //
+    assertTrue(Sign.isPositive(StaticHelper.ccw( //
         Tensors.vector(1, 0), //
         Tensors.vector(2, 0), //
         Tensors.vector(-1, 1))));
@@ -52,15 +52,15 @@ class GrahamScanTest {
 
   @Test
   void testCw() {
-    assertTrue(Sign.isNegative(GrahamScan.ccw( //
+    assertTrue(Sign.isNegative(StaticHelper.ccw( //
         Tensors.vector(1, 0), //
         Tensors.vector(2, 0), //
         Tensors.vector(1, -10))));
-    assertTrue(Sign.isNegative(GrahamScan.ccw( //
+    assertTrue(Sign.isNegative(StaticHelper.ccw( //
         Tensors.vector(1, 0), //
         Tensors.vector(2, 0), //
         Tensors.vector(3, -1))));
-    assertTrue(Sign.isNegative(GrahamScan.ccw( //
+    assertTrue(Sign.isNegative(StaticHelper.ccw( //
         Tensors.vector(1, 0), //
         Tensors.vector(2, 0), //
         Tensors.vector(-1, -1))));
