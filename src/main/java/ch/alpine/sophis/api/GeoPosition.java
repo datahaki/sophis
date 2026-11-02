@@ -21,12 +21,12 @@ public enum GeoPosition {
 
   /** @param lat_lon for example {38.2543[deg], -153.55[deg]}
    * @return vector of length 3 as point on unit sphere S^2 */
-  public static Tensor of(Tensor lat_lon) {
-    VectorQ.requireLength(lat_lon, 2);
-    lat_lon = lat_lon.maps(UnitSystem.SI());
-    Scalar lat = lat_lon.Get(0);
+  public static Tensor of(Tensor lon_lat) {
+    VectorQ.requireLength(lon_lat, 2);
+    lon_lat = lon_lat.maps(UnitSystem.SI());
+    Scalar lat = lon_lat.Get(1);
     Tensor rot1 = So3Exponential.vectorExp(Tensors.of(lat.zero(), lat.negate(), lat.zero()));
-    Scalar lon = lat_lon.Get(1);
+    Scalar lon = lon_lat.Get(0);
     Tensor rot2 = So3Exponential.vectorExp(Tensors.of(lon.zero(), lon.zero(), lon));
     return rot2.dot(rot1.get(Tensor.ALL, 0));
   }

@@ -93,6 +93,7 @@ public class SutherlandHodgmanAlgorithm implements Serializable {
     Tensor ab = a.subtract(b);
     Tensor pq = p.subtract(q);
     Scalar den = Det2D.of(ab, pq);
+    // TODO this case happens quite naturally, when line segments are parallel
     if (Chop._40.isZero(den))
       throw new Throw(a, b, p, q);
     return pq.multiply(Det2D.of(ab, a)).add(ab.multiply(Det2D.of(p, pq))).divide(den);
