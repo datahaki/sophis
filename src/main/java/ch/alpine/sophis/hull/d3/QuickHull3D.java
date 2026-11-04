@@ -12,7 +12,6 @@ package ch.alpine.sophis.hull.d3;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ch.alpine.tensor.RealScalar;
@@ -360,7 +359,7 @@ class QuickHull3D {
         tris[i + 1].getEdge(2).setOpposite(tris[0].getEdge((3 - i) % 3));
       }
     }
-    faces.addAll(Arrays.asList(tris));
+    faces.addAll(List.of(tris));
     for (int i = 0; i < numPoints(); i++) {
       Vertex v = pointBuffer[i];
       if (v == vtx[0] || v == vtx[1] || v == vtx[2] || v == vtx[3])
