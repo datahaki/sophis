@@ -1,6 +1,7 @@
 // code by jph
 package ch.alpine.sophis.srf;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -13,7 +14,7 @@ import ch.alpine.tensor.opt.nd.NdCenters;
 import ch.alpine.tensor.red.Mean;
 
 /** uses Dbscan */
-public record ReduceMesh(Scalar radius) {
+public record ReduceMesh(Scalar radius) implements Serializable {
   public SurfaceMesh of(SurfaceMesh surfaceMesh) {
     SurfaceMesh result = new SurfaceMesh();
     if (Tensors.nonEmpty(surfaceMesh.vrt)) {
