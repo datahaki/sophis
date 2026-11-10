@@ -16,6 +16,7 @@ import ch.alpine.tensor.io.Primitives;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.Distribution;
 import ch.alpine.tensor.pdf.RandomVariate;
+import ch.alpine.tensor.pdf.TensorShuffle;
 import ch.alpine.tensor.pdf.c.UniformDistribution;
 import ch.alpine.tensor.sca.Clips;
 
