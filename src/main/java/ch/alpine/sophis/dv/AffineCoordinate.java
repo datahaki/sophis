@@ -5,10 +5,10 @@ import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
-import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.jet.AppendOne;
 import ch.alpine.tensor.mat.MatrixQ;
+import ch.alpine.tensor.mat.TransposeMatrixDot;
 import ch.alpine.tensor.mat.cd.LDLDecomposition;
 import ch.alpine.tensor.nrm.NormalizeTotal;
 import ch.alpine.tensor.sca.Chop;
@@ -30,7 +30,7 @@ public enum AffineCoordinate implements Genesis {
     Tensor x = AppendOne.FUNCTION.slash(levers);
     int d = Unprotect.dimension1Hint(levers);
     Tensor u = UnitVector.of(d + 1, d);
-    Tensor matrix = Transpose.of(x).dot(x);
+    Tensor matrix = TransposeMatrixDot.self(x);
     // TODO SOPHIS CD can fail !
     Tensor z = LDLDecomposition.of(matrix).solve(u);
     Tensor weights = x.dot(z);

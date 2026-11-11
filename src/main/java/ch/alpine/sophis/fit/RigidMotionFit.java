@@ -3,8 +3,8 @@ package ch.alpine.sophis.fit;
 
 import ch.alpine.sophus.bm.AffineVectorQ;
 import ch.alpine.tensor.Tensor;
-import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.api.TensorUnaryOperator;
+import ch.alpine.tensor.mat.TransposeMatrixDot;
 import ch.alpine.tensor.mat.pd.Orthogonalize;
 import ch.alpine.tensor.red.Mean;
 import ch.alpine.tensor.red.Times;
@@ -47,7 +47,7 @@ public record RigidMotionFit(Tensor rotation, Tensor translation) implements Ten
     Tensor qm = Mean.of(target); // mean of target coordinates
     Tensor xt = Tensor.of(origin.stream().map(pm.negate()::add)); // levers to origin coordinates
     Tensor yt = Tensor.of(target.stream().map(qm.negate()::add)); // levers to target coordinates
-    Tensor rotation = Orthogonalize.usingSvd(Transpose.of(yt).dot(xt));
+    Tensor rotation = Orthogonalize.usingSvd(TransposeMatrixDot.of(yt, xt));
     return new RigidMotionFit(rotation, qm.subtract(rotation.dot(pm)));
   }
 
@@ -57,7 +57,7 @@ public record RigidMotionFit(Tensor rotation, Tensor translation) implements Ten
     Tensor qm = weights.dot(target); // weighted mean of target coordinates
     Tensor xt = Tensor.of(origin.stream().map(pm.negate()::add)); // levers to origin coordinates
     Tensor yt = Tensor.of(target.stream().map(qm.negate()::add)); // levers to target coordinates
-    Tensor rotation = Orthogonalize.usingSvd(Transpose.of(yt).dot(Times.of(weights, xt)));
+    Tensor rotation = Orthogonalize.usingSvd(TransposeMatrixDot.of(yt, Times.of(weights, xt)));
     return new RigidMotionFit(rotation, qm.subtract(rotation.dot(pm)));
   }
 
