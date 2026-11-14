@@ -28,7 +28,7 @@ import ch.alpine.tensor.red.ScalarSummaryStatistics;
 public enum MinTriangleAreaSquared implements Genesis {
   INSTANCE;
 
-  // TODO SOPHIS can one generalize to n-dimensions
+  // TODO can one generalize to n-dimensions
   /** @param polygon with dimensions n x 3
    * @return affine weight vector of length n
    * @throws Exception if given polygon is empty */
@@ -66,7 +66,7 @@ public enum MinTriangleAreaSquared implements Genesis {
     ScalarSummaryStatistics scalarSummaryStatistics = polygon.stream() //
         .map(Vector2Norm::of) //
         .collect(ScalarSummaryStatistics.collector());
-    Scalar scalar = scalarSummaryStatistics.getAverage();
+    Scalar scalar = scalarSummaryStatistics.getMean();
     return Scalars.isZero(scalar) //
         ? polygon
         : polygon.divide(scalar);

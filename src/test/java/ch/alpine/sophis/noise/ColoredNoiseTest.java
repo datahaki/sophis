@@ -16,7 +16,7 @@ class ColoredNoiseTest {
     Distribution distribution = ColoredNoise.of(RealScalar.of(1.2));
     ScalarSummaryStatistics doubleSummaryStatistics = //
         RandomVariate.stream(distribution).limit(1000).collect(ScalarSummaryStatistics.collector());
-    Scalar average = doubleSummaryStatistics.getAverage();
+    Scalar average = doubleSummaryStatistics.getMean();
     Scalar min = doubleSummaryStatistics.getMin();
     Scalar max = doubleSummaryStatistics.getMax();
     Clips.absoluteOne().requireInside(average);

@@ -54,7 +54,7 @@ public class SPatch implements Sedarim {
   }
 
   public Tensor embed(Tensor rep) {
-    // TODO SOPHIS use Mean
+    // TODO use Mean
     return Primitives.toIntStream(rep) //
         .mapToObj(v::get) //
         .reduce(Tensor::add) //

@@ -14,7 +14,7 @@ import ch.alpine.tensor.alg.Differences;
 import ch.alpine.tensor.nrm.Vector2Norm;
 
 /** method of equidistant resampling of a sequence of irregular spaced points */
-// QUEST SOPHUS ALG generalize to Rn
+// TODO ALG generalize to Rn
 public class ParametricResample implements Serializable {
   /** determines whether points are connected */
   private final Scalar threshold;

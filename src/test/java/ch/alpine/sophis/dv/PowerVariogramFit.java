@@ -15,7 +15,6 @@ import ch.alpine.tensor.qty.LenientAdd;
 import ch.alpine.tensor.sca.AbsSquared;
 import ch.alpine.tensor.sca.pow.Power;
 
-// TODO SOPHIS ONLY USED IN TESTS
 public enum PowerVariogramFit {
   ;
   /** alpha "is fitted by unweighted least squares over all pairs of data points i and j"
@@ -30,7 +29,7 @@ public enum PowerVariogramFit {
     Scalar[] y = ScalarArray.ofVector(values);
     final int n = sequence.length();
     Scalar num = null; // 0[|seq_0| * v[0] * v[0]]
-    // QUEST SOPHUS ALG not very elegant generic, fit function needs a demo
+    // TODO ALG not very elegant generic, fit function needs a demo
     Scalar den = RealScalar.ZERO;
     Scalar nugsq = RealScalar.ZERO;
     ScalarUnaryOperator power = Power.function(exponent);

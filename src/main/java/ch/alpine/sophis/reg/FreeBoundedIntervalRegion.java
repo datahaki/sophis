@@ -26,7 +26,7 @@ public class FreeBoundedIntervalRegion extends ImplicitFunctionRegion implements
 
   @Override // from SignedDistanceFunction<Tensor>
   public Scalar signedDistance(Tensor x) {
-    // TODO SOPHIS use clip for computation
+    // TODO use clip for computation
     return semiwidth.subtract(Abs.between(x.Get(index), center));
   }
 }
