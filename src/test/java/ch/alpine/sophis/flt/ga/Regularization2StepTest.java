@@ -4,8 +4,6 @@ package ch.alpine.sophis.flt.ga;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RGroup;
@@ -22,7 +20,7 @@ class Regularization2StepTest {
       new Regularization2Step(RGroup.INSTANCE, Rational.of(1, 4))::string;
 
   @Test
-  void testLo() throws ClassNotFoundException, IOException {
+  void testLo() {
     Tensor signal = Tensors.vector(1, 0, 0, 0, 0);
     Tensor tensor = Serialization.copy(STRING).apply(signal);
     ExactTensorQ.require(tensor);

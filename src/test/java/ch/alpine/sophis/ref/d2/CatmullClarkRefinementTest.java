@@ -4,7 +4,6 @@ package ch.alpine.sophis.ref.d2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -28,7 +27,7 @@ import ch.alpine.tensor.red.Mean;
 
 class CatmullClarkRefinementTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     SurfaceMeshRefinement surfaceMeshRefinement = //
         Serialization.copy(new CatmullClarkRefinement(Se2CoveringGroup.INSTANCE.biinvariantMean()));
     SurfaceMesh surfaceMesh = surfaceMeshRefinement.refine(SurfaceMeshExamples.quads6());

@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
@@ -24,7 +22,7 @@ import ch.alpine.tensor.sca.Sign;
 
 class ClothoidTransitionSpaceTest {
   @Test
-  void testLength() throws ClassNotFoundException, IOException {
+  void testLength() {
     Tensor start = Tensors.fromString("{1[m], 1[m], 0}");
     Tensor end = Tensors.fromString("{2[m], 2[m]}").append(Pi.HALF);
     Transition transition = Serialization.copy(ClothoidTransitionSpace.ANALYTIC).connect(start, end);

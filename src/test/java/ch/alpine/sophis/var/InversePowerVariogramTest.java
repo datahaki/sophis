@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.DoubleScalar;
@@ -23,7 +21,7 @@ import ch.alpine.tensor.nrm.NormalizeTotal;
 
 class InversePowerVariogramTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     Tensor tensor = Tensors.vector(2, 3, 4, 5);
     Tensor w1 = NormalizeTotal.FUNCTION.apply(tensor.maps(Serialization.copy(InversePowerVariogram.of(2))));
     ExactTensorQ.require(w1);
@@ -50,7 +48,7 @@ class InversePowerVariogramTest {
   }
 
   @Test
-  void testExponentZero() throws ClassNotFoundException, IOException {
+  void testExponentZero() {
     ScalarUnaryOperator suo = Serialization.copy(InversePowerVariogram.of(0));
     Tensor domain = Subdivide.of(0, 1, 6);
     assertEquals(domain.maps(suo), ConstantArray.of(RealScalar.ONE, 7));

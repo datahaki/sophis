@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -21,7 +20,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class PolygonRegionTest {
   @Test
-  void testEmpty() throws ClassNotFoundException, IOException {
+  void testEmpty() {
     PolygonRegion polygonRegion = Serialization.copy(new PolygonRegion(Tensors.of(Tensors.vector(1, 2))));
     polygonRegion.test(Tensors.vector(1, 2));
   }

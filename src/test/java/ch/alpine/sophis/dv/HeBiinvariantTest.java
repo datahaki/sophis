@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import java.io.IOException;
 import java.util.Random;
 
 import org.junit.jupiter.api.Test;
@@ -53,7 +52,7 @@ class HeBiinvariantTest {
   }
 
   @Test
-  void testAffineBiinvariant() throws ClassNotFoundException, IOException {
+  void testAffineBiinvariant() {
     Random random = new Random(1);
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(AFFINE);
     for (int n = 1; n < 3; ++n)
@@ -74,7 +73,7 @@ class HeBiinvariantTest {
   }
 
   @Test
-  void testAffineCenter() throws ClassNotFoundException, IOException {
+  void testAffineCenter() {
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(AFFINE);
     for (int n = 1; n < 3; ++n)
       for (int length = 2 * n + 2; length < 2 * n + 10; ++length) {

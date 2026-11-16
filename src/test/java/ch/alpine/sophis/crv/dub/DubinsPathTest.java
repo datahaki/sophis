@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Rational;
@@ -126,7 +124,7 @@ class DubinsPathTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     DubinsPath path = DubinsPath.of(DubinsType.LRL, Quantity.of(2, "m"), Tensors.fromString("{1[m], 8[m], 1[m]}"));
     DubinsPath dubinsPath = Serialization.copy(path);
     assertEquals(dubinsPath.dubinsType(), DubinsType.LRL);

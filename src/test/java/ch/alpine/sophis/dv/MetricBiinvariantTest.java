@@ -4,8 +4,6 @@ package ch.alpine.sophis.dv;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.Genesis;
@@ -62,7 +60,7 @@ class MetricBiinvariantTest {
   }
 
   @Test
-  void testQuantity() throws ClassNotFoundException, IOException {
+  void testQuantity() {
     Distribution distribution = UniformDistribution.of(Quantity.of(-1, "m"), Quantity.of(+1, "m"));
     BarycentricCoordinate barycentricCoordinate = Serialization.copy( //
         new HsCoordinates(RGroup.INSTANCE, //

@@ -3,8 +3,6 @@ package ch.alpine.sophis.var;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
@@ -17,7 +15,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class MultiquadricVariogramTest {
   @Test
-  void testQuantity() throws ClassNotFoundException, IOException {
+  void testQuantity() {
     ScalarUnaryOperator scalarUnaryOperator = Serialization.copy(MultiquadricVariogram.of(Quantity.of(1, "m")));
     Scalar scalar = scalarUnaryOperator.apply(Quantity.of(0.2, "m"));
     Tolerance.CHOP.requireClose(scalar, Scalars.fromString("1.019803902718557[m]"));

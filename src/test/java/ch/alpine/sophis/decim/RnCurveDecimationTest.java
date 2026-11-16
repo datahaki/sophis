@@ -3,8 +3,6 @@ package ch.alpine.sophis.decim;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
@@ -17,7 +15,7 @@ import ch.alpine.tensor.lie.TensorProduct;
 
 class RnCurveDecimationTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     CurveDecimation curveDecimation = Serialization.copy(RnCurveDecimation.of(RealScalar.ZERO));
     Tensor tensor = TensorProduct.of(Range.of(0, 3), UnitVector.of(2, 0));
     assertEquals(tensor, Tensors.fromString("{{0, 0}, {1, 0}, {2, 0}}"));

@@ -3,8 +3,6 @@ package ch.alpine.sophis.ref.d1;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.CurveOperator;
@@ -78,7 +76,7 @@ class HormannSabinCurveSubdivisionTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     TensorUnaryOperator fps = HormannSabinCurveSubdivision.split3(RGroup.INSTANCE)::cyclic;
     TensorUnaryOperator copy = Serialization.copy(fps);
     assertEquals(copy.apply(CirclePoints.of(10)), fps.apply(CirclePoints.of(10)));

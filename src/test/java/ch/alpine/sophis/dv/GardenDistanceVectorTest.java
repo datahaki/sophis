@@ -4,7 +4,6 @@ package ch.alpine.sophis.dv;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import java.io.IOException;
 import java.lang.reflect.Modifier;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +27,7 @@ import ch.alpine.tensor.sca.Clips;
 
 class GardenDistanceVectorTest {
   @Test
-  void testRn1() throws ClassNotFoundException, IOException {
+  void testRn1() {
     Distribution distribution = UniformDistribution.of(Clips.absolute(10));
     Manifold manifold = RGroup.INSTANCE;
     for (int length = 5; length < 10; ++length) {

@@ -4,7 +4,6 @@ package ch.alpine.sophis.decim;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ class Se3CurveDecimationTest {
   private static final LieGroup LIE_GROUP = new SeNGroup(3);
 
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     CurveDecimation curveDecimation = Serialization.copy(Se3CurveDecimation.of(RealScalar.of(0.3)));
     Tensor p = Se3Matrix.of(So3Exponential.vectorExp(Tensors.vector(0.1, -.2, -.3)), Tensors.vector(4, 3, 7));
     // Se3GroupElement pe = new Se3GroupElement(p);

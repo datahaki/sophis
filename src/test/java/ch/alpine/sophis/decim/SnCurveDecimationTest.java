@@ -3,8 +3,6 @@ package ch.alpine.sophis.decim;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
@@ -27,7 +25,7 @@ class SnCurveDecimationTest {
   }
 
   @Test
-  void testTriangle() throws ClassNotFoundException, IOException {
+  void testTriangle() {
     Tensor p0 = Vector2Norm.NORMALIZE.apply(Tensors.vector(1, 0, 0));
     Tensor p1 = Vector2Norm.NORMALIZE.apply(Tensors.vector(0.5, 0.5, 0.8));
     Tensor p2 = Vector2Norm.NORMALIZE.apply(Tensors.vector(0, 1, 0));

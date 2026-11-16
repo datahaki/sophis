@@ -4,8 +4,6 @@ package ch.alpine.sophis.gbc.d2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.dv.BarycentricCoordinate;
@@ -23,7 +21,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class ThreePointScalingsTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     for (ThreePointScalings barycenter : ThreePointScalings.values()) {
       BarycentricCoordinate barycentricCoordinate = Serialization.copy( //
           new HsCoordinates(RGroup.INSTANCE, ThreePointCoordinate.of(barycenter)));

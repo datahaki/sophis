@@ -4,8 +4,6 @@ package ch.alpine.sophis.ts;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.Scalar;
@@ -19,7 +17,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class RnTransitionSpaceTest {
   @Test
-  void testLength() throws ClassNotFoundException, IOException {
+  void testLength() {
     Tensor start = Tensors.fromString("{1[m], 2[m]}");
     Tensor end = Tensors.fromString("{1[m], 6[m]}");
     Transition transition = Serialization.copy(RnTransitionSpace.INSTANCE).connect(start, end);

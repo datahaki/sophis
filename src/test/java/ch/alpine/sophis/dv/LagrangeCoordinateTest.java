@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.Genesis;
@@ -29,7 +27,7 @@ class LagrangeCoordinateTest {
   }
 
   @Test
-  void testReal() throws ClassNotFoundException, IOException {
+  void testReal() {
     Genesis idw = new MetricBiinvariant(RGroup.INSTANCE).weighting(InversePowerVariogram.of(2));
     Genesis genesis = Serialization.copy(new LagrangeCoordinate(idw));
     Genesis idc = new MetricBiinvariant(RGroup.INSTANCE).coordinate(InversePowerVariogram.of(2));
@@ -42,7 +40,7 @@ class LagrangeCoordinateTest {
   }
 
   @Test
-  void testComplex() throws ClassNotFoundException, IOException {
+  void testComplex() {
     Genesis idw = new MetricBiinvariant(RGroup.INSTANCE).weighting(InversePowerVariogram.of(2));
     Genesis genesis = Serialization.copy(new LagrangeCoordinate(idw));
     for (int d = 1; d < 4; ++d)

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
@@ -114,7 +113,7 @@ class BSpline1CurveSubdivisionTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     TensorUnaryOperator fps = new BSpline1CurveSubdivision(RGroup.INSTANCE)::cyclic;
     TensorUnaryOperator copy = Serialization.copy(fps);
     assertEquals(copy.apply(CirclePoints.of(10)), fps.apply(CirclePoints.of(10)));

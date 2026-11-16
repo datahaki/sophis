@@ -3,7 +3,6 @@ package ch.alpine.sophis.flt.ga;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.function.Supplier;
 
@@ -21,7 +20,7 @@ import ch.alpine.tensor.sca.win.DirichletWindow;
 
 class CausalFilterTest {
   @Test
-  void testIIR1() throws ClassNotFoundException, IOException {
+  void testIIR1() {
     @SuppressWarnings("unchecked")
     TensorUnaryOperator causalFilter = Serialization.copy(new CausalFilter( //
         (Supplier<TensorUnaryOperator> & Serializable) //
@@ -39,7 +38,7 @@ class CausalFilterTest {
   }
 
   @Test
-  void testIIR2a() throws ClassNotFoundException, IOException {
+  void testIIR2a() {
     @SuppressWarnings("unchecked")
     TensorUnaryOperator causalFilter = Serialization.copy(new CausalFilter(//
         (Supplier<TensorUnaryOperator> & Serializable) //

@@ -3,8 +3,6 @@ package ch.alpine.sophis.var;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
@@ -24,7 +22,7 @@ class ThinPlateSplineVariogramTest {
   }
 
   @Test
-  void testQuantity() throws ClassNotFoundException, IOException {
+  void testQuantity() {
     ScalarUnaryOperator scalarUnaryOperator = Serialization.copy(new ThinPlateSplineVariogram(Quantity.of(1, "m")));
     Tolerance.CHOP.requireClose(scalarUnaryOperator.apply(Quantity.of(0.2, "m")), Scalars.fromString("-0.06437751649736402[m^2]"));
     Tolerance.CHOP.requireClose(scalarUnaryOperator.apply(Quantity.of(0.0, "m")), Scalars.fromString("0[m^2]"));

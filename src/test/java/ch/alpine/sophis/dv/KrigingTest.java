@@ -3,7 +3,6 @@ package ch.alpine.sophis.dv;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -68,7 +67,7 @@ class KrigingTest {
   }
 
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     Distribution distribution = NormalDistribution.standard();
     int n = 10;
     Tensor sequence = RandomVariate.of(distribution, n, 3);
@@ -86,7 +85,7 @@ class KrigingTest {
   }
 
   @Test
-  void testScalarValued() throws ClassNotFoundException, IOException {
+  void testScalarValued() {
     Distribution distribution = NormalDistribution.standard();
     int n = 10;
     Tensor sequence = RandomVariate.of(distribution, n, 3);
@@ -104,7 +103,7 @@ class KrigingTest {
   }
 
   @Test
-  void testBarycentric() throws ClassNotFoundException, IOException {
+  void testBarycentric() {
     RandomGenerator random = new Random(13);
     Distribution distribution = NormalDistribution.standard();
     ScalarUnaryOperator variogram = PowerVariogram.of(RealScalar.of(1.5));

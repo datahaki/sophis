@@ -4,8 +4,6 @@ package ch.alpine.sophis.ref.d1;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.CurveOperator;
@@ -109,7 +107,7 @@ class BSpline4CurveSubdivisionTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     TensorUnaryOperator fps = BSpline4CurveSubdivision.split2lo(RGroup.INSTANCE)::cyclic;
     TensorUnaryOperator copy = Serialization.copy(fps);
     assertEquals(copy.apply(CirclePoints.of(10)), fps.apply(CirclePoints.of(10)));

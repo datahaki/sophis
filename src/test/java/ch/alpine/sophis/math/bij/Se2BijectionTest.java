@@ -3,8 +3,6 @@ package ch.alpine.sophis.math.bij;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.se2.Se2AxisYProject;
@@ -43,7 +41,7 @@ class Se2BijectionTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     Se2Bijection se2Bijection = new Se2Bijection(Tensors.vector(2, -3, 1.3));
     Se2Bijection copy = Serialization.copy(se2Bijection);
     Tensor vector = Tensors.vector(0.32, -0.98);

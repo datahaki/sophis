@@ -4,7 +4,6 @@ package ch.alpine.sophis.flt.ga;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class GeodesicFIR2Test {
   @Test
-  void testTranslation() throws ClassNotFoundException, IOException {
+  void testTranslation() {
     Tensor p = Tensors.vector(0, 0, 0);
     Tensor q = Tensors.vector(1, 1, 0);
     Tensor r = Tensors.vector(1, 2, 1);

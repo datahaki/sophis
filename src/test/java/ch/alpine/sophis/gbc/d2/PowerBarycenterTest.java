@@ -3,7 +3,6 @@ package ch.alpine.sophis.gbc.d2;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
 import java.util.function.BiFunction;
 
 import org.junit.jupiter.api.Test;
@@ -17,7 +16,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class PowerBarycenterTest {
   @Test
-  void testSerialization() throws ClassNotFoundException, IOException {
+  void testSerialization() {
     BiFunction<Tensor, Scalar, Tensor> biFunction = Serialization.copy(PowerBarycenter.of(1.5));
     Tensor tensor = biFunction.apply(Tensors.vector(1, 2, 3), RealScalar.of(0.3));
     Chop._10.requireClose(tensor, Tensors.vector(6.0858061945018465, 12.171612389003693, 18.25741858350554));

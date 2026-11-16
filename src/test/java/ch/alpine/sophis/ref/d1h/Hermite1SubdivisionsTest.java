@@ -3,7 +3,6 @@ package ch.alpine.sophis.ref.d1h;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.function.Function;
 
@@ -32,7 +31,7 @@ class Hermite1SubdivisionsTest {
   }
 
   @Test
-  void testSerializableCast() throws ClassNotFoundException, IOException {
+  void testSerializableCast() {
     @SuppressWarnings("unchecked")
     Function<Integer, Tensor> function = (Function<Integer, Tensor> & Serializable) _ -> Tensors.empty();
     assertEquals(Serialization.copy(function).apply(3), Tensors.empty());

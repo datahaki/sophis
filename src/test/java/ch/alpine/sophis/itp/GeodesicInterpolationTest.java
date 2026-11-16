@@ -3,8 +3,6 @@ package ch.alpine.sophis.itp;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
@@ -17,7 +15,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class GeodesicInterpolationTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     Tensor sequence = Tensors.fromString("{{1, 2, 3}, {4, 3, 2}, {5, -1, 2.5}}");
     Interpolation interpolation = //
         Serialization.copy(GeodesicInterpolation.of(Se2CoveringGroup.INSTANCE, sequence));

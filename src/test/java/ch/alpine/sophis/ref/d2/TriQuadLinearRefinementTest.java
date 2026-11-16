@@ -4,7 +4,6 @@ package ch.alpine.sophis.ref.d2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -24,7 +23,7 @@ import ch.alpine.tensor.red.FirstPosition;
 
 class TriQuadLinearRefinementTest {
   @Test
-  void testSe2CSimple() throws ClassNotFoundException, IOException {
+  void testSe2CSimple() {
     SurfaceMeshRefinement surfaceMeshRefinement = //
         Serialization.copy(new TriQuadLinearRefinement(Se2CoveringGroup.INSTANCE.biinvariantMean()));
     SurfaceMesh surfaceMesh = surfaceMeshRefinement.refine(SurfaceMeshExamples.quads6());
@@ -33,7 +32,7 @@ class TriQuadLinearRefinementTest {
   }
 
   @Test
-  void testRnSimple() throws ClassNotFoundException, IOException {
+  void testRnSimple() {
     SurfaceMeshRefinement surfaceMeshRefinement = //
         Serialization.copy(new TriQuadLinearRefinement(LinearBiinvariantMean.INSTANCE));
     SurfaceMesh surfaceMesh = surfaceMeshRefinement.refine(SurfaceMeshExamples.quads5());
@@ -43,7 +42,7 @@ class TriQuadLinearRefinementTest {
   }
 
   @Test
-  void testR3Simple() throws ClassNotFoundException, IOException {
+  void testR3Simple() {
     SurfaceMeshRefinement surfaceMeshRefinement = //
         Serialization.copy(new TriQuadLinearRefinement(LinearBiinvariantMean.INSTANCE));
     SurfaceMesh surfaceMesh = surfaceMeshRefinement.refine(SurfaceMeshExamples.unitQuad());

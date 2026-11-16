@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -57,7 +56,7 @@ class WeiszfeldMethodTest {
   }
 
   @Test
-  void testPoles() throws ClassNotFoundException, IOException {
+  void testPoles() {
     Tensor tensor = Tensors.of( //
         Tensors.vector(-1, 0), //
         Tensors.vector(0, 0), //

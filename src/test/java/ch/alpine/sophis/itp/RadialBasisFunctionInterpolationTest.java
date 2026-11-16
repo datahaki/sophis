@@ -3,7 +3,6 @@ package ch.alpine.sophis.itp;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
 import java.util.Map;
 import java.util.Random;
 import java.util.random.RandomGenerator;
@@ -30,7 +29,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class RadialBasisFunctionInterpolationTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     RandomGenerator randomGenerator = new Random(3);
     Distribution distribution = NormalDistribution.standard();
     int n = 10;

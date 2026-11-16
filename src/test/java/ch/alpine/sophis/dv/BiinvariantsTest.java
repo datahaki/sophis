@@ -3,8 +3,6 @@ package ch.alpine.sophis.dv;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -22,7 +20,7 @@ class BiinvariantsTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     Serialization.copy(Biinvariants.all(RGroup.INSTANCE));
   }
 
@@ -51,7 +49,7 @@ class BiinvariantsTest {
   }
 
   @Test
-  void testSerializationFail() throws ClassNotFoundException, IOException {
+  void testSerializationFail() {
     // in earlier versions, the instance used to be non-serializable
     for (Biinvariant biinvariant : Biinvariants.all(RGroup.INSTANCE).values())
       Serialization.copy(biinvariant.coordinate(InversePowerVariogram.of(2), Tensors.empty()));

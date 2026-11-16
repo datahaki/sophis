@@ -3,8 +3,6 @@ package ch.alpine.sophis.decim;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.hs.HsLineDistance;
@@ -22,7 +20,7 @@ import ch.alpine.tensor.num.Pi;
 
 class HsLineDistanceTest {
   @Test
-  void testRnMatch() throws ClassNotFoundException, IOException {
+  void testRnMatch() {
     HsLineDistance hsLineDistance = //
         Serialization.copy(new HsLineDistance(RGroup.INSTANCE));
     HsLineDistanceLocal tensorNorm = //
@@ -32,7 +30,7 @@ class HsLineDistanceTest {
   }
 
   @Test
-  void testSnMatch() throws ClassNotFoundException, IOException {
+  void testSnMatch() {
     HsLineDistance hsLineDistance = //
         Serialization.copy(new HsLineDistance(SnManifold.INSTANCE));
     Tensor p = UnitVector.of(3, 0);

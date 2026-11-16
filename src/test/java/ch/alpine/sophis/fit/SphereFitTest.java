@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -55,7 +54,7 @@ class SphereFitTest {
   }
 
   @Test
-  void testLeastSquare() throws ClassNotFoundException, IOException {
+  void testLeastSquare() {
     Tensor _points = Tensors.of( //
         Tensors.vector(1, 0), //
         Tensors.vector(0, 0), //

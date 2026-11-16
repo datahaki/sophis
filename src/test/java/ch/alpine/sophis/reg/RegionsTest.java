@@ -4,8 +4,6 @@ package ch.alpine.sophis.reg;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.ext.Serialization;
@@ -18,7 +16,7 @@ class RegionsTest {
   }
 
   @Test
-  void testSerialization() throws ClassNotFoundException, IOException {
+  void testSerialization() {
     assertTrue(Serialization.copy(Regions.completeRegion()).test(null));
     assertFalse(Serialization.copy(Regions.emptyRegion()).test(null));
   }

@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import java.io.IOException;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
@@ -29,7 +28,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class BiinvariantTest {
   @Test
-  void testAbsolute() throws ClassNotFoundException, IOException {
+  void testAbsolute() {
     Distribution distribution = NormalDistribution.of(Quantity.of(1, "m"), Quantity.of(2, "m"));
     Biinvariant biinvariant = new MetricBiinvariant(RGroup.INSTANCE);
     Tensor sequence = RandomVariate.of(distribution, 10, 3);
@@ -51,7 +50,7 @@ class BiinvariantTest {
   }
 
   @Test
-  void testWeighting() throws ClassNotFoundException, IOException {
+  void testWeighting() {
     Distribution distribution = UniformDistribution.unit();
     Map<Biinvariants, Biinvariant> map = Biinvariants.all(RGroup.INSTANCE);
     for (Biinvariant biinvariant : map.values()) {
@@ -64,7 +63,7 @@ class BiinvariantTest {
   }
 
   @Test
-  void testCoordinate() throws ClassNotFoundException, IOException {
+  void testCoordinate() {
     Distribution distribution = UniformDistribution.unit();
     Map<Biinvariants, Biinvariant> map = Biinvariants.all(RGroup.INSTANCE);
     for (Biinvariant biinvariant : map.values()) {

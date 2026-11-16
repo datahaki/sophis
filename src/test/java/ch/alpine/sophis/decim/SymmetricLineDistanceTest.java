@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.sophis.decim;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.api.LineDistance;
@@ -12,7 +10,7 @@ import ch.alpine.tensor.ext.Serialization;
 
 class SymmetricLineDistanceTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     LineDistance lineDistance = new SymmetricLineDistance(new HsLineDistance(Se2CoveringGroup.INSTANCE));
     Serialization.copy(lineDistance);
   }

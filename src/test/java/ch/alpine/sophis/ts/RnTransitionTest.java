@@ -4,8 +4,6 @@ package ch.alpine.sophis.ts;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
@@ -18,7 +16,7 @@ import ch.alpine.tensor.nrm.Vector2Norm;
 
 class RnTransitionTest {
   @Test
-  void testSampled() throws ClassNotFoundException, IOException {
+  void testSampled() {
     Tensor start = Tensors.vector(1, 2);
     Tensor end = Tensors.vector(10, 2);
     RnTransition rnTransition = //

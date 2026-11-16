@@ -4,8 +4,6 @@ package ch.alpine.sophis.crv;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.win.KnotSpacing;
@@ -21,7 +19,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class GeodesicCatmullRomTest {
   @Test
-  void testUniformInterpolatory() throws ClassNotFoundException, IOException {
+  void testUniformInterpolatory() {
     Tensor control = RandomVariate.of(UniformDistribution.unit(), 5, 3);
     TensorUnaryOperator centripedalKnotSpacing = KnotSpacing.uniform();
     Tensor knots = centripedalKnotSpacing.apply(control);

@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -109,7 +108,7 @@ class PolygonClipTest {
   }
 
   @Test
-  void testMore3() throws ClassNotFoundException, IOException {
+  void testMore3() {
     Tensor clip = Tensors.fromString("{{0, 0}, {1, 0}, {1, 1}, {0, 1}}");
     Tensor subj = Tensors.fromString("{{0, 0}, {2, 0}, {1/2, 1/2}}");
     Tensor result = Serialization.copy(PolygonClip.of(subj)).apply(clip);

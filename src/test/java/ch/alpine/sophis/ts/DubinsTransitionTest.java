@@ -4,8 +4,6 @@ package ch.alpine.sophis.ts;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.dub.DubinsPathComparators;
@@ -19,7 +17,7 @@ import ch.alpine.tensor.sca.Sign;
 
 class DubinsTransitionTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     TransitionSpace transitionSpace = Serialization.copy(new DubinsTransitionSpace(RealScalar.of(2), DubinsPathComparators.LENGTH));
     Tensor start = Tensors.vector(1, 2, 3);
     Tensor end = Tensors.vector(3, -8, 1);

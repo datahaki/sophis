@@ -4,8 +4,6 @@ package ch.alpine.sophis.reg;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
@@ -50,7 +48,7 @@ class So2RegionTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     So2Region so2Region = So2Region.periodic(RealScalar.ONE, RealScalar.of(0.2));
     assertEquals(so2Region.center(), RealScalar.ONE);
     assertEquals(so2Region.radius(), RealScalar.of(0.2));

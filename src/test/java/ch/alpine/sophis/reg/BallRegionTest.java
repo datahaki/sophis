@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.Region;
@@ -21,7 +19,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class BallRegionTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     Region<Tensor> region = Serialization.copy(new BallRegion(Tensors.vector(1, 1), RealScalar.ONE));
     assertTrue(region.test(Tensors.vector(1, 0)));
     assertTrue(region.test(Tensors.vector(0, 1)));

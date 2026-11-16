@@ -4,8 +4,6 @@ package ch.alpine.sophis.gbc.d2;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.d2.alg.PolygonRegion;
@@ -48,7 +46,7 @@ class ThreePointCoordinateTest {
   }
 
   @Test
-  void testWeights() throws ClassNotFoundException, IOException {
+  void testWeights() {
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(r2(ThreePointScalings.WACHSPRESS));
     Tensor P = Tensors.fromString("{{1, 1}, {5, 1}, {3, 5}, {2, 5}}");
     Tensor x = Tensors.vector(4, 2);
@@ -59,7 +57,7 @@ class ThreePointCoordinateTest {
   }
 
   @Test
-  void testQuantity() throws ClassNotFoundException, IOException {
+  void testQuantity() {
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(r2(ThreePointScalings.DISCRETE_HARMONIC));
     Tensor P = Tensors.fromString("{{1, 1}, {5, 1}, {3, 5}, {2, 5}}").maps(s -> Quantity.of(s, "m"));
     Tensor x = Tensors.vector(4, 2).maps(s -> Quantity.of(s, "m"));
@@ -70,7 +68,7 @@ class ThreePointCoordinateTest {
   }
 
   @Test
-  void testQuantity2() throws ClassNotFoundException, IOException {
+  void testQuantity2() {
     for (ThreePointScalings barycentric : ThreePointScalings.values()) {
       BarycentricCoordinate barycentricCoordinate = Serialization.copy(r2(barycentric));
       Tensor P = Tensors.fromString("{{1, 1}, {5, 1}, {3, 5}, {2, 5}}").maps(s -> Quantity.of(s, "m"));

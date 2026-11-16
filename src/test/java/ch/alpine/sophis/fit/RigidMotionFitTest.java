@@ -4,7 +4,6 @@ package ch.alpine.sophis.fit;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 
@@ -34,7 +33,7 @@ import ch.alpine.tensor.sca.N;
 
 class RigidMotionFitTest {
   @Test
-  void testExact() throws ClassNotFoundException, IOException {
+  void testExact() {
     Distribution distribution = NormalDistribution.standard();
     Tensor skew3 = Cross.skew3(Tensors.vector(-.1, .2, .3));
     Tensor rotation = OrthogonalMatrixQ.INSTANCE.require(MatrixExp.of(skew3));
@@ -50,7 +49,7 @@ class RigidMotionFitTest {
   }
 
   @Test
-  void testWeights() throws ClassNotFoundException, IOException {
+  void testWeights() {
     RandomGenerator random = new Random(3);
     Distribution distribution = NormalDistribution.standard();
     Tensor skew3 = Cross.skew3(Tensors.vector(-.1, .2, .3));

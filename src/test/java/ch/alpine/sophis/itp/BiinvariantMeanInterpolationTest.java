@@ -4,8 +4,6 @@ package ch.alpine.sophis.itp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.bm.LinearBiinvariantMean;
@@ -29,7 +27,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class BiinvariantMeanInterpolationTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     Tensor vector = RandomVariate.of(UniformDistribution.unit(), 12);
     Interpolation bi = Serialization.copy(BiinvariantMeanInterpolation.of(LinearBiinvariantMean.INSTANCE, vector));
     Interpolation li = LinearInterpolation.of(vector);

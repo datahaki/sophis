@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.tensor.RealScalar;
@@ -32,7 +30,7 @@ class FixedRadiusDubinsTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     DubinsPathGenerator dubinsPathGenerator = FixedRadiusDubins.of(Tensors.vector(10, 2, Math.PI / 2), RealScalar.of(1));
     DubinsPathGenerator copy = Serialization.copy(dubinsPathGenerator);
     assertEquals(copy.stream().count(), 4);

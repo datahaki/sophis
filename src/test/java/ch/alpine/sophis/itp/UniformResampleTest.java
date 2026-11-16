@@ -4,8 +4,6 @@ package ch.alpine.sophis.itp;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.api.CurveOperator;
@@ -25,7 +23,7 @@ class UniformResampleTest {
   }
 
   @Test
-  void testString() throws ClassNotFoundException, IOException {
+  void testString() {
     CurveOperator curveOperator = Serialization.copy(of(Quantity.of(2, "m")));
     Tensor tensor = curveOperator.string(Tensors.fromString("{{0[m]}, {1[m]}, {3[m]}, {6[m]}}"));
     assertEquals(ExactTensorQ.require(tensor), Tensors.fromString("{{0[m]}, {2[m]}, {4[m]}}"));

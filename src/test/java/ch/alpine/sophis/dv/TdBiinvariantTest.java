@@ -1,7 +1,6 @@
 // code by jph
 package ch.alpine.sophis.dv;
 
-import java.io.IOException;
 import java.util.Random;
 import java.util.random.RandomGenerator;
 
@@ -51,7 +50,7 @@ class TdBiinvariantTest {
   }
 
   @Test
-  void testAffineBiinvariant() throws ClassNotFoundException, IOException {
+  void testAffineBiinvariant() {
     RandomGenerator random = new Random(3);
     for (BarycentricCoordinate barycentricCoordinate : BARYCENTRIC_COORDINATES)
       for (int n = 1; n < 3; ++n)
@@ -74,7 +73,7 @@ class TdBiinvariantTest {
   }
 
   @Test
-  void testAffineCenter() throws ClassNotFoundException, IOException {
+  void testAffineCenter() {
     BarycentricCoordinate barycentricCoordinate = Serialization.copy(AFFINE);
     for (int n = 1; n < 3; ++n)
       for (int length = n + 2; length < n + 8; ++length) {

@@ -1,8 +1,6 @@
 // code by jph
 package ch.alpine.sophis.math.bij;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.se2.Se2Group;
@@ -40,7 +38,7 @@ class Se2InverseActionTest {
   }
 
   @Test
-  void testSerializable() throws ClassNotFoundException, IOException {
+  void testSerializable() {
     Se2Bijection se2Bijection = new Se2Bijection(Tensors.vector(2, -3, 1.3));
     Serialization.copy(se2Bijection.inverse());
   }

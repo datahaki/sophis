@@ -3,7 +3,6 @@ package ch.alpine.sophis.dv;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.lang.reflect.Modifier;
 
@@ -17,7 +16,7 @@ import ch.alpine.tensor.nrm.FrobeniusNorm;
 
 class BiinvariantVectorFunctionTest {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     BiinvariantVectorFunction influenceBiinvariantVector = new BiinvariantVectorFunction( //
         RGroup.INSTANCE, Tensors.empty(), (TensorMetric & Serializable) (x, y) -> FrobeniusNorm.of(x.subtract(y)));
     Serialization.copy(influenceBiinvariantVector);

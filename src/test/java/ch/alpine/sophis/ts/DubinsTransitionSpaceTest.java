@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophis.crv.dub.DubinsPathComparators;
@@ -22,7 +20,7 @@ import ch.alpine.tensor.qty.Quantity;
 
 class DubinsTransitionSpaceTest {
   @Test
-  void testLengthUnitless() throws ClassNotFoundException, IOException {
+  void testLengthUnitless() {
     Tensor start = Tensors.fromString("{1, 2}").append(Pi.HALF);
     Tensor end = Tensors.fromString("{2, 6, 0}");
     Transition transition = Serialization.copy(new DubinsTransitionSpace(RealScalar.ONE, DubinsPathComparators.LENGTH).connect(start, end));

@@ -3,8 +3,6 @@ package ch.alpine.sophis.flt.ga;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.lie.rn.RGroup;
@@ -16,7 +14,7 @@ import ch.alpine.tensor.sca.Chop;
 
 class GeodesicIIR1Test {
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     GeodesicIIR1 geodesicIIR1 = //
         Serialization.copy(new GeodesicIIR1(RGroup.INSTANCE, RealScalar.of(0.5)));
     // irc=0.0[s^-2]

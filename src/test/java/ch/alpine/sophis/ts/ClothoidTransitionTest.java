@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.clt.Clothoid;
@@ -32,7 +30,7 @@ class ClothoidTransitionTest {
   private static final ClothoidBuilder CLOTHOID_BUILDER = ClothoidBuilders.SE2_ANALYTIC.clothoidBuilder();
 
   @Test
-  void testSimple() throws ClassNotFoundException, IOException {
+  void testSimple() {
     Tensor start = Tensors.vector(1, 2, 3);
     Tensor end = Tensors.vector(4, 1, 5);
     ClothoidTransition clothoidTransition = Serialization.copy(ClothoidTransition.of(CLOTHOID_BUILDER, start, end));
