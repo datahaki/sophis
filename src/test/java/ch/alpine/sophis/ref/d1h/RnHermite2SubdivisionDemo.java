@@ -7,7 +7,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.io.Put;
+import ch.alpine.tensor.io.MathematicaFormat;
 
 enum RnHermite2SubdivisionDemo {
   ;
@@ -17,6 +17,6 @@ enum RnHermite2SubdivisionDemo {
     for (int count = 1; count <= 6; ++count)
       tensorIteration.iterate();
     Tensor iterate = tensorIteration.iterate();
-    Put.of(HomeDirectory.Ephemeral.resolve("hermite2.file"), iterate);
+    MathematicaFormat.Put.of(HomeDirectory.Ephemeral.resolve("hermite2.file"), iterate);
   }
 }

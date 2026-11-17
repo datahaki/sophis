@@ -17,7 +17,7 @@ import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.Throw;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.ext.HomeDirectory;
-import ch.alpine.tensor.io.Put;
+import ch.alpine.tensor.io.MathematicaFormat;
 import ch.alpine.tensor.nrm.Normalize;
 import ch.alpine.tensor.nrm.Vector2Norm;
 import ch.alpine.tensor.pdf.Distribution;
@@ -92,9 +92,9 @@ enum CatmullClarkSubdivisionExport {
 
   static void main() throws IOException {
     Path path = HomeDirectory.Ephemeral.mk_dirs(CatmullClarkSubdivisionExport.class.getSimpleName());
-    Put.of(path.resolve("grid.mathematica"), univariate());
-    Put.of(path.resolve("se2.mathematica"), se2());
-    Put.of(path.resolve("r3s2.mathematica"), r3s2());
-    Put.of(path.resolve("sphere.mathematica"), r3s2_sphere());
+    MathematicaFormat.Put.of(path.resolve("grid.mathematica"), univariate());
+    MathematicaFormat.Put.of(path.resolve("se2.mathematica"), se2());
+    MathematicaFormat.Put.of(path.resolve("r3s2.mathematica"), r3s2());
+    MathematicaFormat.Put.of(path.resolve("sphere.mathematica"), r3s2_sphere());
   }
 }
