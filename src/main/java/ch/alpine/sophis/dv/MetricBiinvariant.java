@@ -10,6 +10,7 @@ import ch.alpine.sophus.api.TangentSpace;
 import ch.alpine.sophus.hs.gr.GrTangentSpace;
 import ch.alpine.sophus.hs.spd.SpdTangentSpace;
 import ch.alpine.sophus.math.FrobeniusForm;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.io.MathematicaFormat;
@@ -110,7 +111,7 @@ public class MetricBiinvariant extends BiinvariantBase {
   public Sedarim coordinate(ScalarUnaryOperator variogram, Tensor sequence) {
     Objects.requireNonNull(sequence);
     Objects.requireNonNull(variogram);
-    return point -> coordinate(variogram).origin(manifold().tangentSpace(point).vectorLog().slash(sequence));
+    return point -> coordinate(variogram).origin(Slash.of(sequence, manifold().tangentSpace(point).vectorLog()));
   }
 
   public Genesis coordinate(ScalarUnaryOperator variogram) {
@@ -123,7 +124,7 @@ public class MetricBiinvariant extends BiinvariantBase {
     Objects.requireNonNull(variogram);
     Objects.requireNonNull(sequence);
     return point -> {
-      Tensor levers = manifold().tangentSpace(point).vectorLog().slash(sequence);
+      Tensor levers = Slash.of(sequence, manifold().tangentSpace(point).vectorLog());
       return LagrangeCoordinates.of(levers, weighting(variogram).origin(levers));
     };
   }

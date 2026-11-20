@@ -4,6 +4,7 @@ package ch.alpine.sophis.dv;
 import java.util.Objects;
 
 import ch.alpine.sophus.api.Manifold;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 
@@ -30,7 +31,7 @@ class GardenCoordinate implements Sedarim {
   public Tensor sunder(Tensor point) {
     // building influence matrix at point is warranted since the mahalanobis forms
     // exist only at sequence points
-    Tensor levers = manifold.tangentSpace(point).log().slash(sequence);
+    Tensor levers = Slash.of(sequence, manifold.tangentSpace(point).log());
     return WeightingToCoordinate.of(levers).apply(sedarim.sunder(point).maps(variogram)); // point as input to target
   }
 }

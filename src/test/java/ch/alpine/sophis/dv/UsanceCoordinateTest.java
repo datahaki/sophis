@@ -27,6 +27,7 @@ import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.so.SoNGroup;
 import ch.alpine.sophus.rsm.LocalRandomSample;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.UnitVector;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
@@ -77,7 +78,7 @@ class UsanceCoordinateTest {
     BarycentricCoordinate barycentricCoordinate = UsanceCoordinate.of(homogeneousSpace, InversePowerVariogram.of(2));
     Tensor weights = barycentricCoordinate.weights(sequence, p);
     AffineVectorQ.INSTANCE.require(weights);
-    Tensor levers = tangentSpace.vectorLog().slash(sequence);
+    Tensor levers = Slash.of(sequence, tangentSpace.vectorLog());
     Tensor residual = weights.dot(levers);
     Tolerance.CHOP.requireAllZero(residual);
     Optional<Tensor> optional = homogeneousSpace.biinvariantMean().optional(sequence, weights);

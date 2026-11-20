@@ -25,6 +25,7 @@ import ch.alpine.sophus.lie.se2.Se2Group;
 import ch.alpine.sophus.lie.se2.Se2RandomSample;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Dimensions;
@@ -231,7 +232,7 @@ class Se2BiinvariantTest {
     Tensor points = RandomVariate.of(distributiox, n, 3);
     Tensor xya = RandomVariate.of(distribution, 3);
     Tensor weights = barycentricCoordinate.weights(points, xya);
-    Tensor matrix = manifold.tangentSpace(xya).log().slash(points);
+    Tensor matrix = Slash.of(points, manifold.tangentSpace(xya).log());
     Tensor influence = matrix.dot(PseudoInverse.of(matrix));
     new SymmetricMatrixQ(Chop._10).require(influence);
     Chop._10.requireClose(Symmetrize.of(influence), influence);
@@ -247,7 +248,7 @@ class Se2BiinvariantTest {
       Tensor one = tensorMapping.apply(xya);
       Chop._08.requireClose(one, biinvariantMean.mean(all, weights));
       Chop._06.requireClose(weights, barycentricCoordinate.weights(all, one));
-      Tensor levers = manifold.tangentSpace(one).log().slash(all);
+      Tensor levers = Slash.of(all, manifold.tangentSpace(one).log());
       Chop._06.requireClose(influence, InfluenceMatrix.of(levers).matrix());
     }
   }
@@ -265,7 +266,7 @@ class Se2BiinvariantTest {
     Tensor weights1 = barycentricCoordinate.weights(sequence, xya); // projection
     AffineVectorQ.INSTANCE.require(weights1); // , Chop._08);
     Chop._08.requireClose(weights, weights);
-    Tensor matrix = manifold.tangentSpace(xya).log().slash(sequence);
+    Tensor matrix = Slash.of(sequence, manifold.tangentSpace(xya).log());
     Tensor residualMaker = InfluenceMatrix.of(matrix).residualMaker();
     Chop._08.requireClose(residualMaker.dot(weights), weights);
     assertEquals(Dimensions.of(residualMaker), Arrays.asList(n, n));
@@ -380,11 +381,11 @@ class Se2BiinvariantTest {
     for (int count = 4; count < 10; ++count) {
       Tensor sequence = RandomVariate.of(distribution, count, 3);
       Tensor point = RandomVariate.of(distribution, 3);
-      Tensor leverages_sqrt = new Mahalanobis(manifold.tangentSpace(point).log().slash(sequence)).leverages_sqrt();
+      Tensor leverages_sqrt = new Mahalanobis(Slash.of(sequence, manifold.tangentSpace(point).log())).leverages_sqrt();
       leverages_sqrt.stream().map(Scalar.class::cast).forEach(Clips.unit()::requireInside);
       Tensor shift = RandomVariate.of(distribution, 3);
       for (TensorUnaryOperator tensorMapping : BiinvariantCheck.of(Se2CoveringGroup.INSTANCE, shift)) {
-        Tensor matrix = manifold.tangentSpace(tensorMapping.apply(point)).log().slash(tensorMapping.slash(sequence));
+        Tensor matrix = Slash.of(Slash.of(sequence, tensorMapping), manifold.tangentSpace(tensorMapping.apply(point)).log());
         Chop._05.requireClose(leverages_sqrt, //
             new Mahalanobis(matrix).leverages_sqrt());
       }

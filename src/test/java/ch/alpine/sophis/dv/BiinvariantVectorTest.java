@@ -16,6 +16,7 @@ import ch.alpine.sophus.hs.s.Sphere;
 import ch.alpine.sophus.lie.rn.RGroup;
 import ch.alpine.sophus.lie.se2.Se2CoveringGroup;
 import ch.alpine.sophus.lie.se2.Se2Group;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.lie.Symmetrize;
@@ -51,7 +52,7 @@ class BiinvariantVectorTest {
   }
 
   private static Tensor _check(Manifold manifold, Tensor sequence, Tensor point) {
-    Tensor V = manifold.tangentSpace(point).log().slash(sequence);
+    Tensor V = Slash.of(sequence, manifold.tangentSpace(point).log());
     Tensor VT = Transpose.of(V);
     Tensor pinv = PseudoInverse.of(VT.dot(V));
     new SymmetricMatrixQ(Chop._04).require(pinv);
@@ -63,7 +64,7 @@ class BiinvariantVectorTest {
     Tensor traceh = Trace.of(H);
     Chop._07.requireClose(traceh, traceh.maps(Round.FUNCTION));
     // ---
-    Tensor matrix = manifold.tangentSpace(point).log().slash(sequence);
+    Tensor matrix = Slash.of(sequence, manifold.tangentSpace(point).log());
     InfluenceMatrix influenceMatrix = InfluenceMatrix.of(matrix);
     SymmetricMatrixQ.INSTANCE.require(influenceMatrix.matrix());
     Chop._08.requireClose(H, influenceMatrix.matrix());

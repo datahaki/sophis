@@ -7,6 +7,7 @@ import java.util.Objects;
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.bm.AffineVectorQ;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.chq.DeterminateTensorQ;
 
@@ -28,7 +29,7 @@ public record HsCoordinates(Manifold manifold, Genesis genesis) implements Baryc
 
   @Override // from BarycentricCoordinate
   public Tensor weights(Tensor sequence, Tensor point) {
-    Tensor weights = genesis.origin(manifold.tangentSpace(point).vectorLog().slash(sequence));
+    Tensor weights = genesis.origin(Slash.of(sequence, manifold.tangentSpace(point).vectorLog()));
     return DeterminateTensorQ.of(weights) //
         ? AffineVectorQ.INSTANCE.require(weights)
         : weights;

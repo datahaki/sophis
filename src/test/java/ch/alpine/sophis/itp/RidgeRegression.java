@@ -7,6 +7,7 @@ import ch.alpine.sophus.api.Manifold;
 import ch.alpine.tensor.Rational;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Transpose;
 import ch.alpine.tensor.lie.Symmetrize;
@@ -27,7 +28,7 @@ record RidgeRegression(Manifold manifold) implements Serializable {
     /** @param sequence of n anchor points
      * @param point */
     Form2(Tensor sequence, Tensor point) {
-      matrix = manifold.tangentSpace(point).log().slash(sequence);
+      matrix = Slash.of(sequence, manifold.tangentSpace(point).log());
       Scalar factor = Rational.of(1, sequence.length());
       Tensor sigma = Transpose.of(matrix).dot(matrix).multiply(factor);
       // computation of pseudo inverse only may result in numerical deviation from true symmetric result

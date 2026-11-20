@@ -2,6 +2,7 @@
 package ch.alpine.sophis.dv;
 
 import ch.alpine.sophus.bm.AffineVectorQ;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.UnitVector;
@@ -20,7 +21,7 @@ enum LagrangeCoordinates {
    * @return */
   public static Tensor of(Tensor levers, Tensor target) {
     MatrixQ.require(levers);
-    Tensor eqs = AppendOne.FUNCTION.slash(levers);
+    Tensor eqs = Slash.of(levers, AppendOne.FUNCTION);
     int d = Unprotect.dimension1Hint(levers) + 1;
     Tensor rhs = UnitVector.of(d, d - 1);
     /* least squares is required if eqs do not have max rank, which is the case

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophus.api.Manifold;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.io.MathematicaFormat;
@@ -38,7 +39,7 @@ class UsanceBiinvariant extends BiinvariantBase implements Genesis {
   @Override // from Biinvariant
   public Sedarim relative_distances(Tensor sequence) {
     Objects.requireNonNull(sequence);
-    return point -> origin(manifold().tangentSpace(point).vectorLog().slash(sequence));
+    return point -> origin(Slash.of(sequence, manifold().tangentSpace(point).vectorLog()));
   }
 
   @Override // from Biinvariant
@@ -55,7 +56,7 @@ class UsanceBiinvariant extends BiinvariantBase implements Genesis {
     Objects.requireNonNull(variogram);
     Objects.requireNonNull(sequence);
     return point -> {
-      Tensor levers = manifold().tangentSpace(point).vectorLog().slash(sequence);
+      Tensor levers = Slash.of(sequence, manifold().tangentSpace(point).vectorLog());
       Tensor target = NormalizeTotal.FUNCTION.apply(origin(levers).maps(variogram));
       return LagrangeCoordinates.of(levers, target);
     };

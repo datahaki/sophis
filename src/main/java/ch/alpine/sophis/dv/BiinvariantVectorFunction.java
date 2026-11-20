@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.api.TensorMetric;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.mat.gr.InfluenceMatrix;
 
@@ -30,7 +31,7 @@ class BiinvariantVectorFunction implements Serializable {
     this.sequence = sequence;
     this.tensorMetric = Objects.requireNonNull(tensorMetric);
     influences = Tensor.of(sequence.stream() //
-        .map(point -> manifold.tangentSpace(point).vectorLog().slash(sequence)) //
+        .map(point -> Slash.of(sequence, manifold.tangentSpace(point).vectorLog())) //
         .map(InfluenceMatrix::of) //
         .map(InfluenceMatrix::matrix));
   }
@@ -38,7 +39,7 @@ class BiinvariantVectorFunction implements Serializable {
   /** @param point
    * @return biinvariant vector at given point of manifold */
   public BiinvariantVector biinvariantVector(Tensor point) {
-    Tensor levers = manifold.tangentSpace(point).vectorLog().slash(sequence);
+    Tensor levers = Slash.of(sequence, manifold.tangentSpace(point).vectorLog());
     InfluenceMatrix influenceMatrix = InfluenceMatrix.of(levers);
     Tensor matrix = influenceMatrix.matrix();
     return new BiinvariantVector( //

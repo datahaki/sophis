@@ -3,6 +3,7 @@ package ch.alpine.sophis.dv;
 
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophus.bm.AffineVectorQ;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.UnitVector;
@@ -27,7 +28,7 @@ public enum AffineCoordinate implements Genesis {
   @Override // from Genesis
   public Tensor origin(Tensor levers) {
     MatrixQ.require(levers);
-    Tensor x = AppendOne.FUNCTION.slash(levers);
+    Tensor x = Slash.of(levers, AppendOne.FUNCTION);
     int d = Unprotect.dimension1Hint(levers);
     Tensor u = UnitVector.of(d + 1, d);
     Tensor matrix = TransposeMatrixDot.self(x);

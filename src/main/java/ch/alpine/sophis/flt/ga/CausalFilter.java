@@ -3,6 +3,7 @@ package ch.alpine.sophis.flt.ga;
 
 import java.util.function.Supplier;
 
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 
@@ -11,6 +12,6 @@ import ch.alpine.tensor.api.TensorUnaryOperator;
 public record CausalFilter(Supplier<TensorUnaryOperator> supplier) implements TensorUnaryOperator {
   @Override
   public Tensor apply(Tensor tensor) {
-    return supplier.get().slash(tensor);
+    return Slash.of(tensor, supplier.get());
   }
 }

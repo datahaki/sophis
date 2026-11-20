@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 import ch.alpine.sophus.api.Manifold;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.ScalarUnaryOperator;
 import ch.alpine.tensor.nrm.NormalizeTotal;
@@ -44,7 +45,7 @@ public abstract class BiinvariantBase implements Biinvariant, Serializable {
     Sedarim sedarim = weighting(variogram, sequence);
     return point -> LagrangeCoordinates.of( //
         // TODO ALG levers are computed twice
-        manifold.tangentSpace(point).vectorLog().slash(sequence), //
+        Slash.of(sequence, manifold.tangentSpace(point).vectorLog()), //
         sedarim.sunder(point)); // target
   }
 }

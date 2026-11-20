@@ -8,6 +8,7 @@ import ch.alpine.sophis.var.PowerVariogram;
 import ch.alpine.sophis.var.SphericalVariogram;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
@@ -75,7 +76,7 @@ public record Kriging(Sedarim sedarim, Scalar one, Tensor weights, Tensor invers
    * @return */
   public static Kriging of(Sedarim sedarim, Tensor sequence, Tensor values, Tensor covariance) {
     // symmetric distance matrix eq (3.7.13)
-    Tensor vardst = sedarim.sunder().slash(sequence);
+    Tensor vardst = Slash.of(sequence, sedarim.sunder());
     SymmetricMatrixQ.INSTANCE.require(vardst);
     Tensor matrix = vardst.subtract(SymmetricMatrixQ.INSTANCE.require(covariance));
     // TODO IMPL probably can be simplified

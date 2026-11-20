@@ -3,6 +3,7 @@ package ch.alpine.sophis.itp;
 
 import ch.alpine.sophis.dv.Biinvariant;
 import ch.alpine.sophis.dv.Sedarim;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.mat.IdentityMatrix;
@@ -45,7 +46,7 @@ public class RadialBasisFunctionInterpolation implements TensorUnaryOperator {
   private RadialBasisFunctionInterpolation(Sedarim sedarim, Tensor sequence, Tensor values) {
     this.sedarim = sedarim;
     weights = LeastSquares.of( //
-        sedarim.sunder().slash(sequence), // distance matrix as in Kriging
+        Slash.of(sequence, sedarim.sunder()), // distance matrix as in Kriging
         values);
   }
 

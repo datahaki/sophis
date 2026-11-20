@@ -4,6 +4,7 @@ package ch.alpine.sophis.api;
 import org.junit.jupiter.api.Test;
 
 import ch.alpine.sophus.hs.s.Sphere;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.api.TensorUnaryOperator;
@@ -25,7 +26,7 @@ class GeoPositionTest {
   void testRandom() {
     Tensor ps = RandomVariate.of(NormalDistribution.standard(), 30, 2);
     TensorUnaryOperator op = GeoPosition::of;
-    op.slash(ps);
+    Slash.of(ps, op);
   }
 
   @Test

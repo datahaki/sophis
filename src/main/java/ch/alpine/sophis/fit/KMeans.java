@@ -7,6 +7,7 @@ import java.util.random.RandomGenerator;
 import java.util.stream.IntStream;
 
 import ch.alpine.sophis.dv.Sedarim;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
@@ -60,7 +61,7 @@ public class KMeans {
   public void iterate() {
     // Tensor prev = seeds.copy();
     // compute distance matrix: sequence X seeds
-    Tensor tensor = Transpose.of(sedarim.sunder().slash(seeds));
+    Tensor tensor = Transpose.of(Slash.of(seeds, sedarim.sunder()));
     // match all points in sequence to the "closest" seed
     labels = tensor.stream().map(ArgMin::of).toArray(Integer[]::new);
     // create redundant data structure

@@ -5,6 +5,7 @@ import java.util.List;
 
 import ch.alpine.sophus.api.Manifold;
 import ch.alpine.sophus.api.TangentSpace;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.ext.Int;
 import ch.alpine.tensor.mat.gr.Mahalanobis;
@@ -23,7 +24,7 @@ record GardenDistanceVector(List<TangentSpace> exponentials, List<Mahalanobis> a
   public static GardenDistanceVector of(Manifold manifold, Tensor sequence) {
     List<TangentSpace> exponentials = sequence.stream().map(manifold::tangentSpace).toList();
     return new GardenDistanceVector(exponentials, exponentials.stream() //
-        .map(exponential -> exponential.vectorLog().slash(sequence)) //
+        .map(exponential -> Slash.of(sequence, exponential.vectorLog())) //
         .map(Mahalanobis::new) //
         .toList());
   }
