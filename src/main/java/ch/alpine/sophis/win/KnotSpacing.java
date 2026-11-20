@@ -23,7 +23,7 @@ public record KnotSpacing(TensorMetric tensorMetric, ScalarUnaryOperator variogr
   /** @param tensorMetric for instance Se2ParametricDistance.INSTANCE
    * @param exponent typically in the interval [0, 1] */
   public static TensorUnaryOperator centripetal(TensorMetric tensorMetric, Scalar exponent) {
-    return new KnotSpacing(Objects.requireNonNull(tensorMetric), Power.function(exponent));
+    return new KnotSpacing(Objects.requireNonNull(tensorMetric), Power.withExponent(exponent));
   }
 
   /** @param tensorMetric for instance Se2ParametricDistance.INSTANCE

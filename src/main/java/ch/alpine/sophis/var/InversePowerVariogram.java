@@ -67,7 +67,7 @@ public class InversePowerVariogram implements ScalarUnaryOperator {
 
   private InversePowerVariogram(Scalar exponent) {
     this.exponent = exponent;
-    this.power = Power.function(exponent.negate());
+    this.power = Power.withExponent(exponent.negate());
   }
 
   @Override

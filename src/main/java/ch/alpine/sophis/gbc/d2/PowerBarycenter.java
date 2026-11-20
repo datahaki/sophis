@@ -34,7 +34,7 @@ public class PowerBarycenter implements BiFunction<Tensor, Scalar, Tensor>, Seri
   private final ScalarUnaryOperator power;
 
   private PowerBarycenter(Scalar exponent) {
-    power = Power.function(exponent);
+    power = Power.withExponent(exponent);
   }
 
   @Override

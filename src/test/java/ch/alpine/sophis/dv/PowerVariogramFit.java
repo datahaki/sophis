@@ -32,7 +32,7 @@ public enum PowerVariogramFit {
     // TODO ALG not very elegant generic, fit function needs a demo
     Scalar den = RealScalar.ZERO;
     Scalar nugsq = RealScalar.ZERO;
-    ScalarUnaryOperator power = Power.function(exponent);
+    ScalarUnaryOperator power = Power.withExponent(exponent);
     for (int i = 0; i < n; ++i)
       for (int j = i + 1; j < n; ++j) {
         Scalar rb = power.apply(tensorMetric.distance(sequence.get(i), sequence.get(j)));

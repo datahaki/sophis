@@ -31,7 +31,7 @@ public class PowerVariogram implements ScalarUnaryOperator {
 
   private PowerVariogram(Scalar exponent) {
     this.exponent = exponent;
-    this.power = Power.function(exponent);
+    this.power = Power.withExponent(exponent);
   }
 
   @Override

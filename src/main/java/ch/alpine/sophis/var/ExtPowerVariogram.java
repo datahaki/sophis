@@ -24,7 +24,7 @@ public record ExtPowerVariogram(Scalar alpha, ScalarUnaryOperator power) impleme
    * @param exponent in the range [1, 2) "The value 2 gives a degenerate matrix and meaningless results."
    * @return */
   public static ExtPowerVariogram of(Scalar alpha, Scalar exponent) {
-    return new ExtPowerVariogram(Objects.requireNonNull(alpha), Power.function(exponent));
+    return new ExtPowerVariogram(Objects.requireNonNull(alpha), Power.withExponent(exponent));
   }
 
   /** @param alpha

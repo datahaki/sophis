@@ -92,8 +92,8 @@ class Se2BiinvariantTest {
       }
       Biinvariant biinvariant = Biinvariants.HARBOR.ofSafe(Se2CoveringGroup.INSTANCE);
       for (int exp = 0; exp < 3; ++exp) {
-        Sedarim gr1 = biinvariant.coordinate(Power.function(exp), sequence);
-        Sedarim gr2 = biinvariant.coordinate(Power.function(exp), all);
+        Sedarim gr1 = biinvariant.coordinate(Power.withExponent(exp), sequence);
+        Sedarim gr2 = biinvariant.coordinate(Power.withExponent(exp), all);
         Tensor w1 = gr1.sunder(point);
         Tensor w2 = gr2.sunder(one);
         Chop._08.requireClose(w1, w2); // _10 fails
