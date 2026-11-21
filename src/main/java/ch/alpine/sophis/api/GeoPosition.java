@@ -13,6 +13,8 @@ import ch.alpine.tensor.qty.UnitSystem;
  * <a href="https://reference.wolfram.com/language/ref/GeoPosition.html">GeoPosition</a> */
 public enum GeoPosition {
   ;
+  public static final Scalar EARTH_RADIUS = Quantity.of(6_378_137, "m");
+
   /** @param string for example "38°20′44″N 00°46′8″W"
    * @return */
   public static Scalar fromString(String string) {
@@ -37,6 +39,7 @@ public enum GeoPosition {
    * @return */
   public static Tensor xyz(Tensor lat_lon) {
     // TODO use ellipsoid model
-    return of(lat_lon).multiply(Quantity.of(6_378_137, "m"));
+    // FIXME API not clear
+    return of(lat_lon).multiply(EARTH_RADIUS);
   }
 }
