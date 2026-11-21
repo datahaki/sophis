@@ -61,10 +61,10 @@ enum Adds {
   }
 
   private static Tensor build_forward(int n) {
-    return Tensor.of(IdentityMatrix.of(n).stream().map(Adds::forward));
+    return Tensor.of(IdentityMatrix.stream(n).map(Adds::forward), n);
   }
 
   private static Tensor build_reverse(int n) {
-    return Tensor.of(IdentityMatrix.of(n).stream().map(Adds::reverse));
+    return Tensor.of(IdentityMatrix.stream(n).map(Adds::reverse), n);
   }
 }

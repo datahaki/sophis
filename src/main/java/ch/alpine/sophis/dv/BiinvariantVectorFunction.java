@@ -33,7 +33,7 @@ class BiinvariantVectorFunction implements Serializable {
     influences = Tensor.of(sequence.stream() //
         .map(point -> Slash.of(sequence, manifold.tangentSpace(point).vectorLog())) //
         .map(InfluenceMatrix::of) //
-        .map(InfluenceMatrix::matrix));
+        .map(InfluenceMatrix::matrix), sequence.length());
   }
 
   /** @param point
@@ -44,6 +44,6 @@ class BiinvariantVectorFunction implements Serializable {
     Tensor matrix = influenceMatrix.matrix();
     return new BiinvariantVector( //
         influenceMatrix, //
-        Tensor.of(influences.stream().map(x -> tensorMetric.distance(x, matrix))));
+        Slash.of(influences, x -> tensorMetric.distance(x, matrix)));
   }
 }

@@ -32,7 +32,7 @@ public class HalfWindowSampler extends BaseWindowSampler {
     return isContinuous //
         ? Tensor.of(Subdivide.increasing(CLIP, length) //
             .maps(windowFunction) //
-            .stream().skip(1).limit(length))
+            .stream().skip(1).limit(length)) // TODO what is the length?
         : Subdivide.increasing(CLIP, length - 1) //
             .maps(windowFunction);
   }

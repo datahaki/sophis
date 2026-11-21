@@ -56,6 +56,6 @@ public class UniformResample implements CurveOperator, Serializable {
     return Tensor.of(Subdivide.of(0, 1, n).stream() //
         .limit(n) //
         .map(Scalar.class::cast) //
-        .map(scalarTensorFunction));
+        .map(scalarTensorFunction), n);
   }
 }

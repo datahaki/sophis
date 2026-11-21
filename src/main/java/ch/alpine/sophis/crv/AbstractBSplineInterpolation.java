@@ -2,11 +2,11 @@
 package ch.alpine.sophis.crv;
 
 import java.io.Serializable;
-import java.util.stream.IntStream;
 
 import ch.alpine.sophus.api.GeodesicSpace;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Range;
 import ch.alpine.tensor.ext.Integers;
 import ch.alpine.tensor.mat.Tolerance;
@@ -59,8 +59,8 @@ public abstract class AbstractBSplineInterpolation implements Serializable {
     public Iteration stepJacobi() {
       // evaluate curve at all parameter values
       Tensor refine = Range.of(0, target.length()).maps(geodesicBSplineFunction(control));
-      return new Iteration(Tensor.of(IntStream.range(0, control.length()) //
-          .mapToObj(index -> move(control.get(index), refine.get(index), target.get(index)))), steps + 1);
+      return new Iteration(Tensors.vector( //
+          index -> move(control.get(index), refine.get(index), target.get(index)), control.length()), steps + 1);
     }
 
     public Tensor control() {

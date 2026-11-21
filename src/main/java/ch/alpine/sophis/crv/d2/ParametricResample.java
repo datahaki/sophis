@@ -8,6 +8,7 @@ import java.util.List;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Differences;
@@ -34,9 +35,9 @@ public class ParametricResample implements Serializable {
   /** @param points sequence of lidar points in ccw- or cw-direction
    * @return points grouped by connectivity and resampled equidistantly */
   public ResampleResult apply(Tensor points) {
-    Tensor dista = Tensor.of(points.stream().map(Vector2Norm::of)); // distance of points from origin
+    Tensor dista = Slash.of(points, Vector2Norm::of); // distance of points from origin
     Tensor diffs = Differences.of(points); // displacement vectors
-    Tensor delta = Tensor.of(diffs.stream().map(Vector2Norm::of)); // length of displacement vectors
+    Tensor delta = Slash.of(diffs, Vector2Norm::of); // length of displacement vectors
     List<Tensor> list = new LinkedList<>(); // return structure
     Tensor ret = Tensors.empty(); // initialize connected segment
     Scalar sum = RealScalar.ZERO; // parameter

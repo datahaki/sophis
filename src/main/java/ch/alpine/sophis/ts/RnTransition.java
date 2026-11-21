@@ -18,7 +18,8 @@ public class RnTransition extends AbstractTransition {
 
   @Override // from Transition
   public Tensor sampled(Scalar minResolution) {
-    return Tensor.of(Subdivide.of(start(), end(), steps(minResolution)).stream().skip(1));
+    int n = steps(minResolution);
+    return Tensor.of(Subdivide.of(start(), end(), n).stream().skip(1), n);
   }
 
   @Override // from Transition

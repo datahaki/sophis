@@ -4,6 +4,7 @@ package ch.alpine.sophis.gbc.d2;
 import ch.alpine.sophis.api.Genesis;
 import ch.alpine.sophis.dv.Sedarim;
 import ch.alpine.tensor.RealScalar;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
@@ -70,12 +71,12 @@ public class SPatch implements Sedarim {
   }
 
   public Tensor getEmbed() {
-    return Tensor.of(ls.stream().map(this::embed));
+    return Slash.of(ls, this::embed);
   }
 
   @Override // from Sedarim
   public Tensor sunder(Tensor xy) {
-    Tensor levers = Tensor.of(v.stream().map(p -> p.subtract(xy)));
+    Tensor levers = Slash.of(v, p -> p.subtract(xy));
     Tensor coords = genesis.origin(levers);
     Tensor matrix = Array.zeros(n, ls.length());
     for (int i = 0; i < n; ++i) {

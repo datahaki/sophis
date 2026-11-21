@@ -26,7 +26,7 @@ public record ReduceMesh(Scalar radius) implements Serializable {
           list.add(Tensors.empty());
         list.get(label).append(surfaceMesh.vrt.get(index));
       }
-      result.vrt = Tensor.of(list.stream().map(Mean::of));
+      result.vrt = Tensor.of(list.stream().map(Mean::of), list.size());
       for (int[] face : surfaceMesh.faces()) {
         int[] values = IntStream.of(face).map(i -> labels[i]).distinct().toArray();
         if (1 < values.length)

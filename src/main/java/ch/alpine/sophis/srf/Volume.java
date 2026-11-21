@@ -12,7 +12,7 @@ public enum Volume {
   ;
   public static Scalar of(SurfaceMesh surfaceMesh) {
     return TriangulateMesh.faces(surfaceMesh.faces()).stream() //
-        .map(triangle -> Tensor.of(Arrays.stream(triangle).mapToObj(surfaceMesh.vrt::get))) //
+        .map(triangle -> Tensor.of(Arrays.stream(triangle).mapToObj(surfaceMesh.vrt::get), triangle.length)) //
         .map(Det::of) //
         .reduce(Scalar::add) //
         .orElseThrow().multiply(Rational.of(1, 6));

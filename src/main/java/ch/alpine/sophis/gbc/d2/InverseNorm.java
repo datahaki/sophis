@@ -16,6 +16,6 @@ enum InverseNorm implements Genesis {
   public Tensor origin(Tensor levers) {
     return Tensor.of(levers.stream() //
         .map(Vector2Norm::of) //
-        .map(VARIOGRAM));
+        .map(VARIOGRAM), levers.length());
   }
 }

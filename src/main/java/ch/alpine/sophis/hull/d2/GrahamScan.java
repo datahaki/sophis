@@ -15,6 +15,7 @@ import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.alg.VectorQ;
 import ch.alpine.tensor.sca.Chop;
 import ch.alpine.tensor.sca.Sign;
@@ -87,6 +88,6 @@ enum GrahamScan {
       stack.push(top);
       stack.push(point);
     }
-    return Tensor.of(stack.stream());
+    return Unprotect.collect(stack);
   }
 }

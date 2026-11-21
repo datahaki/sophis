@@ -33,6 +33,7 @@ record GardenDistanceVector(List<TangentSpace> exponentials, List<Mahalanobis> a
   public Tensor sunder(Tensor point) {
     Int i = new Int();
     return Tensor.of(array.stream() //
-        .map(mahalanobis -> mahalanobis.norm(exponentials.get(i.getAndIncrement()).vectorLog().apply(point))));
+        .map(mahalanobis -> mahalanobis.norm(exponentials.get(i.getAndIncrement()).vectorLog().apply(point))), //
+        array.size());
   }
 }

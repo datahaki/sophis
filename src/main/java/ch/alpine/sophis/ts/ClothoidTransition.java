@@ -53,7 +53,7 @@ public class ClothoidTransition extends AbstractTransition {
     Sign.requirePositive(minResolution);
     Tensor uniform = Subdivide.of(_0, _1, //
         Math.max(1, Ceiling.intValueExact(length().divide(minResolution))));
-    return Tensor.of(uniform.stream().skip(1).map(Scalar.class::cast).map(clothoid));
+    return Tensor.of(uniform.stream().skip(1).map(Scalar.class::cast).map(clothoid), uniform.length() - 1);
   }
 
   @Override // from Transition

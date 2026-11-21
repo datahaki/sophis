@@ -43,7 +43,7 @@ public record WeiszfeldMethod(Chop chop) implements SpatialMedian, Serializable 
     AffineVectorQ.INSTANCE.require(weights);
     Tensor point = weights.dot(sequence).maps(N.DOUBLE); // initial value
     for (int iteration = 0; iteration < MAX_ITERATIONS; ++iteration) {
-      Tensor dist = Tensor.of(sequence.stream().map(point.negate()::add).map(Vector2Norm::of));
+      Tensor dist = Tensor.of(sequence.stream().map(point.negate()::add).map(Vector2Norm::of), sequence.length());
       int index = ArgMin.of(dist);
       if (Scalars.isZero(dist.Get(index)))
         return Optional.of(point);

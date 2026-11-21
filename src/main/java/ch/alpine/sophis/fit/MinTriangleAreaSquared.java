@@ -5,6 +5,7 @@ import ch.alpine.sophis.api.Genesis;
 import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Scalars;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
 import ch.alpine.tensor.alg.Array;
@@ -62,7 +63,7 @@ public enum MinTriangleAreaSquared implements Genesis {
    * @return normalized polygon with mean zero and unit average lever length */
   @PackageTestAccess
   static Tensor normalize(Tensor polygon) {
-    polygon = Tensor.of(polygon.stream().map(Mean.of(polygon).negate()::add));
+    polygon = Slash.of(polygon, Mean.of(polygon).negate()::add);
     ScalarSummaryStatistics scalarSummaryStatistics = polygon.stream() //
         .map(Vector2Norm::of) //
         .collect(ScalarSummaryStatistics.collector());

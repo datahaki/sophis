@@ -7,6 +7,7 @@ import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Tensors;
+import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.ext.BoundedLinkedList;
 import ch.alpine.tensor.itp.BinaryAverage;
@@ -40,7 +41,7 @@ public class GeodesicExtrapolationFilter implements TensorUnaryOperator {
     }
     for (int index = 1; index < tensor.length() - 1; index++) {
       // Extrapolation Step
-      Tensor temp = geodesicExtrapolation.apply(Tensor.of(boundedLinkedList.stream()));
+      Tensor temp = geodesicExtrapolation.apply(Unprotect.collect(boundedLinkedList));
       // Measurement update step
       Scalar alpha = RealScalar.of(0.2);
       temp = binaryAverage.split(temp, tensor.get(index + 1), alpha);

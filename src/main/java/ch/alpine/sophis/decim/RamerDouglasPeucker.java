@@ -81,7 +81,7 @@ record RamerDouglasPeucker(LineDistance lineDistance, Scalar epsilon) implements
 
     public DecimationResult getDecimationResult() {
       return new DecimationResult( //
-          Tensor.of(list.stream().map(i -> tensors[i]).map(Tensor::copy)), //
+          Tensor.of(list.stream().map(i -> tensors[i]).map(Tensor::copy), list.size()), //
           Tensors.of(scalars));
     }
   }

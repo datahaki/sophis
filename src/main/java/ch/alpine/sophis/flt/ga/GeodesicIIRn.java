@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import ch.alpine.tensor.Scalar;
 import ch.alpine.tensor.Tensor;
+import ch.alpine.tensor.Unprotect;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.ext.BoundedLinkedList;
 import ch.alpine.tensor.itp.BinaryAverage;
@@ -44,7 +45,7 @@ public class GeodesicIIRn implements TensorUnaryOperator {
   public Tensor apply(Tensor x) {
     Tensor value = boundedLinkedList.size() < 2 //
         ? x.copy()
-        : binaryAverage.split(geodesicExtrapolation.apply(Tensor.of(boundedLinkedList.stream())), x, alpha);
+        : binaryAverage.split(geodesicExtrapolation.apply(Unprotect.collect(boundedLinkedList)), x, alpha);
     boundedLinkedList.add(value);
     return value;
   }

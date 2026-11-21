@@ -36,7 +36,7 @@ public class DubinsTransition extends AbstractTransition {
     return Tensor.of(Subdivide.of(0.0, 1.0, n).stream() //
         .skip(1) //
         .map(Scalar.class::cast) //
-        .map(dubinsPath.unit(start())));
+        .map(dubinsPath.unit(start())), n);
   }
 
   @Override // from Transition

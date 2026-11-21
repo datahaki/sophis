@@ -4,10 +4,11 @@ package ch.alpine.sophis.fit;
 import java.io.Serializable;
 import java.util.Optional;
 
-import ch.alpine.tensor.RealScalar;
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.Unprotect;
+import ch.alpine.tensor.jet.AppendOne;
 import ch.alpine.tensor.mat.pi.LeastSquares;
 import ch.alpine.tensor.mat.re.MatrixRank;
 import ch.alpine.tensor.nrm.Vector2NormSquared;
@@ -20,8 +21,8 @@ public record SphereFit(Tensor center, Scalar radius) implements Serializable {
    * of the fitted sphere, or empty if points are numerically co-linear
    * @throws Exception if points is empty, or not a matrix */
   public static Optional<SphereFit> of(Tensor points) {
-    Tensor A = Tensor.of(points.stream().map(point -> point.add(point).append(RealScalar.ONE)));
-    Tensor b = Tensor.of(points.stream().map(Vector2NormSquared::of));
+    Tensor A = Slash.of(points, point -> AppendOne.FUNCTION.apply(point.add(point)));
+    Tensor b = Slash.of(points, Vector2NormSquared::of);
     int cols = Unprotect.dimension1(A);
     if (A.length() < cols || //
         MatrixRank.of(A) < cols)

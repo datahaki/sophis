@@ -56,11 +56,11 @@ public class SurfaceMesh implements Serializable {
   // ---
   /** @return tensor of coordinates */
   public Tensor polygons() {
-    return Tensor.of(faces.stream().map(this::polygon_face));
+    return Tensor.of(faces.stream().map(this::polygon_face), faces.size());
   }
 
   public Tensor polygon_face(int... indices) {
-    return Tensor.of(Arrays.stream(indices).mapToObj(vrt::get));
+    return Tensor.of(Arrays.stream(indices).mapToObj(vrt::get), indices.length);
   }
 
   // ---

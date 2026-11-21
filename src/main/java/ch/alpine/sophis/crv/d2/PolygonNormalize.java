@@ -2,6 +2,7 @@
 package ch.alpine.sophis.crv.d2;
 
 import ch.alpine.tensor.Scalar;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.alg.Reverse;
 import ch.alpine.tensor.sca.Sign;
@@ -21,6 +22,6 @@ public enum PolygonNormalize {
     }
     Scalar factor = Sqrt.FUNCTION.apply(area);
     Tensor shift = PolygonCentroid.of(polygon).negate();
-    return Tensor.of(polygon.stream().map(shift::add)).multiply(factor);
+    return Slash.of(polygon, shift::add).multiply(factor);
   }
 }

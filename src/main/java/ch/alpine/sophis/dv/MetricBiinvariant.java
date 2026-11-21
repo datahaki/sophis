@@ -88,7 +88,7 @@ public class MetricBiinvariant extends BiinvariantBase {
     return point -> {
       BilinearForm bilinearForm = metricManifold.bilinearForm(point);
       TangentSpace exponential = manifold().tangentSpace(point);
-      return Tensor.of(sequence.stream().map(exponential::log).map(bilinearForm::norm));
+      return Tensor.of(sequence.stream().map(exponential::log).map(bilinearForm::norm), sequence.length());
     };
   }
 
@@ -104,7 +104,7 @@ public class MetricBiinvariant extends BiinvariantBase {
     // the normalization is necessary to compensate for division by zero
     return levers -> NormalizeTotal.FUNCTION.apply(Tensor.of(levers.stream() //
         .map(FrobeniusForm.INSTANCE::norm) // FIXME SOPHIS
-        .map(variogram)));
+        .map(variogram), levers.length()));
   }
 
   @Override // from Biinvariant

@@ -2,6 +2,7 @@
 package ch.alpine.sophis.fit;
 
 import ch.alpine.sophus.bm.AffineVectorQ;
+import ch.alpine.tensor.Slash;
 import ch.alpine.tensor.Tensor;
 import ch.alpine.tensor.api.TensorUnaryOperator;
 import ch.alpine.tensor.mat.TransposeMatrixDot;
@@ -45,8 +46,8 @@ public record RigidMotionFit(Tensor rotation, Tensor translation) implements Ten
   public static RigidMotionFit of(Tensor origin, Tensor target) {
     Tensor pm = Mean.of(origin); // mean of origin coordinates
     Tensor qm = Mean.of(target); // mean of target coordinates
-    Tensor xt = Tensor.of(origin.stream().map(pm.negate()::add)); // levers to origin coordinates
-    Tensor yt = Tensor.of(target.stream().map(qm.negate()::add)); // levers to target coordinates
+    Tensor xt = Slash.of(origin, pm.negate()::add); // levers to origin coordinates
+    Tensor yt = Slash.of(target, qm.negate()::add); // levers to target coordinates
     Tensor rotation = Orthogonalize.usingSvd(TransposeMatrixDot.of(yt, xt));
     return new RigidMotionFit(rotation, qm.subtract(rotation.dot(pm)));
   }
@@ -55,8 +56,8 @@ public record RigidMotionFit(Tensor rotation, Tensor translation) implements Ten
   private static RigidMotionFit _of(Tensor origin, Tensor target, Tensor weights) {
     Tensor pm = weights.dot(origin); // weighted mean of origin coordinates
     Tensor qm = weights.dot(target); // weighted mean of target coordinates
-    Tensor xt = Tensor.of(origin.stream().map(pm.negate()::add)); // levers to origin coordinates
-    Tensor yt = Tensor.of(target.stream().map(qm.negate()::add)); // levers to target coordinates
+    Tensor xt = Slash.of(origin, pm.negate()::add); // levers to origin coordinates
+    Tensor yt = Slash.of(target, qm.negate()::add); // levers to target coordinates
     Tensor rotation = Orthogonalize.usingSvd(TransposeMatrixDot.of(yt, Times.of(weights, xt)));
     return new RigidMotionFit(rotation, qm.subtract(rotation.dot(pm)));
   }
