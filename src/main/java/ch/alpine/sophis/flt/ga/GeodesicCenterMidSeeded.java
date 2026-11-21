@@ -64,7 +64,7 @@ public class GeodesicCenterMidSeeded implements TensorUnaryOperator {
       Integers.requireOdd(mask.length());
       SymmetricVectorQ.INSTANCE.require(mask);
       int radius = (mask.length() - 1) / 2;
-      Tensor halfmask = Tensors.vector(i -> i.equals(radius) //
+      Tensor halfmask = Tensors.vector(i -> i==radius //
           ? mask.Get(i).multiply(Rational.HALF)
           : mask.Get(i), radius + 1);
       Scalar factor = halfmask.Get(radius);

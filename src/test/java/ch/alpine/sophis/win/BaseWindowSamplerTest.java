@@ -31,7 +31,7 @@ class BaseWindowSamplerTest {
   private static Tensor constant(int i) {
     int width = 2 * i + 1;
     Scalar weight = Rational.of(1, width);
-    return Tensors.vector(_ -> weight, width);
+    return Tensors.vector( _ -> weight, width);
   }
 
   @Test
